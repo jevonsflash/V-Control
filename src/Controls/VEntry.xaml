@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VEntry"
+             x:Name="this">
+    <Grid BindingContext="{x:Reference this}"
+          ColumnDefinitions="1*, auto">
+        <Entry Style="{StaticResource VEntryEntry}"
+               Text="{Binding EntryText}"
+               IsReadOnly="{Binding EntryIsReadOnly}"
+               ClearButtonVisibility="WhileEditing"
+               Placeholder="{Binding EntryPlaceholder}"
+               Keyboard="{Binding EntryKeyboard}"
+               MaxLength="{Binding EntryMaxLength}"
+               IsPassword="{Binding EntryIsPassword}">
+            <Entry.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+            </Entry.GestureRecognizers>
+        </Entry>
+        <ContentView x:Name="MainContent"
+                     Grid.Column="1">
+
+        </ContentView>
+    </Grid>
+</ContentView>

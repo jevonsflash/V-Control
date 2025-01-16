@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VCheckBoxButton"
+             
+             x:Name="this">
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroupList>
+            <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal">
+                    <VisualState.Setters>
+                        <Setter TargetName="CheckBoxButtonLayout"
+                                Property="Border.Style"
+                                Value="{StaticResource CheckBoxButtonNormalBorder}" />
+                        <Setter TargetName="CheckBoxButtonLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CheckBoxButtonNormalLabel}" />
+                        <Setter TargetName="CheckBoxButtonRemoveButton"
+                                Property="Button.TextColor"
+                                Value="{StaticResource Primary}" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="IsChecked">
+                    <VisualState.Setters>
+                        <Setter TargetName="CheckBoxButtonLayout"
+                                Property="Border.Style"
+                                Value="{StaticResource CheckBoxButtonSelBorder}" />
+                        <Setter TargetName="CheckBoxButtonLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CheckBoxButtonSelLabel}" />
+                        <Setter TargetName="CheckBoxButtonRemoveButton"
+                                Property="Button.TextColor"
+                                Value="{StaticResource Surface}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateGroupList>
+    </VisualStateManager.VisualStateGroups>
+
+    <Border x:Name="CheckBoxButtonLayout"
+            HeightRequest="30"
+            BindingContext="{Reference this}">
+        <Grid ColumnDefinitions="*,auto"
+              Padding="1,0"
+              Margin="1,0">
+            <ContentView x:Name="MainContent"
+                         InputTransparent="True">
+                <Label Text="{Binding Title}"
+                       VerticalOptions="Center"
+                       x:Name="CheckBoxButtonLabel" />
+            </ContentView>
+
+
+            <Button Text="&#xf00d;"
+                    x:Name="CheckBoxButtonRemoveButton"
+                    FontFamily="FontAwesome-Solid"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Padding="0"
+                    WidthRequest="30"
+                    IsVisible="{Binding HasRemove}"
+                    IsEnabled="{Binding IsEnabled}"
+                    Style="{StaticResource TextButton}"
+                    Clicked="Button_Clicked"></Button>
+        </Grid>
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer  Tapped="SelTapped" />
+        </Border.GestureRecognizers>
+    </Border>
+
+</ContentView>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VCalendarItem"
+             x:Name="this">
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroupList>
+            <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal">
+                    <VisualState.Setters>
+                        <Setter TargetName="CalendarItemSelectedLayout"
+                                Property="Border.Style"
+                                Value="{StaticResource CalendarItemNormalBorder}" />
+                        <Setter TargetName="DayLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CalendarItemNormalLabel}" />
+                        <Setter TargetName="ChinaDateDayLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CalendarItemNormalLabel}" />
+
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="IsSelected">
+                    <VisualState.Setters>
+                        <Setter TargetName="CalendarItemSelectedLayout"
+                                Property="Border.Style"
+                                Value="{StaticResource  CalendarItemSelBorder}" />
+                        <Setter TargetName="DayLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CalendarItemSelLabel}" />
+
+                        <Setter TargetName="ChinaDateDayLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CalendarItemSelLabel}" />
+
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="IsInvolved">
+                    <VisualState.Setters>
+                        <Setter TargetName="CalendarItemSelectedLayout"
+                                Property="Border.Style"
+                                Value="{StaticResource CalendarItemInvolvedBorder}" />
+                        <Setter TargetName="DayLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CalendarItemInvolvedLabel}" />
+                        <Setter TargetName="ChinaDateDayLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CalendarItemInvolvedLabel}" />
+
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateGroupList>
+    </VisualStateManager.VisualStateGroups>
+
+    <ContentView.Content>
+        <Grid  x:Name="CalendarItemLayout"
+               WidthRequest="50"
+               HeightRequest="50"
+               HorizontalOptions="Center">
+            <Border  x:Name="CalendarItemSelectedLayout"
+                     BindingContext="{x:Reference this}"
+                     Margin="2"
+                     HorizontalOptions="Center">
+                <StackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center">
+
+                    <Label Text="{Binding Text}"
+                           x:Name="DayLabel" />
+                    <Label Text="{Binding ChinaDateText}"
+                           FontSize="10"
+                           x:Name="ChinaDateDayLabel" />
+                </StackLayout>
+            </Border>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+            </Grid.GestureRecognizers>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

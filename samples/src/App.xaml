@@ -1,0 +1,95 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:VControl.Samples"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:v="clr-namespace:VControl.Styles;assembly=VControl"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             android:Application.WindowSoftInputModeAdjust="Resize"
+             x:Class="VControl.Samples.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <v:VControlTheme />
+                <ResourceDictionary>
+
+
+                    <toolkit:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+                    <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" />
+                    <toolkit:IsEqualConverter x:Key="IsEqualConverter" />
+
+
+                    <Style x:Key="HomeItemLayoutBorder"
+                           TargetType="Border">
+                        <Setter Property="Padding"
+                                Value="10,0,10,0" />
+                        <Setter Property="StrokeShape"
+                                Value="RoundRectangle 30,30,30,30" />
+                        <Setter Property="Background"
+                                Value="{StaticResource PrimaryContainer}" />
+                        <Setter Property="StrokeThickness"
+                                Value="0" />
+                        <Setter Property="Margin"
+                                Value="20,5,20,5" />
+                    </Style>
+
+                    <Style x:Key="ItemDetailsBorder"
+                           TargetType="Border">
+                        <Setter Property="StrokeThickness"
+                                Value="0" />
+                        <Setter Property="StrokeShape"
+                                Value="RoundRectangle 30,30,30,30" />
+                        <Setter Property="Background"
+                                Value="{StaticResource Surface}" />
+                        <Setter Property="Margin"
+                                Value="0,0,0,10" />
+                    </Style>
+
+                    <Style x:Key="ItemDetailsLabel"
+                           TargetType="Label">
+                        <Setter Property="Margin"
+                                Value="0,10,0,0" />
+                        <Setter Property="TextColor"
+                                Value="{StaticResource Gray380}" />
+                    </Style>
+
+                    <Style x:Key="HomeItemLayoutLabel"
+                           TargetType="Label">
+                        <Setter Property="TextColor"
+                                Value="{StaticResource OnPrimaryContainer}" />
+                        <Setter Property="HorizontalOptions"
+                                Value="Start" />
+                        <Setter Property="VerticalOptions"
+                                Value="Center" />
+                        <Setter Property="Margin"
+                                Value="10,17,0,17" />
+                    </Style>
+                    <Style x:Key="HomeItemLayoutLabelInfo"
+                           TargetType="Label">
+                        <Setter Property="TextColor"
+                                Value="{StaticResource Gray380}" />
+                        <Setter Property="FontSize"
+                                Value="12" />
+                        <Setter Property="Margin"
+                                Value="10,-5,0,20" />
+                    </Style>
+
+                    <Style x:Key="ControlSampleOptionLayout"
+                           TargetType="Border">
+                        <Setter Property="StrokeThickness"
+                                Value="0" />
+                        <Setter Property="StrokeShape"
+                                Value="RoundRectangle 10" />
+                        <Setter Property="Background"
+                                Value="{StaticResource Surface}" />
+                        <Setter Property="Margin"
+                                Value="10,10,10,20" />
+                        <Setter Property="Padding"
+                                Value="15" />
+                    </Style>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

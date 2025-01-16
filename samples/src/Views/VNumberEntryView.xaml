@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Samples.Views.VNumberEntryView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VNumberEntryViewModel"
+             
+             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <Grid BindingContext="{x:Reference this}" ColumnDefinitions="30, 1*, auto, 30">
+
+
+        <Button x:Name="DecreaseButton"
+                HeightRequest="30"
+                Padding="0"
+                Style="{x:StaticResource TextButton}"
+                Text="&#xf068;"
+                FontFamily="FontAwesome-Solid"
+                Grid.Column="0"
+                Clicked="Decrease_ClickedButton" />
+
+        <Entry Text="{Binding Value, Mode=TwoWay}"
+               Focused="Entry_Focused"
+               Unfocused="Entry_Unfocused"
+               Grid.Column="1"
+               IsReadOnly="{Binding EntryIsReadOnly}"
+               Placeholder="{Binding EntryPlaceholder}"
+               HorizontalTextAlignment="Center"
+               VerticalOptions="Center"
+               Keyboard="Numeric"
+                             
+               >
+            <Entry.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+            </Entry.GestureRecognizers>
+
+        </Entry>
+        <viewBase:ContentPageBase x:Name="MainContent" Grid.Column="2">
+           
+        </viewBase:ContentPageBase>
+
+        <Button x:Name="IncreaseButton"
+                HeightRequest="30"
+                Padding="0"
+                Style="{x:StaticResource TextButton}"
+                Text="&#x2b;"
+                FontFamily="FontAwesome-Solid"
+                Clicked="Increase_ClickedButton"
+                Grid.Column="3" />
+    </Grid>
+</viewBase:ContentPageBase>

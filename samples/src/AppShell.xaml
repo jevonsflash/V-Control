@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="VControl.Samples.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:VControl.Samples"
+       xmlns:behav="clr-namespace:VControl.Samples.Behaviors"
+       xmlns:viewHome="clr-namespace:VControl.Samples.Views"
+       Shell.TabBarUnselectedColor="Black">
+
+
+
+    <TabBar Route="/">
+        <ShellContent Title="Home"
+                      Route="HomePage"
+                      Shell.PresentationMode="Modal"
+                      Icon="tab_home.png"
+                      ContentTemplate="{DataTemplate viewHome:HomePage}" />
+
+    </TabBar>
+
+</Shell>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VSearchBar"
+             x:Name="this">
+    <Grid ColumnDefinitions="1*,auto"
+          Margin="20,0,20,0"
+          BindingContext="{x:Reference this}">
+        <Border HeightRequest="48"
+                StrokeShape="{StaticResource MediumRoundRectangle}"
+                Background="{StaticResource Surface}"
+                StrokeThickness="0">
+            <Grid ColumnDefinitions="30,*">
+                <Entry Grid.Column="1"
+                       Keyboard="Chat"
+                       Placeholder="{Binding PlaceHolder}"
+                       Text="{Binding Title}"
+                       TextColor="{Binding TitleColor}"
+                       ReturnType="Search"
+                       ClearButtonVisibility="WhileEditing"
+                       ReturnCommand="{Binding SearchCommand}"
+                       Margin="5,0" />
+                <Image Grid.Column="0"
+                       Source="{Binding IconSource}"
+                       WidthRequest="15"
+                       Margin="15,0,5,0" />
+            </Grid>
+        </Border>
+        <Border Grid.Column="1"
+                Margin="5,0,0,0"
+                IsVisible="{Binding HasAddButton}"
+                StrokeShape="{StaticResource MediumRoundRectangle}"
+                WidthRequest="48"
+                HeightRequest="48"
+                HorizontalOptions="Center"
+                Background="{StaticResource PrimaryContainer}"
+                StrokeThickness="0">
+            <Label   Text="&#x2b;"
+                     FontFamily="FontAwesome-Solid"
+                     TextColor="{StaticResource OnPrimaryContainer}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center" />
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding AddCommand}" />
+            </Border.GestureRecognizers>
+        </Border>
+    </Grid>
+</ContentView>

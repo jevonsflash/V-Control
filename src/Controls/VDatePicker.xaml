@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:VControl.Controls"
+             x:Class="VControl.Controls.VDatePicker"
+             x:Name="this">
+
+    <Grid BindingContext="{x:Reference this}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Margin="8,0"
+              x:Name="GridControls">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="PriorButton"
+                    Style="{x:StaticResource TextButton}"
+                    Text="&#xf060;"
+                    FontFamily="FontAwesome-Solid"
+                    AutomationId="ButtonBefore"
+                    HorizontalOptions="StartAndExpand"
+                    Grid.Column="0"
+                    Clicked="Prior_ClickedButton"
+                    Command="{Binding PriorCommand}" />
+            <Label x:Name="MonthYearLabel"
+                   HorizontalOptions="CenterAndExpand"
+                   AutomationId="LabelMonthYear"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="1" />
+            <Button x:Name="NextButton"
+                    Style="{x:StaticResource TextButton}"
+                    Text="&#xf061;"
+                    FontFamily="FontAwesome-Solid"
+                    Clicked="Next_ClickedButton"
+                    AutomationId="ButtonAfter"
+                    HorizontalOptions="EndAndExpand"
+                    Grid.Column="2"
+                    Command="{Binding NextCommand}" />
+        </Grid>
+
+        <Grid Grid.Row="1"
+              RowSpacing="5"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="Start"
+              x:Name="GridCalendar">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   x:Name="SunLabel"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   FontAttributes="Bold" />
+            <Label VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   x:Name="MonLabel"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   FontAttributes="Bold" />
+            <Label VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   x:Name="TueLabel"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   FontAttributes="Bold" />
+            <Label VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   x:Name="WedLabel"
+                   Grid.Row="0"
+                   Grid.Column="3"
+                   FontAttributes="Bold" />
+            <Label VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   x:Name="ThuLabel"
+                   Grid.Row="0"
+                   Grid.Column="4"
+                   FontAttributes="Bold" />
+            <Label VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   x:Name="FriLabel"
+                   Grid.Row="0"
+                   Grid.Column="5"
+                   FontAttributes="Bold" />
+            <Label VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   x:Name="SatLabel"
+                   Grid.Row="0"
+                   Grid.Column="6"
+                   FontAttributes="Bold" />
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="0"
+                         x:Name="SunLayout"
+                         Grid.Row="1">
+
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="1"
+                         x:Name="MonLayout"
+                         Grid.Row="1">
+
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="2"
+                         x:Name="TueLayout"
+                         Grid.Row="1">
+
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="3"
+                         x:Name="WedLayout"
+                         Grid.Row="1">
+
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="4"
+                         x:Name="ThuLayout"
+                         Grid.Row="1">
+
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="5"
+                         x:Name="FriLayout"
+                         Grid.Row="1">
+
+                <control:VCalendarItem OnSelected="Tpl_OnSelected"  SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected"  SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected"  SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected"  SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected"  SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected"  SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+
+            </StackLayout>
+            <StackLayout Orientation="Vertical"
+                         Grid.Column="6"
+                         x:Name="SatLayout"
+                         Grid.Row="1">
+
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+                <control:VCalendarItem OnSelected="Tpl_OnSelected" SelectedColor="{x:StaticResource Primary}"></control:VCalendarItem>
+
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentView>

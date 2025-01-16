@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VTagPicker"
+             x:Name="this">
+    <FlexLayout Direction="Row"
+                Margin="8"
+                BindingContext="{Reference this}"
+                Wrap="Wrap"
+                x:Name="TagLayout"
+                AlignItems="Start"
+                AlignContent="Start"
+                BindableLayout.ItemsSource="{Binding InternalItems}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <Border HeightRequest="30"
+                        Style="{StaticResource VTagPickerItemBorder}">
+                    <Grid ColumnDefinitions="1*, 50">
+                        <Label Text="{Binding DisplayValue}" />
+
+                        <Button Text="&#xf00d;"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Padding="0"
+                                WidthRequest="30"
+                                IsEnabled="{Binding Source={x:Reference TagLayout}, Path=BindingContext.IsPickerEnabled}"
+                                FontFamily="FontAwesome-Solid"
+                                Style="{StaticResource TextButton}"
+                                Clicked="Button_Clicked"></Button>
+
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+        <BindableLayout.EmptyView>
+            <Grid HeightRequest="30">
+                <Label HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Text="Please select a item"></Label>
+            </Grid>
+        </BindableLayout.EmptyView>
+    </FlexLayout>
+</ContentView>

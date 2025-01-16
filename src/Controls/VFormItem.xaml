@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VFormItem"
+             x:Name="this">
+    <StackLayout>
+        <Grid  BindingContext="{Reference this}"
+               ColumnDefinitions="auto, auto, 1*">
+            <Label Style="{StaticResource FormItemLabel}"
+                   MaxLines="2"
+                   TextColor="{Binding TitleTextColor}"
+                   IsVisible="{Binding HasTitle}"
+                   Text="{Binding TitleText}"></Label>
+            <Label Grid.Column="1"
+                   TextColor="Red"
+                   IsVisible="{Binding IsRequired}"
+                   Style="{StaticResource FormItemLabel}"
+                   Text="*"></Label>
+
+            <ContentView  BindingContext="{Reference this}"
+                          HorizontalOptions="End"
+                          VerticalOptions="Center"
+                          Grid.Column="2"
+                          Margin="0,0,5,0"
+                          IsVisible="{Binding HasInfo}">
+                <Image Source="show_info_btn.png"
+                       WidthRequest="20"
+                       VerticalOptions="Center" />
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShowInfoTapped" />
+                </ContentView.GestureRecognizers>
+            </ContentView>
+
+        </Grid>
+
+        <Grid RowDefinitions="1*, auto, auto"
+              Padding="0,10,0,15">
+
+            <ContentView x:Name="MainContent">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </ContentView.GestureRecognizers>
+
+            </ContentView>
+            <Label Grid.Row="1"
+                   BindingContext="{Reference this}"
+                   Text="{Binding ValidateText}"
+                   IsVisible="{Binding IsValid}"
+                   TextColor="Red" />
+
+
+
+
+
+            <ContentView  Grid.Row="2"
+                          Grid.ColumnSpan="2"
+                          BindingContext="{Reference this}"
+                          IsVisible="{Binding IsShowInfo}"
+                          x:Name="InfoContent">
+                <Border Style="{StaticResource FormItemInfoBorder}">
+                    <Label Style="{StaticResource FormItemInfoLabel}"
+                           Text="{Binding InfoText}" />
+                </Border>
+            </ContentView>
+        </Grid>
+
+
+    </StackLayout>
+</ContentView>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl"
+             x:Class="VControl.Samples.Views.VIndicatorView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VIndicatorViewModel">
+
+    <ActivityIndicator x:Name="MainActivityIndicator"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+        <ActivityIndicator.WidthRequest>
+            <OnPlatform x:TypeArguments="x:Double">
+                <On Platform="iOS, Android, Tizen, Converter, ConverterParameter, Default, Tizen, UWP" Value="100" />
+                <On Platform="WinUI, MacCatalyst" Value="400" />
+            </OnPlatform>
+        </ActivityIndicator.WidthRequest>
+    </ActivityIndicator>
+</viewBase:ContentPageBase>

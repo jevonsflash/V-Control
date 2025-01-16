@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VTouchContentViewView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VTouchContentViewViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <viewBase:ContentPageBase.Resources>
+        <Style TargetType="control:VTouchContentView"
+               x:Key="HoldDownButtonStyle">
+            <Setter Property="HeightRequest"
+                    Value="120"></Setter>
+            <Setter Property="WidthRequest"
+                    Value="120"></Setter>
+            <Setter Property="HorizontalOptions"
+                    Value="Center"></Setter>
+            <Setter Property="VerticalOptions"
+                    Value="Center"></Setter>
+        </Style>
+    </viewBase:ContentPageBase.Resources>
+    <Grid Margin="{StaticResource LayoutMargin}"
+          RowDefinitions="auto, 1*">
+
+        <Grid HorizontalOptions="Center"
+              VerticalOptions="Center"
+              ColumnSpacing="5"
+              >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <control:VTouchContentView Style="{StaticResource HoldDownButtonStyle}"
+                                       Grid.Column="0"
+                                       OnTouchActionInvoked="TouchContentView_OnTouchActionInvoked">
+                <BoxView CornerRadius="10"
+                         Color="Red"></BoxView>
+
+            </control:VTouchContentView>
+
+
+            <control:VTouchContentView Style="{StaticResource HoldDownButtonStyle}"
+                                       Grid.Column="1"
+                                       OnTouchActionInvoked="TouchContentView_OnTouchActionInvoked">
+                <Image Source="./service3.jpg"></Image>
+
+            </control:VTouchContentView>
+
+
+            <control:VTouchContentView Style="{StaticResource HoldDownButtonStyle}"
+                                       Grid.Column="2"
+                                       OnTouchActionInvoked="TouchContentView_OnTouchActionInvoked">
+                <Label Text="我是一个按钮"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       Background="{StaticResource Primary}"></Label>
+
+            </control:VTouchContentView>
+        </Grid>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding DebugMessages}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}"></TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</viewBase:ContentPageBase>

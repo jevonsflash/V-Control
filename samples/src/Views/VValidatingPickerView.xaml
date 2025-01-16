@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Samples.Views.VValidatingPickerView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VValidatingPickerViewModel"
+             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+
+
+    <Picker  BindingContext="{x:Reference this}"         
+             Title="{Binding PickerTitle}"
+             IsEnabled="{Binding IsPickerEnabled}"
+             Style="{StaticResource VPickerPicker}"
+             SelectedIndexChanged="Picker_SelectedIndexChanged"
+             ItemsSource="{Binding ItemsSource}"
+             SelectedItem="{Binding SelectedItem}"
+             ItemDisplayBinding="{Binding Value.Value}">
+
+     
+        <Picker.Triggers>
+            <DataTrigger TargetType="Picker"
+                         Binding="{Binding SelectedItem.IsValid}"
+                         Value="True">
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnSurface}" />
+                
+            </DataTrigger>
+            <DataTrigger TargetType="Picker"
+                         Binding="{Binding SelectedItem.IsValid}"
+                         Value="False">
+                <Setter Property="TextColor"
+                        Value="{StaticResource Error}" />
+                
+            </DataTrigger>
+        </Picker.Triggers>
+
+    </Picker>
+
+
+</viewBase:ContentPageBase>

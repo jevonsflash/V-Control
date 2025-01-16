@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:VControl.Behaviors"
+             x:Class="VControl.Controls.VValidatingEntry"
+             x:Name="this">
+
+    <Grid BindingContext="{x:Reference this}">
+        <Entry Text="{Binding EntryText.Value}"
+               Style="{StaticResource VEntryEntry}"
+               ClearButtonVisibility="WhileEditing"
+               Placeholder="{Binding EntryPlaceholder}"
+               Keyboard="{Binding EntryKeyboard}"
+               TextChanged="Entry_TextChanged"
+               MaxLength="{Binding EntryMaxLength}"
+               IsPassword="{Binding EntryIsPassword}">
+            <Entry.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+            </Entry.GestureRecognizers>
+
+            <Entry.Triggers>
+
+                <DataTrigger TargetType="Entry"
+                             Binding="{Binding EntryText.IsValid}"
+                             Value="False">
+                    <Setter Property="TextColor"
+                            Value="{StaticResource Error}" />
+                </DataTrigger>
+            </Entry.Triggers>
+
+
+        </Entry>
+
+
+    </Grid>
+</ContentView>

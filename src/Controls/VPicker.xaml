@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VPicker"
+             x:Name="this">
+
+    <Picker  BindingContext="{x:Reference this}"
+             Title="{Binding PickerTitle}"
+             IsEnabled="{Binding IsPickerEnabled}"
+             Style="{StaticResource VPickerPicker}"
+             ItemsSource="{Binding InternalItems}"
+             SelectedItem="{Binding InternalSelectedItem}"
+             ItemDisplayBinding="{Binding DisplayValue}" />
+</ContentView>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Samples.Views.VCollectionItemView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VCollectionItemViewModel"
+             xmlns:control="clr-namespace:VControl.Controls"
+             
+             
+             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <Grid ColumnDefinitions="*,auto"
+          RowDefinitions="*,1"
+          Margin="20,0,20,0">
+
+        <viewBase:ContentPageBase x:Name="MainContent">
+            <Label HeightRequest="60"
+                   BindingContext="{Reference this}"
+                   Text="{Binding TitleText}"
+                   TextColor="{Binding TitleTextColor}"
+                   VerticalTextAlignment="Center"></Label>
+        </viewBase:ContentPageBase>
+
+        <viewBase:ContentPageBase Grid.Column="1"
+                     x:Name="OperationsContent">
+            <Grid ColumnDefinitions="*, *, *"
+                  BindingContext="{x:Reference this}">
+
+                <Button Text="&#xf044;"
+                        FontFamily="FontAwesome-Solid"
+                        Grid.Column="0"
+                        IsVisible="{Binding HasEdit}"
+                        Style="{StaticResource TextButton}"
+                        Clicked="EditButton_Clicked"
+                        Command="{Binding EditCommand}"
+                        CommandParameter="{Binding CommandParameter}"
+                        x:Name="EditButton"></Button>
+
+                <Button Text="&#xf00d;"
+                        FontFamily="FontAwesome-Solid"
+                        Grid.Column="1"
+                        IsVisible="{Binding HasRemove}"
+                        Style="{StaticResource TextButton}"
+                        Clicked="RemoveButton_Clicked"
+                        Command="{Binding RemoveCommand}"
+                        CommandParameter="{Binding CommandParameter}"
+                        x:Name="RemoveButton"></Button>
+
+            </Grid>
+        </viewBase:ContentPageBase>
+
+        <viewBase:ContentPageBase Grid.Row="1"
+                     Grid.ColumnSpan="3"
+                     BackgroundColor="{StaticResource SecondaryContainer}"
+                     HeightRequest="1" />
+    </Grid>
+</viewBase:ContentPageBase>

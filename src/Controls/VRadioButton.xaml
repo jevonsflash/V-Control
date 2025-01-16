@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:VControl.Converters"
+             x:Class="VControl.Controls.VRadioButton"
+             x:Name="this">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="RadioButton"
+                   BasedOn="{StaticResource RadioButtonStyle}">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource RadioButtonTemplate}" />
+            </Style>
+
+
+            <converters:StringToInvisibleConverter x:Key="StringToInvisibleConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Border Style="{StaticResource RadioButtonGroupBorder}"
+            BindingContext="{Reference this}">
+        <StackLayout BindableLayout.ItemsSource="{Binding ItemsSource}"
+                     x:Name="_stack"
+                     RadioButtonGroup.SelectedValue="{Binding SelectedItem}"
+                     Orientation="Horizontal">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+
+                    <RadioButton Value="{Binding Id}"
+                                 x:Name="CurrentRadioButton">
+                        <RadioButton.Content>
+                            <Grid x:Name="MainLayout"
+                                  RowSpacing="0"
+                                  RowDefinitions="Auto, *">
+                                <Label x:Name="CurrentRadioButtonIcon"
+                                       HorizontalOptions="Center"
+                                       Grid.Row="0"
+                                       FontFamily="FontAwesome-Solid"
+                                       IsVisible="{Binding Source={x:Reference CurrentRadioButton}, Path=BindingContext.Icon ,Converter={StaticResource StringToInvisibleConverter},FallbackValue=False}"
+                                       Text="{Binding Source={x:Reference CurrentRadioButton}, Path=BindingContext.Icon}"></Label>
+
+                                <Label x:Name="CurrentRadioButtonLabel"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Grid.Row="1"
+                                       Text="{Binding Source={x:Reference CurrentRadioButton}, Path=BindingContext.Value}"></Label>
+
+
+                            </Grid>
+
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </Border>
+</ContentView>

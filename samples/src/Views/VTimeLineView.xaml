@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:VControl.Controls"
+             x:Class="VControl.Samples.Views.VTimeLineView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VTimeLineViewModel"
+             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+
+
+    <VerticalStackLayout>
+        <StackLayout BindingContext="{x:Reference this}"
+                     BindableLayout.ItemsSource="{Binding ItemsSource}"
+                     x:Name="MainStackLayout"
+                     Orientation="Vertical">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+
+                    <control:VTimeLineItem Title="{Binding Title}"
+                                           TitleColor="{Binding TitleColor}"
+                                           Details="{Binding Details}"
+                                           Date="{Binding Date}"
+                                           Type="{Binding Type}">
+
+                    </control:VTimeLineItem>
+
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+
+
+        <Label Text="Remark:"
+               FontAttributes="Bold"
+               Margin="0,0,0,10" />
+        <HorizontalStackLayout>
+            <Rectangle WidthRequest="7"
+                       HeightRequest="7"
+                       Fill="#B3B3B3"
+                       RadiusX="7"
+                       RadiusY="7"
+                       Margin="0,0,5,0" />
+            <Label Text="Procedure to be done."
+                   TextColor="{StaticResource Gray360}" />
+            <Rectangle WidthRequest="7"
+                       HeightRequest="7"
+                       Fill="#01ae54"
+                       RadiusX="7"
+                       RadiusY="7"
+                       Margin="20,0,5,0" />
+            <Label Text="Procedure completed."
+                   TextColor="{StaticResource Gray360}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="0,10,0,0">
+            <Rectangle WidthRequest="7"
+                       HeightRequest="7"
+                       Fill="{StaticResource Primary}"
+                       RadiusX="7"
+                       RadiusY="7"
+                       Margin="0,0,5,0" />
+            <Label Text="Present procedure."
+                   TextColor="{StaticResource Gray360}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</viewBase:ContentPageBase>

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl"
+                          xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                          x:Class="VControl.Samples.Views.VButtonView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VButtonViewModel">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+
+            <Label Text="Default(Primary)"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton TitleText="BUTTON"></control:VButton>
+
+            <Label Text="Light"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton TitleText="BUTTON"
+                             ButtonStyle="Light"></control:VButton>
+            <Label Text="Outlined"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton TitleText="BUTTON"
+                             ButtonStyle="Outlined"></control:VButton>
+            <Label Text="Primary"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton TitleText="BUTTON"
+                             ButtonStyle="Primary"></control:VButton>
+            <Label Text="Text"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton TitleText="BUTTON"
+                             ButtonStyle="Text"></control:VButton>
+
+            <Label Text="Disabled"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton TitleText="BUTTON"
+                             IsEnabled="False"></control:VButton>
+
+
+            <Label Text="Loading"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton TitleText="BUTTON"
+                             IsBusy="{Binding IsLoading}"></control:VButton>
+
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+                <TableView Intent="Settings"
+                           RowHeight="50">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <SwitchCell Text="loading"
+                                        On="{Binding IsLoading}"></SwitchCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+
+            <Label Text="Loading"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton TitleText="BUTTON"
+                             IsBusy="{Binding IsLoading}"></control:VButton>
+
+
+            <Label Text="自定义"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <Label Text="With Icon"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <Grid RowDefinitions="*,*,*"
+                  RowSpacing="5">
+
+                <control:VButton WidthRequest="92"
+                                 HeightRequest="92">
+                    <control:VButton.ContentSlot>
+                        <Grid>
+                            <Label TextColor="{StaticResource OnPrimary}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontSize="{StaticResource HeaderFontSize}"
+                                   FontFamily="FontAwesome-Solid"
+                                   Text="&#xf007;"></Label>
+
+                            <Label TextColor="{StaticResource OnPrimary}"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="End"
+                                   Text="BUTTON"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+
+                <control:VButton Grid.Row="1">
+                    <control:VButton.ContentSlot>
+                        <Grid ColumnDefinitions="auto,*"
+                              ColumnSpacing="10"
+                              HorizontalOptions="Center">
+                            <Label TextColor="{StaticResource OnPrimary}"
+                                   VerticalOptions="Center"
+                                   FontSize="{StaticResource HeaderFontSize}"
+                                   FontFamily="FontAwesome-Solid"
+                                   Text="&#xf007;"></Label>
+                            <Label Grid.Column="1"
+                                   TextColor="{StaticResource OnPrimary}"
+                                   FontAttributes="Bold"
+                                   FontSize="{StaticResource ButtonFontSize}"
+                                   VerticalOptions="Center"
+                                   Text="BUTTON"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+
+                <control:VButton Grid.Row="2">
+                    <control:VButton.ContentSlot>
+                        <Grid ColumnDefinitions="*,auto"
+                              ColumnSpacing="10"
+                              HorizontalOptions="Center">
+
+                            <Label TextColor="{StaticResource OnPrimary}"
+                                   FontAttributes="Bold"
+                                   FontSize="{StaticResource ButtonFontSize}"
+                                   VerticalOptions="Center"
+                                   Text="BUTTON"></Label>
+                            <Label  Grid.Column="1"
+                                    TextColor="{StaticResource OnPrimary}"
+                                    VerticalOptions="Center"
+                                    FontSize="{StaticResource HeaderFontSize}"
+                                    FontFamily="FontAwesome-Solid"
+                                    Text="&#xf007;"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+
+            </Grid>
+
+            <Label Text="Image Button"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VButton  WidthRequest="232"
+                              HeightRequest="132"
+                              ButtonStyle="Light">
+                <control:VButton.ContentSlot>
+
+                    <Image Source="bg3.jpg"></Image>
+
+
+
+                </control:VButton.ContentSlot>
+            </control:VButton>
+
+
+            <Label Text="Tile"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <Grid ColumnDefinitions="*,*,*"
+                  ColumnSpacing="5">
+                <control:VButton Grid.Column="0"
+                                 HeightRequest="120"
+                                 ButtonBackground="#0C3F93">
+                    <control:VButton.ContentSlot>
+                        <Grid>
+                            <Image Source="doc.png"
+                                   Margin="20"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"></Image>
+
+                            <Label  TextColor="{StaticResource OnPrimary}"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="End"
+                                    Text="Word"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+                <control:VButton Grid.Column="1"
+                                 ButtonBackground="#C44416"
+                                 HeightRequest="120">
+                    <control:VButton.ContentSlot>
+                        <Grid>
+                            <Image Source="ppt.png"
+                                   Margin="20"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"></Image>
+
+                            <Label  TextColor="{StaticResource OnPrimary}"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="End"
+                                    Text="PowerPoint"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+                <control:VButton Grid.Column="2"
+                                 ButtonBackground="#155239"
+                                 HeightRequest="120">
+                    <control:VButton.ContentSlot>
+                        <Grid>
+                            <Image Source="xls.png"
+                                   Margin="20"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"></Image>
+
+                            <Label  TextColor="{StaticResource OnPrimary}"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="End"
+                                    Text="Excel"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+            </Grid>
+
+
+            <Label Text="FAB and Extended FAB"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="10">
+
+                <control:VButton Grid.Column="0"
+                                 HeightRequest="82"
+                                 WidthRequest="82"
+                                 ButtonBackground="{StaticResource SecondaryContainer}">
+                    <control:VButton.ContentSlot>
+
+                        <Label TextColor="{StaticResource OnSecondaryContainer}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontSize="{StaticResource HeaderFontSize}"
+                               FontFamily="FontAwesome-Solid"
+                               Text="&#x2b;"></Label>
+
+
+                    </control:VButton.ContentSlot>
+                    <control:VButton.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="0,1"
+                                Radius="2"
+                                Opacity="0.3" />
+                    </control:VButton.Shadow>
+                </control:VButton>
+                <control:VButton Grid.Column="1"
+                                 HeightRequest="82"
+                                 ButtonBackground="{StaticResource SecondaryContainer}">
+                    <control:VButton.ContentSlot>
+                        <Grid ColumnDefinitions="62,*">
+                            <Label TextColor="{StaticResource OnSecondaryContainer}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   FontSize="{StaticResource HeaderFontSize}"
+                                   FontFamily="FontAwesome-Solid"
+                                   Text="&#x2b;"></Label>
+                            <Label Grid.Column="1"
+                                   TextColor="{StaticResource OnSecondaryContainer}"
+                                   VerticalOptions="Center"
+                                   FontSize="{StaticResource HeaderFontSize}"
+                                   Text="Label"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                    <control:VButton.Shadow>
+                        <Shadow Brush="Black"
+                                Offset="0,1"
+                                Radius="2"
+                                Opacity="0.3" />
+                    </control:VButton.Shadow>
+                </control:VButton>
+            </Grid>
+
+            <Label Text="Navigation Bar Icon"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <Grid ColumnDefinitions="*,*,*"
+                  Background="{StaticResource Background}"
+                  ColumnSpacing="5">
+
+
+                <control:VButton ButtonStyle="Text"
+                                 HeightRequest="92">
+                    <control:VButton.ContentSlot>
+                        <Grid RowSpacing="0"
+                              RowDefinitions="1.3*,1*">
+                            <Border StrokeShape="{StaticResource MediumRoundRectangle}"
+                                    StrokeThickness="0"
+                                    BackgroundColor="{StaticResource  Gray200}">
+                                <Label TextColor="{StaticResource OnSurface}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       FontSize="{StaticResource HeaderFontSize}"
+                                       FontFamily="FontAwesome-Solid"
+                                       Text="&#xf007;"></Label>
+                            </Border>
+                            <Label Grid.Row="1"
+                                   TextColor="{StaticResource OnSurface}"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="End"
+                                   Text="BUTTON"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+
+                <control:VButton ButtonStyle="Text"
+                                 Grid.Column="1"
+                                 HeightRequest="92">
+                    <control:VButton.ContentSlot>
+                        <Grid RowSpacing="0"
+                              RowDefinitions="1.3*,1*">
+                            <Border StrokeShape="{StaticResource MediumRoundRectangle}"
+                                    StrokeThickness="0"
+                                    BackgroundColor="{StaticResource  Background}">
+                                <Label TextColor="{StaticResource OnSurface}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       FontSize="{StaticResource HeaderFontSize}"
+                                       FontFamily="FontAwesome-Solid"
+                                       Text="&#xf007;"></Label>
+                            </Border>
+                            <Label Grid.Row="1"
+                                   TextColor="{StaticResource OnSurface}"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="End"
+                                   Text="BUTTON"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+
+
+                <control:VButton ButtonStyle="Text"
+                                 Grid.Column="2"
+                                 HeightRequest="92">
+                    <control:VButton.ContentSlot>
+                        <Grid RowSpacing="0"
+                              RowDefinitions="1.3*,1*">
+                            <Border StrokeShape="{StaticResource MediumRoundRectangle}"
+                                    StrokeThickness="0"
+                                    BackgroundColor="{StaticResource  Background}">
+                                <Label TextColor="{StaticResource OnSurface}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       FontSize="{StaticResource HeaderFontSize}"
+                                       FontFamily="FontAwesome-Solid"
+                                       Text="&#xf007;"></Label>
+                            </Border>
+                            <Label Grid.Row="1"
+                                   TextColor="{StaticResource OnSurface}"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="End"
+                                   Text="BUTTON"></Label>
+                        </Grid>
+
+                    </control:VButton.ContentSlot>
+                </control:VButton>
+            </Grid>
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
+</viewBase:ContentPageBase>

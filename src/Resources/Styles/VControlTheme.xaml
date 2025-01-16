@@ -1,0 +1,857 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    x:Class="VControl.Styles.VControlTheme"
+                    xmlns:converters="clr-namespace:VControl.Converters"
+                    xmlns:control="clr-namespace:VControl.Controls"
+                    xmlns:style="clr-namespace:VControl.Styles"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ResourceDictionary.MergedDictionaries>
+
+        <style:VControlConsts></style:VControlConsts>
+        <style:VControlColors></style:VControlColors>
+        <style:VControlGlobalStyles></style:VControlGlobalStyles>
+
+        <ResourceDictionary>
+
+            <!--VButton-->
+
+
+            <Style x:Key="Base_VButton"
+                   TargetType="control:VButton">
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnPrimary}" />
+                <Setter Property="ProgressColor"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="BorderThickness"
+                        Value="0" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource ButtonFontSize}" />
+                <Setter Property="Border.Padding"
+                        TargetName="MainLayout"
+                        Value="14,10" />
+                <Setter Property="HeightRequest"
+                        Value="{StaticResource InputHeight}" />
+                <Setter Property="MinimumWidthRequest"
+                        Value="44" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="1" />
+                                    <Setter Property="ActivityIndicator.IsRunning"
+                                            TargetName="MainActivityIndicator"
+                                            Value="False" />
+                                    <Setter Property="ActivityIndicator.Opacity"
+                                            TargetName="MainActivityIndicator"
+                                            Value="0" />
+                                    <Setter Property="Border.IsEnabled"
+                                            TargetName="MainLayout"
+                                            Value="True" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="ButtonBackground"
+                                            Value="{StaticResource DisabledBackground}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Busy">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                    <Setter Property="ActivityIndicator.IsRunning"
+                                            TargetName="MainActivityIndicator"
+                                            Value="True" />
+                                    <Setter Property="ActivityIndicator.Opacity"
+                                            TargetName="MainActivityIndicator"
+                                            Value="1" />
+                                    <Setter Property="Border.IsEnabled"
+                                            TargetName="MainLayout"
+                                            Value="False" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+
+            <Style x:Key="PrimaryVButton"
+                   TargetType="control:VButton"
+                   BasedOn="{StaticResource Base_VButton}">
+                <Setter Property="ButtonBackground"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="ProgressColor"
+                        Value="{StaticResource Surface}" />
+                <Setter Property="ActivityIndicator.Color"
+                        TargetName="MainActivityIndicator"
+                        Value="{StaticResource OnPrimary}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnPrimary}" />
+
+            </Style>
+
+
+            <Style x:Key="OutlinedVButton"
+                   TargetType="control:VButton"
+                   BasedOn="{StaticResource Base_VButton}">
+                <Setter Property="ButtonBackground"
+                        Value="{StaticResource Surface}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="BorderThickness"
+                        Value="2" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource Primary}" />
+            </Style>
+
+
+            <Style x:Key="TextVButton"
+                   BasedOn="{StaticResource Base_VButton}"
+                   TargetType="control:VButton">
+
+                <Setter Property="ButtonBackground"
+                        Value="Transparent" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource Primary}" />
+            </Style>
+
+            <Style x:Key="LightVButton"
+                   BasedOn="{StaticResource Base_VButton}"
+                   TargetType="control:VButton">
+                <Setter Property="ButtonBackground"
+                        Value="{StaticResource PrimaryContainer}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnPrimaryContainer}" />
+            </Style>
+
+
+
+
+
+            <!--VRadioButton-->
+
+
+            <Style x:Key="RadioButtonGroupBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource SmallCornerRadiusValue}" />
+                <Setter Property="Background"
+                        Value="{StaticResource Gray50}" />
+                <Setter Property="StrokeThickness"
+                        Value="0" />
+                <Setter Property="Padding"
+                        Value="5" />
+                <Setter Property="WidthRequest"
+                        Value="270" />
+                <Setter Property="HorizontalOptions"
+                        Value="Start" />
+                <Setter Property="Margin"
+                        Value="0,10,0,0" />
+            </Style>
+
+            <Style x:Key="RadioButtonBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource SmallCornerRadiusValue}" />
+                <Setter Property="Padding"
+                        Value="8" />
+                <Setter Property="StrokeThickness"
+                        Value="0" />
+                <Setter Property="WidthRequest"
+                        Value="90" />
+                <Setter Property="VerticalOptions"
+                        Value="Start" />
+                <Setter Property="HorizontalOptions"
+                        Value="Start" />
+            </Style>
+
+
+
+            <ControlTemplate x:Key="RadioButtonTemplate">
+                <Border Style="{StaticResource RadioButtonBorder}">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CheckedStates">
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background"
+                                                Value="{StaticResource Surface}" />
+
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <VisualState.Setters>
+                                        <Setter Property="Background"
+                                                Value="{StaticResource Gray50}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                    <ContentPresenter />
+                </Border>
+            </ControlTemplate>
+
+            <Style TargetType="RadioButton"
+                   x:Key="RadioButtonStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="Label.TextColor"
+                                            TargetName="CurrentRadioButtonIcon"
+                                            Value="{StaticResource Primary}" />
+                                    <Setter Property="Label.TextColor"
+                                            TargetName="CurrentRadioButtonLabel"
+                                            Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="Label.TextColor"
+                                            TargetName="CurrentRadioButtonIcon"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="Label.TextColor"
+                                            TargetName="CurrentRadioButtonLabel"
+                                            Value="{StaticResource DisabledText}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+
+
+
+
+
+
+            <!--VCheckBoxGroup -->
+
+
+            <Style x:Key="CheckBoxButtonNormalBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource SmallCornerRadiusValue}" />
+                <Setter Property="Padding"
+                        Value="15,5,15,5" />
+                <Setter Property="Margin"
+                        Value="0,0,5,5" />
+                <Setter Property="MinimumWidthRequest"
+                        Value="50" />
+                <Setter Property="Background"
+                        Value="{StaticResource Surface}" />
+                <Setter Property="Stroke"
+                        Value="#d9d9d9" />
+                <Setter Property="StrokeThickness"
+                        Value="1" />
+            </Style>
+            <Style x:Key="CheckBoxButtonNormalLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{StaticResource Gray550}" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+            </Style>
+            <Style x:Key="CheckBoxButtonSelBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource SmallCornerRadiusValue}" />
+                <Setter Property="Padding"
+                        Value="15,5,15,5" />
+                <Setter Property="Margin"
+                        Value="0,0,5,5" />
+                <Setter Property="MinimumWidthRequest"
+                        Value="50" />
+                <Setter Property="Background"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="Stroke"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="StrokeThickness"
+                        Value="1" />
+            </Style>
+            <Style x:Key="CheckBoxButtonSelLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnPrimary}" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+            </Style>
+
+            <!--VCalendarItem -->
+
+
+            <Style x:Key="CalendarItemNormalBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource MediumCornerRadiusValue}" />
+                <Setter Property="HeightRequest"
+                        Value="40" />
+                <Setter Property="WidthRequest"
+                        Value="40" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="Stroke"
+                        Value="{StaticResource Gray150}" />
+                <Setter Property="StrokeThickness"
+                        Value="0" />
+                <Setter Property="Margin"
+                        Value="2" />
+                <Setter Property="Background"
+                        Value="{StaticResource Surface}" />
+            </Style>
+            <Style x:Key="CalendarItemSelBorder"
+                   TargetType="Border"
+                   BasedOn="{StaticResource CalendarItemNormalBorder}">
+                <Setter Property="StrokeThickness"
+                        Value="0" />
+                <Setter Property="Background"
+                        Value="{Binding SelectedColor}" />
+            </Style>
+            <Style x:Key="CalendarItemInvolvedBorder"
+                   TargetType="Border"
+                   BasedOn="{StaticResource CalendarItemNormalBorder}">
+                <Setter Property="StrokeThickness"
+                        Value="0" />
+                <Setter Property="Background"
+                        Value="{StaticResource PrimaryContainer}" />
+            </Style>
+
+            <Style x:Key="CalendarItemNormalLabel"
+                   TargetType="Label">
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource Gray500}" />
+                <Setter Property="Text"
+                        Value="{Binding IconText}" />
+            </Style>
+
+            <Style x:Key="CalendarItemSelLabel"
+                   TargetType="Label"
+                   BasedOn="{StaticResource CalendarItemNormalLabel}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource Gray100}" />
+            </Style>
+
+            <Style x:Key="CalendarItemInvolvedLabel"
+                   TargetType="Label"
+                   BasedOn="{StaticResource CalendarItemNormalLabel}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource Gray100}" />
+                <Setter Property="Text"
+                        Value="&#xf068;" />
+            </Style>
+
+            <!--VCheckBox -->
+
+            <Style x:Key="CheckBoxSelBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource SmallCornerRadiusValue}" />
+                <Setter Property="HeightRequest"
+                        Value="28" />
+                <Setter Property="WidthRequest"
+                        Value="28" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="Stroke"
+                        Value="{StaticResource Gray150}" />
+                <Setter Property="StrokeThickness"
+                        Value="0" />
+                <Setter Property="Background"
+                        Value="{StaticResource Success}" />
+            </Style>
+            <Style x:Key="CheckBoxNormalBorder"
+                   TargetType="Border"
+                   BasedOn="{StaticResource CheckBoxSelBorder}">
+                <Setter Property="StrokeThickness"
+                        Value="2" />
+                <Setter Property="Background"
+                        Value="{StaticResource Gray150}" />
+            </Style>
+            <Style x:Key="CheckBoxIndeterminateBorder"
+                   TargetType="Border"
+                   BasedOn="{StaticResource CheckBoxSelBorder}">
+                <Setter Property="StrokeThickness"
+                        Value="2" />
+                <Setter Property="Background"
+                        Value="{StaticResource Warning}" />
+            </Style>
+
+            <Style x:Key="CheckBoxSelLabel"
+                   TargetType="Label">
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnPrimary}" />
+                <Setter Property="Text"
+                        Value="{Binding IconText}" />
+            </Style>
+
+            <Style x:Key="CheckBoxNormalLabel"
+                   TargetType="Label"
+                   BasedOn="{StaticResource CheckBoxSelLabel}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource Gray100}" />
+            </Style>
+
+            <Style x:Key="CheckBoxIndeterminateLabel"
+                   TargetType="Label"
+                   BasedOn="{StaticResource CheckBoxSelLabel}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource Gray100}" />
+                <Setter Property="Text"
+                        Value="&#xf068;" />
+            </Style>
+            <!--VCard -->
+
+            <Style x:Key="CardLayoutBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeThickness"
+                        Value="0" />
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource MediumCornerRadiusValue}" />
+                <Setter Property="Background"
+                        Value="{StaticResource Surface}" />
+                <Setter Property="Margin"
+                        Value="0,0,0,10" />
+                <Setter Property="Padding"
+                        Value="15" />
+            </Style>
+
+            <Style x:Key="CardTitleLabel"
+                   TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="{StaticResource MediumFontSize}" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+            </Style>
+
+            <Style x:Key="CardDetailLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnSurface}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource BodyFontSize}" />
+
+            </Style>
+            <!--VInputControl -->
+
+            <Style x:Key="VInputControlFrame"
+                   TargetType="Border">
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource SmallRoundRectangle}" />
+                <Setter Property="Margin"
+                        Value="0,0,0,5" />
+                <Setter Property="Padding"
+                        Value="5, 0" />
+                <Setter Property="Stroke"
+                        Value="{StaticResource Outline}" />
+                <Setter Property="StrokeThickness"
+                        Value="2" />
+                <Setter Property="Background"
+                        Value="White" />
+            </Style>
+
+
+            <ControlTemplate x:Key="VEditorTemplate">
+                <Border Style="{StaticResource VInputControlFrame}">
+                    <ContentPresenter></ContentPresenter>
+                </Border>
+
+            </ControlTemplate>
+
+            <!--VEntry -->
+
+            <Style x:Key="VEntryEntry"
+                   TargetType="Entry">
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnSurface}" />
+                <Setter Property="Background"
+                        Value="{StaticResource Surface}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource InputFontSize}" />
+
+                <Setter Property="PlaceholderColor"
+                        Value="{StaticResource PlaceHolderText}" />
+                <Setter Property="HeightRequest"
+                        Value="{StaticResource InputHeight}" />
+
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <ControlTemplate x:Key="VEntryTemplate">
+                <Border Style="{StaticResource VInputControlFrame}">
+                    <Grid ColumnDefinitions="1*, auto">
+                        <ContentPresenter></ContentPresenter>
+                        <Label Grid.Column="1"
+                               IsVisible="{TemplateBinding HasIconText}"
+                               FontFamily="FontAwesome-Solid"
+                               Text="{TemplateBinding EntryIconText}"
+                               WidthRequest="17"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                </Border>
+
+            </ControlTemplate>
+
+            <!--VValidatingEntry -->
+
+
+            <ControlTemplate x:Key="VValidatingEntryTemplate">
+
+                <Grid  RowDefinitions="1*, auto">
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+                            <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+                        </ResourceDictionary>
+                    </Grid.Resources>
+
+                    <Border Style="{StaticResource VInputControlFrame}">
+                        <Grid ColumnDefinitions="1*, auto">
+                            <ContentPresenter></ContentPresenter>
+                            <Label Grid.Column="1"
+                                   IsVisible="{TemplateBinding HasIconText}"
+                                   FontFamily="FontAwesome-Solid"
+                                   Text="{TemplateBinding EntryIconText}"
+                                   WidthRequest="17"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center" />
+
+
+                        </Grid>
+
+                    </Border>
+                    <Label Text="{TemplateBinding EntryText.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                           IsVisible="{TemplateBinding EntryText.IsValid, Converter={StaticResource InvertedBoolConverter}}"
+                           VerticalOptions="End"
+                           Grid.Row="1"
+                           TextColor="{StaticResource Error}" />
+                </Grid>
+            </ControlTemplate>
+
+
+            <!--VNumberEntry -->
+
+
+            <ControlTemplate x:Key="VNumberEntryTemplate">
+                <Border Style="{StaticResource VInputControlFrame}">
+                    <ContentPresenter></ContentPresenter>
+
+
+                </Border>
+
+            </ControlTemplate>
+
+
+            <!--VDatePicker -->
+
+
+            <ControlTemplate x:Key="VDatePickerTemplate">
+                <Border Style="{StaticResource VInputControlFrame}">
+
+                    <Grid>
+                        <ContentPresenter></ContentPresenter>
+                        <Label IsVisible="{TemplateBinding IsPickerEnabled}"
+                               FontFamily="FontAwesome-Solid"
+                               Text="&#xf073;"
+                               WidthRequest="17"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+            </ControlTemplate>
+
+
+            <!--VPicker -->
+
+            <Style x:Key="VPickerPicker"
+                   TargetType="Picker">
+                <Setter Property="TextColor"
+                        Value="{StaticResource OnSurface}" />
+                <Setter Property="TitleColor"
+                        Value="{StaticResource OnSurface}" />
+                <Setter Property="Background"
+                        Value="{StaticResource Surface}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource InputFontSize}" />
+                <Setter Property="HeightRequest"
+                        Value="{StaticResource InputHeight}" />
+
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="TitleColor"
+                                            Value="{StaticResource DisabledText}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+
+            <ControlTemplate x:Key="VPickerTemplate">
+                <Border Style="{StaticResource VInputControlFrame}">
+                    <Grid>
+                        <ContentPresenter></ContentPresenter>
+                        <Label IsVisible="{TemplateBinding IsPickerEnabled}"
+                               FontFamily="FontAwesome-Solid"
+                               Text="&#xf107;"
+                               WidthRequest="17"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+            </ControlTemplate>
+
+
+            <!--VValidatingPicker -->
+
+            <ControlTemplate x:Key="VValidatingPickerTemplate">
+
+                <Grid  RowDefinitions="1*, auto">
+                    <Grid.Resources>
+                        <ResourceDictionary>
+                            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+                            <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+                        </ResourceDictionary>
+                    </Grid.Resources>
+
+                    <Border Style="{StaticResource VInputControlFrame}">
+                        <Grid ColumnDefinitions="1*, auto">
+                            <ContentPresenter></ContentPresenter>
+                            <Label IsVisible="{TemplateBinding IsPickerEnabled}"
+                                   FontFamily="FontAwesome-Solid"
+                                   Text="&#xf107;"
+                                   WidthRequest="17"
+                                   HorizontalOptions="End"
+                                   VerticalOptions="Center" />
+
+                        </Grid>
+
+                    </Border>
+                    <Label Text="{TemplateBinding SelectedItem.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                           IsVisible="{TemplateBinding SelectedItem.IsValid, Converter={StaticResource InvertedBoolConverter}}"
+                           VerticalOptions="End"
+                           Grid.Row="1"
+                           TextColor="{StaticResource Error}" />
+                </Grid>
+            </ControlTemplate>
+
+
+            <!--VTagPicker -->
+
+            <Style x:Key="VTagPickerItemBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeThickness"
+                        Value="0"></Setter>
+                <Setter Property="StrokeShape"
+                        Value="{StaticResource SmallRoundRectangle}" />
+                <Setter Property="Padding"
+                        Value="10,4,10,4" />
+                <Setter Property="Margin"
+                        Value="1" />
+                <Setter Property="Background"
+                        Value="{StaticResource Gray50}" />
+            </Style>
+
+            <ControlTemplate x:Key="VTagPickerTemplate">
+                <Border Style="{StaticResource VInputControlFrame}">
+                    <Grid>
+                        <ContentPresenter></ContentPresenter>
+                        <Label IsVisible="{TemplateBinding IsPickerEnabled}"
+                               FontFamily="FontAwesome-Solid"
+                               Text="&#xf107;"
+                               WidthRequest="17"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+
+            </ControlTemplate>
+
+
+            <!--VRichTextEditor -->
+
+            <Style TargetType="Border"
+                   x:Key="SelectableLayoutStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="Background"
+                                            Value="{StaticResource Surface}" />
+                                    <Setter Property="Stroke"
+                                            Value="{StaticResource Outline}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Background"
+                                            Value="{StaticResource Surface}" />
+                                    <Setter Property="Stroke"
+                                            Value="{StaticResource Outline}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+
+            <!--Apply ControlTemplate For InputControls-->
+
+            <Style TargetType="control:VEditor">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VEditorTemplate}" />
+
+
+            </Style>
+
+
+            <Style TargetType="control:VRichTextEditor">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VEditorTemplate}" />
+
+
+            </Style>
+
+            <Style TargetType="control:VEntry">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VEntryTemplate}" />
+
+
+            </Style>
+
+            <Style TargetType="control:VNumberEntry">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VNumberEntryTemplate}" />
+
+
+            </Style>
+
+            <Style TargetType="control:VValidatingEntry">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VValidatingEntryTemplate}" />
+
+
+            </Style>
+
+            <Style TargetType="control:VDateNativePicker">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VDatePickerTemplate}" />
+
+
+            </Style>
+
+            <Style TargetType="control:VPicker">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VPickerTemplate}" />
+
+
+            </Style>
+
+            <Style TargetType="control:VValidatingPicker">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VValidatingPickerTemplate}" />
+
+
+            </Style>
+
+
+            <Style TargetType="control:VTagPicker">
+                <Setter Property="ControlTemplate"
+                        Value="{StaticResource VTagPickerTemplate}" />
+
+
+            </Style>
+
+
+
+            <!--VFormItem -->
+
+
+            <Style x:Key="FormItemLabel"
+                   TargetType="Label">
+                <Setter Property="Margin"
+                        Value="0,10,0,0" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource Gray380}" />
+            </Style>
+
+
+            <Style x:Key="FormItemInfoBorder"
+                   TargetType="Border">
+                <Setter Property="Margin"
+                        Value="0,5,0,0" />
+                <Setter Property="Padding"
+                        Value="10" />
+                <Setter Property="Background"
+                        Value="{StaticResource PrimaryContainer}" />
+                <Setter Property="StrokeThickness"
+                        Value="0" />
+            </Style>
+            <Style x:Key="FormItemInfoLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource BodyFontSize}" />
+            </Style>
+
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

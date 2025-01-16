@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Samples.Views.VCollectionView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VCollectionViewModel"
+             xmlns:controls="clr-namespace:VControl.Controls"
+             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+
+    <Grid RowDefinitions="auto,1*"
+          BackgroundColor="{StaticResource Surface}"
+          RowSpacing="10">
+
+
+        <Grid ColumnDefinitions="*,60"
+              BindingContext="{x:Reference this}">
+
+            <controls:VSearchBar HasAddButton="False"
+                                 Title="{Binding SearchKeywords}"></controls:VSearchBar>
+
+            <Button Text="&#xf12d;"
+                    HorizontalOptions="End"
+                    Margin="0,0,10,0"
+                    FontFamily="FontAwesome-Solid"
+                    Grid.Column="1"
+                    IsVisible="{Binding HasClear}"
+                    Style="{StaticResource TextButton}"
+                    Clicked="ClearButton_Clicked"
+                    x:Name="ClearButton"></Button>
+        </Grid>
+
+
+        <CollectionView Grid.Row="1"
+                        BindingContext="{Reference this}"
+                        BackgroundColor="{StaticResource Surface}"
+                        ItemsSource="{Binding InternalItems}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <controls:VCollectionItem HasEdit="{Binding HasEdit}"
+                                              HasRemove="{Binding HasRemove}"
+                                              TitleText="{Binding DisplayValue}"
+                                              Clicked="VCheckBoxButton_Clicked"
+                                              RemoveButtonClicked="Button_Clicked"
+                                              CommandParameter="{Binding Id}">
+                    </controls:VCollectionItem>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+    </Grid>
+
+
+</viewBase:ContentPageBase>

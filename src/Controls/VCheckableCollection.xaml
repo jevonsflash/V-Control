@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VCheckableCollection"
+             xmlns:controls="clr-namespace:VControl.Controls"
+             
+             x:Name="this">
+
+    <Grid RowDefinitions="auto,1*"
+          RowSpacing="10">
+        <Grid ColumnDefinitions="*,60"
+              BindingContext="{x:Reference this}">
+
+            <controls:VSearchBar HasAddButton="False"
+                                 Title="{Binding SearchKeywords}"></controls:VSearchBar>
+
+            <Button Text="&#xf12d;"
+                    HorizontalOptions="End"
+                    Margin="0,0,10,0"
+                    FontFamily="FontAwesome-Solid"
+                    Grid.Column="1"
+                    IsVisible="{Binding HasClear}"
+                    Style="{StaticResource TextButton}"
+                    Clicked="ClearButton_Clicked"
+                    x:Name="ClearButton"></Button>
+        </Grid>
+
+
+        <CollectionView Grid.Row="1"
+                        x:Name="MainCollectionView"
+                        BindingContext="{Reference this}"
+                        BackgroundColor="{StaticResource Surface}"
+                        ItemsSource="{Binding InternalItems}"
+                        SelectionChanged="CollectionView_SelectionChanged"
+                        SelectionMode="Multiple">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10,5,10,5"
+                          InputTransparent="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor"
+                                                    Value="{StaticResource Surface}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor"
+                                                    Value="{StaticResource Gray100}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <controls:VCheckBox Title="{Binding DisplayValue}"
+                                          
+                                            IsEnabled="{Binding IsEnabled}"
+                                            IsChecked="{Binding IsSelected}">
+
+                        </controls:VCheckBox>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+    </Grid>
+
+
+</ContentView>

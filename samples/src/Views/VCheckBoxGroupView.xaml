@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Samples.Views.VCheckBoxGroupView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VCheckBoxGroupViewModel"
+             xmlns:controls="clr-namespace:VControl.Controls"
+             
+             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <viewBase:ContentPageBase.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </viewBase:ContentPageBase.Resources>
+    <Grid ColumnDefinitions="1*, auto">
+        <FlexLayout Direction="{Binding FlDirection}"
+                    BindingContext="{Reference this}"
+                    Wrap="{Binding FlWrap}"
+                    AlignItems="Start"
+                    AlignContent="Start"
+                    BindableLayout.ItemsSource="{Binding InternalItems, Mode=TwoWay}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+
+                        <controls:VCheckBoxButton Title="{Binding DisplayValue}"
+                                                  HasRemove="{Binding HasRemove}"
+                                                  IsEnabled="{Binding IsEnabled}"
+                                                  Clicked="VCheckBoxButton_Clicked"
+                                                  RemoveButtonClicked="Button_Clicked"
+                                                  IsChecked="{Binding IsSelected}"></controls:VCheckBoxButton>
+
+
+                    </Grid>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+
+        <Button Text="&#xf12d;"
+                BindingContext="{x:Reference this}"
+                FontFamily="FontAwesome-Solid"
+                Grid.Column="1"
+                IsVisible="{Binding HasClear}"
+                Style="{StaticResource TextButton}"
+                Clicked="ClearButton_Clicked"
+                x:Name="ClearButton"></Button>
+    </Grid>
+</viewBase:ContentPageBase>

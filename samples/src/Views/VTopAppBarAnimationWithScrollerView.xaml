@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.AnimationWithScrollerView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:AnimationWithScrollerViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+
+
+    <Grid RowDefinitions="auto ,*">
+        <control:VTopAppBar TitleText="Title Large"
+                            x:Name="MainTopAppBar"
+                            VerticalOptions="Start"
+                            NavigationCommand="{Binding BackCommand}"
+                            TopAppBarStyle="Active"></control:VTopAppBar>
+        <ScrollView Scrolled="ScrollView_Scrolled"
+                    Margin="0,-64,0,0"
+                    Grid.Row="1">
+            
+            <VerticalStackLayout Margin="0,64,0,0">
+             
+                <Label Text="Chapter 1"
+                       FontSize="Large" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="Chapter 2"
+                       FontSize="Large" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+                <Label Text="paragraph"
+                       FontSize="Small" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+
+
+</viewBase:ContentPageBase>

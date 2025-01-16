@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VTopAppBarView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VTopAppBarViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <viewBase:ContentPageBase.Resources>
+
+        <Style TargetType="control:VTopAppBar">
+            <Setter Property="Background"
+                    Value="{StaticResource Gray50}">
+
+            </Setter>
+        </Style>
+    </viewBase:ContentPageBase.Resources>
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+
+            <Label Text="Small"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VTopAppBar TitleText="Title Small"
+                                TopAppBarStyle="Fixed"></control:VTopAppBar>
+
+
+            <Label Text="Large"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VTopAppBar TitleText="Title Large"
+                                TopAppBarStyle="Active"></control:VTopAppBar>
+
+
+
+            <Label Text="Custom"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <Grid BackgroundColor="Black">
+                <Image Source="healthy_food.png"></Image>
+                <control:VTopAppBar TitleText="Title Large"
+                                    TitleTextColor="White"
+                                    Progress="{Binding Progress}"
+                                    SinkingDistance="200"
+                                    Background="Transparent"
+                                    TopAppBarStyle="Active">
+
+                    <control:VTopAppBar.ContentSlot>
+
+                        <Grid RowDefinitions="*,auto"
+                              VerticalOptions="End"
+                              HorizontalOptions="FillAndExpand"
+                              AnchorX="0">
+                            <Label VerticalOptions="Center"
+                                   Text="Healthy Food"
+                                   FontSize="45"
+                                   TextColor="White"></Label>
+
+
+                            <Label Grid.Row="1"
+                                   VerticalOptions="Center"
+                                   Text="Ti"
+                                   TextColor="White"></Label>
+                        </Grid>
+
+                    </control:VTopAppBar.ContentSlot>
+                </control:VTopAppBar>
+
+            </Grid>
+
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+
+                <TableView Intent="Settings"
+                           RowHeight="50">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Slider Minimum="0"
+                                            Maximum="1"
+                                            Value="{Binding Progress}"></Slider>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+            <Label Text="Customized Button"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VTopAppBar TitleText="Title Large"
+                                TopAppBarStyle="Active">
+
+                <control:VTopAppBar.OperationsSlot>
+                    <Grid ColumnDefinitions="1*,1*,1*">
+                        <Button Text="&#xf0c6;"
+                                TextColor="{StaticResource OnSurface}"
+                                Background="Transparent"
+                                FontFamily="FontAwesome-Solid"
+                                Grid.Column="0"
+                                Command="{Binding MoreCommand}"
+                                CommandParameter="Attachment"></Button>
+
+                        <Button Text="&#xf133;"
+                                TextColor="{StaticResource OnSurface}"
+                                Background="Transparent"
+                                FontFamily="FontAwesome-Solid"
+                                Grid.Column="1"
+                                Command="{Binding MoreCommand}"
+                                CommandParameter=" Calendar"></Button>
+
+                        <Button Text="&#xf142;"
+                                TextColor="{StaticResource OnSurface}"
+                                Background="Transparent"
+                                FontFamily="FontAwesome-Solid"
+                                Grid.Column="2"
+                                Command="{Binding MoreCommand}"
+                                CommandParameter="More"></Button>
+                    </Grid>
+                </control:VTopAppBar.OperationsSlot>
+            </control:VTopAppBar>
+
+            <Label Text="Animation"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <VerticalStackLayout HeightRequest="200">
+                <control:VTopAppBar TitleText="Title Large"
+                                    VerticalOptions="Start"
+                                    Progress="{Binding Progress}"
+                                    TopAppBarStyle="Active"></control:VTopAppBar>
+
+                <Label Text="Chapter 1"
+                       FontSize="Large" />
+                <Label Text="paragraph 1"
+                       FontSize="Small" />
+                <Label Text="paragraph 1"
+                       FontSize="Small" />
+
+            </VerticalStackLayout>
+
+
+
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+
+                <TableView Intent="Settings"
+                           RowHeight="50">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Slider Minimum="0"
+                                            Maximum="1"
+                                            Value="{Binding Progress}"></Slider>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+            <Button Text="Animation With Scroller"
+                    Command="{Binding GoPageCommand}"
+                    CommandParameter="AnimationWithScrollerView"></Button>
+
+
+            <Label Text="Busy"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <Label Text="Loading"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VTopAppBar TitleText="Title Large"
+                                IsBusy="{Binding IsLoading}"
+                                TopAppBarStyle="Active"></control:VTopAppBar>
+
+            <control:VTopAppBar TitleText="Small Large"
+                                IsBusy="{Binding IsLoading}"
+                                TopAppBarStyle="Fixed"></control:VTopAppBar>
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+                <TableView Intent="Settings"
+                           RowHeight="50">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <SwitchCell Text="loading"
+                                        On="{Binding IsLoading}"></SwitchCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</viewBase:ContentPageBase>

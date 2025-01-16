@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.HomePage"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl"
+                          x:TypeArguments="vm:HomeViewModel"
+                          Shell.NavBarIsVisible="False"
+                          Title="HomePage">
+
+    <viewBase:ContentPageBase.Resources>
+        <mct:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+        <mct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+
+        <DataTemplate x:Key="HomeViewItemView">
+            <Border x:Name="ContentLayout"
+                    Style="{StaticResource HomeItemLayoutBorder}"
+                    Margin="20,5">
+                <control:VExpander IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
+                    <control:VExpander.HeaderSlot>
+                        <Grid  HeightRequest="55">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid>
+                                <Label Text="{Binding Title, Mode=TwoWay}"
+                                       Style="{StaticResource HomeItemLayoutLabel}"
+                                       VerticalOptions="Center">
+                                </Label>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference MainGrid}, Path=BindingContext.GoPageCommand}" CommandParameter="{Binding Url}" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                            <Grid Grid.Column="1"
+                                  >
+                                <Image Source="v_control_show_info_btn.png"
+                                       WidthRequest="20"
+                                       VerticalOptions="Center" />
+
+                            </Grid>
+
+                        </Grid>
+
+                    </control:VExpander.HeaderSlot>
+                    <control:VExpander.ContentSlot>
+                        <Label Style="{StaticResource HomeItemLayoutLabelInfo}"
+                               Grid.ColumnSpan="2"
+                               Grid.Row="1"
+                               Text="{Binding Info}"
+                               TextType="Html" />
+                    </control:VExpander.ContentSlot>
+                </control:VExpander>
+            </Border>
+        </DataTemplate>
+
+    </viewBase:ContentPageBase.Resources>
+
+
+    <Grid RowDefinitions="auto,*"
+          ColumnDefinitions="*"
+          x:Name="MainGrid">
+        <VerticalStackLayout HeightRequest="60">
+            <Label Text="New Booking"
+                   Margin="0,15,0,0" />
+        </VerticalStackLayout>
+        <control:VIndicator HorizontalOptions="End"
+                            VerticalOptions="Center" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout>
+                <Border Style="{StaticResource ItemDetailsBorder}"
+                        Padding="0,0,0,20">
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout HeightRequest="60">
+                            <Rectangle Fill="{StaticResource Primary}"
+                                       WidthRequest="4"
+                                       HeightRequest="16"
+                                       HorizontalOptions="Center"
+                                       Margin="25,0,0,0" />
+                            <Label Text="Features"
+                                   VerticalOptions="Center"
+                                   Margin="5,0,0,0"
+                                   FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+
+                        <VerticalStackLayout 
+                                             BindableLayout.ItemsSource="{Binding BasicViewItemList}"
+                                             BindableLayout.ItemTemplate="{StaticResource HomeViewItemView}">
+
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource ItemDetailsBorder}"
+                        Padding="0,0,0,20">
+                    <VerticalStackLayout>
+                        <HorizontalStackLayout HeightRequest="60">
+                            <Rectangle Fill="{StaticResource Primary}"
+                                       WidthRequest="4"
+                                       HeightRequest="16"
+                                       HorizontalOptions="Center"
+                                       Margin="25,0,0,0" />
+                            <Label Text="Controls"
+                                   VerticalOptions="Center"
+                                   Margin="5,0,0,0"
+                                   FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+
+                        <VerticalStackLayout 
+                                             BindableLayout.ItemsSource="{Binding ControlViewItemList}"
+                                             BindableLayout.ItemTemplate="{StaticResource HomeViewItemView}">
+
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</viewBase:ContentPageBase>

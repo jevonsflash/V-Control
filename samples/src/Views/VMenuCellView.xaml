@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          xmlns:converters="clr-namespace:VControl.Converters"
+          x:Class="VControl.Samples.Views.VMenuCellView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VMenuCellViewModel"
+          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+
+    <ViewCell.View>
+        <Grid BindingContext="{x:Reference this}"
+              ColumnDefinitions="auto,auto,1*,1*"
+              Grid.Row="0"
+              Grid.Column="0"
+              VerticalOptions="Center">
+
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <converters:StringToInvisibleConverter x:Key="StringToInvisibleConverter" />
+                </ResourceDictionary>
+            </Grid.Resources>
+            <Label Margin="0,0,10,0"
+                   IsVisible="{Binding IconText, Converter={StaticResource StringToInvisibleConverter}}"
+                   TextColor="{Binding MenuTextColor}"
+                   FontFamily="FontAwesome-Solid"
+                   Text="{Binding IconText}"
+                   WidthRequest="17"
+                   VerticalOptions="Center" />
+            <Image Grid.Column="1"
+                   Margin="0,0,10,0"
+                   IsVisible="{Binding IconSource, Converter={StaticResource StringToInvisibleConverter}}"
+                   Source="{Binding IconSource}"
+                   WidthRequest="17"
+                   VerticalOptions="Center" />
+            <Label Grid.Column="2"
+                   Text="{Binding MenuText}"
+                   TextColor="{Binding MenuTextColor}"
+                   VerticalOptions="Center"></Label>
+            <Label Margin="10,0,5,0"
+                   HorizontalOptions="End"
+                   FontFamily="FontAwesome-Solid"
+                   Grid.Column="3"
+                   Text="&#xf054;"
+                   WidthRequest="17"
+                   VerticalOptions="Center" />
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

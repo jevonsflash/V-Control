@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VCard"
+             x:Name="this">
+
+
+    <Border Style="{StaticResource CardLayoutBorder}">
+        <Grid RowDefinitions="auto,auto,1*,auto,auto">
+            <ContentView x:Name="HeaderContent">
+                <Grid BindingContext="{x:Reference this}"
+                      ColumnDefinitions="auto,*"
+                      ColumnSpacing="10">
+                    <Label Text="{Binding IconText}"
+                           FontFamily="FontAwesome-Solid"
+                           TextColor="{Binding TitleTextColor}"
+                           VerticalOptions="Center"></Label>
+
+
+                    <Label Grid.Column="1"
+                           VerticalOptions="Center"
+                           Text="{Binding CardTitle}"
+                           Style="{StaticResource CardTitleLabel}" />
+                </Grid>
+            </ContentView>
+            <ContentView Grid.Row="1"
+                         Margin="0,10"
+                         x:Name="MainSpliter"
+                         IsVisible="False"
+                         BackgroundColor="{StaticResource OutlineVariant}"
+                         HeightRequest="1" />
+            <ContentView x:Name="MainContent"
+                         Grid.Row="2">
+                <Label Text="{Binding CardDetail}"
+                       BindingContext="{x:Reference this}"
+                       Style="{StaticResource CardDetailLabel}" />
+            </ContentView>
+            <ContentView Grid.Row="3"
+                         x:Name="FooterSplitLine"
+                         Margin="0,10"
+                         IsVisible="False"
+                         BackgroundColor="{StaticResource OutlineVariant}"
+                         HeightRequest="1" />
+
+            <ContentView x:Name="FooterContent"
+                         Grid.Row="4">
+
+
+
+            </ContentView>
+        </Grid>
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                  CommandParameter="{Binding CommandParameter}" />
+        </Border.GestureRecognizers>
+    </Border>
+
+</ContentView>

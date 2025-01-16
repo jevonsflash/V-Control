@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VTopAppBar"
+             xmlns:control="clr-namespace:VControl.Controls"
+             x:Name="this">
+    <Grid ColumnDefinitions="36,*,auto"
+          Margin="12,0"
+          RowDefinitions="*, auto"
+          ColumnSpacing="5"
+          x:Name="MainLayout">
+        <Grid Margin="-20,0,0,0" 
+              HeightRequest="64"
+              x:Name="ButtonLayout">
+            <Button Text="{Binding IconText}"
+                    TextColor="{Binding TitleTextColor}"
+                    BindingContext="{Reference this}"
+                    VerticalOptions="Center"
+                    Background="Transparent"
+                    FontFamily="FontAwesome-Solid"
+                    Clicked="Button_Clicked"
+                    IsVisible="{Binding HasNavigation}"
+                    Command="{Binding NavigationCommand}"
+                    CommandParameter="{Binding CommandParameter}"></Button>
+        </Grid>
+        <ContentView x:Name="MainContent"
+                     HorizontalOptions="FillAndExpand"
+                     Grid.Column="1">
+            <Grid ColumnDefinitions="*,auto"
+                  Margin="0,0,-30,0"
+                  HorizontalOptions="FillAndExpand"
+                  AnchorX="0">
+                <Label AnchorX="0"
+                       BindingContext="{Reference this}"
+                       VerticalOptions="Center"
+                       Text="{Binding TitleText}"
+                       FontSize="{StaticResource  HeaderFontSize}"
+                       TextColor="{Binding TitleTextColor}"></Label>
+                <ActivityIndicator HorizontalOptions="Center"
+                                   x:Name="MainActivityIndicator"
+                                   HeightRequest="32"
+                                   WidthRequest="32"
+                                   Grid.Column="1"
+                                   VerticalOptions="Center" />
+            </Grid>
+        </ContentView>
+
+        <ContentView Grid.Column="2"
+                     HeightRequest="64"
+                     x:Name="OperationsContent">
+
+            <Button Text="&#xf142;"
+                    TextColor="{Binding TitleTextColor}"
+                    Background="Transparent"
+                    FontFamily="FontAwesome-Solid"
+                    BindingContext="{x:Reference this}"
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    IsVisible="{Binding HasMore}"
+                    Command="{Binding MoreCommand}"
+                    CommandParameter="{Binding CommandParameter}"></Button>
+
+        </ContentView>
+
+
+
+
+    </Grid>
+</ContentView>

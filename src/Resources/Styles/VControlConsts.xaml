@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary x:Class="VControl.Styles.VControlConsts"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    
+    <!--Font-->
+    <system:String x:Key="CommonFontFamily">OpenSansRegular</system:String>
+   
+    <system:Double x:Key="TinyFontSize">10</system:Double>
+    <system:Double x:Key="SmallFontSize">12</system:Double>
+    <system:Double x:Key="MediumFontSize">16</system:Double>
+    <system:Double x:Key="LargeFontSize">20</system:Double>
+
+
+    <system:Double x:Key="BodyFontSize">12</system:Double>
+    <system:Double x:Key="HeaderFontSize">28</system:Double>
+    <system:Double x:Key="SubtitleFontSize">18</system:Double>
+
+    <system:Double x:Key="ButtonFontSize">16</system:Double>
+    <system:Double x:Key="InputFontSize">14</system:Double>
+
+
+    <!--Margin-->
+
+    <system:Double x:Key="LayoutMarginSize">12</system:Double>
+    <Thickness x:Key="LayoutMargin">12,10,12,0</Thickness>
+    
+    
+    <!--Block-->
+
+    <system:Double x:Key="InputHeight">48</system:Double>
+    
+    
+    <!--Shape-->
+
+    <x:Double x:Key="MediumCornerRadiusValue">24</x:Double>
+    <RoundRectangle x:Key="MediumRoundRectangle"
+                    CornerRadius="{StaticResource MediumCornerRadiusValue}" />
+
+    <x:Double x:Key="SmallCornerRadiusValue">12</x:Double>
+    <RoundRectangle x:Key="SmallRoundRectangle"
+                    CornerRadius="{StaticResource SmallCornerRadiusValue}" />
+
+
+    <x:Double x:Key="LargeCornerRadiusValue">48</x:Double>
+    <RoundRectangle x:Key="LargeRoundRectangle"
+                    CornerRadius="{StaticResource LargeCornerRadiusValue}" />
+
+
+
+</ResourceDictionary>

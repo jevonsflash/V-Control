@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VControl.Controls.VUploader"
+             
+             x:Name="this">
+    <Grid BindingContext="{x:Reference this}"
+          RowDefinitions="*,auto"
+          MinimumHeightRequest="60">
+
+        <Border StrokeThickness="2"
+                StrokeShape="{StaticResource SmallRoundRectangle}"
+                Stroke="{StaticResource Outline}"
+                StrokeDashArray="3,2"
+                StrokeDashOffset="2">
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                <Label Text="{Binding IconText}"
+                       Margin="20"
+                       HorizontalOptions="Center"
+                       FontSize="36"
+                       FontFamily="FontAwesome-Solid"
+                       TextColor="{StaticResource Primary}"
+                       VerticalOptions="Center"></Label>
+
+                <Label Text="{Binding Tip}"
+                       Margin="5,0,5,5"
+                       HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnUploadTapped" />
+            </Border.GestureRecognizers>
+        </Border>
+
+        <VerticalStackLayout Grid.Row="1"
+                             BindableLayout.ItemsSource="{Binding ItemsSource}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="1*,auto,auto,auto"
+                          ColumnDefinitions="*,40,38">
+                        <Label Text="{Binding Name}"
+                               Grid.ColumnSpan="3"
+                               FontAttributes="Bold"
+                               Margin="0,30,0,0">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="{Binding FileSize}"
+                               VerticalOptions="Center"
+                               Grid.Row="1"
+                               Margin="0,5,0,0" />
+
+                        <Label Grid.Column="1"
+                               VerticalOptions="Center"
+                               Grid.Row="1" Text="{Binding UploadProgressText}" />
+
+                        <Button Text="&#xf00d;"
+                                FontFamily="FontAwesome-Solid"
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                IsVisible="{Binding HasRemove}"
+                                Style="{StaticResource TextButton}"
+                                Clicked="RemoveButton_Clicked"
+                                x:Name="RemoveButton"></Button>
+
+
+
+                        <ProgressBar Grid.Row="2"
+                                     Grid.ColumnSpan="3"
+                                     ProgressColor="{StaticResource Primary}"
+                                     Progress="{Binding UploadProgressNum}" />
+                        <Label Text="{Binding ErrorMsg}"
+                               IsVisible="{Binding HasErrorMsg}"
+                               TextColor="Red"
+                               Grid.Row="3"
+                               Grid.ColumnSpan="2" />
+                    </Grid>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentView>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="this"
+             x:Class="VControl.Controls.VPlaceholderView">
+    <Grid RowDefinitions="1*,80, 100"
+          >
+        <ContentView x:Name="MainContent">
+
+            <Image Source="{Binding IconSource}"
+                   BindingContext="{Reference this}"
+                   WidthRequest="120"
+                   HeightRequest="120"
+                   VerticalOptions="Center" />
+        </ContentView>
+
+        <Label BindingContext="{Reference this}"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Grid.Row="1"
+               Text="{Binding TitleText}"
+               VerticalTextAlignment="Center"></Label>
+
+        <Button BindingContext="{Reference this}"
+                Text="{Binding ButtonText}"
+                Padding="50,0"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Grid.Row="2"
+                Opacity="0"
+                IsVisible="{Binding HasOkButton}"
+                x:Name="OkButton"
+                Clicked="OkButton_Clicked"></Button>
+    </Grid>
+</ContentView>
