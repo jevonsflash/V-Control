@@ -1,13 +1,9 @@
-﻿using Microsoft.Maui.LifecycleEvents;
-using CommunityToolkit.Maui;
-using Microsoft.Extensions.Configuration;
-using System.Reflection;
-using VControl.Samples.Services.Navigation;
-using VControl.Samples.Views.Base;
-using VControl.Samples.ViewModels;
-using VControl.Samples.Views;
+﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using VControl;
+using Microsoft.Maui.LifecycleEvents;
+using VControl.Samples.Services.Navigation;
+using VControl.Samples.Views;
+using VControl.Samples.Views.Base;
 
 namespace VControl.Samples;
 
@@ -40,7 +36,6 @@ public static class MauiProgram
         return mauiApp;
     }
 
-
     public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddSingleton<INavigationService, MauiNavigationService>();
@@ -52,6 +47,8 @@ public static class MauiProgram
     {
         builder.Services.AddTransient<HomePage, HomeViewModel>();
         builder.Services.AddTransientWithRoute<StyleSamplesPage, StyleSamplesViewModel>();
+        builder.Services.AddTransientWithRoute<ColorsPage, ColorsPageViewModel>();
+        builder.Services.AddTransientWithRoute<IconsPage, IconsPageViewModel>();
         builder.Services.AddTransientWithRoute<VButtonView, VButtonViewModel>();
         builder.Services.AddTransientWithRoute<VCardView, VCardViewModel>();
         builder.Services.AddTransientWithRoute<VRadioButtonView, VRadioButtonViewModel>();

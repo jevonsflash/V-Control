@@ -4,7 +4,6 @@ namespace VControl.Samples.Behaviors
 {
     public class TriggerPopupBehavior : Behavior<ContentPage>
     {
-     
         public bool PopupLoading { get; private set; }
 
         protected override void OnAttachedTo(ContentPage bindable)

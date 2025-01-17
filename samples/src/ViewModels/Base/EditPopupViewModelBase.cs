@@ -3,11 +3,14 @@ using VControl.Samples.ViewModels.Base;
 
 namespace VControl.Samples.ViewModels.Popup
 {
-
-
     public abstract partial class EditPopupViewModelBase<T> : PopupViewModelBase where T : ObservableObject, new()
     {
-        public event EventHandler<T> OnFinishedEdit;
+        public Func<T> GetData = () => default;
+
+        public Func<Task<T>> GetDataAsync = async () => await Task.Run(() => default(T));
+
+        [ObservableProperty]
+        private T _currentItem;
 
         public EditPopupViewModelBase(
  INavigationService navigationService) : base(navigationService)
@@ -15,6 +18,7 @@ namespace VControl.Samples.ViewModels.Popup
             this.PropertyChanged += EditPopupViewModelBase_PropertyChanged;
         }
 
+        public event EventHandler<T> OnFinishedEdit;
 
         public virtual async Task Init()
         {
@@ -46,15 +50,7 @@ namespace VControl.Samples.ViewModels.Popup
                 }
 
             }).ContinueWith((e) => { Loading = false; });
-
-
         }
-
-        public Func<T> GetData = () => default;
-
-
-        public Func<Task<T>> GetDataAsync = async () => await Task.Run(() => default(T));
-
 
         public virtual void EditPopupViewModelBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -65,14 +61,13 @@ namespace VControl.Samples.ViewModels.Popup
                     return;
                 }
 
-
-
                 CurrentItem.PropertyChanged += CurrentItem_PropertyChanged;
             }
         }
 
-        public virtual void CurrentItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) { }
-
+        public virtual void CurrentItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+        }
 
         [RelayCommand]
         public virtual async Task Submit()
@@ -85,15 +80,11 @@ namespace VControl.Samples.ViewModels.Popup
 
                 OnFinishedEdit?.Invoke(this, this.CurrentItem);
             }
-
         }
 
         public abstract Task<bool> Validate();
+
         public abstract Task Normalize();
-
-        [ObservableProperty]
-        private T _currentItem;
-
     }
 
 }

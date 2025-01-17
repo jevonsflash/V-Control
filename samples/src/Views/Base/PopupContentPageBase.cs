@@ -1,6 +1,5 @@
 ﻿namespace VControl.Samples.Views.Base;
 
-
 public abstract class PopupContentPageBase<TViewModel> : PopupContentPageBase where TViewModel : ViewModelBase
 {
     public PopupContentPageBase(TViewModel viewModel) : base(viewModel)
@@ -49,11 +48,7 @@ public abstract class PopupContentPageBase : CommunityToolkit.Maui.Views.Popup
         this.Size = PopupSize;
     }
 
-
     public Size PopupSize { get; set; }
     public double VerticalHRatio { get; set; } = 0.8;
 
-
 }
-
-

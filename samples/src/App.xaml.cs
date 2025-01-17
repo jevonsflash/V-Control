@@ -1,5 +1,4 @@
-﻿using Microsoft.Maui.Platform;
-using VControl.Samples.Services.Navigation;
+﻿using VControl.Samples.Services.Navigation;
 
 namespace VControl.Samples;
 
@@ -20,11 +19,10 @@ public partial class App : Application
         }
     }
 
-
     protected override async void OnStart()
     {
         base.OnStart();
-        
+
         //code snippet
         OnResume();
     }

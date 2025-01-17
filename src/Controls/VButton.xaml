@@ -27,6 +27,7 @@
 
             </ContentView>
             <ActivityIndicator x:Name="MainActivityIndicator"
+                               HeightRequest="28"
                                Color="{Binding ProgressColor}"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />

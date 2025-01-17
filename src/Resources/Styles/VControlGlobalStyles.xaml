@@ -34,8 +34,6 @@
 
             <Style TargetType="Page"
                    ApplyToDerivedTypes="True">
-                <Setter Property="Padding"
-                        Value="0" />
                 <Setter Property="BackgroundColor"
                         Value="{StaticResource Background}" />
             </Style>
@@ -164,7 +162,7 @@
                 <Setter Property="Stroke"
                         Value="{StaticResource Outline}" />
                 <Setter Property="StrokeShape"
-                        Value="{StaticResource MediumRoundRectangle}" />
+                        Value="{StaticResource SmallRoundRectangle}" />
                 <Setter Property="StrokeThickness"
                         Value="2" />
             </Style>
@@ -432,7 +430,7 @@
                 </Setter>
             </Style>
 
-           
+
 
             <Style TargetType="Slider">
                 <Setter Property="MinimumTrackColor"

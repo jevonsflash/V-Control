@@ -151,8 +151,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\Others\StyleSamplesPageView.xaml.cs">
-	    <DependentUpon>StyleSamplesPageView.xaml</DependentUpon>
+	  <Compile Update="Views\Others\IconsPage.xaml.cs">
+	    <DependentUpon>IconsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Others\ColorsPage.xaml.cs">
+	    <DependentUpon>ColorsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Others\HomePage.xaml.cs">
+	    <DependentUpon>HomePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Others\StyleSamplesPage.xaml.cs">
+	    <DependentUpon>StyleSamplesPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\VButtonView.xaml.cs">
 	    <DependentUpon>VButtonView.xaml</DependentUpon>
@@ -175,7 +184,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Others\StyleSamplesPageView.xaml">
+	  <MauiXaml Update="Views\Others\IconsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Others\ColorsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Others\StyleSamplesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VButton.xaml">

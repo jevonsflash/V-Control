@@ -1,6 +1,6 @@
 ﻿namespace VControl.Samples.Common
 {
-    static class PopupSize
+    internal static class PopupSize
     {
         // examples for fixed sizes
         public static Size Tiny => new Size(100, 100);

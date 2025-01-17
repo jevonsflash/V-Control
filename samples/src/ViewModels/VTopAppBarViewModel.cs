@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using VControl.Controls.VExpandable;
-using VControl.Samples.Models;
-using VControl.Samples.Services.Navigation;
+﻿using VControl.Samples.Services.Navigation;
 
 namespace VControl.Samples.ViewModels;
 
@@ -24,7 +21,7 @@ public partial class VTopAppBarViewModel : ViewModelBase
     [RelayCommand]
     private async Task MoreAsync(object obj)
     {
-       await this.AlertOkayAsync(obj.ToString());
+        await this.AlertOkayAsync(obj.ToString());
     }
 
 }

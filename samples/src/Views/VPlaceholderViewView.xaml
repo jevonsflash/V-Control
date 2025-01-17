@@ -26,7 +26,7 @@
                    Style="{StaticResource ItemDetailsLabel}" />
             <control:VPlaceholderView  TitleText="Ops! Looks like there's nothing here yet. ">
                 <control:VPlaceholderView.ContentSlot>
-                    <Image Source="bg3"
+                    <Image Source="service3.jpg"
                            WidthRequest="120"
                            HeightRequest="120"></Image>
                 </control:VPlaceholderView.ContentSlot>                

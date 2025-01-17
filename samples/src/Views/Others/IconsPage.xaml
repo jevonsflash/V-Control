@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.IconsPage"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl"
+                          x:TypeArguments="vm:IconsPageViewModel">
+
+    <viewBase:ContentPageBase.Resources>
+
+        <DataTemplate x:Key="IconItemView">
+            <Grid RowDefinitions="*,auto"
+                  Margin="20,2.5">
+                <Label TextColor="{Binding TextColor}"
+                       FontFamily="{Binding FontFamily}"
+                       FontAttributes="Bold"
+                       FontSize="40"
+                       HorizontalOptions="Center"
+                       Text="{Binding Icon}"></Label>
+                <Label Text="{Binding Title}"
+                       Grid.Row="1"
+                       HorizontalOptions="Center"
+                       Style="{StaticResource ItemDetailsLabel}" />
+            </Grid>
+        </DataTemplate>
+
+    </viewBase:ContentPageBase.Resources>
+
+
+    <Grid Margin="{StaticResource LayoutMargin}">
+        <ScrollView>
+            <VerticalStackLayout>
+                <Label Text="Material Design 3 Standard"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Label TextColor="Black"
+                       FontFamily="FontAwesome-Solid"
+                       FontAttributes="Bold"
+                       FontSize="40"
+                       Text="user"></Label>
+                <Label Text="Material Design 3 Standard"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Label TextColor="Black"
+                       FontFamily="FontAwesome-Solid"
+                       FontAttributes="Bold"
+                       FontSize="40"
+                       Text="&#xf007;"></Label>
+
+                <Label Text="Button"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Button TextColor="Black"
+                        FontFamily="FontAwesome-Solid"
+                        FontAttributes="Bold"
+                        Text="&#xf007;"></Button>
+                <Label Text="Editor"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Editor TextColor="Black"
+                        FontFamily="FontAwesome-Solid"
+                        FontAttributes="Bold"
+                        Text="&#xf007;"></Editor>
+
+                <Label Text="Material Design 3 Standard"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <CollectionView ItemsLayout="HorizontalGrid, 2"
+                                ItemsSource="{Binding IconItemList}"
+                                ItemTemplate="{StaticResource IconItemView}">
+
+                </CollectionView>
+
+
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</viewBase:ContentPageBase>

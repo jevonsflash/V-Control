@@ -2,10 +2,10 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary x:Class="VControl.Styles.VControlColors"
                     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-   <!--MD3静态标准色Light-->
-    
+    <!--MD3静态标准色Light-->
+
     <Color x:Key="Primary">#FF7415</Color>
     <Color x:Key="OnPrimary">#FFFFFF</Color>
     <Color x:Key="PrimaryContainer">#FEF4EA</Color>
@@ -28,9 +28,6 @@
 
     <Color x:Key="Background">#F5F5F5</Color>
     <Color x:Key="OnBackground">#1C1B1F</Color>
-
-
-
 
     <Color x:Key="Outline">#E1E1E1</Color>
     <Color x:Key="OutlineVariant">#C4C7C5</Color>
@@ -84,7 +81,7 @@
     <Color x:Key="DisabledText">#ba919191</Color>
     <Color x:Key="PlaceHolderText">#E0E0E0</Color>
     <Color x:Key="DisabledBackground">#80919191</Color>
-    
+
 
     <!--BRUSHES-->
     <LinearGradientBrush x:Key="PrimaryBrush">
@@ -157,23 +154,22 @@
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
 
-
-    <Color x:Key="Gray50">#F0F0F0</Color>
-    <Color x:Key="Gray60">#F1F1F1</Color>
-    <Color x:Key="Gray100">#F3F3F3</Color>
-    <Color x:Key="Gray180">#F8F8F8</Color>
-    <Color x:Key="Gray150">#F5F5F5</Color>
-    <Color x:Key="Gray170">#F7F7F7</Color>
-    <Color x:Key="Gray190">#E0E0E0</Color>
-    <Color x:Key="Gray200">#E1E1E1</Color>
-    <Color x:Key="Gray230">#B3B3B3</Color>
+    <Color x:Key="Gray50">#F8F8F8</Color>
+    <Color x:Key="Gray60">#F7F7F7</Color>
+    <Color x:Key="Gray100">#F5F5F5</Color>
+    <Color x:Key="Gray120">#F3F3F3</Color>
+    <Color x:Key="Gray150">#F1F1F1</Color>
+    <Color x:Key="Gray170">#F0F0F0</Color>
+    <Color x:Key="Gray190">#E1E1E1</Color>
+    <Color x:Key="Gray200">#E0E0E0</Color>
+    <Color x:Key="Gray230">#B7B7B7</Color>
     <Color x:Key="Gray240">#B5B5B5</Color>
-    <Color x:Key="Gray270">#B7B7B7</Color>
-    <Color x:Key="Gray250">#AEAEAE</Color>
+    <Color x:Key="Gray250">#B3B3B3</Color>
+    <Color x:Key="Gray270">#AEAEAE</Color>
     <Color x:Key="Gray300">#ACACAC</Color>
     <Color x:Key="Gray360">#A6A6A6</Color>
-    <Color x:Key="Gray380">#848381</Color>
-    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray380">#919191</Color>
+    <Color x:Key="Gray400">#848381</Color>
     <Color x:Key="Gray500">#6E6E6E</Color>
     <Color x:Key="Gray550">#666666</Color>
     <Color x:Key="Gray600">#404040</Color>

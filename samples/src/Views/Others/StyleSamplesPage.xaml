@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.StyleSamplesPage"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl"
+                          x:TypeArguments="vm:StyleSamplesViewModel">
+
+    <Grid Margin="{StaticResource LayoutMargin}">
+        <ScrollView>
+            <VerticalStackLayout>
+                <Label Text="Default Button"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Button Text="BUTTON"></Button>
+
+                <Label Text="Light"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Button Text="BUTTON"
+                        Style="{StaticResource LightButton}"></Button>
+                <Label Text="Outlined"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Button Text="BUTTON"
+                        Style="{StaticResource OutlinedButton}"></Button>
+                <Label Text="Primary"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Button Text="BUTTON"
+                        Style="{StaticResource PrimaryButton}"></Button>
+                <Label Text="Text"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Button Text="BUTTON"
+                        Style="{StaticResource TextButton}"></Button>
+
+                <Label Text="Disabled"
+                       Style="{StaticResource ItemDetailsLabel}" />
+                <Button Text="BUTTON"
+                        IsEnabled="False"></Button>
+
+
+
+                <Label Text="Default Border"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <Border HeightRequest="100"></Border>
+
+                <Label Text="Default CheckBox"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <CheckBox IsChecked="True"></CheckBox>
+                <CheckBox></CheckBox>
+
+                <Label Text="Default Picker"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <Picker Title="Select a monkey">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Baboon</x:String>
+                            <x:String>Capuchin Monkey</x:String>
+                            <x:String>Blue Monkey</x:String>
+                            <x:String>Squirrel Monkey</x:String>
+                            <x:String>Golden Lion Tamarin</x:String>
+                            <x:String>Howler Monkey</x:String>
+                            <x:String>Japanese Macaque</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="Default DatePicker"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <DatePicker></DatePicker>
+
+                <Label Text="Default TimePicker"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <TimePicker></TimePicker>
+
+
+                <Label Text="Default Editor"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <Editor Text="TEXT"></Editor>
+
+
+                <Label Text="Default Entry"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <Entry Text="TEXT"></Entry>
+
+                <Label Text="Default Label"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <Label Text="TEXT"></Label>
+
+
+                <Label Text="Default ProgressBar"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <ProgressBar Progress="0.5"></ProgressBar>
+
+                <Label Text="Default RadioButton"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <RadioButton IsChecked="True"></RadioButton>
+                <RadioButton></RadioButton>
+
+
+                <Label Text="Default RefreshView"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+
+                <RefreshView IsRefreshing="True" HeightRequest="100">
+                    <ScrollView >
+                        <HorizontalStackLayout HeightRequest="100">
+                        </HorizontalStackLayout>
+                    </ScrollView>
+                </RefreshView>
+
+                <Label Text="Default SearchBar"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <SearchBar></SearchBar>
+
+
+
+                <Label Text="Default Slider"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <Slider Value="0.5"></Slider>
+
+
+                <Label Text="Default Switch"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+                <Switch></Switch>
+                <Switch IsToggled="True"></Switch>
+
+                <Label Text="Default SwipeView"
+                       Style="{StaticResource ItemDetailsLabel}" />
+
+
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItems>
+                            <SwipeItem Text="Favorite" />
+                            <SwipeItem Text="Delete" />
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+                    <!-- Content -->
+                    <Grid HeightRequest="60"
+                          WidthRequest="300">
+                        <Label Text="Swipe right"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </SwipeView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</viewBase:ContentPageBase>

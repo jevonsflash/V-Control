@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.ObjectModel;
-using VControl.Samples.Services.Navigation;
 using VControl.Samples.Views.Base;
 
 namespace VControl.Samples.Views;

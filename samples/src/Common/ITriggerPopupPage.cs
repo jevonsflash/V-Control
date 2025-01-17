@@ -3,6 +3,7 @@
     public interface ITriggerPopupPage
     {
         Task Dismisspopup();
+
         Task Triggerpopup();
     }
 }

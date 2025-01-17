@@ -2,7 +2,6 @@
 
 namespace VControl.Samples.Views.Base;
 
-
 public abstract class ContentPageBase<TViewModel> : ContentPageBase where TViewModel : ViewModelBase
 {
     public ContentPageBase(TViewModel viewModel) : base(viewModel)
@@ -26,9 +25,6 @@ public abstract class ContentPageBase : ContentPage
 
         NavigationPage.SetBackButtonTitle(this, string.Empty);
     }
-
-
-
 
     /// <summary>
     /// 显示警告

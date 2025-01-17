@@ -1,8 +1,6 @@
 ﻿using CommunityToolkit.Maui.Views;
 
-
 namespace VControl.Samples.Services.Navigation;
-
 
 public class MauiNavigationService : INavigationService
 {
@@ -11,7 +9,6 @@ public class MauiNavigationService : INavigationService
 
     public async Task InitializeAsync()
     {
-
 
         //jevons: 修改底栏，HOME
         await NavigateToAsync("//HomePage");
@@ -55,7 +52,6 @@ public class MauiNavigationService : INavigationService
         return Task.CompletedTask;
     }
 
-
     public async Task ShowPopupAsync(Popup popupPage)
     {
         if (popupPage == null)
@@ -73,7 +69,6 @@ public class MauiNavigationService : INavigationService
         await popupPage.CloseAsync();
     }
 
-    
     public async Task PushAsync(Page page, bool animated = true)
     {
         if (mainPageNavigation.NavigationStack.LastOrDefault() == page)
@@ -98,13 +93,9 @@ public class MauiNavigationService : INavigationService
         await mainPageNavigation.PopModalAsync(animated);
     }
 
-
     public async Task PopToRootAsync(bool animated = true)
     {
         await mainPageNavigation.PopToRootAsync(animated);
     }
 
-
-
 }
-

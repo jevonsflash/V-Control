@@ -6,9 +6,7 @@ public interface IViewModelBase : IQueryAttributable
 {
     INavigationService NavigationService { get; }
 
-
     IAsyncRelayCommand InitializeAsyncCommand { get; }
-
 
     bool IsBusy { get; }
     string PageTitle { get; }
@@ -21,4 +19,3 @@ public interface IViewModelBase : IQueryAttributable
     /// <returns></returns>
     Task InitializeAsync();
 }
-

@@ -3,6 +3,7 @@
     public interface ISearchViewModel
     {
         Command SearchCommand { get; set; }
+
         string SearchKeywords { get; set; }
     }
 }

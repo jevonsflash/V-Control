@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VControl.Samples.Models
+﻿namespace VControl.Samples.Models
 {
     public partial class HomeViewItem : ObservableObject
     {

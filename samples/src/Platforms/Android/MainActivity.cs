@@ -1,12 +1,10 @@
-﻿using Android.App;
+﻿using System.Diagnostics;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using AndroidX.Activity.Result;
 using static AndroidX.Activity.Result.Contract.ActivityResultContracts;
-using Android.Runtime;
-//using Plugin.Firebase.CloudMessaging;
-using System.Diagnostics;
-
 
 namespace VControl.Samples;
 

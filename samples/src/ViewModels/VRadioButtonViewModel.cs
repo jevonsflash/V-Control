@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using VControl.Controls.VExpandable;
-using VControl.Samples.Models;
 using VControl.Samples.Services.Navigation;
 
 namespace VControl.Samples.ViewModels;
@@ -27,13 +26,11 @@ public partial class VRadioButtonViewModel : ViewModelBase
     [ObservableProperty]
     private ObservableCollection<IRadioButtonModel> _inspTypeList;
 
-
     [ObservableProperty]
     private string _inspType;
 
     [ObservableProperty]
     private ObservableCollection<IRadioButtonModel> _inspTypeList2;
-
 
     [ObservableProperty]
     private string _inspType2;

@@ -1,11 +1,9 @@
-﻿using CommunityToolkit.Maui.Alerts;
+﻿using System.Diagnostics;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
-using System.Diagnostics;
 using VControl.Samples.Services.Navigation;
 
-
 namespace VControl.Samples.ViewModels;
-
 
 public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
 {
@@ -13,7 +11,6 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
     [ObservableProperty]
     private string _backPath;
     public bool IsBusy => Interlocked.Read(ref _isBusy) > 0;
-  
 
     [ObservableProperty]
     private bool _isInitialized;
@@ -23,20 +20,17 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
 
     public INavigationService NavigationService { get; }
 
-
     /// <summary>
     /// 页面初始化时执行
     /// </summary>
 	public IAsyncRelayCommand InitializeAsyncCommand { get; }
 
-
     protected CancellationTokenSource CancellationTokenSource { get; private set; }
-
 
     public ViewModelBase(INavigationService navigationService)
     {
         NavigationService = navigationService;
-        this.CancellationTokenSource = new CancellationTokenSource();    
+        this.CancellationTokenSource = new CancellationTokenSource();
     }
 
     /// <summary>
@@ -57,9 +51,6 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
         return Task.CompletedTask;
     }
 
-
-
- 
     /// <summary>
     /// 离开页面时调用
     /// </summary>
@@ -82,8 +73,6 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
         this.CancellationTokenSource = new CancellationTokenSource();
     }
 
-   
-
     public async Task IsBusyFor(Func<Task> unitOfWork)
     {
         Interlocked.Increment(ref _isBusy);
@@ -99,8 +88,6 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
             OnPropertyChanged(nameof(IsBusy));
         }
     }
-
-    #region 显示提示信息
 
     /// <summary>
     /// 显示OK信息
@@ -160,8 +147,6 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
         await customSnackbar.Show();
     }
 
-    #endregion
-
     public void DebugInfo(string message)
     {
         Debug.WriteLine(message);
@@ -183,4 +168,3 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
         await NavigationService.NavigateToAsync("..");
     }
 }
-

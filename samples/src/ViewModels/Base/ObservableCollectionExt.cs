@@ -4,7 +4,6 @@ using System.ComponentModel;
 
 namespace VControl.Samples.ViewModels;
 
-
 public class ObservableCollectionExt<T> : ObservableCollection<T>
 {
     public ObservableCollectionExt() : base()
