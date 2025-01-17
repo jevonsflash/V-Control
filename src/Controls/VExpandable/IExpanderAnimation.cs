@@ -3,6 +3,7 @@
     public interface IExpanderAnimation
     {
         Task OnExpand(View expanderView);
+
         Task OnCollapse(View expanderView);
     }
 }

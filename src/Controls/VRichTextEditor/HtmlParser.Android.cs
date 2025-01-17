@@ -1,5 +1,4 @@
-﻿using System;
-using Android.Text;
+﻿using Android.Text;
 
 namespace VControl.Controls
 {
@@ -18,7 +17,19 @@ namespace VControl.Controls
             return cleanString;
         }
 
-        static string CleanHtml(string htmlString)
+        public static FormattedString SpannedToFormatted(ISpanned spanned)
+        {
+            FormattedString formatted = (FormattedString)spanned;
+            return formatted;
+        }
+
+        public static ISpanned FormattedToSpanned(FormattedString formatted)
+        {
+            ISpanned spanned = (ISpanned)formatted;
+            return spanned;
+        }
+
+        internal static string CleanHtml(string htmlString)
         {
             bool inTag = false;
             bool pTag = false;
@@ -58,19 +69,5 @@ namespace VControl.Controls
             }
             return newString;
         }
-
-        public static FormattedString SpannedToFormatted(ISpanned spanned)
-        {
-            FormattedString formatted = (FormattedString)spanned;
-            return formatted;
-        }
-
-        public static ISpanned FormattedToSpanned(FormattedString formatted)
-        {
-            ISpanned spanned = (ISpanned)formatted;
-            return spanned;
-        }
     }
-
-
 }

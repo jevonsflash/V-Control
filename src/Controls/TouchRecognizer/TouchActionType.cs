@@ -7,6 +7,6 @@
         Moved,
         Released,
         Exited,
-        Cancelled
+        Cancelled,
     }
 }

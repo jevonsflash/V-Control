@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-namespace VControl.Controls.Validations;
+﻿namespace VControl.Controls.Validations;
 
 /// <summary>
 /// 是否用户名或邮箱
@@ -14,11 +7,11 @@ namespace VControl.Controls.Validations;
 public class MinCountOfDigitRule<T> : IValidationRule<T>
 {
     private readonly int _minCount;
+
     public MinCountOfDigitRule(int minCount = 1)
     {
         _minCount = minCount;
     }
-
 
     public string ValidationMessage { get; set; }
 

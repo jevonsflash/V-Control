@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 
 namespace VControl.Controls.Validations;
 
-
 public class ValidatableObject<T> : INotifyPropertyChanged, IValidatableObject
 {
     private IEnumerable<string> _errors;
@@ -39,8 +38,12 @@ public class ValidatableObject<T> : INotifyPropertyChanged, IValidatableObject
         _errors = Enumerable.Empty<string>();
     }
 
-    protected bool SetProperty<T>([NotNullIfNotNull(nameof(newValue))] ref T field, T newValue, [CallerMemberName] string? propertyName = null)
-    {       
+    protected bool SetProperty<T>(
+        [NotNullIfNotNull(nameof(newValue))] ref T field,
+        T newValue,
+        [CallerMemberName] string? propertyName = null
+    )
+    {
         if (EqualityComparer<T>.Default.Equals(field, newValue))
         {
             return false;
@@ -52,10 +55,8 @@ public class ValidatableObject<T> : INotifyPropertyChanged, IValidatableObject
 
     public bool Validate()
     {
-        Errors = Validations
-            ?.Where(v => !v.Check(Value))
-            ?.Select(v => v.ValidationMessage)
-            ?.ToArray()
+        Errors =
+            Validations?.Where(v => !v.Check(Value))?.Select(v => v.ValidationMessage)?.ToArray()
             ?? Enumerable.Empty<string>();
 
         IsValid = !Errors.Any();

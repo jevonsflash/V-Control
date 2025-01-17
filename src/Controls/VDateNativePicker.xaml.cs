@@ -2,38 +2,38 @@ namespace VControl.Controls;
 
 public partial class VDateNativePicker : ContentView
 {
-
     public static readonly BindableProperty SelectedDateProperty = BindableProperty.Create(
-      nameof(SelectedDate),
-      typeof(DateTime),
-      typeof(VDateNativePicker),
-      DateTime.Today,
-      defaultBindingMode: BindingMode.TwoWay);
+        nameof(SelectedDate),
+        typeof(DateTime),
+        typeof(VDateNativePicker),
+        DateTime.Today,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty MinDateProperty = BindableProperty.Create(
-     nameof(MinDate),
-     typeof(DateTime),
-     typeof(VDateNativePicker),
-     new DateTime(1900, 1, 1),
-     defaultBindingMode: BindingMode.OneWay);
+        nameof(MinDate),
+        typeof(DateTime),
+        typeof(VDateNativePicker),
+        new DateTime(1900, 1, 1),
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty MaxDateProperty = BindableProperty.Create(
-    nameof(MaxDate),
-    typeof(DateTime),
-    typeof(VDateNativePicker),
-    new DateTime(2100, 12, 31),
-    defaultBindingMode: BindingMode.OneWay);
-
-
+        nameof(MaxDate),
+        typeof(DateTime),
+        typeof(VDateNativePicker),
+        new DateTime(2100, 12, 31),
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty IsPickerEnabledProperty = BindableProperty.Create(
-   nameof(IsPickerEnabled),
-   typeof(bool),
-   typeof(VDateNativePicker),
-   true,
-   //propertyChanged: OnEntryTextPropertyChanged, 
-   defaultBindingMode: BindingMode.TwoWay);
-
+        nameof(IsPickerEnabled),
+        typeof(bool),
+        typeof(VDateNativePicker),
+        true,
+        //propertyChanged: OnEntryTextPropertyChanged,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public DateTime SelectedDate
     {
@@ -60,7 +60,7 @@ public partial class VDateNativePicker : ContentView
     }
 
     public VDateNativePicker()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 }

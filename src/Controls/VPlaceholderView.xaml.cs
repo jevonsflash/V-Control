@@ -1,7 +1,3 @@
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace VControl.Controls;
@@ -14,10 +10,7 @@ public partial class VPlaceholderView : ContentView
     {
         InitializeComponent();
         Loaded += VPlaceholderView_LoadedAsync;
-
     }
-
-
 
     private async void VPlaceholderView_LoadedAsync(object? sender, EventArgs e)
     {
@@ -29,37 +22,53 @@ public partial class VPlaceholderView : ContentView
         await this.OkButton.FadeTo(1);
     }
 
-    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(nameof(TitleText), typeof(string), typeof(VPlaceholderView), "TITLE HERE");
+    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(
+        nameof(TitleText),
+        typeof(string),
+        typeof(VPlaceholderView),
+        "TITLE HERE"
+    );
 
-    public static readonly BindableProperty ButtonTextProperty = BindableProperty.Create(nameof(ButtonText), typeof(string), typeof(VPlaceholderView), "BUTTON");
+    public static readonly BindableProperty ButtonTextProperty = BindableProperty.Create(
+        nameof(ButtonText),
+        typeof(string),
+        typeof(VPlaceholderView),
+        "BUTTON"
+    );
 
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(VPlaceholderView)
+    );
 
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VPlaceholderView)
+    );
 
-    public static readonly BindableProperty CommandProperty =
-        BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(VPlaceholderView));
+    public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(
+        nameof(ProgressColor),
+        typeof(Color),
+        typeof(VPlaceholderView)
+    );
 
-    public static readonly BindableProperty CommandParameterProperty =
-        BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VPlaceholderView));
+    public static readonly BindableProperty IconSourceProperty = BindableProperty.Create(
+        nameof(IconSource),
+        typeof(string),
+        typeof(VPlaceholderView),
+        "v_control_empty.png"
+    );
 
-    
+    public static readonly BindableProperty HasOkButtonProperty = BindableProperty.Create(
+        nameof(HasOkButton),
+        typeof(bool),
+        typeof(VPlaceholderView),
+        true
+    );
 
-
-    public static readonly BindableProperty ProgressColorProperty =
-           BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(VPlaceholderView));
-
-    public static readonly BindableProperty IconSourceProperty = BindableProperty.Create(nameof(IconSource), typeof(string), typeof(VPlaceholderView), "v_control_empty.png");
-
-
-    public static readonly BindableProperty HasOkButtonProperty = BindableProperty.Create(nameof(HasOkButton),
-    typeof(bool), typeof(VPlaceholderView), true);
-
-
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
-
+    public IView ContentSlot { get; set; }
 
     public string IconSource
     {
@@ -73,7 +82,6 @@ public partial class VPlaceholderView : ContentView
         set => SetValue(ProgressColorProperty, value);
     }
 
-
     public string TitleText
     {
         get { return (string)GetValue(TitleTextProperty); }
@@ -86,14 +94,11 @@ public partial class VPlaceholderView : ContentView
         set { SetValue(ButtonTextProperty, value); }
     }
 
-
-
     public ICommand Command
     {
         get => (ICommand)GetValue(CommandProperty);
         set { SetValue(CommandProperty, value); }
     }
-
 
     public object CommandParameter
     {

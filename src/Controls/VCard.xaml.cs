@@ -1,31 +1,44 @@
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace VControl.Controls;
 
 public partial class VCard : ContentView
 {
-
-    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(VCard), default(ICommand));
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VCard), default(object));
-
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(VCard),
+        default(ICommand)
+    );
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VCard),
+        default(object)
+    );
 
     public static readonly BindableProperty CardTitleProperty = BindableProperty.Create(
-      nameof(CardTitle),
-      typeof(string),
-      typeof(VCard),
-      string.Empty,
-      defaultBindingMode: BindingMode.OneWay);
-
+        nameof(CardTitle),
+        typeof(string),
+        typeof(VCard),
+        string.Empty,
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty CardDetailProperty = BindableProperty.Create(
-      nameof(CardDetail),
-      typeof(string),
-      typeof(VCard),
-      string.Empty,
-      defaultBindingMode: BindingMode.OneWay, propertyChanged: OnCardDetailPropertyChanged);
+        nameof(CardDetail),
+        typeof(string),
+        typeof(VCard),
+        string.Empty,
+        defaultBindingMode: BindingMode.OneWay,
+        propertyChanged: OnCardDetailPropertyChanged
+    );
 
-    private static void OnCardDetailPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnCardDetailPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if ((bindable as VCard).ContentSlot != default)
         {
@@ -35,20 +48,21 @@ public partial class VCard : ContentView
     }
 
     public static readonly BindableProperty IconTextProperty = BindableProperty.Create(
-    nameof(IconText),
-    typeof(string),
-    typeof(VCard),
-    "",
-    defaultBindingMode: BindingMode.OneWay);
-
+        nameof(IconText),
+        typeof(string),
+        typeof(VCard),
+        "",
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty IsCardEnabledProperty = BindableProperty.Create(
-      nameof(IsCardEnabled),
-      typeof(bool),
-      typeof(VCard),
-      true,
-      //propertyChanged: OnEntryTextPropertyChanged, 
-      defaultBindingMode: BindingMode.TwoWay);
+        nameof(IsCardEnabled),
+        typeof(bool),
+        typeof(VCard),
+        true,
+        //propertyChanged: OnEntryTextPropertyChanged,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public string CardTitle
     {
@@ -61,7 +75,6 @@ public partial class VCard : ContentView
         get => (string)GetValue(CardDetailProperty);
         set => SetValue(CardDetailProperty, value);
     }
-
 
     public string IconText
     {
@@ -87,7 +100,6 @@ public partial class VCard : ContentView
         set { SetValue(CommandParameterProperty, value); }
     }
 
-
     public VCard()
     {
         InitializeComponent();
@@ -105,7 +117,6 @@ public partial class VCard : ContentView
         {
             (this.FindByName("MainContent") as ContentView).Content = (View)this.ContentSlot;
             MainSpliter.IsVisible = true;
-
         }
 
         if (this.FooterSlot != default)
@@ -115,24 +126,11 @@ public partial class VCard : ContentView
         }
     }
 
-    public IView HeaderSlot
-    {
-        get;
-        set;
-    }
+    public IView HeaderSlot { get; set; }
 
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
+    public IView ContentSlot { get; set; }
 
-    public IView FooterSlot
-    {
-        get;
-        set;
-    }
-
+    public IView FooterSlot { get; set; }
 
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
@@ -142,7 +140,5 @@ public partial class VCard : ContentView
         }
 
         Command?.Execute(CommandParameter);
-
-
     }
 }

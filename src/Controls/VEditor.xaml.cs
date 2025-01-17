@@ -1,52 +1,49 @@
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-
 namespace VControl.Controls;
 
 public partial class VEditor : ContentView
 {
     public static readonly BindableProperty EditorTextProperty = BindableProperty.Create(
-        nameof(EditorText), 
-        typeof(string), 
-        typeof(VEditor), 
+        nameof(EditorText),
+        typeof(string),
+        typeof(VEditor),
         string.Empty,
-        //propertyChanged: OnEditorTextPropertyChanged, 
-        defaultBindingMode: BindingMode.TwoWay);
+        //propertyChanged: OnEditorTextPropertyChanged,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty EditorPlaceholderProperty = BindableProperty.Create(
-       nameof(EditorPlaceholder),
-       typeof(string),
-       typeof(VEditor),
-       "Enter content here.",
-       //propertyChanged: OnEditorTextPropertyChanged, 
-       defaultBindingMode: BindingMode.OneWay);
-
-  
+        nameof(EditorPlaceholder),
+        typeof(string),
+        typeof(VEditor),
+        "Enter content here.",
+        //propertyChanged: OnEditorTextPropertyChanged,
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty EditorKeyboardProperty = BindableProperty.Create(
-       nameof(EditorKeyboard),
-       typeof(Keyboard),
-       typeof(VEditor),
-       Keyboard.Default,
-       //propertyChanged: OnEditorWidthPropertyChanged, 
-       defaultBindingMode: BindingMode.TwoWay);
+        nameof(EditorKeyboard),
+        typeof(Keyboard),
+        typeof(VEditor),
+        Keyboard.Default,
+        //propertyChanged: OnEditorWidthPropertyChanged,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty EditorMaxLengthProperty = BindableProperty.Create(
-      nameof(EditorMaxLength),
-      typeof(int?),
-      typeof(VEditor),
-      null,
-      defaultBindingMode: BindingMode.TwoWay);
+        nameof(EditorMaxLength),
+        typeof(int?),
+        typeof(VEditor),
+        null,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty EditorIsReadOnlyProperty = BindableProperty.Create(
         nameof(EditorIsReadOnly),
         typeof(bool),
         typeof(VEditor),
         false,
-        defaultBindingMode: BindingMode.TwoWay);
-
-   
-
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public string EditorText
     {
@@ -59,7 +56,6 @@ public partial class VEditor : ContentView
         get => (string)GetValue(EditorPlaceholderProperty);
         set => SetValue(EditorPlaceholderProperty, value);
     }
-
 
     public Keyboard EditorKeyboard
     {
@@ -79,10 +75,8 @@ public partial class VEditor : ContentView
         set => SetValue(EditorIsReadOnlyProperty, value);
     }
 
-
     public VEditor()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
     }
-
 }

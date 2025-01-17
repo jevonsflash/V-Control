@@ -1,51 +1,34 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
-namespace VControl.Controls.VCalendar
+﻿namespace VControl.Controls.VCalendar
 {
     public class CalendarModel
     {
-
         private const int MAX_WEEKS = 6;
+
         private const int MAX_DAYS = 7;
-
-
 
         private DateTime _currentDate;
 
         private DayModel[,] currentCalendar;
 
-
-
-        public DayModel[,] CurrentCalendar
-        {
-            get
-            {
-                return currentCalendar;
-            }
-        }
-
-        public int CurrentYear
-        {
-            get
-            {
-                return _currentDate.Year;
-            }
-        }
-
-        public int CurrentMonth
-        {
-            get
-            {
-                return _currentDate.Month;
-            }
-        }
-
-
         public CalendarModel(DateTime baseDate)
         {
             _currentDate = baseDate;
             MakeCurrentCalendar();
+        }
+
+        public DayModel[,] CurrentCalendar
+        {
+            get { return currentCalendar; }
+        }
+
+        public int CurrentYear
+        {
+            get { return _currentDate.Year; }
+        }
+
+        public int CurrentMonth
+        {
+            get { return _currentDate.Month; }
         }
 
         public void NextMonth()
@@ -83,9 +66,6 @@ namespace VControl.Controls.VCalendar
                 cDate = cDate.AddDays(1);
                 //SetCurrentDate(cDate, dayCellAux);
             }
-
-
         }
     }
-
 }

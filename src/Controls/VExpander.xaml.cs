@@ -1,5 +1,3 @@
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 using VControl.Controls.VExpandable;
 
 namespace VControl.Controls;
@@ -8,8 +6,12 @@ public partial class VExpander : ContentView
 {
     public event EventHandler<ExpandedChangedEventArgs> ExpandedChanged;
 
-    public static BindableProperty ExpanderAnimationProperty =
-           BindableProperty.Create(nameof(ExpanderAnimation), typeof(IExpanderAnimation), typeof(VExpander), new ExpanderAnimation());
+    public static BindableProperty ExpanderAnimationProperty = BindableProperty.Create(
+        nameof(ExpanderAnimation),
+        typeof(IExpanderAnimation),
+        typeof(VExpander),
+        new ExpanderAnimation()
+    );
 
     public IExpanderAnimation ExpanderAnimation
     {
@@ -17,9 +19,13 @@ public partial class VExpander : ContentView
         set { SetValue(ExpanderAnimationProperty, value); }
     }
 
-    public static readonly BindableProperty ExpandDirectionProperty =
-       BindableProperty.Create(nameof(ExpandDirection), typeof(ExpandDirection), typeof(VExpander), ExpandDirection.Down,
-           propertyChanged: OnExpandDirectionChanged);
+    public static readonly BindableProperty ExpandDirectionProperty = BindableProperty.Create(
+        nameof(ExpandDirection),
+        typeof(ExpandDirection),
+        typeof(VExpander),
+        ExpandDirection.Down,
+        propertyChanged: OnExpandDirectionChanged
+    );
 
     static void OnExpandDirectionChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -32,11 +38,14 @@ public partial class VExpander : ContentView
         set => SetValue(ExpandDirectionProperty, value);
     }
 
+    public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(
+        nameof(IsExpanded),
+        typeof(bool),
+        typeof(VExpander),
+        true,
+        propertyChanged: OnIsExpandedChanged
+    );
 
-
-    public static readonly BindableProperty IsExpandedProperty =
-             BindableProperty.Create(nameof(IsExpanded), typeof(bool), typeof(VExpander), true,
-                 propertyChanged: OnIsExpandedChanged);
     static async void OnIsExpandedChanged(BindableObject bindable, object oldValue, object newValue)
     {
         await (bindable as VExpander)?.UpdateIsExpandedAsync();
@@ -65,20 +74,11 @@ public partial class VExpander : ContentView
         {
             (this.FindByName("MainContent") as ContentView).Content = (View)this.ContentSlot;
         }
-
     }
 
-    public IView HeaderSlot
-    {
-        get;
-        set;
-    }
+    public IView HeaderSlot { get; set; }
 
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
+    public IView ContentSlot { get; set; }
 
     private async Task UpdateIsExpandedAsync()
     {
@@ -87,7 +87,6 @@ public partial class VExpander : ContentView
             (this.FindByName("MainContent") as ContentView).IsVisible = true;
 
             await ExpanderAnimation.OnExpand(this.FindByName("MainContent") as ContentView);
-
         }
         else
         {
@@ -98,8 +97,6 @@ public partial class VExpander : ContentView
 
         ExpandedChanged?.Invoke(this, new ExpandedChangedEventArgs(this.IsExpanded));
     }
-
-
 
     private void UpdateExpandDirection()
     {
@@ -141,5 +138,4 @@ public partial class VExpander : ContentView
     {
         IsExpanded = !IsExpanded;
     }
-
 }

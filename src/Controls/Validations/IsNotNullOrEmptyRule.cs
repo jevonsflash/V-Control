@@ -8,7 +8,6 @@ public class IsNotNullOrEmptyRule<T> : IValidationRule<T>
     {
         if (value is string str)
             return !string.IsNullOrWhiteSpace(str);
-
         else if (!Equals(value, default(T)))
             return true;
 

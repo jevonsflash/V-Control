@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VControl.Controls
+﻿namespace VControl.Controls
 {
     public class TouchActionEventArgs : EventArgs
     {

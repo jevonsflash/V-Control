@@ -1,15 +1,8 @@
-﻿using System.Diagnostics;
-using VControl.Controls;
-
-namespace VControl.Controls
+﻿namespace VControl.Controls
 {
     public class VTouchContentView : ContentView
     {
         private ITouchRecognizer touchRecognizer;
-
-        public event EventHandler<TouchActionEventArgs> OnTouchActionInvoked;
-
-
 
         public VTouchContentView()
         {
@@ -17,15 +10,17 @@ namespace VControl.Controls
             HandlerChanging += TouchContentView_HandlerChanging;
         }
 
+        public event EventHandler<TouchActionEventArgs> OnTouchActionInvoked;
 
         private void TouchContentView_HandlerChanged(object sender, EventArgs e)
         {
-
             var handler = Handler;
             if (handler != null)
             {
 #if ANDROID
-                touchRecognizer = new TouchRecognizer_Android(handler.PlatformView as Android.Views.View);
+                touchRecognizer = new TouchRecognizer_Android(
+                    handler.PlatformView as Android.Views.View
+                );
                 touchRecognizer.OnTouchActionInvoked += TouchRecognizer_OnTouchActionInvoked;
 
 #endif
@@ -35,16 +30,15 @@ namespace VControl.Controls
                 touchRecognizer.OnTouchActionInvoked += TouchRecognizer_OnTouchActionInvoked;
 
                 (handler.PlatformView as UIKit.UIView).UserInteractionEnabled = true;
-                (handler.PlatformView as UIKit.UIView).AddGestureRecognizer(touchRecognizer as TouchRecognizer_iOS);
+                (handler.PlatformView as UIKit.UIView).AddGestureRecognizer(
+                    touchRecognizer as TouchRecognizer_iOS
+                );
 #endif
             }
-
         }
 
         private void TouchContentView_HandlerChanging(object sender, HandlerChangingEventArgs e)
         {
-
-
             if (e.OldHandler != null)
             {
                 var handler = e.OldHandler;
@@ -58,10 +52,10 @@ namespace VControl.Controls
                 touchRecognizer.OnTouchActionInvoked -= TouchRecognizer_OnTouchActionInvoked;
 
                 (handler.PlatformView as UIKit.UIView).UserInteractionEnabled = false;
-                (handler.PlatformView as UIKit.UIView).RemoveGestureRecognizer(touchRecognizer as TouchRecognizer_iOS);
+                (handler.PlatformView as UIKit.UIView).RemoveGestureRecognizer(
+                    touchRecognizer as TouchRecognizer_iOS
+                );
 #endif
-
-
             }
         }
 
@@ -69,6 +63,5 @@ namespace VControl.Controls
         {
             OnTouchActionInvoked?.Invoke(this, e);
         }
-
     }
 }

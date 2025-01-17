@@ -1,5 +1,3 @@
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -8,7 +6,6 @@ namespace VControl.Controls;
 
 public partial class VButton : VTouchContentView
 {
-
     public VButton()
     {
         InitializeComponent();
@@ -25,36 +22,67 @@ public partial class VButton : VTouchContentView
         }
     }
 
-    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(nameof(TitleText), typeof(string), typeof(VCollectionItem), "TITLE HERE");
+    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(
+        nameof(TitleText),
+        typeof(string),
+        typeof(VCollectionItem),
+        "TITLE HERE"
+    );
 
+    public static readonly BindableProperty BorderBrushProperty = BindableProperty.Create(
+        nameof(BorderBrush),
+        typeof(Brush),
+        typeof(VButton)
+    );
 
-    public static readonly BindableProperty BorderBrushProperty =
-        BindableProperty.Create(nameof(BorderBrush), typeof(Brush), typeof(VButton));
+    public static readonly BindableProperty ButtonBackgroundProperty = BindableProperty.Create(
+        nameof(ButtonBackground),
+        typeof(Brush),
+        typeof(VButton)
+    );
 
-    public static readonly BindableProperty ButtonBackgroundProperty =
-    BindableProperty.Create(nameof(ButtonBackground), typeof(Brush), typeof(VButton));
+    public static readonly BindableProperty BorderThicknessProperty = BindableProperty.Create(
+        nameof(BorderThickness),
+        typeof(double),
+        typeof(VButton),
+        1.0d
+    );
 
+    public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
+        nameof(TextColor),
+        typeof(Color),
+        typeof(VButton)
+    );
 
+    public static BindableProperty FontSizeProperty = BindableProperty.Create(
+        nameof(FontSize),
+        typeof(double),
+        typeof(VButton),
+        12.0
+    );
 
-    public static readonly BindableProperty BorderThicknessProperty =
-        BindableProperty.Create(nameof(BorderThickness), typeof(double), typeof(VButton), 1.0d);
+    public static BindableProperty FontFamilyProperty = BindableProperty.Create(
+        nameof(FontFamily),
+        typeof(string),
+        typeof(VButton),
+        string.Empty
+    );
 
-    public static readonly BindableProperty TextColorProperty =
-        BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(VButton));
+    public static BindableProperty ButtonStyleProperty = BindableProperty.Create(
+        nameof(ButtonStyle),
+        typeof(ButtonStyles),
+        typeof(VButton),
+        ButtonStyles.Primary,
+        propertyChanged: OnButtonStylePropertyChanged
+    );
 
-    public static BindableProperty FontSizeProperty =
-         BindableProperty.Create(nameof(FontSize), typeof(double), typeof(VButton), 12.0);
-
-    public static BindableProperty FontFamilyProperty =
-        BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(VButton), string.Empty);
-
-    public static BindableProperty ButtonStyleProperty =
-    BindableProperty.Create(nameof(ButtonStyle), typeof(ButtonStyles), typeof(VButton), ButtonStyles.Primary, propertyChanged: OnButtonStylePropertyChanged);
-
-    private static void OnButtonStylePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnButtonStylePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VButton).SetButtonStyle((ButtonStyles)newValue);
-
     }
 
     private void SetButtonStyle(ButtonStyles style)
@@ -80,31 +108,38 @@ public partial class VButton : VTouchContentView
         this.Style = Application.Current.Resources[styleResources] as Style;
     }
 
-    public static readonly BindableProperty CommandProperty =
-        BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(VButton));
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(VButton)
+    );
 
-    public static readonly BindableProperty CommandParameterProperty =
-        BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VButton));
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VButton)
+    );
 
-    public static readonly BindableProperty IsBusyProperty =
-         BindableProperty.Create(nameof(IsBusy), typeof(bool), typeof(VButton), false,
-             propertyChanged: OnIsBusyChanged);
+    public static readonly BindableProperty IsBusyProperty = BindableProperty.Create(
+        nameof(IsBusy),
+        typeof(bool),
+        typeof(VButton),
+        false,
+        propertyChanged: OnIsBusyChanged
+    );
+
     static void OnIsBusyChanged(BindableObject bindable, object oldValue, object newValue)
     {
         (bindable as VButton)?.OnIsBusyChanged();
     }
 
+    public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(
+        nameof(ProgressColor),
+        typeof(Color),
+        typeof(VButton)
+    );
 
-    public static readonly BindableProperty ProgressColorProperty =
-           BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(VButton));
-
-
-
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
+    public IView ContentSlot { get; set; }
 
     public bool IsBusy
     {
@@ -135,20 +170,17 @@ public partial class VButton : VTouchContentView
         set => SetValue(BorderBrushProperty, value);
     }
 
-
     public double BorderThickness
     {
         get => (double)GetValue(BorderThicknessProperty);
         set => SetValue(BorderThicknessProperty, value);
     }
 
-
     public Color TextColor
     {
         get => (Color)GetValue(TextColorProperty);
         set => SetValue(TextColorProperty, value);
     }
-
 
     [TypeConverter(typeof(FontSizeConverter))]
     public double FontSize
@@ -169,14 +201,11 @@ public partial class VButton : VTouchContentView
         set { SetValue(ButtonStyleProperty, value); }
     }
 
-
-
     public ICommand Command
     {
         get => (ICommand)GetValue(CommandProperty);
         set { SetValue(CommandProperty, value); }
     }
-
 
     public object CommandParameter
     {
@@ -200,8 +229,6 @@ public partial class VButton : VTouchContentView
     public event EventHandler Released;
     public event EventHandler Clicked;
 
-
-
     protected async void OnIsBusyChanged()
     {
         if (IsBusy)
@@ -211,7 +238,6 @@ public partial class VButton : VTouchContentView
         else
         {
             ButtonVisualState = ButtonVisualState.Normal;
-
         }
     }
 
@@ -253,11 +279,8 @@ public partial class VButton : VTouchContentView
 
     private void UpdateIsEnabled()
     {
-
         ButtonVisualState = IsEnabled ? ButtonVisualState.Normal : ButtonVisualState.Disabled;
     }
-
-
 
     private void OnButtonPointerPressed()
     {
@@ -305,7 +328,7 @@ public partial class VButton : VTouchContentView
             case TouchActionType.Moved:
                 break;
             case TouchActionType.Released:
-                
+
                 this.OnButtonPointerReleased();
 
                 Clicked?.Invoke(this, EventArgs.Empty);

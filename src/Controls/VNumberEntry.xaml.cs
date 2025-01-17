@@ -1,7 +1,4 @@
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
-
 
 namespace VControl.Controls;
 
@@ -15,7 +12,6 @@ public partial class VNumberEntry : ContentView
         IncreaseButton.IsEnabled = Value < Maximum;
         DecreaseButton.IsEnabled = Value > Minimum;
         Loaded += VNumberEntry_Loaded;
-
     }
 
     private void VNumberEntry_Loaded(object sender, EventArgs e)
@@ -31,84 +27,127 @@ public partial class VNumberEntry : ContentView
         else
         {
             HasIconText = true;
-
         }
     }
 
+    public static readonly BindableProperty DigitsProperty = BindableProperty.Create(
+        nameof(Digits),
+        typeof(int),
+        typeof(VNumberEntry),
+        0,
+        propertyChanged: OnDigitsPropertyChanged
+    );
 
-    public static readonly BindableProperty DigitsProperty = BindableProperty.Create(nameof(Digits), typeof(int), typeof(VNumberEntry), 0, propertyChanged: OnDigitsPropertyChanged);
+    private static void OnDigitsPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    ) { }
 
-    private static void OnDigitsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-    }
-
-    public static readonly BindableProperty MaximumProperty = BindableProperty.Create(nameof(Maximum), typeof(double), typeof(VNumberEntry), 100.0,
-           validateValue: (bindable, value) => (double)value > ((VNumberEntry)bindable).Minimum,
-           coerceValue: (bindable, value) =>
-           {
-               var numberEntry = (VNumberEntry)bindable;
-               numberEntry.Value = double.Clamp(numberEntry.Value, numberEntry.Minimum, (double)value);
-               return value;
-           });
+    public static readonly BindableProperty MaximumProperty = BindableProperty.Create(
+        nameof(Maximum),
+        typeof(double),
+        typeof(VNumberEntry),
+        100.0,
+        validateValue: (bindable, value) => (double)value > ((VNumberEntry)bindable).Minimum,
+        coerceValue: (bindable, value) =>
+        {
+            var numberEntry = (VNumberEntry)bindable;
+            numberEntry.Value = double.Clamp(numberEntry.Value, numberEntry.Minimum, (double)value);
+            return value;
+        }
+    );
 
     /// <summary>Bindable property for <see cref="Minimum"/>.</summary>
-    public static readonly BindableProperty MinimumProperty = BindableProperty.Create(nameof(Minimum), typeof(double), typeof(VNumberEntry), 0.0,
+    public static readonly BindableProperty MinimumProperty = BindableProperty.Create(
+        nameof(Minimum),
+        typeof(double),
+        typeof(VNumberEntry),
+        0.0,
         validateValue: (bindable, value) => (double)value < ((VNumberEntry)bindable).Maximum,
         coerceValue: (bindable, value) =>
         {
             var numberEntry = (VNumberEntry)bindable;
             numberEntry.Value = double.Clamp(numberEntry.Value, (double)value, numberEntry.Maximum);
             return value;
-        });
+        }
+    );
 
-    public static readonly BindableProperty IncrementProperty = BindableProperty.Create(nameof(Increment), typeof(double), typeof(VNumberEntry), 1.0,
-    propertyChanged: OnIncrementPropertyChanged);
+    public static readonly BindableProperty IncrementProperty = BindableProperty.Create(
+        nameof(Increment),
+        typeof(double),
+        typeof(VNumberEntry),
+        1.0,
+        propertyChanged: OnIncrementPropertyChanged
+    );
 
-    private static void OnIncrementPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-    }
+    private static void OnIncrementPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    ) { }
 
-    public static readonly BindableProperty HasIconTextProperty = BindableProperty.Create(nameof(HasIconText),
-    typeof(bool), typeof(VNumberEntry), true, BindingMode.TwoWay);
+    public static readonly BindableProperty HasIconTextProperty = BindableProperty.Create(
+        nameof(HasIconText),
+        typeof(bool),
+        typeof(VNumberEntry),
+        true,
+        BindingMode.TwoWay
+    );
 
-
-    public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value),
-        typeof(double), typeof(VNumberEntry), 0.0,
+    public static readonly BindableProperty ValueProperty = BindableProperty.Create(
+        nameof(Value),
+        typeof(double),
+        typeof(VNumberEntry),
+        0.0,
         BindingMode.TwoWay,
-                coerceValue: OnCoerceValue,
-                propertyChanged: OnValuePropertyChanged
-                );
+        coerceValue: OnCoerceValue,
+        propertyChanged: OnValuePropertyChanged
+    );
 
     private static object OnCoerceValue(BindableObject bindable, object value)
     {
-
         var numberEntry = (VNumberEntry)bindable;
-        var newValue = double.Clamp(Math.Round(((double)value), numberEntry.Digits), numberEntry.Minimum, numberEntry.Maximum);
+        var newValue = double.Clamp(
+            Math.Round(((double)value), numberEntry.Digits),
+            numberEntry.Minimum,
+            numberEntry.Maximum
+        );
         return newValue;
-
     }
 
-    private static void OnValuePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnValuePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if (oldValue != newValue)
         {
             var numberEntry = (VNumberEntry)bindable;
             numberEntry.IncreaseButton.IsEnabled = (double)newValue < numberEntry.Maximum;
             numberEntry.DecreaseButton.IsEnabled = (double)newValue > numberEntry.Minimum;
-            numberEntry.ValueChanged?.Invoke(numberEntry, new ValueChangedEventArgs((double)oldValue, (double)newValue));
+            numberEntry.ValueChanged?.Invoke(
+                numberEntry,
+                new ValueChangedEventArgs((double)oldValue, (double)newValue)
+            );
         }
-
     }
 
     public static readonly BindableProperty EntryIconTextProperty = BindableProperty.Create(
-       nameof(EntryIconText),
-       typeof(string),
-       typeof(VNumberEntry),
-       string.Empty,
-       propertyChanged: OnEntryIconTextPropertyChanged,
-       defaultBindingMode: BindingMode.OneWay);
+        nameof(EntryIconText),
+        typeof(string),
+        typeof(VNumberEntry),
+        string.Empty,
+        propertyChanged: OnEntryIconTextPropertyChanged,
+        defaultBindingMode: BindingMode.OneWay
+    );
 
-    private static void OnEntryIconTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnEntryIconTextPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if (string.IsNullOrEmpty(newValue as string))
         {
@@ -117,49 +156,55 @@ public partial class VNumberEntry : ContentView
         else
         {
             (bindable as VNumberEntry).HasIconText = true;
-
         }
     }
 
-
     public static readonly BindableProperty EntryPlaceholderProperty = BindableProperty.Create(
-      nameof(EntryPlaceholder),
-      typeof(string),
-      typeof(VNumberEntry),
-      "Enter number.",
-      //propertyChanged: OnValuePropertyChanged, 
-      defaultBindingMode: BindingMode.TwoWay);
-
-
-
+        nameof(EntryPlaceholder),
+        typeof(string),
+        typeof(VNumberEntry),
+        "Enter number.",
+        //propertyChanged: OnValuePropertyChanged,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty EntryIsReadOnlyProperty = BindableProperty.Create(
-      nameof(EntryIsReadOnly),
-      typeof(bool),
-      typeof(VNumberEntry),
-      false,
-      defaultBindingMode: BindingMode.TwoWay);
+        nameof(EntryIsReadOnly),
+        typeof(bool),
+        typeof(VNumberEntry),
+        false,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(VNumberEntry),
+        default(ICommand),
+        propertyChanging: (bindable, oldvalue, newvalue) =>
+        {
+            var vEntry = (VNumberEntry)bindable;
+            var oldcommand = (ICommand)oldvalue;
+            if (oldcommand != null)
+                oldcommand.CanExecuteChanged -= vEntry.OnCommandCanExecuteChanged;
+        },
+        propertyChanged: (bindable, oldvalue, newvalue) =>
+        {
+            var vEntry = (VNumberEntry)bindable;
+            var newcommand = (ICommand)newvalue;
+            if (newcommand != null)
+            {
+                vEntry.IsEnabled = newcommand.CanExecute(vEntry.CommandParameter);
+                newcommand.CanExecuteChanged += vEntry.OnCommandCanExecuteChanged;
+            }
+        }
+    );
 
-    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(VNumberEntry), default(ICommand),
-                propertyChanging: (bindable, oldvalue, newvalue) =>
-                {
-                    var vEntry = (VNumberEntry)bindable;
-                    var oldcommand = (ICommand)oldvalue;
-                    if (oldcommand != null)
-                        oldcommand.CanExecuteChanged -= vEntry.OnCommandCanExecuteChanged;
-                }, propertyChanged: (bindable, oldvalue, newvalue) =>
-                {
-                    var vEntry = (VNumberEntry)bindable;
-                    var newcommand = (ICommand)newvalue;
-                    if (newcommand != null)
-                    {
-                        vEntry.IsEnabled = newcommand.CanExecute(vEntry.CommandParameter);
-                        newcommand.CanExecuteChanged += vEntry.OnCommandCanExecuteChanged;
-                    }
-                });
-
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VNumberEntry), default(object),
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VNumberEntry),
+        default(object),
         propertyChanged: (bindable, oldvalue, newvalue) =>
         {
             var vEntry = (VNumberEntry)bindable;
@@ -167,20 +212,16 @@ public partial class VNumberEntry : ContentView
             {
                 vEntry.IsEnabled = vEntry.Command.CanExecute(newvalue);
             }
-        });
+        }
+    );
 
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
+    public IView ContentSlot { get; set; }
 
     public string EntryIconText
     {
         get => (string)GetValue(EntryIconTextProperty);
         set => SetValue(EntryIconTextProperty, value);
     }
-
 
     public double Value
     {
@@ -194,7 +235,6 @@ public partial class VNumberEntry : ContentView
         set => SetValue(EntryPlaceholderProperty, value);
     }
 
-
     public bool EntryIsReadOnly
     {
         get => (bool)GetValue(EntryIsReadOnlyProperty);
@@ -206,7 +246,6 @@ public partial class VNumberEntry : ContentView
         get { return (bool)GetValue(HasIconTextProperty); }
         set { SetValue(HasIconTextProperty, value); }
     }
-
 
     public double Maximum
     {
@@ -244,7 +283,6 @@ public partial class VNumberEntry : ContentView
         set { SetValue(CommandParameterProperty, value); }
     }
 
-
     void OnCommandCanExecuteChanged(object sender, EventArgs eventArgs)
     {
         IsEnabled = Command.CanExecute(CommandParameter);
@@ -257,7 +295,6 @@ public partial class VNumberEntry : ContentView
         //focus is not obtained under ios, so manually focus
         (sender as Entry).Focus();
 #endif
-
     }
 
     private void Decrease_ClickedButton(object sender, EventArgs e)
@@ -268,7 +305,6 @@ public partial class VNumberEntry : ContentView
     private void Increase_ClickedButton(object sender, EventArgs e)
     {
         this.Value += Increment;
-
     }
 
     private void Entry_Focused(object sender, FocusEventArgs e)
@@ -278,7 +314,7 @@ public partial class VNumberEntry : ContentView
             //issue: https://stackoverflow.com/questions/76078597/select-all-text-in-entry-when-focused
             Dispatcher.Dispatch(() =>
             {
-                // 选中 Entry 的全部文本
+                // 选锟斤拷 Entry 锟斤拷全锟斤拷锟侥憋拷
                 entry.CursorPosition = 0;
                 entry.SelectionLength = entry.Text?.Length ?? 0;
             });
@@ -292,5 +328,4 @@ public partial class VNumberEntry : ContentView
             entry.Text = Value.ToString();
         }
     }
-
 }

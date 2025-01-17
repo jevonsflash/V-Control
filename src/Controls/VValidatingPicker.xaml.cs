@@ -1,54 +1,54 @@
 using System.Collections;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using VControl.Controls.Validations;
+
 namespace VControl.Controls;
 
 public partial class VValidatingPicker : ContentView
 {
     public static readonly BindableProperty PickerTitleProperty = BindableProperty.Create(
-      nameof(PickerTitle),
-      typeof(string),
-      typeof(VValidatingPicker),
-      string.Empty,
-      defaultBindingMode: BindingMode.OneWay);
-
-
+        nameof(PickerTitle),
+        typeof(string),
+        typeof(VValidatingPicker),
+        string.Empty,
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
-     nameof(ItemsSource),
-     typeof(IList),
-     typeof(VValidatingPicker));
+        nameof(ItemsSource),
+        typeof(IList),
+        typeof(VValidatingPicker)
+    );
 
     public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
-    nameof(SelectedItem),
-    typeof(IValidatableObject),
-    typeof(VValidatingPicker),
-    defaultBindingMode: BindingMode.TwoWay);
-
+        nameof(SelectedItem),
+        typeof(IValidatableObject),
+        typeof(VValidatingPicker),
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty IsPickerEnabledProperty = BindableProperty.Create(
-      nameof(IsPickerEnabled),
-      typeof(bool),
-      typeof(VValidatingPicker),
-      true,
-      //propertyChanged: OnEntryTextPropertyChanged, 
-      defaultBindingMode: BindingMode.TwoWay);
+        nameof(IsPickerEnabled),
+        typeof(bool),
+        typeof(VValidatingPicker),
+        true,
+        //propertyChanged: OnEntryTextPropertyChanged,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty ValidateCommandProperty = BindableProperty.Create(
         nameof(ValidateCommand),
         typeof(ICommand),
         typeof(VValidatingPicker),
         null,
-        defaultBindingMode: BindingMode.TwoWay);
-  
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public string PickerTitle
     {
         get => (string)GetValue(PickerTitleProperty);
         set => SetValue(PickerTitleProperty, value);
     }
-
 
     public IList ItemsSource
     {
@@ -79,13 +79,9 @@ public partial class VValidatingPicker : ContentView
         set => SetValue(ValidateCommandProperty, value);
     }
 
-
-
-
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)
     {
         this.SelectedItem?.Validate();
         this.ValidateCommand?.Execute(null);
-
     }
 }

@@ -15,21 +15,27 @@ public class Validators
         if (string.IsNullOrWhiteSpace(email))
             return false;
 
-        if (email.Length > 100) return false;
+        if (email.Length > 100)
+            return false;
 
-        if (email.Contains("..") || email.Contains("__") || email.Contains("_-") || email.Contains("-_"))
+        if (
+            email.Contains("..")
+            || email.Contains("__")
+            || email.Contains("_-")
+            || email.Contains("-_")
+        )
             return false;
 
         var arr = email.Split(new[] { '.', '@' });
         foreach (var n in arr)
         {
-            if (n.StartsWith("_") || n.StartsWith("-")
-                || n.EndsWith("_") || n.EndsWith("-")
-                )
+            if (n.StartsWith("_") || n.StartsWith("-") || n.EndsWith("_") || n.EndsWith("-"))
                 return false;
         }
 
-        Regex regEmail = new Regex("^[0-9a-zA-Z]+[_\\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\\.){1,4}[a-zA-Z]{2,6}$");
+        Regex regEmail = new Regex(
+            "^[0-9a-zA-Z]+[_\\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\\.){1,4}[a-zA-Z]{2,6}$"
+        );
 
         return regEmail.Match(email).Success;
     }
@@ -53,10 +59,8 @@ public class Validators
         return m.Success;
     }
 
-
-
     /// <summary>
-    /// 返回包括数字的数量 
+    /// 返回包括数字的数量
     /// </summary>
     /// <param name="val"></param>
     /// <returns></returns>
@@ -69,9 +73,8 @@ public class Validators
         return reg.Matches(val).Count();
     }
 
-
     /// <summary>
-    /// 返回包括大写字母的数量 
+    /// 返回包括大写字母的数量
     /// </summary>
     /// <param name="val"></param>
     /// <returns></returns>

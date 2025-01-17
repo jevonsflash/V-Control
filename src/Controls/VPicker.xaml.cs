@@ -1,91 +1,93 @@
 using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
 namespace VControl.Controls;
 
 public partial class VPicker : ContentView
 {
     public static readonly BindableProperty PickerTitleProperty = BindableProperty.Create(
-      nameof(PickerTitle),
-      typeof(string),
-      typeof(VPicker),
-      string.Empty,
-      defaultBindingMode: BindingMode.OneWay);
+        nameof(PickerTitle),
+        typeof(string),
+        typeof(VPicker),
+        string.Empty,
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty DisplayPropertyNameProperty = BindableProperty.Create(
-  nameof(DisplayPropertyName),
-  typeof(string),
-  typeof(VPicker),
-  string.Empty,
-         propertyChanged: onDisplayPropertyNamePropertyChanged
+        nameof(DisplayPropertyName),
+        typeof(string),
+        typeof(VPicker),
+        string.Empty,
+        propertyChanged: onDisplayPropertyNamePropertyChanged
+    );
 
-  );
-
-    private static void onDisplayPropertyNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void onDisplayPropertyNamePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VPicker).NotifyChanged();
     }
 
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
+        nameof(ItemsSource),
+        typeof(IList),
+        typeof(VPicker),
+        null,
+        propertyChanged: OnItemsSourcePropertyChanged
+    );
 
-    public static readonly BindableProperty ItemsSourceProperty =
-        BindableProperty.Create(
-            nameof(ItemsSource),
-            typeof(IList),
-            typeof(VPicker),
-            null,
-            propertyChanged: OnItemsSourcePropertyChanged
-
-        );
-
-    private static void OnItemsSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnItemsSourcePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VPicker).NotifyChanged();
     }
 
     public static readonly BindableProperty SelectedValueProperty = BindableProperty.Create(
-     nameof(SelectedValue),
-     typeof(string),
-     typeof(VPicker),
-     "",
-     defaultBindingMode: BindingMode.TwoWay);
+        nameof(SelectedValue),
+        typeof(string),
+        typeof(VPicker),
+        "",
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
+    public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
+        nameof(SelectedIndex),
+        typeof(int),
+        typeof(VPicker),
+        0,
+        BindingMode.TwoWay
+    );
 
-    public static readonly BindableProperty SelectedIndexProperty =
-  BindableProperty.Create(
-      nameof(SelectedIndex),
-      typeof(int),
-      typeof(VPicker),
-      0,
-      BindingMode.TwoWay
-  );
+    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
+        nameof(SelectedItem),
+        typeof(object),
+        typeof(VPicker),
+        null,
+        BindingMode.TwoWay,
+        propertyChanged: onSelectedItemPropertyChanged
+    );
 
-    public static readonly BindableProperty SelectedItemProperty =
-     BindableProperty.Create(
-         nameof(SelectedItem),
-         typeof(object),
-         typeof(VPicker),
-         null,
-         BindingMode.TwoWay,
-         propertyChanged: onSelectedItemPropertyChanged
-     );
-
-
-
-
-    private static void onSelectedItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void onSelectedItemPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if ((bindable as VPicker).ItemsSource != null && newValue != null)
         {
             var selectedIndex = (bindable as VPicker).ItemsSource.IndexOf(newValue);
             (bindable as VPicker).SelectedIndex = (int)selectedIndex;
-            var currentInternalSelectedItem = (bindable as VPicker).InternalItems.FirstOrDefault(c => c.Value == newValue);
+            var currentInternalSelectedItem = (bindable as VPicker).InternalItems.FirstOrDefault(
+                c => c.Value == newValue
+            );
             if (currentInternalSelectedItem != (bindable as VPicker).InternalSelectedItem)
             {
                 (bindable as VPicker).InternalSelectedItem = currentInternalSelectedItem;
-
             }
 
             if (string.IsNullOrEmpty((bindable as VPicker).DisplayPropertyName))
@@ -100,21 +102,23 @@ public partial class VPicker : ContentView
 
                 if (property == null)
                 {
-                    throw new ArgumentException($"Property '{(bindable as VPicker).DisplayPropertyName}' not found on {type.FullName}");
+                    throw new ArgumentException(
+                        $"Property '{(bindable as VPicker).DisplayPropertyName}' not found on {type.FullName}"
+                    );
                 }
-               (bindable as VPicker).SelectedValue = property.GetValue(newValue)?.ToString();
+                (bindable as VPicker).SelectedValue = property.GetValue(newValue)?.ToString();
             }
         }
     }
 
-
     public static readonly BindableProperty IsPickerEnabledProperty = BindableProperty.Create(
-      nameof(IsPickerEnabled),
-      typeof(bool),
-      typeof(VPicker),
-      true,
-      //propertyChanged: OnEntryTextPropertyChanged, 
-      defaultBindingMode: BindingMode.TwoWay);
+        nameof(IsPickerEnabled),
+        typeof(bool),
+        typeof(VPicker),
+        true,
+        //propertyChanged: OnEntryTextPropertyChanged,
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public string PickerTitle
     {
@@ -122,17 +126,10 @@ public partial class VPicker : ContentView
         set => SetValue(PickerTitleProperty, value);
     }
 
-
     public IList ItemsSource
     {
-        get
-        {
-            return (IList)GetValue(ItemsSourceProperty);
-        }
-        set
-        {
-            SetValue(ItemsSourceProperty, value);
-        }
+        get { return (IList)GetValue(ItemsSourceProperty); }
+        set { SetValue(ItemsSourceProperty, value); }
     }
     public object SelectedItem
     {
@@ -160,16 +157,9 @@ public partial class VPicker : ContentView
 
     public int SelectedIndex
     {
-        get
-        {
-            return (int)GetValue(SelectedIndexProperty);
-        }
-        set
-        {
-            SetValue(SelectedIndexProperty, value);
-        }
+        get { return (int)GetValue(SelectedIndexProperty); }
+        set { SetValue(SelectedIndexProperty, value); }
     }
-
 
     public VPicker()
     {
@@ -197,7 +187,6 @@ public partial class VPicker : ContentView
         }
     }
 
-
     private IList<VPickerItemWrapper> _internalItems;
 
     public IList<VPickerItemWrapper> InternalItems
@@ -222,7 +211,6 @@ public partial class VPicker : ContentView
         }
     }
 
-
     private IList<VPickerItemWrapper> GetItemWrappers()
     {
         var result = new List<VPickerItemWrapper>();
@@ -244,9 +232,4 @@ public partial class VPicker : ContentView
             return result;
         }
     }
-
-
-
-
-
 }

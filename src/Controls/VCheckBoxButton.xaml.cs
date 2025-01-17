@@ -1,28 +1,25 @@
-
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.Maui.Layouts;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 
 namespace VControl.Controls;
 
 public partial class VCheckBoxButton : ContentView
 {
-
     public event EventHandler Clicked;
     public event EventHandler RemoveButtonClicked;
 
     public static readonly BindableProperty HasRemoveProperty = BindableProperty.Create(
-    nameof(HasRemove),
-    typeof(bool),
-    typeof(VCheckBoxButton), false, propertyChanged: OnHasRemovePropertyChanged
-
-
+        nameof(HasRemove),
+        typeof(bool),
+        typeof(VCheckBoxButton),
+        false,
+        propertyChanged: OnHasRemovePropertyChanged
     );
 
-    private static void OnHasRemovePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnHasRemovePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VCheckBoxButton).CheckBoxButtonRemoveButton.IsVisible = (bool)newValue;
     }
@@ -33,29 +30,37 @@ public partial class VCheckBoxButton : ContentView
         {
             (this.FindByName("MainContent") as ContentView).Content = (View)this.ContentSlot;
         }
-
     }
 
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(VCheckBoxButton),
+        default(ICommand),
+        propertyChanging: (bindable, oldvalue, newvalue) =>
+        {
+            var vCheckBoxButton = (VCheckBoxButton)bindable;
+            var oldcommand = (ICommand)oldvalue;
+            if (oldcommand != null)
+                oldcommand.CanExecuteChanged -= vCheckBoxButton.OnCommandCanExecuteChanged;
+        },
+        propertyChanged: (bindable, oldvalue, newvalue) =>
+        {
+            var vCheckBoxButton = (VCheckBoxButton)bindable;
+            var newcommand = (ICommand)newvalue;
+            if (newcommand != null)
+            {
+                vCheckBoxButton.IsEnabled = newcommand.CanExecute(vCheckBoxButton.CommandParameter);
+                newcommand.CanExecuteChanged += vCheckBoxButton.OnCommandCanExecuteChanged;
+            }
+        }
+    );
 
-    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(VCheckBoxButton), default(ICommand),
-              propertyChanging: (bindable, oldvalue, newvalue) =>
-              {
-                  var vCheckBoxButton = (VCheckBoxButton)bindable;
-                  var oldcommand = (ICommand)oldvalue;
-                  if (oldcommand != null)
-                      oldcommand.CanExecuteChanged -= vCheckBoxButton.OnCommandCanExecuteChanged;
-              }, propertyChanged: (bindable, oldvalue, newvalue) =>
-              {
-                  var vCheckBoxButton = (VCheckBoxButton)bindable;
-                  var newcommand = (ICommand)newvalue;
-                  if (newcommand != null)
-                  {
-                      vCheckBoxButton.IsEnabled = newcommand.CanExecute(vCheckBoxButton.CommandParameter);
-                      newcommand.CanExecuteChanged += vCheckBoxButton.OnCommandCanExecuteChanged;
-                  }
-              });
-
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VCheckBoxButton), default(object),
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VCheckBoxButton),
+        default(object),
         propertyChanged: (bindable, oldvalue, newvalue) =>
         {
             var vCheckBoxButton = (VCheckBoxButton)bindable;
@@ -63,12 +68,23 @@ public partial class VCheckBoxButton : ContentView
             {
                 vCheckBoxButton.IsEnabled = vCheckBoxButton.Command.CanExecute(newvalue);
             }
-        });
+        }
+    );
 
-    public static readonly BindableProperty IsCheckedProperty = BindableProperty.Create(nameof(IsChecked),
-    typeof(bool), typeof(VCheckBoxButton), false, BindingMode.TwoWay, propertyChanged: OnIsCheckedPropertyChanged);
+    public static readonly BindableProperty IsCheckedProperty = BindableProperty.Create(
+        nameof(IsChecked),
+        typeof(bool),
+        typeof(VCheckBoxButton),
+        false,
+        BindingMode.TwoWay,
+        propertyChanged: OnIsCheckedPropertyChanged
+    );
 
-    private static void OnIsCheckedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnIsCheckedPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         var vCheckBoxButton = (VCheckBoxButton)bindable;
         if (newValue != oldValue)
@@ -78,17 +94,13 @@ public partial class VCheckBoxButton : ContentView
     }
 
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(
-     nameof(Title),
-     typeof(string),
-     typeof(VCheckBoxButton),
-     string.Empty);
+        nameof(Title),
+        typeof(string),
+        typeof(VCheckBoxButton),
+        string.Empty
+    );
 
-
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
+    public IView ContentSlot { get; set; }
 
     public bool IsChecked
     {
@@ -120,15 +132,12 @@ public partial class VCheckBoxButton : ContentView
         set { SetValue(CommandParameterProperty, value); }
     }
 
-
     public VCheckBoxButton()
     {
         InitializeComponent();
         Loaded += VCheckBoxButton_Loaded;
         GoToState(IsChecked);
-
     }
-
 
     void OnCommandCanExecuteChanged(object sender, EventArgs eventArgs)
     {

@@ -11,10 +11,9 @@ namespace VControl.Controls;
 
 public enum SelectionMode
 {
-
     Range,
     Single,
-    Multiple
+    Multiple,
 }
 
 public partial class VDatePicker : ContentView
@@ -26,72 +25,89 @@ public partial class VDatePicker : ContentView
 
     private CalendarModel _calendar;
     private bool _selectRangeComplementFlag;
-    private DateTime _selectRangeStartDate
-        ;
+    private DateTime _selectRangeStartDate;
 
     public VDatePicker()
     {
         InitializeComponent();
         Init();
-
     }
 
-
     public static readonly BindableProperty SelectionChangedCommandProperty =
-BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(VDatePicker));
-
+        BindableProperty.Create(
+            nameof(SelectionChangedCommand),
+            typeof(ICommand),
+            typeof(VDatePicker)
+        );
 
     public static readonly BindableProperty SelectionChangedCommandParameterProperty =
-BindableProperty.Create(nameof(SelectionChangedCommandParameter), typeof(object), typeof(VDatePicker));
+        BindableProperty.Create(
+            nameof(SelectionChangedCommandParameter),
+            typeof(object),
+            typeof(VDatePicker)
+        );
 
+    public static readonly BindableProperty NextCommandProperty = BindableProperty.Create(
+        nameof(NextCommand),
+        typeof(ICommand),
+        typeof(VDatePicker)
+    );
 
-    public static readonly BindableProperty NextCommandProperty =
-BindableProperty.Create(nameof(NextCommand), typeof(ICommand), typeof(VDatePicker));
+    public static readonly BindableProperty PriorCommandProperty = BindableProperty.Create(
+        nameof(PriorCommand),
+        typeof(ICommand),
+        typeof(VDatePicker)
+    );
 
-    public static readonly BindableProperty PriorCommandProperty =
-BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePicker));
+    public static readonly BindableProperty SelectedDateProperty = BindableProperty.Create(
+        nameof(SelectedDate),
+        typeof(DateTime),
+        typeof(VDatePicker),
+        DateTime.Today,
+        BindingMode.TwoWay,
+        propertyChanged: OnSelectedDatePropertyChanged
+    );
 
-
-
-
-
-    public static readonly BindableProperty SelectedDateProperty =
-    BindableProperty.Create(nameof(SelectedDate),
-            typeof(DateTime), typeof(VDatePicker),
-            DateTime.Today, BindingMode.TwoWay, propertyChanged: OnSelectedDatePropertyChanged);
-
-    private static void OnSelectedDatePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnSelectedDatePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VDatePicker).Init();
     }
 
-
     public static readonly BindableProperty SelectedDatesProperty = BindableProperty.Create(
-      nameof(SelectedDates),
-      typeof(IList<DateTime>),
-      typeof(VDatePicker),
-      null,
+        nameof(SelectedDates),
+        typeof(IList<DateTime>),
+        typeof(VDatePicker),
+        null,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanged: OnSelectedDatesPropertyChanged
+    );
 
-      defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnSelectedDatesPropertyChanged);
-
-    private static void OnSelectedDatesPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnSelectedDatesPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if (newValue == default)
         {
             return;
         }
-
         else
         {
             (bindable as VDatePicker).Init();
         }
     }
 
-
-    public static readonly BindableProperty SelectionModeProperty =
-        BindableProperty.Create(nameof(SelectionMode), typeof(SelectionMode), typeof(VDatePicker),
-            SelectionMode.Single);
-
+    public static readonly BindableProperty SelectionModeProperty = BindableProperty.Create(
+        nameof(SelectionMode),
+        typeof(SelectionMode),
+        typeof(VDatePicker),
+        SelectionMode.Single
+    );
 
     private void Init()
     {
@@ -111,13 +127,11 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
         set => SetValue(SelectionModeProperty, value);
     }
 
-
     public DateTime SelectedDate
     {
         get { return (DateTime)GetValue(SelectedDateProperty); }
         set { SetValue(SelectedDateProperty, value); }
     }
-
 
     public IList<DateTime> SelectedDates
     {
@@ -137,14 +151,11 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
         set => SetValue(SelectionChangedCommandParameterProperty, value);
     }
 
-
-
     public ICommand NextCommand
     {
         get => (ICommand)GetValue(NextCommandProperty);
         set => SetValue(NextCommandProperty, value);
     }
-
 
     public ICommand PriorCommand
     {
@@ -152,11 +163,8 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
         set => SetValue(PriorCommandProperty, value);
     }
 
-
     private void MakeCalendar(DayModel[,] e)
     {
-
-
         for (int i = 0; i < e.GetLength(0); i++)
         {
             SetItem(SunLayout, i, 0, e);
@@ -167,19 +175,16 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
             SetItem(FriLayout, i, 5, e);
             SetItem(SatLayout, i, 6, e);
         }
-
-
     }
-
-
 
     private void Refresh()
     {
         MakeCalendar(_calendar.CurrentCalendar);
-        var currentMonth = CultureInfo.CurrentUICulture.DateTimeFormat.AbbreviatedMonthNames[_calendar.CurrentMonth - 1];
+        var currentMonth = CultureInfo.CurrentUICulture.DateTimeFormat.AbbreviatedMonthNames[
+            _calendar.CurrentMonth - 1
+        ];
         MonthYearLabel.Text = $"{currentMonth}/ {_calendar.CurrentYear} ";
     }
-
 
     private void SetItem(StackLayout stk, int line, int col, DayModel[,] calendar)
     {
@@ -192,11 +197,12 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
             (stk.Children[line] as VCalendarItem).ChinaDateText = GetChinaDateText(model);
             if (this.SelectedDates != null)
             {
-                var isSelected = this.SelectedDates.Any(c => DateTime.Equals(c.Date, model.Date.Date));
+                var isSelected = this.SelectedDates.Any(c =>
+                    DateTime.Equals(c.Date, model.Date.Date)
+                );
                 (stk.Children[line] as VCalendarItem).IsSelected = isSelected;
             }
             (stk.Children[line] as VCalendarItem).DayModel = model;
-
         }
         else
         {
@@ -204,31 +210,21 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
             (stk.Children[line] as VCalendarItem).ChinaDateText = "";
             (stk.Children[line] as VCalendarItem).IsEnabled = false;
             (stk.Children[line] as VCalendarItem).IsSelected = false;
-
         }
-
-
-
-
     }
-
 
     public string GetText(DayModel DayModel)
     {
-
         if (DayModel.Date != default)
             return DayModel.Date.Day.ToString();
         return " ";
-
     }
 
     public string GetChinaDateText(DayModel DayModel)
     {
-
         if (DayModel.Date != default)
             return ChinaDateServer.GetDay(DayModel.Date);
         return " ";
-
     }
 
     protected void Tpl_OnSelected(object sender, DayModel dayModel)
@@ -248,11 +244,9 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
                 {
                     this.SelectedDates?.Remove(dayModel.Date);
                     this.SelectedDate = default;
-
                 }
 
                 this.OnFinishedSelected?.Invoke(this, this.SelectedDates);
-
 
                 var command = this.SelectionChangedCommand;
                 if (command != null)
@@ -264,7 +258,6 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
                         command.Execute(commandParameter);
                     }
                 }
-
             }
         }
         else if (this.SelectionMode == SelectionMode.Single)
@@ -283,16 +276,13 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
                 {
                     this.SelectedDates?.Remove(dayModel.Date);
                     this.SelectedDate = default;
-
                 }
-
 
                 SetSelected(dayModel.Position, true);
 
                 this.SelectedDate = dayModel.Date;
 
                 this.OnFinishedSelected?.Invoke(this, this.SelectedDates);
-
 
                 var command = this.SelectionChangedCommand;
                 if (command != null)
@@ -304,10 +294,8 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
                         command.Execute(commandParameter);
                     }
                 }
-
             }
         }
-
         else if (this.SelectionMode == SelectionMode.Range)
         {
             if (dayModel.Date != default)
@@ -320,11 +308,9 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
                     this.SetSelected(dayModel.Position, true);
 
                     _selectRangeStage = 1;
-
                 }
                 else if (_selectRangeStage == 1)
                 {
-
                     var startDate = _selectRangeStartDate;
                     if (_selectRangeStartDate != default)
                     {
@@ -336,7 +322,6 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
 
                             return;
                         }
-
 
                         for (int line = 0; line < _calendar.CurrentCalendar.GetLength(0); line++)
                         {
@@ -350,7 +335,11 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
                                     {
                                         if (!_selectRangeComplementFlag)
                                         {
-                                            for (DateTime date = startDate; date < currentDate; date = date.AddDays(1))
+                                            for (
+                                                DateTime date = startDate;
+                                                date < currentDate;
+                                                date = date.AddDays(1)
+                                            )
                                             {
                                                 this.SelectedDates?.Add(date);
                                             }
@@ -362,14 +351,12 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
                                     }
                                 }
                             }
-
                         }
                         _selectRangeStage = 0;
                         _selectRangeComplementFlag = false;
                         _selectRangeStartDate = default;
 
                         this.OnFinishedSelected?.Invoke(this, this.SelectedDates);
-
 
                         var command = this.SelectionChangedCommand;
                         if (command != null)
@@ -381,18 +368,14 @@ BindableProperty.Create(nameof(PriorCommand), typeof(ICommand), typeof(VDatePick
                                 command.Execute(commandParameter);
                             }
                         }
-
                     }
-
                 }
 
                 this.SelectedDate = dayModel.Date;
             }
         }
 
-
         _suppressSelectionChangeNotification = false;
-
     }
 
     private void SetSelected((int i, int j) pos, bool isSelected, bool isInvolved = false)

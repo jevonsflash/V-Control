@@ -1,14 +1,9 @@
-
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Layouts;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using VControl.Controls;
+using Microsoft.Maui.Layouts;
 
 namespace VControl.Controls;
 
@@ -16,99 +11,141 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
 {
     public event EventHandler<IList> SelectionChanged;
 
-    public static readonly BindableProperty SearchKeywordsProperty = BindableProperty.Create(nameof(SearchKeywords), typeof(string), typeof(VSearchBar), default(string), BindingMode.TwoWay);
-
+    public static readonly BindableProperty SearchKeywordsProperty = BindableProperty.Create(
+        nameof(SearchKeywords),
+        typeof(string),
+        typeof(VSearchBar),
+        default(string),
+        BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty SelectionChangedCommandProperty =
-    BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(VCollection));
+        BindableProperty.Create(
+            nameof(SelectionChangedCommand),
+            typeof(ICommand),
+            typeof(VCollection)
+        );
 
     public static readonly BindableProperty SelectionChangedCommandParameterProperty =
-    BindableProperty.Create(nameof(SelectionChangedCommandParameter), typeof(object),
-        typeof(VCollection));
-    public static readonly BindableProperty HasCheckBoxProperty = BindableProperty.Create(nameof(HasCheckBox),
-typeof(bool), typeof(VCollection), false);
+        BindableProperty.Create(
+            nameof(SelectionChangedCommandParameter),
+            typeof(object),
+            typeof(VCollection)
+        );
+    public static readonly BindableProperty HasCheckBoxProperty = BindableProperty.Create(
+        nameof(HasCheckBox),
+        typeof(bool),
+        typeof(VCollection),
+        false
+    );
 
-    public static readonly BindableProperty HasEditProperty = BindableProperty.Create(nameof(HasEdit),
-typeof(bool), typeof(VCollection), false);
+    public static readonly BindableProperty HasEditProperty = BindableProperty.Create(
+        nameof(HasEdit),
+        typeof(bool),
+        typeof(VCollection),
+        false
+    );
 
-    public static readonly BindableProperty HasRemoveProperty = BindableProperty.Create(nameof(HasRemove),
-typeof(bool), typeof(VCollection), false);
-
-
+    public static readonly BindableProperty HasRemoveProperty = BindableProperty.Create(
+        nameof(HasRemove),
+        typeof(bool),
+        typeof(VCollection),
+        false
+    );
 
     public static readonly BindableProperty HasClearProperty = BindableProperty.Create(
-        nameof(HasClear), typeof(bool), typeof(VCollection), true);
+        nameof(HasClear),
+        typeof(bool),
+        typeof(VCollection),
+        true
+    );
 
     public static readonly BindableProperty IsCollectionEnabledProperty = BindableProperty.Create(
-      nameof(IsCollectionEnabled),
-      typeof(bool),
-      typeof(VCollection),
-      true,
-      defaultBindingMode: BindingMode.OneWay, propertyChanged: OnIsCollectionEnabledPropertyChanged);
+        nameof(IsCollectionEnabled),
+        typeof(bool),
+        typeof(VCollection),
+        true,
+        defaultBindingMode: BindingMode.OneWay,
+        propertyChanged: OnIsCollectionEnabledPropertyChanged
+    );
 
-    private static void OnIsCollectionEnabledPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnIsCollectionEnabledPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if ((bool)newValue)
         {
             (bindable as VCollection).HasClear = false;
-        };
+        }
+        ;
     }
 
-
     public static readonly BindableProperty IsSingleSelectionProperty = BindableProperty.Create(
-       nameof(IsSingleSelection),
-       typeof(bool),
-       typeof(VCollection),
-       false,
-       defaultBindingMode: BindingMode.OneWay);
+        nameof(IsSingleSelection),
+        typeof(bool),
+        typeof(VCollection),
+        false,
+        defaultBindingMode: BindingMode.OneWay
+    );
 
-    //¸ß¶È±ØÌî
+    //ï¿½ß¶È±ï¿½ï¿½ï¿½
     public static readonly BindableProperty FlHeightProperty = BindableProperty.Create(
         nameof(FlHeight),
         typeof(string),
         typeof(VCollection),
         "100",
-        defaultBindingMode: BindingMode.OneWay);
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty FlDirectionProperty = BindableProperty.Create(
         nameof(FlDirection),
         typeof(FlexDirection),
         typeof(VCollection),
         FlexDirection.Row,
-        defaultBindingMode: BindingMode.OneWay);
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty FlWrapProperty = BindableProperty.Create(
         nameof(FlWrap),
         typeof(FlexWrap),
         typeof(VCollection),
         FlexWrap.Wrap,
-        defaultBindingMode: BindingMode.OneWay);
+        defaultBindingMode: BindingMode.OneWay
+    );
 
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
+        nameof(ItemsSource),
+        typeof(IList),
+        typeof(VCollection),
+        null,
+        propertyChanged: OnItemsSourcePropertyChanged
+    );
 
-    public static readonly BindableProperty ItemsSourceProperty =
-         BindableProperty.Create(
-             nameof(ItemsSource),
-             typeof(IList),
-             typeof(VCollection),
-             null,
-             propertyChanged: OnItemsSourcePropertyChanged
-
-         );
-
-    private static void OnItemsSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnItemsSourcePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VCollection).NotifyChanged();
     }
 
     public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(
-       nameof(SelectedItems),
-       typeof(IList),
-       typeof(VCollection),
-       null,
+        nameof(SelectedItems),
+        typeof(IList),
+        typeof(VCollection),
+        null,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanged: OnSelectedItemsPropertyChanged
+    );
 
-       defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnSelectedItemsPropertyChanged);
-
-    private static void OnSelectedItemsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnSelectedItemsPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if (newValue == default)
         {
@@ -116,7 +153,9 @@ typeof(bool), typeof(VCollection), false);
         }
         if (newValue is INotifyCollectionChanged)
         {
-            (newValue as INotifyCollectionChanged).CollectionChanged += (bindable as VCollection).VCollection_CollectionChanged;
+            (newValue as INotifyCollectionChanged).CollectionChanged += (
+                bindable as VCollection
+            ).VCollection_CollectionChanged;
         }
         else
         {
@@ -124,13 +163,11 @@ typeof(bool), typeof(VCollection), false);
         }
     }
 
-
     public void UpdateItemSelection(IList selectedItems)
     {
         foreach (var item in InternalItems)
         {
             item.IsSelected = false;
-
         }
 
         foreach (var item in selectedItems)
@@ -141,7 +178,6 @@ typeof(bool), typeof(VCollection), false);
                 {
                     this.InternalItems[i].IsSelected = true;
                 }
-
             }
         }
     }
@@ -158,10 +194,8 @@ typeof(bool), typeof(VCollection), false);
                     {
                         this.InternalItems[i].IsSelected = true;
                     }
-
                 }
             }
-
         }
         else if (e.Action == NotifyCollectionChangedAction.Remove)
         {
@@ -173,10 +207,8 @@ typeof(bool), typeof(VCollection), false);
                     {
                         this.InternalItems[i].IsSelected = false;
                     }
-
                 }
             }
-
         }
         else if (e.Action == NotifyCollectionChangedAction.Reset)
         {
@@ -184,46 +216,44 @@ typeof(bool), typeof(VCollection), false);
             {
                 this.InternalItems[i].IsSelected = false;
             }
-
         }
-
-
     }
 
     public static readonly BindableProperty SelectedValueProperty = BindableProperty.Create(
-      nameof(SelectedValue),
-      typeof(string),
-      typeof(VCollection),
-      "",
-      defaultBindingMode: BindingMode.TwoWay);
-
+        nameof(SelectedValue),
+        typeof(string),
+        typeof(VCollection),
+        "",
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty DisplayPropertyNameProperty = BindableProperty.Create(
-  nameof(DisplayPropertyName),
-  typeof(string),
-  typeof(VCollection),
-  string.Empty,
-         propertyChanged: onDisplayPropertyNamePropertyChanged
+        nameof(DisplayPropertyName),
+        typeof(string),
+        typeof(VCollection),
+        string.Empty,
+        propertyChanged: onDisplayPropertyNamePropertyChanged
+    );
 
-  );
-
-    private static void onDisplayPropertyNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void onDisplayPropertyNamePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VCollection).NotifyChanged();
     }
 
-    public static readonly BindableProperty SelectedItemProperty =
-     BindableProperty.Create(
-         nameof(SelectedItem),
-         typeof(object),
-         typeof(VCollection),
-         null,
-         BindingMode.TwoWay,
-         propertyChanged: onSelectedItemPropertyChanged
-     );
+    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
+        nameof(SelectedItem),
+        typeof(object),
+        typeof(VCollection),
+        null,
+        BindingMode.TwoWay,
+        propertyChanged: onSelectedItemPropertyChanged
+    );
 
-    public static readonly BindableProperty SelectedIndexProperty =
-    BindableProperty.Create(
+    public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
         nameof(SelectedIndex),
         typeof(int),
         typeof(VCollection),
@@ -231,14 +261,16 @@ typeof(bool), typeof(VCollection), false);
         BindingMode.TwoWay
     );
 
-
-    private static void onSelectedItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void onSelectedItemPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if ((bindable as VCollection).ItemsSource != null && newValue != null)
         {
             var selectedIndex = (bindable as VCollection).ItemsSource.IndexOf(newValue);
             (bindable as VCollection).SelectedIndex = (int)selectedIndex;
-
 
             if (string.IsNullOrEmpty((bindable as VCollection).DisplayPropertyName))
             {
@@ -252,19 +284,15 @@ typeof(bool), typeof(VCollection), false);
 
                 if (property == null)
                 {
-                    throw new ArgumentException($"Property '{(bindable as VCollection).DisplayPropertyName}' not found on {type.FullName}");
+                    throw new ArgumentException(
+                        $"Property '{(bindable as VCollection).DisplayPropertyName}' not found on {type.FullName}"
+                    );
                 }
-               (bindable as VCollection).SelectedValue = property.GetValue(newValue)?.ToString();
+                (bindable as VCollection).SelectedValue = property.GetValue(newValue)?.ToString();
             }
-
-
-
         }
 
         (bindable as VCollection).OnSelectedItemProperty(oldValue, newValue);
-
-
-
     }
 
     public string SearchKeywords
@@ -277,7 +305,6 @@ typeof(bool), typeof(VCollection), false);
         get { return (bool)GetValue(HasClearProperty); }
         set { SetValue(HasClearProperty, value); }
     }
-
 
     public bool IsSingleSelection
     {
@@ -303,7 +330,6 @@ typeof(bool), typeof(VCollection), false);
         set => SetValue(FlWrapProperty, value);
     }
 
-
     public ICommand SelectionChangedCommand
     {
         get => (ICommand)GetValue(SelectionChangedCommandProperty);
@@ -318,21 +344,14 @@ typeof(bool), typeof(VCollection), false);
 
     public IList ItemsSource
     {
-        get
-        {
-            return (IList)GetValue(ItemsSourceProperty);
-        }
-        set
-        {
-            SetValue(ItemsSourceProperty, value);
-        }
+        get { return (IList)GetValue(ItemsSourceProperty); }
+        set { SetValue(ItemsSourceProperty, value); }
     }
     public IList SelectedItems
     {
         get => (IList)GetValue(SelectedItemsProperty);
         set => SetValue(SelectedItemsProperty, value);
     }
-
 
     public string SelectedValue
     {
@@ -352,14 +371,8 @@ typeof(bool), typeof(VCollection), false);
     }
     public object SelectedItem
     {
-        get
-        {
-            return GetValue(SelectedItemProperty);
-        }
-        set
-        {
-            SetValue(SelectedItemProperty, value);
-        }
+        get { return GetValue(SelectedItemProperty); }
+        set { SetValue(SelectedItemProperty, value); }
     }
 
     private ObservableCollection<VItemWrapper> _internalItems;
@@ -373,8 +386,6 @@ typeof(bool), typeof(VCollection), false);
             OnPropertyChanged();
         }
     }
-
-
 
     private IList<VItemWrapper> GetItemWrappers()
     {
@@ -392,10 +403,11 @@ typeof(bool), typeof(VCollection), false);
                     Value = c,
                     DisplayPropertyName = this.DisplayPropertyName,
                     Index = ItemsSource.IndexOf(c),
-                    IsSelected = SelectedItems == null ? SelectedItem == c : SelectedItems.Contains(c),
+                    IsSelected =
+                        SelectedItems == null ? SelectedItem == c : SelectedItems.Contains(c),
                     HasRemove = this.HasRemove,
                     HasEdit = this.HasEdit,
-                    IsEnabled = true
+                    IsEnabled = true,
                 };
                 result.Add(current);
             }
@@ -407,7 +419,6 @@ typeof(bool), typeof(VCollection), false);
     {
         InternalItems = new ObservableCollection<VItemWrapper>(GetItemWrappers());
     }
-
 
     public void OnSelectedItemProperty(object oldValue, object newValue)
     {
@@ -469,14 +480,8 @@ typeof(bool), typeof(VCollection), false);
 
     public int SelectedIndex
     {
-        get
-        {
-            return (int)GetValue(SelectedIndexProperty);
-        }
-        set
-        {
-            SetValue(SelectedIndexProperty, value);
-        }
+        get { return (int)GetValue(SelectedIndexProperty); }
+        set { SetValue(SelectedIndexProperty, value); }
     }
 
     public bool HasCheckBox
@@ -501,6 +506,7 @@ typeof(bool), typeof(VCollection), false);
     {
         InitializeComponent();
     }
+
     private void VCheckBoxButton_Clicked(object sender, EventArgs e)
     {
         if (ItemsSource != null)
@@ -522,7 +528,6 @@ typeof(bool), typeof(VCollection), false);
                 {
                     this.SelectedItems?.Remove(value);
                     this.SelectedItem = null;
-
                 }
 
                 this.SelectionChanged?.Invoke(this, this.SelectedItems);
@@ -545,7 +550,6 @@ typeof(bool), typeof(VCollection), false);
     {
         this.ClearSelection();
         this.SelectedItems?.Clear();
-
     }
 
     private void Button_Clicked(object sender, EventArgs e)

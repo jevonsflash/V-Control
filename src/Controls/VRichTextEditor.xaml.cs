@@ -1,5 +1,3 @@
-using System.Collections.ObjectModel;
-
 namespace VControl.Controls;
 
 public class TextSize
@@ -10,20 +8,22 @@ public class TextSize
 
 public partial class VRichTextEditor : ContentView
 {
-    public static List<Color> DefaultTextColorList = new List<Color>() {
-            Color.FromArgb("#F9371C"),
-            Color.FromArgb("#F97C1C"),
-            Color.FromArgb("#F9C81C"),
-            Color.FromArgb("#41D0B6"),
-            Color.FromArgb("#2CADF6"),
-            Color.FromArgb("#6562FC")
-        };
+    public static List<Color> DefaultTextColorList = new List<Color>()
+    {
+        Color.FromArgb("#F9371C"),
+        Color.FromArgb("#F97C1C"),
+        Color.FromArgb("#F9C81C"),
+        Color.FromArgb("#41D0B6"),
+        Color.FromArgb("#2CADF6"),
+        Color.FromArgb("#6562FC"),
+    };
 
-    public static List<TextSize> DefaultTextSizeList = new List<TextSize>() {
-          new TextSize(){Name="Large", Value=22},
-          new TextSize(){Name="Middle", Value=18},
-          new TextSize(){Name="Small", Value=12},
-        };
+    public static List<TextSize> DefaultTextSizeList = new List<TextSize>()
+    {
+        new TextSize() { Name = "Large", Value = 22 },
+        new TextSize() { Name = "Middle", Value = 18 },
+        new TextSize() { Name = "Small", Value = 12 },
+    };
 
     public VRichTextEditor()
     {
@@ -34,21 +34,24 @@ public partial class VRichTextEditor : ContentView
         //this.ColorCollectionView.SelectedItem=DefaultTextColorList[0];
         this.TextSizeCollectionView.ItemsSource = DefaultTextSizeList;
         //this.TextSizeCollectionView.SelectedItem=DefaultTextSizeList[0];
-
-
     }
 
-    private void RichTextEditor_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-    {
+    private void RichTextEditor_PropertyChanged(
+        object sender,
+        System.ComponentModel.PropertyChangedEventArgs e
+    ) { }
 
-    }
-
-    public static readonly BindableProperty TextProperty =
-      BindableProperty.Create(nameof(Text), typeof(string), typeof(VRichTextEditor), default, propertyChanged: (bindable, oldValue, newValue) =>
-      {
-          var obj = (VRichTextEditor)bindable;
-          obj.MainEditor.Text = newValue as string;
-      });
+    public static readonly BindableProperty TextProperty = BindableProperty.Create(
+        nameof(Text),
+        typeof(string),
+        typeof(VRichTextEditor),
+        default,
+        propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var obj = (VRichTextEditor)bindable;
+            obj.MainEditor.Text = newValue as string;
+        }
+    );
 
     public string Text
     {
@@ -56,14 +59,19 @@ public partial class VRichTextEditor : ContentView
         set { SetValue(TextProperty, value); }
     }
 
-
     public static readonly BindableProperty TextColorSelectorSourceProperty =
-      BindableProperty.Create(nameof(TextColorSelectorSource), typeof(IEnumerable<Color>), typeof(VRichTextEditor), DefaultTextColorList, propertyChanged: (bindable, oldValue, newValue) =>
-      {
-          var obj = (VRichTextEditor)bindable;
-          obj.TextColorSelectorSource = newValue as IEnumerable<Color>;
-          obj.ColorCollectionView.ItemsSource = obj.TextColorSelectorSource;
-      });
+        BindableProperty.Create(
+            nameof(TextColorSelectorSource),
+            typeof(IEnumerable<Color>),
+            typeof(VRichTextEditor),
+            DefaultTextColorList,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var obj = (VRichTextEditor)bindable;
+                obj.TextColorSelectorSource = newValue as IEnumerable<Color>;
+                obj.ColorCollectionView.ItemsSource = obj.TextColorSelectorSource;
+            }
+        );
 
     public IEnumerable<Color> TextColorSelectorSource
     {
@@ -71,15 +79,19 @@ public partial class VRichTextEditor : ContentView
         set { SetValue(TextColorSelectorSourceProperty, value); }
     }
 
-
-
     public static readonly BindableProperty TextSizeSelectorSourceProperty =
-      BindableProperty.Create(nameof(TextSizeSelectorSource), typeof(IEnumerable<TextSize>), typeof(VRichTextEditor), DefaultTextSizeList, propertyChanged: (bindable, oldValue, newValue) =>
-      {
-          var obj = (VRichTextEditor)bindable;
-          obj.TextSizeSelectorSource = newValue as IEnumerable<Color>;
-          obj.ColorCollectionView.ItemsSource = obj.TextSizeSelectorSource;
-      });
+        BindableProperty.Create(
+            nameof(TextSizeSelectorSource),
+            typeof(IEnumerable<TextSize>),
+            typeof(VRichTextEditor),
+            DefaultTextSizeList,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var obj = (VRichTextEditor)bindable;
+                obj.TextSizeSelectorSource = newValue as IEnumerable<Color>;
+                obj.ColorCollectionView.ItemsSource = obj.TextSizeSelectorSource;
+            }
+        );
 
     public IEnumerable<Color> TextSizeSelectorSource
     {
@@ -87,14 +99,17 @@ public partial class VRichTextEditor : ContentView
         set { SetValue(TextSizeSelectorSourceProperty, value); }
     }
 
-
-
-    public static readonly BindableProperty PlaceholderProperty =
-      BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(VRichTextEditor), default, propertyChanged: (bindable, oldValue, newValue) =>
-      {
-          var obj = (VRichTextEditor)bindable;
-          obj.MainEditor.Placeholder = newValue as string;
-      });
+    public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
+        nameof(Placeholder),
+        typeof(string),
+        typeof(VRichTextEditor),
+        default,
+        propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var obj = (VRichTextEditor)bindable;
+            obj.MainEditor.Placeholder = newValue as string;
+        }
+    );
 
     public string Placeholder
     {
@@ -110,20 +125,17 @@ public partial class VRichTextEditor : ContentView
     private void ItalicButton_Clicked(object sender, EventArgs e)
     {
         this.MainEditor.ItalicChanged();
-
     }
 
     private void UnderLineButton_Clicked(object sender, EventArgs e)
     {
         this.MainEditor.UnderlineChanged();
-
     }
 
     private void ColorCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var currentColor = this.ColorCollectionView.SelectedItem as Color;
         this.MainEditor.ColorChanged(currentColor.ToArgbHex());
-
     }
 
     private void TextSizeButton_Clicked(object sender, EventArgs e)
@@ -136,14 +148,11 @@ public partial class VRichTextEditor : ContentView
     {
         TextSizeCollectionView.IsVisible = false;
         ColorCollectionView.IsVisible = !ColorCollectionView.IsVisible;
-
     }
 
     private void TextSizeCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var textSize = (TextSize)this.TextSizeCollectionView.SelectedItem;
         this.MainEditor.TextSizeChanged(textSize.Value.ToString("0"));
-
-
     }
 }

@@ -1,26 +1,27 @@
-using System.Collections;
 using System.Windows.Input;
 
 namespace VControl.Controls;
 
 public partial class VSearchBar : ContentView
 {
-
-
-
     public VSearchBar()
     {
         InitializeComponent();
     }
 
-    public static readonly BindableProperty AddCommandProperty = BindableProperty.Create(nameof(AddCommand), typeof(ICommand), typeof(VSearchBar), default(ICommand),
+    public static readonly BindableProperty AddCommandProperty = BindableProperty.Create(
+        nameof(AddCommand),
+        typeof(ICommand),
+        typeof(VSearchBar),
+        default(ICommand),
         propertyChanging: (bindable, oldvalue, newvalue) =>
         {
             var vSearchBar = (VSearchBar)bindable;
             var oldcommand = (ICommand)oldvalue;
             if (oldcommand != null)
                 oldcommand.CanExecuteChanged -= vSearchBar.OnCommandCanExecuteChanged;
-        }, propertyChanged: (bindable, oldvalue, newvalue) =>
+        },
+        propertyChanged: (bindable, oldvalue, newvalue) =>
         {
             var vSearchBar = (VSearchBar)bindable;
             var newcommand = (ICommand)newvalue;
@@ -29,9 +30,14 @@ public partial class VSearchBar : ContentView
                 vSearchBar.IsEnabled = newcommand.CanExecute(vSearchBar.CommandParameter);
                 newcommand.CanExecuteChanged += vSearchBar.OnCommandCanExecuteChanged;
             }
-        });
+        }
+    );
 
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VSearchBar), default(object),
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VSearchBar),
+        default(object),
         propertyChanged: (bindable, oldvalue, newvalue) =>
         {
             var vSearchBar = (VSearchBar)bindable;
@@ -39,25 +45,52 @@ public partial class VSearchBar : ContentView
             {
                 vSearchBar.IsEnabled = vSearchBar.AddCommand.CanExecute(newvalue);
             }
-        });
+        }
+    );
 
-    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(VSearchBar), default(string), BindingMode.TwoWay);
-    public static readonly BindableProperty PlaceHolderProperty = BindableProperty.Create(nameof(PlaceHolder), typeof(string), typeof(VSearchBar), "Search");
-    public static readonly BindableProperty IconSourceProperty = BindableProperty.Create(nameof(IconSource), typeof(string), typeof(VSearchBar), "search.png");
-    public static readonly BindableProperty SearchCommandProperty = BindableProperty.Create(nameof(SearchCommand), typeof(ICommand), typeof(VSearchBar));
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(
+        nameof(Title),
+        typeof(string),
+        typeof(VSearchBar),
+        default(string),
+        BindingMode.TwoWay
+    );
+    public static readonly BindableProperty PlaceHolderProperty = BindableProperty.Create(
+        nameof(PlaceHolder),
+        typeof(string),
+        typeof(VSearchBar),
+        "Search"
+    );
+    public static readonly BindableProperty IconSourceProperty = BindableProperty.Create(
+        nameof(IconSource),
+        typeof(string),
+        typeof(VSearchBar),
+        "search.png"
+    );
+    public static readonly BindableProperty SearchCommandProperty = BindableProperty.Create(
+        nameof(SearchCommand),
+        typeof(ICommand),
+        typeof(VSearchBar)
+    );
 
-
-    public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(VSearchBar), null);
-    public static readonly BindableProperty HasAddButtonProperty = BindableProperty.Create(nameof(HasAddButton),
-       typeof(bool), typeof(VCollectionItem), true);
-
+    public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(
+        nameof(TitleColor),
+        typeof(Color),
+        typeof(VSearchBar),
+        null
+    );
+    public static readonly BindableProperty HasAddButtonProperty = BindableProperty.Create(
+        nameof(HasAddButton),
+        typeof(bool),
+        typeof(VCollectionItem),
+        true
+    );
 
     public bool HasAddButton
     {
         get { return (bool)GetValue(HasAddButtonProperty); }
         set { SetValue(HasAddButtonProperty, value); }
     }
-
 
     public ICommand AddCommand
     {
@@ -67,14 +100,8 @@ public partial class VSearchBar : ContentView
 
     public ICommand SearchCommand
     {
-        get
-        {
-            return (ICommand)GetValue(SearchCommandProperty);
-        }
-        set
-        {
-            SetValue(SearchCommandProperty, value);
-        }
+        get { return (ICommand)GetValue(SearchCommandProperty); }
+        set { SetValue(SearchCommandProperty, value); }
     }
 
     public object CommandParameter
@@ -101,9 +128,6 @@ public partial class VSearchBar : ContentView
         set { SetValue(IconSourceProperty, value); }
     }
 
-
-
-
     public Color TitleColor
     {
         get { return (Color)GetValue(TitleColorProperty); }
@@ -112,7 +136,6 @@ public partial class VSearchBar : ContentView
 
     protected void OnAddTapped()
     {
-
         if (!IsEnabled)
         {
             return;
@@ -121,14 +144,8 @@ public partial class VSearchBar : ContentView
         AddCommand?.Execute(CommandParameter);
     }
 
-
-
     void OnCommandCanExecuteChanged(object sender, EventArgs eventArgs)
     {
         IsEnabled = AddCommand.CanExecute(CommandParameter);
     }
-
-
-
-
 }

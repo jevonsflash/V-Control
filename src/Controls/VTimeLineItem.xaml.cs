@@ -1,10 +1,9 @@
-
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.Maui.Layouts;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Layouts;
 
 namespace VControl.Controls;
 
@@ -12,14 +11,12 @@ public enum VTimeLineItemType
 {
     Normal,
     Active,
-    Success
+    Success,
 }
 
 public partial class VTimeLineItem : ContentView
 {
-
     public event EventHandler Clicked;
-
 
     private void VTimeLineItem_Loaded(object sender, EventArgs e)
     {
@@ -27,11 +24,15 @@ public partial class VTimeLineItem : ContentView
         {
             (this.FindByName("MainContent") as ContentView).Content = (View)this.ContentSlot;
         }
-
     }
 
-    public static readonly BindableProperty TypeProperty = BindableProperty.Create(nameof(Type), typeof(VTimeLineItemType), typeof(VTimeLineItem), VTimeLineItemType.Normal,
-    propertyChanged: TypeChanged);
+    public static readonly BindableProperty TypeProperty = BindableProperty.Create(
+        nameof(Type),
+        typeof(VTimeLineItemType),
+        typeof(VTimeLineItem),
+        VTimeLineItemType.Normal,
+        propertyChanged: TypeChanged
+    );
 
     static void TypeChanged(BindableObject bindable, object oldValue, object newValue)
     {
@@ -39,29 +40,42 @@ public partial class VTimeLineItem : ContentView
         layout.GoToState((VTimeLineItemType)newValue);
     }
 
+    public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(
+        nameof(TitleColor),
+        typeof(Color),
+        typeof(VTimeLineItem),
+        null
+    );
 
-    public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(nameof(TitleColor), typeof(Color), typeof(VTimeLineItem), null);
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(VTimeLineItem),
+        default(ICommand),
+        propertyChanging: (bindable, oldvalue, newvalue) =>
+        {
+            var vTimeLineItem = (VTimeLineItem)bindable;
+            var oldcommand = (ICommand)oldvalue;
+            if (oldcommand != null)
+                oldcommand.CanExecuteChanged -= vTimeLineItem.OnCommandCanExecuteChanged;
+        },
+        propertyChanged: (bindable, oldvalue, newvalue) =>
+        {
+            var vTimeLineItem = (VTimeLineItem)bindable;
+            var newcommand = (ICommand)newvalue;
+            if (newcommand != null)
+            {
+                vTimeLineItem.IsEnabled = newcommand.CanExecute(vTimeLineItem.CommandParameter);
+                newcommand.CanExecuteChanged += vTimeLineItem.OnCommandCanExecuteChanged;
+            }
+        }
+    );
 
-
-    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(VTimeLineItem), default(ICommand),
-              propertyChanging: (bindable, oldvalue, newvalue) =>
-              {
-                  var vTimeLineItem = (VTimeLineItem)bindable;
-                  var oldcommand = (ICommand)oldvalue;
-                  if (oldcommand != null)
-                      oldcommand.CanExecuteChanged -= vTimeLineItem.OnCommandCanExecuteChanged;
-              }, propertyChanged: (bindable, oldvalue, newvalue) =>
-              {
-                  var vTimeLineItem = (VTimeLineItem)bindable;
-                  var newcommand = (ICommand)newvalue;
-                  if (newcommand != null)
-                  {
-                      vTimeLineItem.IsEnabled = newcommand.CanExecute(vTimeLineItem.CommandParameter);
-                      newcommand.CanExecuteChanged += vTimeLineItem.OnCommandCanExecuteChanged;
-                  }
-              });
-
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VTimeLineItem), default(object),
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VTimeLineItem),
+        default(object),
         propertyChanged: (bindable, oldvalue, newvalue) =>
         {
             var vTimeLineItem = (VTimeLineItem)bindable;
@@ -69,47 +83,47 @@ public partial class VTimeLineItem : ContentView
             {
                 vTimeLineItem.IsEnabled = vTimeLineItem.Command.CanExecute(newvalue);
             }
-        });
+        }
+    );
 
-    public static readonly BindableProperty IsLastOneProperty = BindableProperty.Create(nameof(IsLastOne),
-    typeof(bool), typeof(VTimeLineItem), false, BindingMode.OneWay);
-
+    public static readonly BindableProperty IsLastOneProperty = BindableProperty.Create(
+        nameof(IsLastOne),
+        typeof(bool),
+        typeof(VTimeLineItem),
+        false,
+        BindingMode.OneWay
+    );
 
     public static readonly BindableProperty TitleProperty = BindableProperty.Create(
-     nameof(Title),
-     typeof(string),
-     typeof(VTimeLineItem),
-     string.Empty);
-
+        nameof(Title),
+        typeof(string),
+        typeof(VTimeLineItem),
+        string.Empty
+    );
 
     public static readonly BindableProperty DetailsProperty = BindableProperty.Create(
- nameof(Details),
- typeof(string),
- typeof(VTimeLineItem),
- string.Empty);
-
+        nameof(Details),
+        typeof(string),
+        typeof(VTimeLineItem),
+        string.Empty
+    );
 
     public static readonly BindableProperty DateProperty = BindableProperty.Create(
-     nameof(Date),
-     typeof(string),
-     typeof(VTimeLineItem),
-     string.Empty);
-
-
+        nameof(Date),
+        typeof(string),
+        typeof(VTimeLineItem),
+        string.Empty
+    );
 
     public static readonly BindableProperty IconTextProperty = BindableProperty.Create(
-    nameof(IconText),
-    typeof(string),
-    typeof(VTimeLineItem),
-    "\uF00C",
-    defaultBindingMode: BindingMode.OneWay);
+        nameof(IconText),
+        typeof(string),
+        typeof(VTimeLineItem),
+        "\uF00C",
+        defaultBindingMode: BindingMode.OneWay
+    );
 
-
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
+    public IView ContentSlot { get; set; }
 
     public bool IsLastOne
     {
@@ -135,8 +149,6 @@ public partial class VTimeLineItem : ContentView
         set => SetValue(DateProperty, value);
     }
 
-
-
     public Color TitleColor
     {
         get { return (Color)GetValue(TitleColorProperty); }
@@ -160,17 +172,10 @@ public partial class VTimeLineItem : ContentView
         set => SetValue(IconTextProperty, value);
     }
 
-
     public VTimeLineItemType Type
     {
-        get
-        {
-            return (VTimeLineItemType)GetValue(TypeProperty);
-        }
-        set
-        {
-            SetValue(TypeProperty, value);
-        }
+        get { return (VTimeLineItemType)GetValue(TypeProperty); }
+        set { SetValue(TypeProperty, value); }
     }
 
     public VTimeLineItem()
@@ -178,9 +183,7 @@ public partial class VTimeLineItem : ContentView
         InitializeComponent();
         Loaded += VTimeLineItem_Loaded;
         GoToState(Type);
-
     }
-
 
     void OnCommandCanExecuteChanged(object sender, EventArgs eventArgs)
     {
@@ -217,5 +220,4 @@ public partial class VTimeLineItem : ContentView
                 break;
         }
     }
-
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Windows.Input;
 using VControl.Controls.VExpandable;
 
@@ -10,18 +9,13 @@ public partial class VCollectionExpandableItem : ContentView
 
     public VCollectionExpandableItem()
     {
-
         InitializeComponent();
         Loaded += VCollectionExpandableItem_Loaded;
         GoToState(IsExpanded);
-
     }
-
-
 
     private void VCollectionExpandableItem_Loaded(object sender, EventArgs e)
     {
-
         if (this.HeaderSlot != default)
         {
             (this.FindByName("HeaderContent") as ContentView).Content = (View)this.HeaderSlot;
@@ -33,69 +27,94 @@ public partial class VCollectionExpandableItem : ContentView
         }
         if (this.OperationsSlot != default)
         {
-            (this.FindByName("OperationsContent") as ContentView).Content = (View)this.OperationsSlot;
+            (this.FindByName("OperationsContent") as ContentView).Content = (View)
+                this.OperationsSlot;
         }
     }
 
-    public IView HeaderSlot
+    public IView HeaderSlot { get; set; }
+
+    public IView ContentSlot { get; set; }
+
+    public IView OperationsSlot { get; set; }
+
+    public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(
+        nameof(IsExpanded),
+        typeof(bool),
+        typeof(VCollectionExpandableItem),
+        false,
+        propertyChanged: OnIsExpandedPropertyChanged
+    );
+
+    private static void OnIsExpandedPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
-        get;
-        set;
-    }
-
-
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
-
-    public IView OperationsSlot
-    {
-        get;
-        set;
-    }
-
-
-    public static readonly BindableProperty IsExpandedProperty = BindableProperty.Create(nameof(IsExpanded), typeof(bool), typeof(VCollectionExpandableItem), false, propertyChanged: OnIsExpandedPropertyChanged);
-
-    private static void OnIsExpandedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-    {
-
         var VCollectionExpandableItem = (VCollectionExpandableItem)bindable;
         if (newValue != oldValue)
         {
             VCollectionExpandableItem.GoToState((bool)newValue);
         }
-
     }
 
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VCollectionExpandableItem), default(object));
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VCollectionExpandableItem),
+        default(object)
+    );
 
-    public static readonly BindableProperty EditCommandProperty = BindableProperty.Create(nameof(EditCommand), typeof(ICommand), typeof(VCollectionExpandableItem));
-    public static readonly BindableProperty RemoveCommandProperty = BindableProperty.Create(nameof(RemoveCommand), typeof(ICommand), typeof(VCollectionExpandableItem));
+    public static readonly BindableProperty EditCommandProperty = BindableProperty.Create(
+        nameof(EditCommand),
+        typeof(ICommand),
+        typeof(VCollectionExpandableItem)
+    );
+    public static readonly BindableProperty RemoveCommandProperty = BindableProperty.Create(
+        nameof(RemoveCommand),
+        typeof(ICommand),
+        typeof(VCollectionExpandableItem)
+    );
 
+    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(
+        nameof(TitleText),
+        typeof(string),
+        typeof(VCollectionExpandableItem),
+        "TITLE HERE"
+    );
+    public static readonly BindableProperty OperationsTextProperty = BindableProperty.Create(
+        nameof(OperationsText),
+        typeof(string),
+        typeof(VCollectionExpandableItem),
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nam imperdiet facilisi eleifend quam malesuada malesuada vehicula morbi sociis eleifend facilisi sociosqu. "
+    );
+    public static readonly BindableProperty HasRemoveProperty = BindableProperty.Create(
+        nameof(HasRemove),
+        typeof(bool),
+        typeof(VCollectionExpandableItem),
+        true
+    );
+    public static readonly BindableProperty HasEditProperty = BindableProperty.Create(
+        nameof(HasEdit),
+        typeof(bool),
+        typeof(VCollectionExpandableItem),
+        true
+    );
 
-    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(nameof(TitleText), typeof(string), typeof(VCollectionExpandableItem), "TITLE HERE");
-    public static readonly BindableProperty OperationsTextProperty = BindableProperty.Create(nameof(OperationsText), typeof(string), typeof(VCollectionExpandableItem), "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nam imperdiet facilisi eleifend quam malesuada malesuada vehicula morbi sociis eleifend facilisi sociosqu. ");
-    public static readonly BindableProperty HasRemoveProperty = BindableProperty.Create(nameof(HasRemove), typeof(bool), typeof(VCollectionExpandableItem), true);
-    public static readonly BindableProperty HasEditProperty = BindableProperty.Create(nameof(HasEdit),
-        typeof(bool), typeof(VCollectionExpandableItem), true);
+    public static readonly BindableProperty IsRequiredProperty = BindableProperty.Create(
+        nameof(IsRequired),
+        typeof(bool),
+        typeof(VCollectionExpandableItem),
+        true
+    );
 
-    public static readonly BindableProperty IsRequiredProperty = BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(VCollectionExpandableItem), true);
-
-
-
-
-
-
-
-    public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(nameof(TitleTextColor), typeof(Color), typeof(VCollectionExpandableItem), null);
-
-
-
-
-
+    public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(
+        nameof(TitleTextColor),
+        typeof(Color),
+        typeof(VCollectionExpandableItem),
+        null
+    );
 
     public bool IsExpanded
     {
@@ -103,40 +122,23 @@ public partial class VCollectionExpandableItem : ContentView
         set { SetValue(IsExpandedProperty, value); }
     }
 
-
     private void ExpandedTapped(object sender, ExpandedChangedEventArgs e)
     {
         this.IsExpanded = e.IsExpanded;
         ExpandedChanged?.Invoke(this, e);
     }
 
-
-
     public ICommand EditCommand
     {
-        get
-        {
-            return (ICommand)GetValue(EditCommandProperty);
-        }
-        set
-        {
-            SetValue(EditCommandProperty, value);
-        }
+        get { return (ICommand)GetValue(EditCommandProperty); }
+        set { SetValue(EditCommandProperty, value); }
     }
-
 
     public ICommand RemoveCommand
     {
-        get
-        {
-            return (ICommand)GetValue(RemoveCommandProperty);
-        }
-        set
-        {
-            SetValue(RemoveCommandProperty, value);
-        }
+        get { return (ICommand)GetValue(RemoveCommandProperty); }
+        set { SetValue(RemoveCommandProperty, value); }
     }
-
 
     public object CommandParameter
     {
@@ -149,7 +151,6 @@ public partial class VCollectionExpandableItem : ContentView
         get { return (string)GetValue(TitleTextProperty); }
         set { SetValue(TitleTextProperty, value); }
     }
-
 
     public string OperationsText
     {
@@ -168,14 +169,11 @@ public partial class VCollectionExpandableItem : ContentView
         set { SetValue(HasEditProperty, value); }
     }
 
-
     public bool IsRequired
     {
         get { return (bool)GetValue(IsRequiredProperty); }
         set { SetValue(IsRequiredProperty, value); }
     }
-
-
 
     public Color TitleTextColor
     {
@@ -188,6 +186,4 @@ public partial class VCollectionExpandableItem : ContentView
         string visualState = isExpended ? "Expended" : "Collapsed";
         VisualStateManager.GoToState(this, visualState);
     }
-
-
 }

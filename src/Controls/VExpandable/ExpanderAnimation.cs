@@ -1,6 +1,5 @@
 ﻿namespace VControl.Controls.VExpandable
 {
-
     public class ExpanderAnimation : IExpanderAnimation
     {
         protected uint AnimationLength { get; } = 150;

@@ -4,20 +4,24 @@ namespace VControl.Controls;
 
 public partial class VMenuCell : ViewCell
 {
-
     public VMenuCell()
     {
         InitializeComponent();
     }
 
-    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(VMenuCell), default(ICommand),
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(VMenuCell),
+        default(ICommand),
         propertyChanging: (bindable, oldvalue, newvalue) =>
         {
             var menuCell = (VMenuCell)bindable;
             var oldcommand = (ICommand)oldvalue;
             if (oldcommand != null)
                 oldcommand.CanExecuteChanged -= menuCell.OnCommandCanExecuteChanged;
-        }, propertyChanged: (bindable, oldvalue, newvalue) =>
+        },
+        propertyChanged: (bindable, oldvalue, newvalue) =>
         {
             var menuCell = (VMenuCell)bindable;
             var newcommand = (ICommand)newvalue;
@@ -26,9 +30,14 @@ public partial class VMenuCell : ViewCell
                 menuCell.IsEnabled = newcommand.CanExecute(menuCell.CommandParameter);
                 newcommand.CanExecuteChanged += menuCell.OnCommandCanExecuteChanged;
             }
-        });
+        }
+    );
 
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VMenuCell), default(object),
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VMenuCell),
+        default(object),
         propertyChanged: (bindable, oldvalue, newvalue) =>
         {
             var menuCell = (VMenuCell)bindable;
@@ -36,14 +45,28 @@ public partial class VMenuCell : ViewCell
             {
                 menuCell.IsEnabled = menuCell.Command.CanExecute(newvalue);
             }
-        });
+        }
+    );
 
-    public static readonly BindableProperty MenuTextProperty = BindableProperty.Create(nameof(MenuText), typeof(string), typeof(VMenuCell), default(string));
-    public static readonly BindableProperty IconTextProperty = BindableProperty.Create(nameof(IconText), typeof(string), typeof(VMenuCell), default(string));
+    public static readonly BindableProperty MenuTextProperty = BindableProperty.Create(
+        nameof(MenuText),
+        typeof(string),
+        typeof(VMenuCell),
+        default(string)
+    );
+    public static readonly BindableProperty IconTextProperty = BindableProperty.Create(
+        nameof(IconText),
+        typeof(string),
+        typeof(VMenuCell),
+        default(string)
+    );
 
-
-    public static readonly BindableProperty MenuTextColorProperty = BindableProperty.Create(nameof(MenuTextColor), typeof(Color), typeof(VMenuCell), null);
-
+    public static readonly BindableProperty MenuTextColorProperty = BindableProperty.Create(
+        nameof(MenuTextColor),
+        typeof(Color),
+        typeof(VMenuCell),
+        null
+    );
 
     public ICommand Command
     {
@@ -69,9 +92,6 @@ public partial class VMenuCell : ViewCell
         set { SetValue(IconTextProperty, value); }
     }
 
-
-
-
     public Color MenuTextColor
     {
         get { return (Color)GetValue(MenuTextColorProperty); }
@@ -80,7 +100,6 @@ public partial class VMenuCell : ViewCell
 
     protected override void OnTapped()
     {
-
         base.OnTapped();
 
         if (!IsEnabled)
@@ -90,8 +109,6 @@ public partial class VMenuCell : ViewCell
 
         Command?.Execute(CommandParameter);
     }
-
-
 
     void OnCommandCanExecuteChanged(object sender, EventArgs eventArgs)
     {

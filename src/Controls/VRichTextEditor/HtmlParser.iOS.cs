@@ -1,15 +1,14 @@
-﻿using Foundation;
-using System;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
+using Foundation;
 using UIKit;
 
 namespace VControl.Controls
 {
-
     public static class HtmlParser_iOS
     {
-        static nfloat defaultSize = UIFont.SystemFontSize;
-        static UIFont defaultFont;
+        internal static nfloat defaultSize = UIFont.SystemFontSize;
+
+        internal static UIFont defaultFont;
 
         public static NSAttributedString HtmlToAttributedString(string htmlString)
         {
@@ -24,57 +23,6 @@ namespace VControl.Controls
             return mutString;
         }
 
-        static NSAttributedString ResetFontSize(NSMutableAttributedString attrString)
-        {
-            defaultFont = UIFont.SystemFontOfSize(defaultSize);
-
-            attrString.EnumerateAttribute(UIStringAttributeKey.Font, new NSRange(0, attrString.Length), NSAttributedStringEnumeration.None, (NSObject value, NSRange range, ref bool stop) =>
-            {
-                if (value != null)
-                {
-                    var oldFont = (UIFont)value;
-                    var oldDescriptor = oldFont.FontDescriptor;
-
-                    var newDescriptor = defaultFont.FontDescriptor;
-
-                    bool hasBoldFlag = false;
-                    bool hasItalicFlag = false;
-
-                    if (oldDescriptor.SymbolicTraits.HasFlag(UIFontDescriptorSymbolicTraits.Bold))
-                    {
-                        hasBoldFlag = true;
-                    }
-                    if (oldDescriptor.SymbolicTraits.HasFlag(UIFontDescriptorSymbolicTraits.Italic))
-                    {
-                        hasItalicFlag = true;
-                    }
-
-                    if (hasBoldFlag && hasItalicFlag)
-                    {
-                        uint traitsInt = (uint)UIFontDescriptorSymbolicTraits.Bold + (uint)UIFontDescriptorSymbolicTraits.Italic;
-                        newDescriptor = newDescriptor.CreateWithTraits((UIFontDescriptorSymbolicTraits)traitsInt);
-                    }
-                    else if (hasBoldFlag)
-                    {
-                        newDescriptor = newDescriptor.CreateWithTraits(UIFontDescriptorSymbolicTraits.Bold);
-                    }
-                    else if (hasItalicFlag)
-                    {
-                        newDescriptor = newDescriptor.CreateWithTraits(UIFontDescriptorSymbolicTraits.Italic);
-                    }
-
-                    var newFont = UIFont.FromDescriptor(newDescriptor, defaultSize);
-
-                    attrString.RemoveAttribute(UIStringAttributeKey.Font, range);
-                    attrString.AddAttribute(UIStringAttributeKey.Font, newFont, range);
-                }
-
-            });
-
-            return attrString;
-        }
-
-
         public static string AttributedStringToHtml(NSAttributedString attributedString)
         {
             var range = new NSRange(0, attributedString.Length);
@@ -87,9 +35,78 @@ namespace VControl.Controls
             return cleanHtml;
         }
 
-        static string CleanHtml(string htmlString)
+        internal static NSAttributedString ResetFontSize(NSMutableAttributedString attrString)
         {
+            defaultFont = UIFont.SystemFontOfSize(defaultSize);
 
+            attrString.EnumerateAttribute(
+                UIStringAttributeKey.Font,
+                new NSRange(0, attrString.Length),
+                NSAttributedStringEnumeration.None,
+                (NSObject value, NSRange range, ref bool stop) =>
+                {
+                    if (value != null)
+                    {
+                        var oldFont = (UIFont)value;
+                        var oldDescriptor = oldFont.FontDescriptor;
+
+                        var newDescriptor = defaultFont.FontDescriptor;
+
+                        bool hasBoldFlag = false;
+                        bool hasItalicFlag = false;
+
+                        if (
+                            oldDescriptor.SymbolicTraits.HasFlag(
+                                UIFontDescriptorSymbolicTraits.Bold
+                            )
+                        )
+                        {
+                            hasBoldFlag = true;
+                        }
+                        if (
+                            oldDescriptor.SymbolicTraits.HasFlag(
+                                UIFontDescriptorSymbolicTraits.Italic
+                            )
+                        )
+                        {
+                            hasItalicFlag = true;
+                        }
+
+                        if (hasBoldFlag && hasItalicFlag)
+                        {
+                            uint traitsInt =
+                                (uint)UIFontDescriptorSymbolicTraits.Bold
+                                + (uint)UIFontDescriptorSymbolicTraits.Italic;
+                            newDescriptor = newDescriptor.CreateWithTraits(
+                                (UIFontDescriptorSymbolicTraits)traitsInt
+                            );
+                        }
+                        else if (hasBoldFlag)
+                        {
+                            newDescriptor = newDescriptor.CreateWithTraits(
+                                UIFontDescriptorSymbolicTraits.Bold
+                            );
+                        }
+                        else if (hasItalicFlag)
+                        {
+                            newDescriptor = newDescriptor.CreateWithTraits(
+                                UIFontDescriptorSymbolicTraits.Italic
+                            );
+                        }
+
+                        var newFont = UIFont.FromDescriptor(newDescriptor, defaultSize);
+
+                        attrString.RemoveAttribute(UIStringAttributeKey.Font, range);
+                        attrString.AddAttribute(UIStringAttributeKey.Font, newFont, range);
+                    }
+                }
+            );
+
+            return attrString;
+        }
+
+        internal static string CleanHtml(string htmlString)
+        {
             var collection = SplitIntoTags(htmlString);
             var styleAndBody = FindStyleAndBody(collection);
             var style = styleAndBody.Item1;
@@ -101,7 +118,7 @@ namespace VControl.Controls
             return newString;
         }
 
-        static OrderedDictionary SplitIntoTags(string htmlString)
+        internal static OrderedDictionary SplitIntoTags(string htmlString)
         {
             bool inTag = false;
             string tag = "";
@@ -147,7 +164,9 @@ namespace VControl.Controls
             return collection;
         }
 
-        static Tuple<string, OrderedDictionary> FindStyleAndBody(OrderedDictionary collection)
+        internal static Tuple<string, OrderedDictionary> FindStyleAndBody(
+            OrderedDictionary collection
+        )
         {
             string[] tagCollection = new string[collection.Count];
             collection.Keys.CopyTo(tagCollection, 0);
@@ -187,7 +206,7 @@ namespace VControl.Controls
             return new Tuple<string, OrderedDictionary>(style, body);
         }
 
-        static Dictionary<string, List<string>> FindSpans(string style)
+        internal static Dictionary<string, List<string>> FindSpans(string style)
         {
             var spanDict = new Dictionary<string, List<string>>();
 
@@ -216,7 +235,10 @@ namespace VControl.Controls
             return spanDict;
         }
 
-        static string ApplyStyleToBody(Dictionary<string, List<string>> spans, OrderedDictionary body)
+        internal static string ApplyStyleToBody(
+            Dictionary<string, List<string>> spans,
+            OrderedDictionary body
+        )
         {
             string newHtmlString = "";
 
@@ -281,5 +303,4 @@ namespace VControl.Controls
             return newHtmlString;
         }
     }
-
 }
