@@ -3,24 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VControl.Controls.VFormItem"
              x:Name="this">
-    <StackLayout>
-        <Grid  BindingContext="{Reference this}"
-               ColumnDefinitions="auto, auto, 1*">
+    <Grid RowDefinitions="auto,1*">
+        <Grid BindingContext="{Reference this}"
+              ColumnDefinitions="*, 25">
             <Label Style="{StaticResource FormItemLabel}"
+                   VerticalOptions="Center"
                    MaxLines="2"
-                   TextColor="{Binding TitleTextColor}"
-                   IsVisible="{Binding HasTitle}"
-                   Text="{Binding TitleText}"></Label>
-            <Label Grid.Column="1"
-                   TextColor="Red"
-                   IsVisible="{Binding IsRequired}"
-                   Style="{StaticResource FormItemLabel}"
-                   Text="*"></Label>
+                   IsVisible="{Binding HasTitle}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span  Text="{Binding TitleText}"
+                               TextColor="{Binding TitleTextColor}" />
+                        <Span Text="{Binding IsRequiredMark}"
+                              TextColor="Red" />
+                    </FormattedString>
+                </Label.FormattedText>
+
+            </Label>
+
 
             <ContentView  BindingContext="{Reference this}"
                           HorizontalOptions="End"
                           VerticalOptions="Center"
-                          Grid.Column="2"
+                          Grid.Column="1"
                           Margin="0,0,5,0"
                           IsVisible="{Binding HasInfo}">
                 <Image Source="show_info_btn.png"
@@ -33,7 +38,8 @@
 
         </Grid>
 
-        <Grid RowDefinitions="1*, auto, auto"
+        <Grid Grid.Row="1"
+              RowDefinitions="1*, auto, auto"
               Padding="0,10,0,15">
 
             <ContentView x:Name="MainContent">
@@ -65,5 +71,5 @@
         </Grid>
 
 
-    </StackLayout>
+    </Grid>
 </ContentView>

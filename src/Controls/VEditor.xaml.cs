@@ -33,7 +33,7 @@ public partial class VEditor : ContentView
         nameof(EditorMaxLength),
         typeof(int?),
         typeof(VEditor),
-        null,
+        default,
         defaultBindingMode: BindingMode.TwoWay
     );
 

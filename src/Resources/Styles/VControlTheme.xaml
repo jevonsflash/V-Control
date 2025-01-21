@@ -53,6 +53,13 @@
                                             Value="True" />
                                 </VisualState.Setters>
                             </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
                                     <Setter Property="TextColor"
@@ -61,13 +68,7 @@
                                             Value="{StaticResource DisabledBackground}" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState x:Name="Pressed">
-                                <VisualState.Setters>
-                                    <Setter Property="ContentView.Opacity"
-                                            TargetName="MainContent"
-                                            Value="0.6" />
-                                </VisualState.Setters>
-                            </VisualState>
+
                             <VisualState x:Name="Busy">
                                 <VisualState.Setters>
                                     <Setter Property="ContentView.Opacity"
@@ -119,6 +120,63 @@
                         Value="2" />
                 <Setter Property="TextColor"
                         Value="{StaticResource Primary}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="1" />
+                                    <Setter Property="ActivityIndicator.IsRunning"
+                                            TargetName="MainActivityIndicator"
+                                            Value="False" />
+                                    <Setter Property="ActivityIndicator.Opacity"
+                                            TargetName="MainActivityIndicator"
+                                            Value="0" />
+                                    <Setter Property="Border.IsEnabled"
+                                            TargetName="MainLayout"
+                                            Value="True" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="BorderBrush"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="ButtonBackground"
+                                            Value="{StaticResource Surface}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                           
+                            <VisualState x:Name="Busy">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                    <Setter Property="ActivityIndicator.IsRunning"
+                                            TargetName="MainActivityIndicator"
+                                            Value="True" />
+                                    <Setter Property="ActivityIndicator.Opacity"
+                                            TargetName="MainActivityIndicator"
+                                            Value="1" />
+                                    <Setter Property="Border.IsEnabled"
+                                            TargetName="MainLayout"
+                                            Value="False" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+
             </Style>
 
 
@@ -130,6 +188,60 @@
                         Value="Transparent" />
                 <Setter Property="TextColor"
                         Value="{StaticResource Primary}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="1" />
+                                    <Setter Property="ActivityIndicator.IsRunning"
+                                            TargetName="MainActivityIndicator"
+                                            Value="False" />
+                                    <Setter Property="ActivityIndicator.Opacity"
+                                            TargetName="MainActivityIndicator"
+                                            Value="0" />
+                                    <Setter Property="Border.IsEnabled"
+                                            TargetName="MainLayout"
+                                            Value="True" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                   
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Busy">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                    <Setter Property="ActivityIndicator.IsRunning"
+                                            TargetName="MainActivityIndicator"
+                                            Value="True" />
+                                    <Setter Property="ActivityIndicator.Opacity"
+                                            TargetName="MainActivityIndicator"
+                                            Value="1" />
+                                    <Setter Property="Border.IsEnabled"
+                                            TargetName="MainLayout"
+                                            Value="False" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+
             </Style>
 
             <Style x:Key="LightVButton"
@@ -139,6 +251,61 @@
                         Value="{StaticResource PrimaryContainer}" />
                 <Setter Property="TextColor"
                         Value="{StaticResource OnPrimaryContainer}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="1" />
+                                    <Setter Property="ActivityIndicator.IsRunning"
+                                            TargetName="MainActivityIndicator"
+                                            Value="False" />
+                                    <Setter Property="ActivityIndicator.Opacity"
+                                            TargetName="MainActivityIndicator"
+                                            Value="0" />
+                                    <Setter Property="Border.IsEnabled"
+                                            TargetName="MainLayout"
+                                            Value="True" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="ButtonBackground"
+                                            Value="{StaticResource Surface}" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Busy">
+                                <VisualState.Setters>
+                                    <Setter Property="ContentView.Opacity"
+                                            TargetName="MainContent"
+                                            Value="0.6" />
+                                    <Setter Property="ActivityIndicator.IsRunning"
+                                            TargetName="MainActivityIndicator"
+                                            Value="True" />
+                                    <Setter Property="ActivityIndicator.Opacity"
+                                            TargetName="MainActivityIndicator"
+                                            Value="1" />
+                                    <Setter Property="Border.IsEnabled"
+                                            TargetName="MainLayout"
+                                            Value="False" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+
             </Style>
 
 

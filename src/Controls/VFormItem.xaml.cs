@@ -8,6 +8,7 @@ public partial class VFormItem : ContentView
     {
         InitializeComponent();
         Loaded += VFormItem_Loaded;
+        this.IsRequiredMark = "*";
     }
 
     private void VFormItem_Loaded(object sender, EventArgs e)
@@ -134,8 +135,15 @@ public partial class VFormItem : ContentView
         nameof(IsRequired),
         typeof(bool),
         typeof(VFormItem),
-        true
+        true,
+        propertyChanged: OnIsRequiredProperty
     );
+
+    private static void OnIsRequiredProperty(BindableObject bindable, object oldValue, object newValue)
+    {
+        (bindable as VFormItem).IsRequiredMark = (bool)newValue ? "*" : string.Empty;
+    }
+
     public static readonly BindableProperty IsShowInfoProperty = BindableProperty.Create(
         nameof(IsShowInfo),
         typeof(bool),
@@ -157,6 +165,19 @@ public partial class VFormItem : ContentView
         typeof(VFormItem),
         null
     );
+
+    private string _isRequiredMark;
+
+    public string IsRequiredMark
+    {
+        get { return _isRequiredMark; }
+        set
+        {
+            _isRequiredMark = value;
+            OnPropertyChanged();
+        }
+    }
+
 
     public ICommand Command
     {

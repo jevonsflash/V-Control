@@ -11,9 +11,9 @@
 
 ![alt text](assets/image-26.png)
 
-```
+```xml
 <control:VButton TitleText="BUTTON"></control:VButton>
-````
+```
 
 ## 样式
 
@@ -30,7 +30,7 @@
 ![alt text](assets/image-27.png)
 
 
-```
+```xml
 <control:VButton TitleText="BUTTON"
                  ButtonStyle="Light"></control:VButton>
 <control:VButton TitleText="BUTTON"
@@ -45,7 +45,7 @@
 
 ![alt text](assets/image-28.png)
 
-```
+```xml
 <control:VButton TitleText="BUTTON"
                     IsEnabled="False"></control:VButton>
 ```
@@ -55,7 +55,7 @@
 
 ![alt text](assets/recording.gif)
 
-```
+```xml
 <control:VButton TitleText="BUTTON"
                     IsEnabled="False"></control:VButton>
 ```
@@ -94,7 +94,7 @@
 
 ![alt text](assets/image-31.png)
 
-```
+```xml
 <control:VButton>
     <control:VButton.ContentSlot>
         <Image Source="service3.jpg"></Image>
