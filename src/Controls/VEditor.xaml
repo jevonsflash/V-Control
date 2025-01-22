@@ -2,16 +2,14 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VControl.Controls.VEditor"
-             
              x:Name="this">
     <Grid BindingContext="{x:Reference this}"
-          MinimumHeightRequest="60"
-                        >
+          MinimumHeightRequest="60">
         <Editor Text="{Binding EditorText}"
-               Placeholder="{Binding EditorPlaceholder}"
+                Placeholder="{Binding EditorPlaceholder}"               
                 AutoSize="TextChanges"
-               Keyboard="{Binding EditorKeyboard}"
-               MaxLength="{Binding EditorMaxLength}"
+                Keyboard="{Binding EditorKeyboard}"
+                MaxLength="{Binding EditorMaxLength}"
                 IsReadOnly="{Binding EditorIsReadOnly}" />
     </Grid>
 </ContentView>

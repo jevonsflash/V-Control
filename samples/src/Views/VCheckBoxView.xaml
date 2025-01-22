@@ -1,73 +1,71 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VCheckBoxView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VCheckBoxViewModel"
-             
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroupList>
-            <VisualStateGroup x:Name="CommonStates">
-                <VisualState x:Name="Normal">
-                    <VisualState.Setters>
-                        <Setter TargetName="CheckBoxLayout"
-                                Property="Border.Style"
-                                Value="{StaticResource CheckBoxNormalBorder}" />
-                        <Setter TargetName="CheckBoxLabel"
-                                Property="Label.Style"
-                                Value="{StaticResource CheckBoxNormalLabel}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="IsChecked">
-                    <VisualState.Setters>
-                        <Setter TargetName="CheckBoxLayout"
-                                Property="Border.Style"
-                                Value="{StaticResource CheckBoxSelBorder}" />
-                        <Setter TargetName="CheckBoxLabel"
-                                Property="Label.Style"
-                                Value="{StaticResource CheckBoxSelLabel}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="IsIndeterminate">
-                    <VisualState.Setters>
-                        <Setter TargetName="CheckBoxLayout"
-                                Property="Border.Style"
-                                Value="{StaticResource CheckBoxIndeterminateBorder}" />
-                        <Setter TargetName="CheckBoxLabel"
-                                Property="Label.Style"
-                                Value="{StaticResource CheckBoxIndeterminateLabel}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateGroupList>
-    </VisualStateManager.VisualStateGroups>
-    <Grid ColumnDefinitions="auto, auto">
-        <Border x:Name="CheckBoxLayout"
-                BindingContext="{Reference this}">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VCheckBoxView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VCheckBoxViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
 
-            <viewBase:ContentPageBase x:Name="MainContent"
-                         InputTransparent="True">
+            <Label Text="Default(Primary)"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBox Title="CHECKBOX LABEL"></control:VCheckBox>
+            <control:VCheckBox Title="CHECKBOX LABEL" IsChecked="True"></control:VCheckBox>
 
 
-                <Label Style="{StaticResource CheckBoxSelLabel}"
-                       VerticalOptions="Center"
-                       x:Name="CheckBoxLabel">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding IconText}"
-                                  FontFamily="FontAwesome-Solid" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </viewBase:ContentPageBase>
-            <Border.GestureRecognizers>
-                <TapGestureRecognizer  Tapped="SelTapped" />
-            </Border.GestureRecognizers>
-        </Border>
-        <Label Text="{Binding Title}"
-               Grid.Column="1"
-               HorizontalOptions="Start"
-               VerticalOptions="Center"
-               Margin="5,0,0,0"
-               BindingContext="{Reference this}"></Label>
-    </Grid>
+            <Label Text="Disabled"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBox Title="CHECKBOX LABEL"
+                               IsChecked="False"
+                               IsEnabled="False"></control:VCheckBox>
+
+            <control:VCheckBox Title="CHECKBOX LABEL"
+                               IsChecked="True"
+                               IsEnabled="False"></control:VCheckBox>
+
+
+            <Label Text="Indeterminate"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBox Title="CHECKBOX LABEL"
+                               IsIndeterminate="{Binding IsIndeterminate}"></control:VCheckBox>
+
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+                <TableView Intent="Settings"
+                           RowHeight="50">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <SwitchCell Text="IsIndeterminate"
+                                        On="{Binding IsIndeterminate}"></SwitchCell>
+                         
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+
+            <Label Text="Customized Icon"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBox Title="CHECKBOX LABEL"
+                               IconText="&#xf00d;"
+                               IsChecked="True"></control:VCheckBox>
+
+            <Label Text="Customized Content"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBox Title="CHECKBOX LABEL"
+                               IsChecked="True">
+
+                <control:VCheckBox.ContentSlot>
+                    <Image Source="aze.png"
+                          
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"></Image>
+                </control:VCheckBox.ContentSlot>
+            </control:VCheckBox>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </viewBase:ContentPageBase>

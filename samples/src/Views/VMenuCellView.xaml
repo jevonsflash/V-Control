@@ -1,46 +1,92 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ViewCell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          xmlns:converters="clr-namespace:VControl.Converters"
-          x:Class="VControl.Samples.Views.VMenuCellView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VMenuCellViewModel"
-          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VMenuCellView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VMenuCellViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
 
-    <ViewCell.View>
-        <Grid BindingContext="{x:Reference this}"
-              ColumnDefinitions="auto,auto,1*,1*"
-              Grid.Row="0"
-              Grid.Column="0"
-              VerticalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
 
-            <Grid.Resources>
-                <ResourceDictionary>
-                    <converters:StringToInvisibleConverter x:Key="StringToInvisibleConverter" />
-                </ResourceDictionary>
-            </Grid.Resources>
-            <Label Margin="0,0,10,0"
-                   IsVisible="{Binding IconText, Converter={StaticResource StringToInvisibleConverter}}"
-                   TextColor="{Binding MenuTextColor}"
-                   FontFamily="FontAwesome-Solid"
-                   Text="{Binding IconText}"
-                   WidthRequest="17"
-                   VerticalOptions="Center" />
-            <Image Grid.Column="1"
-                   Margin="0,0,10,0"
-                   IsVisible="{Binding IconSource, Converter={StaticResource StringToInvisibleConverter}}"
-                   Source="{Binding IconSource}"
-                   WidthRequest="17"
-                   VerticalOptions="Center" />
-            <Label Grid.Column="2"
-                   Text="{Binding MenuText}"
-                   TextColor="{Binding MenuTextColor}"
-                   VerticalOptions="Center"></Label>
-            <Label Margin="10,0,5,0"
-                   HorizontalOptions="End"
-                   FontFamily="FontAwesome-Solid"
-                   Grid.Column="3"
-                   Text="&#xf054;"
-                   WidthRequest="17"
-                   VerticalOptions="Center" />
-        </Grid>
-    </ViewCell.View>
-</ViewCell>
+            <Label Text="Default(Primary)"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <TableView Intent="Settings"
+                       Grid.Row="1"
+                       RowHeight="50"
+                       IsVisible="{Binding IsAuthenticated}">
+                <TableRoot>
+                    <TableSection Title="">
+                        <control:VMenuCell MenuText="Bookings"
+                                           IconText="&#xf31c;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding MessageCommand}"
+                                           CommandParameter="OrdersPage?type=1"></control:VMenuCell>
+                        <control:VMenuCell MenuText="Reports"
+                                           IconText="&#xe4f0;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding MessageCommand}"
+                                           CommandParameter="OrdersPage?type=2"></control:VMenuCell>
+                        <control:VMenuCell MenuText="My Vendors"
+                                           IconText="&#xf233;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding MessageCommand}"
+                                           CommandParameter="VendorPage"></control:VMenuCell>
+                        <control:VMenuCell MenuText="My Profile"
+                                           IconText="&#xf007;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding MessageCommand}"
+                                           CommandParameter="ProfilePage"></control:VMenuCell>
+                        <control:VMenuCell MenuText="Contact Us"
+                                           IconText="&#xf0e0;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding MessageCommand}"
+                                           CommandParameter="ContactPage"></control:VMenuCell>
+                        <control:VMenuCell MenuText="Change Password"
+                                           IconText="&#xf084;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding MessageCommand}"
+                                           CommandParameter="UpdatePasswordPage"></control:VMenuCell>
+                        <control:VMenuCell MenuText="Logout"
+                                           IsEnabled="{Binding IsAuthenticated}"
+                                           IconText="&#xf08b;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding GoSignOutCommand}"></control:VMenuCell>
+                        <control:VMenuCell MenuText="Delete Account"
+                                           IconText="&#xf235;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding MessageCommand}"
+                                           CommandParameter="DeleteAccountPage"></control:VMenuCell>
+                        <control:VMenuCell MenuText="About"
+                                           IconText="&#xf05a;"
+                                           MenuTextColor="Black"
+                                           Command="{Binding MessageCommand}"
+                                           CommandParameter="AboutPage"></control:VMenuCell>
+
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+
+
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+                <TableView Intent="Settings"
+                           RowHeight="50">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <SwitchCell Text="IsIndeterminate"
+                                        On="{Binding IsIndeterminate}"></SwitchCell>
+
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+
+        
+
+        </VerticalStackLayout>
+    </ScrollView>
+</viewBase:ContentPageBase>

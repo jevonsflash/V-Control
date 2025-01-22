@@ -56,6 +56,11 @@ public static class MauiProgram
         builder.Services.AddTransientWithRoute<AnimationWithScrollerView, AnimationWithScrollerViewModel>();
         builder.Services.AddTransientWithRoute<VTopAppBarView, VTopAppBarViewModel>();
         builder.Services.AddTransientWithRoute<VPlaceholderViewView, VPlaceholderViewViewModel>();
+        builder.Services.AddTransientWithRoute<VCheckableCollectionView, VCheckableCollectionViewModel>();
+        builder.Services.AddTransientWithRoute<VCheckBoxView, VCheckBoxViewModel>();
+        builder.Services.AddTransientWithRoute<VEditorView, VEditorViewModel>();
+        builder.Services.AddTransientWithRoute<VEntryView, VEntryViewModel>();
+        builder.Services.AddTransientWithRoute<VMenuCellView, VMenuCellViewModel>();
         return builder;
     }
 

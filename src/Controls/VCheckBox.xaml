@@ -68,6 +68,10 @@
                HorizontalOptions="Start"
                VerticalOptions="Center"
                Margin="5,0,0,0"
-               BindingContext="{Reference this}"></Label>
+               BindingContext="{Reference this}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer  Tapped="SelTapped" />
+            </Label.GestureRecognizers>
+        </Label>
     </Grid>
 </ContentView>

@@ -67,21 +67,16 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Compile Remove="Views\VCheckableCollectionView.xaml.cs" />
 	  <Compile Remove="Views\VCheckBoxButtonView.xaml.cs" />
 	  <Compile Remove="Views\VCheckBoxGroupView.xaml.cs" />
-	  <Compile Remove="Views\VCheckBoxView.xaml.cs" />
 	  <Compile Remove="Views\VCollectionExpandableItemView.xaml.cs" />
 	  <Compile Remove="Views\VCollectionItemView.xaml.cs" />
 	  <Compile Remove="Views\VCollectionView.xaml.cs" />
 	  <Compile Remove="Views\VDateNativePickerView.xaml.cs" />
 	  <Compile Remove="Views\VDatePickerView.xaml.cs" />
-	  <Compile Remove="Views\VEditorView.xaml.cs" />
-	  <Compile Remove="Views\VEntryView.xaml.cs" />
 	  <Compile Remove="Views\VExpanderView.xaml.cs" />
 	  <Compile Remove="Views\VFormItemView.xaml.cs" />
 	  <Compile Remove="Views\VIndicatorView.xaml.cs" />
-	  <Compile Remove="Views\VMenuCellView.xaml.cs" />
 	  <Compile Remove="Views\VNumberEntryView.xaml.cs" />
 	  <Compile Remove="Views\VPickerView.xaml.cs" />
 	  <Compile Remove="Views\VRichTextEditorView.xaml.cs" />
@@ -94,21 +89,16 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <MauiXaml Remove="Views\VCheckableCollectionView.xaml" />
 	  <MauiXaml Remove="Views\VCheckBoxButtonView.xaml" />
 	  <MauiXaml Remove="Views\VCheckBoxGroupView.xaml" />
-	  <MauiXaml Remove="Views\VCheckBoxView.xaml" />
 	  <MauiXaml Remove="Views\VCollectionExpandableItemView.xaml" />
 	  <MauiXaml Remove="Views\VCollectionItemView.xaml" />
 	  <MauiXaml Remove="Views\VCollectionView.xaml" />
 	  <MauiXaml Remove="Views\VDateNativePickerView.xaml" />
 	  <MauiXaml Remove="Views\VDatePickerView.xaml" />
-	  <MauiXaml Remove="Views\VEditorView.xaml" />
-	  <MauiXaml Remove="Views\VEntryView.xaml" />
 	  <MauiXaml Remove="Views\VExpanderView.xaml" />
 	  <MauiXaml Remove="Views\VFormItemView.xaml" />
 	  <MauiXaml Remove="Views\VIndicatorView.xaml" />
-	  <MauiXaml Remove="Views\VMenuCellView.xaml" />
 	  <MauiXaml Remove="Views\VNumberEntryView.xaml" />
 	  <MauiXaml Remove="Views\VPickerView.xaml" />
 	  <MauiXaml Remove="Views\VPlaceholderView.xaml" />
@@ -205,6 +195,9 @@
 	  <MauiXaml Update="Views\VCheckableCollection.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\VCheckableCollectionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\VCheckBox.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -212,6 +205,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VCheckBoxGroup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VCheckBoxView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VCollection.xaml">
@@ -232,7 +228,13 @@
 	  <MauiXaml Update="Views\VEditor.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\VEditorView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\VEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VEntryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VExpander.xaml">
@@ -245,6 +247,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VMenuCell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VMenuCellView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VNumberEntry.xaml">

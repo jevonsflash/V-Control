@@ -18,10 +18,10 @@ public partial class VPicker : ContentView
         typeof(string),
         typeof(VPicker),
         string.Empty,
-        propertyChanged: onDisplayPropertyNamePropertyChanged
+        propertyChanged: OnDisplayPropertyNamePropertyChanged
     );
 
-    private static void onDisplayPropertyNamePropertyChanged(
+    private static void OnDisplayPropertyNamePropertyChanged(
         BindableObject bindable,
         object oldValue,
         object newValue
@@ -69,10 +69,10 @@ public partial class VPicker : ContentView
         typeof(VPicker),
         null,
         BindingMode.TwoWay,
-        propertyChanged: onSelectedItemPropertyChanged
+        propertyChanged: OnSelectedItemPropertyChanged
     );
 
-    private static void onSelectedItemPropertyChanged(
+    private static void OnSelectedItemPropertyChanged(
         BindableObject bindable,
         object oldValue,
         object newValue

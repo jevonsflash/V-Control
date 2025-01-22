@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VEditorView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VEditorViewModel"
-             
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
-    <Grid BindingContext="{x:Reference this}"
-          MinimumHeightRequest="60"
-                        >
-        <Editor Text="{Binding EditorText}"
-               Placeholder="{Binding EditorPlaceholder}"
-                AutoSize="TextChanges"
-               Keyboard="{Binding EditorKeyboard}"
-               MaxLength="{Binding EditorMaxLength}"
-                IsReadOnly="{Binding EditorIsReadOnly}" />
-    </Grid>
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VEditorView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VEditorViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEditor></control:VEditor>
+
+            <Label Text="Placeholder"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEditor EditorPlaceholder="User Name"></control:VEditor>
+
+            <Label Text="ReadOnly"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEditor  EditorIsReadOnly="True"
+                             EditorText="Read Only Text !"></control:VEditor>
+
+            <Label Text="Double Height"
+                  
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEditor HeightRequest="120"
+                             EditorText="
+                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suscipit nisi pretium eu eleifend class commodo amet lorem. Sagittis vestibulum velit ullamcorper nullam cubilia velit curae rutrum. Tortor eu condimentum ante magnis habitant amet tortor velit. Netus blandit congue sem porta hac platea parturient conubia. Lacinia sapien curae torquent viverra metus penatibus vitae gravida. Eros venenatis nam a ante phasellus montes consequat commodo."></control:VEditor>
+
+            <Label Text="Max Length(8)"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEditor  EditorMaxLength="8"
+                             EditorText="12345678"></control:VEditor>
+
+
+           
+        </VerticalStackLayout>
+    </ScrollView>
+
 </viewBase:ContentPageBase>

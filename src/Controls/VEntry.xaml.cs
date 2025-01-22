@@ -16,6 +16,10 @@ public partial class VEntry : ContentView
         {
             this.MainContent.Content = (View)this.ContentSlot;
         }
+        if (this.PrefixSlot != default)
+        {
+            this.PrefixContent.Content = (View)this.PrefixSlot;
+        }
         if (string.IsNullOrEmpty(EntryIconText))
         {
             HasIconText = false;
@@ -150,6 +154,7 @@ public partial class VEntry : ContentView
     );
 
     public IView ContentSlot { get; set; }
+    public IView PrefixSlot { get; set; }
 
     public string EntryIconText
     {

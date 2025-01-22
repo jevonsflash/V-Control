@@ -1,76 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VCheckableCollectionView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VCheckableCollectionViewModel"
-             xmlns:controls="clr-namespace:VControl.Controls"
-             
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VCheckableCollectionView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VCheckableCollectionViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckableCollection BindingContext="{Binding CollectionModel1}"
+                                          SearchKeywords="{Binding SearchKeywords}"
+                                          IsSingleSelection="False"
+                                          DisplayPropertyName="Title"
+                                          ItemsSource="{Binding InternalEmailList}"
+                                          SelectedItems="{Binding SelectedEmailList}">
 
-    <Grid RowDefinitions="auto,1*"
-          BackgroundColor="{StaticResource Surface}"
-          RowSpacing="10">
-        <Grid ColumnDefinitions="*,60"
-              BindingContext="{x:Reference this}">
+            </control:VCheckableCollection>
 
-            <controls:VSearchBar HasAddButton="False"
-                                 Title="{Binding SearchKeywords}"></controls:VSearchBar>
+            <Label Text="Single Selection"
+                   Style="{StaticResource ItemDetailsLabel}" />
 
-            <Button Text="&#xf12d;"
-                    HorizontalOptions="End"
-                    Margin="0,0,10,0"
-                    FontFamily="FontAwesome-Solid"
-                    Grid.Column="1"
-                    IsVisible="{Binding HasClear}"
-                    Style="{StaticResource TextButton}"
-                    Clicked="ClearButton_Clicked"
-                    x:Name="ClearButton"></Button>
-        </Grid>
-
-
-        <CollectionView Grid.Row="1"
-                        x:Name="MainCollectionView"
-                        BindingContext="{Reference this}"
-                        BackgroundColor="{StaticResource Surface}"
-                        ItemsSource="{Binding InternalItems}"
-                        SelectionChanged="CollectionView_SelectionChanged"
-                        SelectionMode="Multiple">
-
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="10,5,10,5"
-                          InputTransparent="True">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroupList>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor"
-                                                    Value="{StaticResource Surface}" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                    <VisualState x:Name="Selected">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor"
-                                                    Value="{StaticResource Gray100}" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateGroupList>
-                        </VisualStateManager.VisualStateGroups>
-
-                        <controls:VCheckBox Title="{Binding DisplayValue}"
-                                          
-                                            IsEnabled="{Binding IsEnabled}"
-                                            IsChecked="{Binding IsSelected}">
-
-                        </controls:VCheckBox>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <control:VCheckableCollection BindingContext="{Binding CollectionModel2}"
+                                          SearchKeywords="{Binding SearchKeywords}"
+                                          IsSingleSelection="True"
+                                          DisplayPropertyName="Title"
+                                          ItemsSource="{Binding InternalEmailList}"
+                                          SelectedItems="{Binding SelectedEmailList}"></control:VCheckableCollection>
 
 
-    </Grid>
+            <Label Text="Single Selection"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VCheckableCollection BindingContext="{Binding CollectionModel3}"
+                                          SearchKeywords="{Binding SearchKeywords}"
+                                          HasClear="{Binding HasClear}"
+                                          HasSearchBar="{Binding HasSearchBar}"
+                                          IsCollectionEnabled="{Binding IsCollectionEnabled}"
+                                          DisplayPropertyName="{Binding DisplayPropertyName}"
+                                          ItemsSource="{Binding InternalEmailList}"
+                                          SelectedItems="{Binding SelectedEmailList}"></control:VCheckableCollection>
 
 
+            <Border Style="{StaticResource ControlSampleOptionLayout}"
+                    BindingContext="{Binding CollectionModel3}">
+                <TableView Intent="Settings"
+                           HasUnevenRows="True">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <SwitchCell Text="HasClear"
+                                        On="{Binding HasClear}"></SwitchCell>
+                            <SwitchCell Text="IsCollectionEnabled"
+                                        On="{Binding IsCollectionEnabled}"></SwitchCell>
+
+                            <SwitchCell Text="HasSearchBar"
+                                        On="{Binding HasSearchBar}"></SwitchCell>
+                            <ViewCell>
+                                <VerticalStackLayout>
+                                    <Label Text="DisplayPropertyName"
+                                           Style="{StaticResource ItemDetailsLabel}" />
+
+                                    <Picker Title="Select DisplayPropertyName"
+                                            SelectedItem="{Binding DisplayPropertyName}">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Title</x:String>
+                                                <x:String>Value</x:String>
+
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </viewBase:ContentPageBase>

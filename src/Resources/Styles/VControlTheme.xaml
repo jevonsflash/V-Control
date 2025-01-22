@@ -156,7 +156,7 @@
                                             Value="{StaticResource Surface}" />
                                 </VisualState.Setters>
                             </VisualState>
-                           
+
                             <VisualState x:Name="Busy">
                                 <VisualState.Setters>
                                     <Setter Property="ContentView.Opacity"
@@ -218,7 +218,7 @@
                                 <VisualState.Setters>
                                     <Setter Property="TextColor"
                                             Value="{StaticResource DisabledText}" />
-                                   
+
                                 </VisualState.Setters>
                             </VisualState>
 
@@ -482,7 +482,7 @@
                 <Setter Property="Stroke"
                         Value="{StaticResource Gray150}" />
                 <Setter Property="StrokeThickness"
-                        Value="0" />
+                        Value="2" />
                 <Setter Property="Margin"
                         Value="2" />
                 <Setter Property="Background"
@@ -491,16 +491,12 @@
             <Style x:Key="CalendarItemSelBorder"
                    TargetType="Border"
                    BasedOn="{StaticResource CalendarItemNormalBorder}">
-                <Setter Property="StrokeThickness"
-                        Value="0" />
                 <Setter Property="Background"
                         Value="{Binding SelectedColor}" />
             </Style>
             <Style x:Key="CalendarItemInvolvedBorder"
                    TargetType="Border"
                    BasedOn="{StaticResource CalendarItemNormalBorder}">
-                <Setter Property="StrokeThickness"
-                        Value="0" />
                 <Setter Property="Background"
                         Value="{StaticResource PrimaryContainer}" />
             </Style>
@@ -540,9 +536,9 @@
                 <Setter Property="StrokeShape"
                         Value="{StaticResource SmallCornerRadiusValue}" />
                 <Setter Property="HeightRequest"
-                        Value="28" />
+                        Value="24" />
                 <Setter Property="WidthRequest"
-                        Value="28" />
+                        Value="24" />
                 <Setter Property="HorizontalOptions"
                         Value="Center" />
                 <Setter Property="VerticalOptions"
@@ -550,23 +546,21 @@
                 <Setter Property="Stroke"
                         Value="{StaticResource Gray150}" />
                 <Setter Property="StrokeThickness"
-                        Value="0" />
+                        Value="2" />
                 <Setter Property="Background"
                         Value="{StaticResource Success}" />
             </Style>
             <Style x:Key="CheckBoxNormalBorder"
                    TargetType="Border"
                    BasedOn="{StaticResource CheckBoxSelBorder}">
-                <Setter Property="StrokeThickness"
-                        Value="2" />
+
                 <Setter Property="Background"
                         Value="{StaticResource Gray150}" />
             </Style>
             <Style x:Key="CheckBoxIndeterminateBorder"
                    TargetType="Border"
                    BasedOn="{StaticResource CheckBoxSelBorder}">
-                <Setter Property="StrokeThickness"
-                        Value="2" />
+
                 <Setter Property="Background"
                         Value="{StaticResource Warning}" />
             </Style>
@@ -581,23 +575,26 @@
                         Value="{StaticResource OnPrimary}" />
                 <Setter Property="Text"
                         Value="{Binding IconText}" />
+                <Setter Property="Opacity"
+                        Value="1" />
             </Style>
 
             <Style x:Key="CheckBoxNormalLabel"
                    TargetType="Label"
                    BasedOn="{StaticResource CheckBoxSelLabel}">
-                <Setter Property="TextColor"
-                        Value="{StaticResource Gray100}" />
+                <Setter Property="Opacity"
+                        Value="0" />
             </Style>
 
             <Style x:Key="CheckBoxIndeterminateLabel"
                    TargetType="Label"
                    BasedOn="{StaticResource CheckBoxSelLabel}">
-                <Setter Property="TextColor"
-                        Value="{StaticResource Gray100}" />
-                <Setter Property="Text"
-                        Value="&#xf068;" />
+                <Setter Property="Opacity"
+                        Value="1" />
             </Style>
+            
+
+
             <!--VCard -->
 
             <Style x:Key="CardLayoutBorder"

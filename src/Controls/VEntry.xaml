@@ -4,8 +4,13 @@
              x:Class="VControl.Controls.VEntry"
              x:Name="this">
     <Grid BindingContext="{x:Reference this}"
-          ColumnDefinitions="1*, auto">
+          ColumnDefinitions="auto, 1*, auto">
+        <ContentView x:Name="PrefixContent"
+                     Grid.Column="0">
+
+        </ContentView>
         <Entry Style="{StaticResource VEntryEntry}"
+               Grid.Column="1"
                Text="{Binding EntryText}"
                IsReadOnly="{Binding EntryIsReadOnly}"
                ClearButtonVisibility="WhileEditing"
@@ -18,7 +23,7 @@
             </Entry.GestureRecognizers>
         </Entry>
         <ContentView x:Name="MainContent"
-                     Grid.Column="1">
+                     Grid.Column="2">
 
         </ContentView>
     </Grid>

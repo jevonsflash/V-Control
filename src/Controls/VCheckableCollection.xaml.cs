@@ -33,36 +33,7 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
             typeof(object),
             typeof(VCheckableCollection)
         );
-    public static readonly BindableProperty HasCheckBoxProperty = BindableProperty.Create(
-        nameof(HasCheckBox),
-        typeof(bool),
-        typeof(VCheckableCollection),
-        false
-    );
 
-    public static readonly BindableProperty HasEditProperty = BindableProperty.Create(
-        nameof(HasEdit),
-        typeof(bool),
-        typeof(VCheckableCollection),
-        false
-    );
-
-    public static readonly BindableProperty HasRemoveProperty = BindableProperty.Create(
-        nameof(HasRemove),
-        typeof(bool),
-        typeof(VCheckableCollection),
-        false,
-        propertyChanged: OnHasRemovePropertyChanged
-    );
-
-    private static void OnHasRemovePropertyChanged(
-        BindableObject bindable,
-        object oldValue,
-        object newValue
-    )
-    {
-        (bindable as VCheckableCollection).NotifyChanged();
-    }
 
     public static readonly BindableProperty HasClearProperty = BindableProperty.Create(
         nameof(HasClear),
@@ -70,6 +41,15 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         typeof(VCheckableCollection),
         true
     );
+
+
+    public static readonly BindableProperty HasSearchBarProperty = BindableProperty.Create(
+        nameof(HasSearchBar),
+        typeof(bool),
+        typeof(VCheckableCollection),
+        true
+    );
+
 
     public static readonly BindableProperty IsCollectionEnabledProperty = BindableProperty.Create(
         nameof(IsCollectionEnabled),
@@ -86,11 +66,29 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         object newValue
     )
     {
+
+
+
         if ((bool)newValue)
         {
-            (bindable as VCheckableCollection).HasClear = false;
+            if ((bindable as VCheckableCollection).IsSingleSelection)
+            {
+                (bindable as VCheckableCollection).MainCollectionView.SelectionMode =
+                    Microsoft.Maui.Controls.SelectionMode.Single;
+            }
+            else
+            {
+                (bindable as VCheckableCollection).MainCollectionView.SelectionMode =
+                    Microsoft.Maui.Controls.SelectionMode.Multiple;
+            }
         }
-        ;
+        else
+        {
+            (bindable as VCheckableCollection).MainCollectionView.SelectionMode = Microsoft.Maui.Controls.SelectionMode.None;
+        }
+
+        (bindable as VCheckableCollection).NotifyChanged();
+
     }
 
     public static readonly BindableProperty IsSingleSelectionProperty = BindableProperty.Create(
@@ -108,42 +106,26 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         object newValue
     )
     {
-        if ((bool)newValue)
+        if ((bindable as VCheckableCollection).IsEnabled)
         {
-            (bindable as VCheckableCollection).MainCollectionView.SelectionMode =
-                (Microsoft.Maui.Controls.SelectionMode)SelectionMode.Single;
+            if ((bool)newValue)
+            {
+                (bindable as VCheckableCollection).MainCollectionView.SelectionMode =
+                    Microsoft.Maui.Controls.SelectionMode.Single;
+            }
+            else
+            {
+                (bindable as VCheckableCollection).MainCollectionView.SelectionMode =
+                    Microsoft.Maui.Controls.SelectionMode.Multiple;
+            }
         }
         else
         {
-            (bindable as VCheckableCollection).MainCollectionView.SelectionMode =
-                (Microsoft.Maui.Controls.SelectionMode)SelectionMode.Multiple;
+            (bindable as VCheckableCollection).MainCollectionView.SelectionMode = Microsoft.Maui.Controls.SelectionMode.None;
         }
     }
 
-    //�߶ȱ���
-    public static readonly BindableProperty FlHeightProperty = BindableProperty.Create(
-        nameof(FlHeight),
-        typeof(string),
-        typeof(VCheckableCollection),
-        "100",
-        defaultBindingMode: BindingMode.OneWay
-    );
 
-    public static readonly BindableProperty FlDirectionProperty = BindableProperty.Create(
-        nameof(FlDirection),
-        typeof(FlexDirection),
-        typeof(VCheckableCollection),
-        FlexDirection.Row,
-        defaultBindingMode: BindingMode.OneWay
-    );
-
-    public static readonly BindableProperty FlWrapProperty = BindableProperty.Create(
-        nameof(FlWrap),
-        typeof(FlexWrap),
-        typeof(VCheckableCollection),
-        FlexWrap.Wrap,
-        defaultBindingMode: BindingMode.OneWay
-    );
 
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
         nameof(ItemsSource),
@@ -280,10 +262,10 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         typeof(string),
         typeof(VCheckableCollection),
         string.Empty,
-        propertyChanged: onDisplayPropertyNamePropertyChanged
+        propertyChanged: OnDisplayPropertyNamePropertyChanged
     );
 
-    private static void onDisplayPropertyNamePropertyChanged(
+    private static void OnDisplayPropertyNamePropertyChanged(
         BindableObject bindable,
         object oldValue,
         object newValue
@@ -298,7 +280,7 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         typeof(VCheckableCollection),
         null,
         BindingMode.TwoWay,
-        propertyChanged: onSelectedItemPropertyChanged
+        propertyChanged: OnSelectedItemPropertyChanged
     );
 
     public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
@@ -309,7 +291,7 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         BindingMode.TwoWay
     );
 
-    private static void onSelectedItemPropertyChanged(
+    private static void OnSelectedItemPropertyChanged(
         BindableObject bindable,
         object oldValue,
         object newValue
@@ -358,29 +340,18 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         set { SetValue(HasClearProperty, value); }
     }
 
+    public bool HasSearchBar
+    {
+        get { return (bool)GetValue(HasSearchBarProperty); }
+        set { SetValue(HasSearchBarProperty, value); }
+    }
+
     public bool IsSingleSelection
     {
         get => (bool)GetValue(IsSingleSelectionProperty);
         set => SetValue(IsSingleSelectionProperty, value);
     }
 
-    public string FlHeight
-    {
-        get => (string)GetValue(FlHeightProperty);
-        set => SetValue(FlHeightProperty, value);
-    }
-
-    public FlexDirection FlDirection
-    {
-        get => (FlexDirection)GetValue(FlDirectionProperty);
-        set => SetValue(FlDirectionProperty, value);
-    }
-
-    public FlexWrap FlWrap
-    {
-        get => (FlexWrap)GetValue(FlWrapProperty);
-        set => SetValue(FlWrapProperty, value);
-    }
 
     public ICommand SelectionChangedCommand
     {
@@ -455,11 +426,7 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
                     Value = c,
                     DisplayPropertyName = this.DisplayPropertyName,
                     Index = ItemsSource.IndexOf(c),
-                    IsSelected =
-                        SelectedItems == null ? SelectedItem == c : SelectedItems.Contains(c),
-                    HasRemove = this.HasRemove,
-                    HasEdit = this.HasEdit,
-                    IsEnabled = true,
+                    IsSelected = SelectedItems == null ? false : SelectedItems.Contains(c),
                 };
                 result.Add(current);
             }
@@ -470,6 +437,20 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
     public void NotifyChanged()
     {
         InternalItems = new List<VItemWrapper>(GetItemWrappers());
+        _suppressCollectionViewSelectionChangeNotification = true;
+
+        MainCollectionView.SelectedItems.Clear();
+        foreach (var item in InternalItems)
+        {
+            if (item.IsSelected)
+            {
+
+                MainCollectionView.SelectedItems.Add(item);
+            }
+
+        }
+        _suppressCollectionViewSelectionChangeNotification = false;
+
     }
 
     public void OnSelectedItemProperty(object oldValue, object newValue)
@@ -518,23 +499,8 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         set { SetValue(SelectedIndexProperty, value); }
     }
 
-    public bool HasCheckBox
-    {
-        get { return (bool)GetValue(HasCheckBoxProperty); }
-        set { SetValue(HasCheckBoxProperty, value); }
-    }
 
-    public bool HasEdit
-    {
-        get { return (bool)GetValue(HasEditProperty); }
-        set { SetValue(HasEditProperty, value); }
-    }
 
-    public bool HasRemove
-    {
-        get { return (bool)GetValue(HasEditProperty); }
-        set { SetValue(HasEditProperty, value); }
-    }
 
     public VCheckableCollection()
     {
@@ -550,7 +516,7 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
         if (ItemsSource != null)
         {
             var currentSelection = e.CurrentSelection;
-            if (currentSelection != null)
+            if (currentSelection != null && this.SelectedItems != null)
             {
                 _suppressSelectionChangeNotification = true;
 

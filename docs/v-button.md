@@ -43,6 +43,8 @@
 
 ## 禁用状态
 
+设置 `IsEnabled`为 `False` 属性即可。
+
 ![alt text](assets/image-28.png)
 
 ```xml
@@ -53,11 +55,13 @@
 
 ## 忙碌状态
 
+设置 `IsBusy`为 `True` 属性即可。
+
 ![alt text](assets/recording.gif)
 
 ```xml
 <control:VButton TitleText="BUTTON"
-                    IsEnabled="False"></control:VButton>
+                    IsBusy="True"></control:VButton>
 ```
 
 ## 自定义内容

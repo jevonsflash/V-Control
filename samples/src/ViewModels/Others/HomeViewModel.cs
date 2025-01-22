@@ -32,7 +32,12 @@ public partial class HomeViewModel : ViewModelBase
             new HomeViewItem(){ Title="VRadioButton",  Url="VRadioButtonView", Info="", Icon="vcard"},
             new HomeViewItem(){ Title="VTouchContentView",  Url="VTouchContentViewView", Info="", Icon="vcard"},
             new HomeViewItem(){ Title="VTopAppBar",  Url="VTopAppBarView", Info="", Icon="vcard"},
-            new HomeViewItem(){ Title="VPlaceholderView",  Url="VPlaceholderViewView", Info="", Icon="vcard"}
+            new HomeViewItem(){ Title="VPlaceholderView",  Url="VPlaceholderViewView", Info="", Icon="vcard"},
+            new HomeViewItem(){ Title="VCheckableCollection",  Url="VCheckableCollectionView", Info="", Icon="vcard"},
+            new HomeViewItem(){ Title="VCheckBox",  Url="VCheckBoxView", Info="", Icon="vcard"},
+            new HomeViewItem(){ Title="VEntry",  Url="VEntryView", Info="", Icon="vcard"},
+            new HomeViewItem(){ Title="VEditor",  Url="VEditorView", Info="", Icon="vcard"},
+            new HomeViewItem(){ Title="VMenuCell",  Url="VMenuCellView", Info="", Icon="vcard"}
 
         };
     }

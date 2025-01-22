@@ -24,4 +24,6 @@ public partial class VTopAppBarViewModel : ViewModelBase
         await this.AlertOkayAsync(obj.ToString());
     }
 
+
+
 }

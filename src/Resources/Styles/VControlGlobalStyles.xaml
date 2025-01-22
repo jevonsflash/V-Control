@@ -102,6 +102,23 @@
                         Value="2" />
                 <Setter Property="TextColor"
                         Value="{StaticResource Primary}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="BorderColor"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="Background"
+                                            Value="{StaticResource Surface}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
 
 
@@ -113,6 +130,19 @@
                         Value="Transparent" />
                 <Setter Property="TextColor"
                         Value="{StaticResource Primary}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
 
             <Style x:Key="LightButton"
@@ -122,6 +152,21 @@
                         Value="{StaticResource PrimaryContainer}" />
                 <Setter Property="TextColor"
                         Value="{StaticResource OnPrimaryContainer}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor"
+                                            Value="{StaticResource DisabledText}" />
+                                    <Setter Property="Background"
+                                            Value="{StaticResource Surface}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
             </Style>
 
 

@@ -89,6 +89,7 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
         }
     }
 
+
     /// <summary>
     /// 显示OK信息
     /// </summary>
@@ -153,6 +154,13 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
     }
 
     [RelayCommand]
+    public virtual async Task MessageAsync(string obj)
+    {
+        await this.AlertOkayAsync(obj);
+
+    }
+
+    [RelayCommand]
     public virtual async Task GoPageAsync(string page)
     {
         await IsBusyFor(
@@ -161,6 +169,7 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
                     await NavigationService.NavigateToAsync(page);
                 });
     }
+
 
     [RelayCommand]
     public virtual async Task BackAsync()

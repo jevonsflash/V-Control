@@ -54,10 +54,10 @@ public partial class VTimeLine : ContentView
         typeof(VTimeLine),
         null,
         BindingMode.TwoWay,
-        propertyChanged: onSelectedItemPropertyChanged
+        propertyChanged: OnSelectedItemPropertyChanged
     );
 
-    private static void onSelectedItemPropertyChanged(
+    private static void OnSelectedItemPropertyChanged(
         BindableObject bindable,
         object oldValue,
         object newValue

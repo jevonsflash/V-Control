@@ -4,6 +4,7 @@ namespace VControl.Controls;
 
 public partial class VCheckBox : ContentView
 {
+
     public event EventHandler Clicked;
 
     private void VCheckBox_Loaded(object sender, EventArgs e)
@@ -148,7 +149,16 @@ public partial class VCheckBox : ContentView
     {
         InitializeComponent();
         Loaded += VCheckBox_Loaded;
+        PropertyChanged += VCheckBox_PropertyChanged;
         GoToState(IsChecked);
+    }
+
+    private void VCheckBox_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(IsEnabled))
+        {
+
+        }
     }
 
     void OnCommandCanExecuteChanged(object sender, EventArgs eventArgs)
@@ -158,11 +168,12 @@ public partial class VCheckBox : ContentView
 
     public async void SelTapped(object sender, TappedEventArgs e)
     {
-        IsChecked = !IsChecked;
         if (!IsEnabled)
         {
             return;
         }
+        IsChecked = !IsChecked;
+        this.IsIndeterminate = false;
 
         Command?.Execute(CommandParameter);
         GoToState(IsChecked);
@@ -180,9 +191,11 @@ public partial class VCheckBox : ContentView
         if (isIndeterminate)
         {
             VisualStateManager.GoToState(this, "IsIndeterminate");
+            this.IconText = "\uF068";
         }
         else
         {
+            this.IconText = "\uF00C";
             GoToState(this.IsChecked);
         }
     }

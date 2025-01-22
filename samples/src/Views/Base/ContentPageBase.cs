@@ -26,13 +26,4 @@ public abstract class ContentPageBase : ContentPage
         NavigationPage.SetBackButtonTitle(this, string.Empty);
     }
 
-    /// <summary>
-    /// 显示警告
-    /// </summary>
-    /// <param name="message"></param>
-    /// <returns></returns>
-    public async Task AlertUnAuthoirzedAsync(string message = "")
-    {
-        await DisplayAlert("Alert", "You have been alerted", "OK");
-    }
 }

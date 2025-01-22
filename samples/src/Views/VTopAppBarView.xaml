@@ -154,7 +154,7 @@
                 </TableView>
             </Border>
             <Button Text="Animation With Scroller"
-                    Command="{Binding GoPageCommand}"
+                    Command="{Binding MessageCommand}"
                     CommandParameter="AnimationWithScrollerView"></Button>
 
 

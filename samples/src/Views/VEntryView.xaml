@@ -1,24 +1,92 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VEntryView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VEntryViewModel"
-             
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
-    <Grid BindingContext="{x:Reference this}" ColumnDefinitions="1*, auto">
-        <Entry Style="{StaticResource VEntryEntry}"
-            Text="{Binding EntryText}"
-               IsReadOnly="{Binding EntryIsReadOnly}"
-               ClearButtonVisibility="WhileEditing"
-               Placeholder="{Binding EntryPlaceholder}"
-               Keyboard="{Binding EntryKeyboard}"
-               MaxLength="{Binding EntryMaxLength}"               
-               IsPassword="{Binding EntryIsPassword}">
-            <Entry.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
-            </Entry.GestureRecognizers>
-        </Entry>
-        <viewBase:ContentPageBase x:Name="MainContent" Grid.Column="1">
-           
-        </viewBase:ContentPageBase>
-    </Grid>
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VEntryView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VEntryViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEntry></control:VEntry>
+
+            <Label Text="Placeholder"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEntry EntryPlaceholder="User Name"></control:VEntry>
+
+            <Label Text="Icon"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEntry EntryIconText="&#xf007;"></control:VEntry>
+
+            <Label Text="ReadOnly"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEntry  EntryIsReadOnly="True"
+                             EntryText="Read Only Text !"></control:VEntry>
+
+            <Label Text="Password"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEntry  EntryIsPassword="True"
+                             EntryText="Passw0rd!"></control:VEntry>
+
+            <Label Text="Max Length(8)"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEntry  EntryMaxLength="8"
+                             EntryText="12345678"></control:VEntry>
+
+
+            <Label Text="Customized Content"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VEntry EntryText="123">
+
+                <control:VEntry.ContentSlot>
+                    <HorizontalStackLayout HeightRequest="20">
+                        <Image Source="aze.png"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"></Image>
+                        <Label Text="Calories"></Label>
+                    </HorizontalStackLayout>
+                </control:VEntry.ContentSlot>
+            </control:VEntry>
+
+            <control:VEntry EntryText="123">
+
+                <control:VEntry.PrefixSlot>
+                    <Border Margin="0,5"
+                            Padding="15,5"
+                            Background="{StaticResource SurfaceVariant}">
+                        <Label Text="$"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"></Label>
+                    </Border>
+                </control:VEntry.PrefixSlot>
+            </control:VEntry>
+
+            <control:VEntry EntryText="www.matoapp.net">
+
+                <control:VEntry.PrefixSlot>
+                    <Border Margin="0,5"
+                            Padding="5"
+                            Background="{StaticResource SurfaceVariant}">
+                        <Label Text="Http://"
+                               VerticalOptions="Center"></Label>
+                    </Border>
+                </control:VEntry.PrefixSlot>
+                <control:VEntry.ContentSlot>
+                    <Border Margin="0,5"
+                            Padding="15,5"
+                            Background="{StaticResource SurfaceVariant}">
+                        <Label 
+                               FontFamily="FontAwesome-Solid"
+                               Text="&#xf002;"                             
+                               VerticalOptions="Center" />
+                    </Border>
+                </control:VEntry.ContentSlot>
+            </control:VEntry>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </viewBase:ContentPageBase>

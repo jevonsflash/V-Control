@@ -10,7 +10,14 @@
                 StrokeShape="{StaticResource MediumRoundRectangle}"
                 Background="{StaticResource Surface}"
                 StrokeThickness="0">
-            <Grid ColumnDefinitions="30,*">
+            <Grid ColumnDefinitions="32,*, auto">
+                <Label Grid.Column="0"
+                       FontFamily="FontAwesome-Solid"
+                       Text="&#xf002;"
+                       TextColor="{StaticResource OnSurface}"
+                       WidthRequest="17"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center" />
                 <Entry Grid.Column="1"
                        Keyboard="Chat"
                        Placeholder="{Binding PlaceHolder}"
@@ -20,7 +27,7 @@
                        ClearButtonVisibility="WhileEditing"
                        ReturnCommand="{Binding SearchCommand}"
                        Margin="5,0" />
-                <Image Grid.Column="0"
+                <Image Grid.Column="1"
                        Source="{Binding IconSource}"
                        WidthRequest="15"
                        Margin="15,0,5,0" />

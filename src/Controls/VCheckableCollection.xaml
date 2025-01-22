@@ -8,7 +8,8 @@
 
     <Grid RowDefinitions="auto,1*"
           RowSpacing="10">
-        <Grid ColumnDefinitions="*,60"
+        <Grid ColumnDefinitions="*,auto"
+              IsVisible="{Binding HasSearchBar}"
               BindingContext="{x:Reference this}">
 
             <controls:VSearchBar HasAddButton="False"
@@ -16,7 +17,6 @@
 
             <Button Text="&#xf12d;"
                     HorizontalOptions="End"
-                    Margin="0,0,10,0"
                     FontFamily="FontAwesome-Solid"
                     Grid.Column="1"
                     IsVisible="{Binding HasClear}"
@@ -27,6 +27,7 @@
 
 
         <CollectionView Grid.Row="1"
+                        IsEnabled="{Binding IsCollectionEnabled}"
                         x:Name="MainCollectionView"
                         BindingContext="{Reference this}"
                         BackgroundColor="{StaticResource Surface}"
@@ -59,8 +60,7 @@
 
                         <controls:VCheckBox Title="{Binding DisplayValue}"
                                           
-                                            IsEnabled="{Binding IsEnabled}"
-                                            IsChecked="{Binding IsSelected}">
+                                            IsChecked="{Binding IsSelected, Mode=TwoWay}">
 
                         </controls:VCheckBox>
                     </Grid>
