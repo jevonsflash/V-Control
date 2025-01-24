@@ -4,10 +4,7 @@ namespace VControl.Samples.ViewModels;
 
 public partial class VCheckBoxViewModel : ViewModelBase
 {
-
-    public VCheckBoxViewModel(
-        INavigationService navService)
-
+    public VCheckBoxViewModel(INavigationService navService)
         : base(navService)
     {
         this.PageTitle = "VButton Samples";
@@ -15,5 +12,4 @@ public partial class VCheckBoxViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool _isIndeterminate = true;
-
 }

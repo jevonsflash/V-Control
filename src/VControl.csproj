@@ -34,6 +34,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Controls\VRadioButton.xaml.cs">
+	    <DependentUpon>VRadioButton.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Controls\VRadioButtonGroup.xaml.cs">
+	    <DependentUpon>VRadioButtonGroup.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Controls\VTopAppBar.xaml.cs">
 	    <DependentUpon>VTopAppBar.xaml</DependentUpon>
 	  </Compile>
@@ -63,6 +69,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\VRadioButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\VTopAppBar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

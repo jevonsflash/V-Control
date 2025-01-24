@@ -1,9 +1,6 @@
 ﻿namespace VControl.Controls.Validations;
 
-/// <summary>
-/// 是否用户名或邮箱
-/// </summary>
-/// <typeparam name="T"></typeparam>
+
 public class MinCountOfDigitRule<T> : IValidationRule<T>
 {
     private readonly int _minCount;

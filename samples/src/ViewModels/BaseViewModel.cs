@@ -1,6 +1,4 @@
 ﻿namespace VControl.Samples.ViewModels
 {
-    public partial class BaseViewModel : ObservableObject
-    {
-    }
+    public partial class BaseViewModel : ObservableObject { }
 }

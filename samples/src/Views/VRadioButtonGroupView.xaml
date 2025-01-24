@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VRadioButtonGroupView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VRadioButtonGroupViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+
+
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VRadioButtonGroup ItemsSource="{Binding InspTypeList2}"
+                                       SelectedItem="{Binding InspType}">
+
+
+
+            </control:VRadioButtonGroup>
+
+
+            <Label Text="With Icon"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VRadioButtonGroup ItemsSource="{Binding InspTypeList}"></control:VRadioButtonGroup>
+
+
+            <Label Text="Disabled"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VRadioButtonGroup IsEnabled="False"
+                                       ItemsSource="{Binding InspTypeList}"></control:VRadioButtonGroup>
+
+
+
+            <Label Text="Vertical Direction"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <Grid ColumnDefinitions="auto,*"
+                  ColumnSpacing="20">
+                <control:VRadioButtonGroup ItemsSource="{Binding InspTypeList}"
+                                           RadioButtonGroupDirection="Vertical"></control:VRadioButtonGroup>
+
+                <control:VRadioButtonGroup ItemsSource="{Binding InspTypeList2}"
+                                           Grid.Column="1"
+                                           RadioButtonGroupDirection="Vertical">
+
+
+
+                </control:VRadioButtonGroup>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</viewBase:ContentPageBase>

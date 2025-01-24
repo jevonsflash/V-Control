@@ -49,19 +49,29 @@
 
                     </VisualState.Setters>
                 </VisualState>
+                <VisualState x:Name="Disabled">
+                    <VisualState.Setters>
+                        <Setter TargetName="CalendarItemSelectedLayout"
+                                Property="Border.Style"
+                                Value="{StaticResource CalendarItemDisabledBorder}" />
+                        <Setter TargetName="DayLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CalendarItemDisabledLabel}" />
+                        <Setter TargetName="ChinaDateDayLabel"
+                                Property="Label.Style"
+                                Value="{StaticResource CalendarItemDisabledLabel}" />
+
+                    </VisualState.Setters>
+                </VisualState>
             </VisualStateGroup>
         </VisualStateGroupList>
     </VisualStateManager.VisualStateGroups>
 
     <ContentView.Content>
-        <Grid  x:Name="CalendarItemLayout"
-               WidthRequest="50"
-               HeightRequest="50"
+        <Grid  x:Name="CalendarItemLayout" Margin="0,5"
                HorizontalOptions="Center">
             <Border  x:Name="CalendarItemSelectedLayout"
-                     BindingContext="{x:Reference this}"
-                     Margin="2"
-                     HorizontalOptions="Center">
+                     BindingContext="{x:Reference this}">
                 <StackLayout VerticalOptions="Center"
                              HorizontalOptions="Center">
 

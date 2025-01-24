@@ -8,6 +8,7 @@ namespace VControl.Samples.ViewModels;
 public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
 {
     private long _isBusy;
+
     [ObservableProperty]
     private string _backPath;
     public bool IsBusy => Interlocked.Read(ref _isBusy) > 0;
@@ -23,7 +24,7 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
     /// <summary>
     /// 页面初始化时执行
     /// </summary>
-	public IAsyncRelayCommand InitializeAsyncCommand { get; }
+    public IAsyncRelayCommand InitializeAsyncCommand { get; }
 
     protected CancellationTokenSource CancellationTokenSource { get; private set; }
 
@@ -37,10 +38,7 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
     /// 可根据传值条件选择性执行，执行顺序早于InitializeAsync
     /// </summary>
     /// <param name="query"></param>
-    public virtual void ApplyQueryAttributes(IDictionary<string, object> query)
-    {
-
-    }
+    public virtual void ApplyQueryAttributes(IDictionary<string, object> query) { }
 
     /// <summary>
     /// 页面初始化，已调用了IsBusyFor。
@@ -64,7 +62,10 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
     /// </summary>
     public void CancelActiveRequests()
     {
-        if (this.CancellationTokenSource != null && !this.CancellationTokenSource.IsCancellationRequested)
+        if (
+            this.CancellationTokenSource != null
+            && !this.CancellationTokenSource.IsCancellationRequested
+        )
         {
             this.CancellationTokenSource.Cancel();
             this.CancellationTokenSource.Dispose();
@@ -88,7 +89,6 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
             OnPropertyChanged(nameof(IsBusy));
         }
     }
-
 
     /// <summary>
     /// 显示OK信息
@@ -119,7 +119,8 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
         var customSnackbar = Snackbar.Make(
             message,
             duration: TimeSpan.FromSeconds(30),
-            visualOptions: options);
+            visualOptions: options
+        );
 
         await customSnackbar.Show();
     }
@@ -143,7 +144,8 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
         var customSnackbar = Snackbar.Make(
             message,
             duration: TimeSpan.FromSeconds(30),
-            visualOptions: options);
+            visualOptions: options
+        );
 
         await customSnackbar.Show();
     }
@@ -157,19 +159,16 @@ public abstract partial class ViewModelBase : ObservableObject, IViewModelBase
     public virtual async Task MessageAsync(string obj)
     {
         await this.AlertOkayAsync(obj);
-
     }
 
     [RelayCommand]
     public virtual async Task GoPageAsync(string page)
     {
-        await IsBusyFor(
-                async () =>
-                {
-                    await NavigationService.NavigateToAsync(page);
-                });
+        await IsBusyFor(async () =>
+        {
+            await NavigationService.NavigateToAsync(page);
+        });
     }
-
 
     [RelayCommand]
     public virtual async Task BackAsync()

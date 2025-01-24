@@ -21,7 +21,7 @@
 
 多选框不可用状态。
 
-设置 `IsEnabled`为 `False` 属性即可。
+设置 `IsEnabled`属性为 `False` 即可。
 
 ![alt text](assets/image-36.png)
 

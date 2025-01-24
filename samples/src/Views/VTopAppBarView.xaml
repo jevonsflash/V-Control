@@ -34,7 +34,7 @@
             <Label Text="Custom"
                    Style="{StaticResource ItemDetailsLabel}" />
             <Grid BackgroundColor="Black">
-                <Image Source="healthy_food.png"></Image>
+                <Image Source="healthy_food.png" HeightRequest="293"></Image>
                 <control:VTopAppBar TitleText="Title Large"
                                     TitleTextColor="White"
                                     Progress="{Binding Progress}"

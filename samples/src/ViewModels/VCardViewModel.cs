@@ -4,13 +4,6 @@ namespace VControl.Samples.ViewModels;
 
 public partial class VCardViewModel : ViewModelBase
 {
-
-    public VCardViewModel(
-        INavigationService navService)
-
-        : base(navService)
-    {
-
-    }
-
+    public VCardViewModel(INavigationService navService)
+        : base(navService) { }
 }

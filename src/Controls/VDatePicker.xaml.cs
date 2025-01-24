@@ -63,7 +63,7 @@ public partial class VDatePicker : ContentView
         nameof(SelectedDate),
         typeof(DateTime),
         typeof(VDatePicker),
-        DateTime.Today,
+        default,
         BindingMode.TwoWay,
         propertyChanged: OnSelectedDatePropertyChanged
     );
@@ -116,7 +116,7 @@ public partial class VDatePicker : ContentView
             return;
         }
 
-        _calendar = new CalendarModel(SelectedDate);
+        _calendar = new CalendarModel(SelectedDate == default ? DateTime.Today : SelectedDate);
         Refresh();
         SetDaysOfWeekNames();
     }
@@ -192,7 +192,7 @@ public partial class VDatePicker : ContentView
         if (calendar[line, col] != null)
         {
             model = calendar[line, col];
-            (stk.Children[line] as VCalendarItem).IsEnabled = true;
+            (stk.Children[line] as VCalendarItem).Opacity = 1;
             (stk.Children[line] as VCalendarItem).Text = GetText(model);
             (stk.Children[line] as VCalendarItem).ChinaDateText = GetChinaDateText(model);
             if (this.SelectedDates != null)
@@ -202,15 +202,25 @@ public partial class VDatePicker : ContentView
                 );
                 (stk.Children[line] as VCalendarItem).IsSelected = isSelected;
             }
+            else if (this.SelectedDate != default)
+            {
+                var isSelected = DateTime.Equals(SelectedDate.Date, model.Date.Date);
+                (stk.Children[line] as VCalendarItem).IsSelected = isSelected;
+            }
+            else
+            {
+                (stk.Children[line] as VCalendarItem).IsSelected = false;
+            }
             (stk.Children[line] as VCalendarItem).DayModel = model;
         }
         else
         {
             (stk.Children[line] as VCalendarItem).Text = "";
             (stk.Children[line] as VCalendarItem).ChinaDateText = "";
-            (stk.Children[line] as VCalendarItem).IsEnabled = false;
+            (stk.Children[line] as VCalendarItem).Opacity = 0;
             (stk.Children[line] as VCalendarItem).IsSelected = false;
         }
+        (stk.Children[line] as VCalendarItem).IsEnabled = this.IsEnabled;
     }
 
     public string GetText(DayModel DayModel)
@@ -267,7 +277,7 @@ public partial class VDatePicker : ContentView
                 if (calendarItem.IsSelected)
                 {
                     this.SelectedDates?.Clear();
-                    SetAllSelected(false);
+                    SetAll(false);
                     this.SelectedDates?.Add(dayModel.Date);
                     this.SelectedDate = dayModel.Date;
                     this.SetSelected(dayModel.Position, true);
@@ -303,7 +313,7 @@ public partial class VDatePicker : ContentView
                 if (_selectRangeStage == 0)
                 {
                     this.SelectedDates?.Clear();
-                    SetAllSelected(false);
+                    SetAll(false);
                     this._selectRangeStartDate = dayModel.Date;
                     this.SetSelected(dayModel.Position, true);
 
@@ -316,7 +326,7 @@ public partial class VDatePicker : ContentView
                     {
                         if (dayModel.Date < startDate)
                         {
-                            SetAllSelected(false);
+                            SetAll(false);
                             this._selectRangeStartDate = dayModel.Date;
                             this.SetSelected(dayModel.Position, true);
 
@@ -416,7 +426,7 @@ public partial class VDatePicker : ContentView
         }
     }
 
-    private bool GetSelected((int i, int j) pos)
+    public bool GetSelected((int i, int j) pos)
     {
         var line = pos.i;
         var isSelected = false;
@@ -449,7 +459,7 @@ public partial class VDatePicker : ContentView
         return isSelected;
     }
 
-    public List<DayModel> SetAllSelected(bool isSelected)
+    public List<DayModel> SetAll(bool isSelected)
     {
         var selectedDates = new List<DayModel>();
 
@@ -462,6 +472,35 @@ public partial class VDatePicker : ContentView
         }
 
         return selectedDates;
+    }
+    public void JumpToDate(DateTime selectedDate)
+    {
+        _calendar = new CalendarModel(selectedDate);
+        Refresh();
+    }
+
+    public bool TrySetSelectedDate(bool isSelected, DateTime dateTime)
+    {
+        var result = false;
+        var selectedDates = new List<DayModel>();
+
+        for (int i = 0; i < _calendar.CurrentCalendar.GetLength(0); i++)
+        {
+            for (int j = 0; j < _calendar.CurrentCalendar.GetLength(1); j++)
+            {
+                var currentDayModel = _calendar.CurrentCalendar[i, j];
+                if (currentDayModel != null)
+                {
+                    var currentDate = currentDayModel.Date;
+                    if (DateTime.Equals(currentDate.Date, dateTime.Date))
+                    {
+                        SetSelected((i, j), isSelected);
+                        result = true;
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     private void SetDaysOfWeekNames()

@@ -30,7 +30,7 @@
                                           SelectedItems="{Binding SelectedEmailList}"></control:VCheckableCollection>
 
 
-            <Label Text="Single Selection"
+            <Label Text="Others"
                    Style="{StaticResource ItemDetailsLabel}" />
 
             <control:VCheckableCollection BindingContext="{Binding CollectionModel3}"

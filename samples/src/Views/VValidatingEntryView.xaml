@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:behaviors="clr-namespace:VControl.Behaviors"
-             x:Class="VControl.Samples.Views.VValidatingEntryView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VValidatingEntryViewModel"
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VValidatingEntryView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VValidatingEntryViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
 
-    <Grid BindingContext="{x:Reference this}">
-        <Entry Text="{Binding EntryText.Value}"
-               Style="{StaticResource VEntryEntry}"
-               ClearButtonVisibility="WhileEditing"
-               Placeholder="{Binding EntryPlaceholder}"
-               Keyboard="{Binding EntryKeyboard}"
-               TextChanged="Entry_TextChanged"
-               MaxLength="{Binding EntryMaxLength}"
-               IsPassword="{Binding EntryIsPassword}">
-            <Entry.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
-            </Entry.GestureRecognizers>
+    <ScrollView>
 
-            <Entry.Triggers>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
 
-                <DataTrigger TargetType="Entry"
-                             Binding="{Binding EntryText.IsValid}"
-                             Value="False">
-                    <Setter Property="TextColor"
-                            Value="{StaticResource Error}" />
-                </DataTrigger>
-            </Entry.Triggers>
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
 
+            <control:VValidatingEntry EntryText="{Binding ContactName}" />
 
-        </Entry>
+            <Label Text="Validate E-mail"
+                   Style="{StaticResource ItemDetailsLabel}" />
 
+            <control:VValidatingEntry EntryIconText="&#xf0e0;"
+                                      EntryText="{Binding Email}"
+                                      EntryKeyboard="Email" />
+            <Label Text="Validate UserName"
+                   Style="{StaticResource ItemDetailsLabel}" />
 
-    </Grid>
+            <control:VValidatingEntry EntryText="{Binding UserName}"
+                                      EntryPlaceholder="Enter your username or e-mail here."
+                                      ValidateCommand="{Binding ValidateUserNameCommand}"></control:VValidatingEntry>
+
+            <Label Text="Validate Password"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VValidatingEntry EntryIsPassword="True"
+                                      EntryText="{Binding Password}"
+                                      EntryPlaceholder="Enter your password here."></control:VValidatingEntry>
+
+            <Label Text="CompanyName"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VValidatingEntry EntryText="{Binding CompanyName}" />
+        </VerticalStackLayout>
+    </ScrollView>
 </viewBase:ContentPageBase>

@@ -1,57 +1,58 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:VControl.Converters"
              x:Class="VControl.Controls.VRadioButton"
+             
              x:Name="this">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <Style TargetType="RadioButton"
-                   BasedOn="{StaticResource RadioButtonStyle}">
-                <Setter Property="ControlTemplate"
-                        Value="{StaticResource RadioButtonTemplate}" />
-            </Style>
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroupList>
+            <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal">
+                    <VisualState.Setters>
+                        <Setter TargetName="RadioButtonLayout"
+                                Property="Border.Style"
+                                Value="{StaticResource RadioButtonNormalBorder}" />
+                        <Setter TargetName="RadioButtonCore"
+                                Property="Ellipse.Style"
+                                Value="{StaticResource RadioButtonNormalCore}" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="IsChecked">
+                    <VisualState.Setters>
+                        <Setter TargetName="RadioButtonLayout"
+                                Property="Border.Style"
+                                Value="{StaticResource RadioButtonSelBorder}" />
+                        <Setter TargetName="RadioButtonCore"
+                                Property="Ellipse.Style"
+                                Value="{StaticResource RadioButtonSelCore}" />
+                    </VisualState.Setters>
+                </VisualState>
+               
+            </VisualStateGroup>
+        </VisualStateGroupList>
+    </VisualStateManager.VisualStateGroups>
+    <Grid ColumnDefinitions="auto, auto">
+        <Border x:Name="RadioButtonLayout"
+                BindingContext="{Reference this}">
+            <Ellipse x:Name="RadioButtonCore"
+                     WidthRequest="15"
+                     HeightRequest="15"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center" />
 
-
-            <converters:StringToInvisibleConverter x:Key="StringToInvisibleConverter" />
-        </ResourceDictionary>
-    </ContentView.Resources>
-    <Border Style="{StaticResource RadioButtonGroupBorder}"
-            BindingContext="{Reference this}">
-        <StackLayout BindableLayout.ItemsSource="{Binding ItemsSource}"
-                     x:Name="_stack"
-                     RadioButtonGroup.SelectedValue="{Binding SelectedItem}"
-                     Orientation="Horizontal">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-
-                    <RadioButton Value="{Binding Id}"
-                                 x:Name="CurrentRadioButton">
-                        <RadioButton.Content>
-                            <Grid x:Name="MainLayout"
-                                  RowSpacing="0"
-                                  RowDefinitions="Auto, *">
-                                <Label x:Name="CurrentRadioButtonIcon"
-                                       HorizontalOptions="Center"
-                                       Grid.Row="0"
-                                       FontFamily="FontAwesome-Solid"
-                                       IsVisible="{Binding Source={x:Reference CurrentRadioButton}, Path=BindingContext.Icon ,Converter={StaticResource StringToInvisibleConverter},FallbackValue=False}"
-                                       Text="{Binding Source={x:Reference CurrentRadioButton}, Path=BindingContext.Icon}"></Label>
-
-                                <Label x:Name="CurrentRadioButtonLabel"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"
-                                       Grid.Row="1"
-                                       Text="{Binding Source={x:Reference CurrentRadioButton}, Path=BindingContext.Value}"></Label>
-
-
-                            </Grid>
-
-                        </RadioButton.Content>
-                    </RadioButton>
-
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
-    </Border>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer  Tapped="SelTapped" />
+            </Border.GestureRecognizers>
+        </Border>
+        <Label Text="{Binding Title}"
+               Grid.Column="1"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Margin="5,0,0,0"
+               BindingContext="{Reference this}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer  Tapped="SelTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </Grid>
 </ContentView>

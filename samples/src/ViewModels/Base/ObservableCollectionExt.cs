@@ -6,28 +6,24 @@ namespace VControl.Samples.ViewModels;
 
 public class ObservableCollectionExt<T> : ObservableCollection<T>
 {
-    public ObservableCollectionExt() : base()
-    {
-    }
+    public ObservableCollectionExt()
+        : base() { }
 
-    public ObservableCollectionExt(IEnumerable<T> collection) : base(collection)
-    {
-    }
+    public ObservableCollectionExt(IEnumerable<T> collection)
+        : base(collection) { }
 
-    public ObservableCollectionExt(List<T> list) : base(list)
-    {
-    }
+    public ObservableCollectionExt(List<T> list)
+        : base(list) { }
 
     public void ReloadData(IEnumerable<T> items)
     {
-        ReloadData(
-            innerList =>
+        ReloadData(innerList =>
+        {
+            foreach (var item in items)
             {
-                foreach (var item in items)
-                {
-                    innerList.Add(item);
-                }
-            });
+                innerList.Add(item);
+            }
+        });
     }
 
     public void ReloadData(Action<IList<T>> innerListAction)
@@ -38,7 +34,9 @@ public class ObservableCollectionExt<T> : ObservableCollection<T>
 
         OnPropertyChanged(new PropertyChangedEventArgs(nameof(Count)));
         OnPropertyChanged(new PropertyChangedEventArgs("Items[]"));
-        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        OnCollectionChanged(
+            new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset)
+        );
     }
 
     public async Task ReloadDataAsync(Func<IList<T>, Task> innerListAction)
@@ -49,6 +47,8 @@ public class ObservableCollectionExt<T> : ObservableCollection<T>
 
         OnPropertyChanged(new PropertyChangedEventArgs(nameof(Count)));
         OnPropertyChanged(new PropertyChangedEventArgs("Items[]"));
-        OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        OnCollectionChanged(
+            new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset)
+        );
     }
 }

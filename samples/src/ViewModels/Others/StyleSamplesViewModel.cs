@@ -4,13 +4,6 @@ namespace VControl.Samples.ViewModels;
 
 public partial class StyleSamplesViewModel : ViewModelBase
 {
-
-    public StyleSamplesViewModel(
-        INavigationService navService)
-
-        : base(navService)
-    {
-
-    }
-
+    public StyleSamplesViewModel(INavigationService navService)
+        : base(navService) { }
 }

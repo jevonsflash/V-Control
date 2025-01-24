@@ -73,7 +73,6 @@
 	  <Compile Remove="Views\VCollectionItemView.xaml.cs" />
 	  <Compile Remove="Views\VCollectionView.xaml.cs" />
 	  <Compile Remove="Views\VDateNativePickerView.xaml.cs" />
-	  <Compile Remove="Views\VDatePickerView.xaml.cs" />
 	  <Compile Remove="Views\VExpanderView.xaml.cs" />
 	  <Compile Remove="Views\VFormItemView.xaml.cs" />
 	  <Compile Remove="Views\VIndicatorView.xaml.cs" />
@@ -84,7 +83,6 @@
 	  <Compile Remove="Views\VTagPickerView.xaml.cs" />
 	  <Compile Remove="Views\VTimeLineView.xaml.cs" />
 	  <Compile Remove="Views\VUploaderView.xaml.cs" />
-	  <Compile Remove="Views\VValidatingEntryView.xaml.cs" />
 	  <Compile Remove="Views\VValidatingPickerView.xaml.cs" />
 	</ItemGroup>
 	
@@ -95,7 +93,6 @@
 	  <MauiXaml Remove="Views\VCollectionItemView.xaml" />
 	  <MauiXaml Remove="Views\VCollectionView.xaml" />
 	  <MauiXaml Remove="Views\VDateNativePickerView.xaml" />
-	  <MauiXaml Remove="Views\VDatePickerView.xaml" />
 	  <MauiXaml Remove="Views\VExpanderView.xaml" />
 	  <MauiXaml Remove="Views\VFormItemView.xaml" />
 	  <MauiXaml Remove="Views\VIndicatorView.xaml" />
@@ -107,7 +104,6 @@
 	  <MauiXaml Remove="Views\VTagPickerView.xaml" />
 	  <MauiXaml Remove="Views\VTimeLineView.xaml" />
 	  <MauiXaml Remove="Views\VUploaderView.xaml" />
-	  <MauiXaml Remove="Views\VValidatingEntryView.xaml" />
 	  <MauiXaml Remove="Views\VValidatingPickerView.xaml" />
 	</ItemGroup>
 
@@ -158,6 +154,9 @@
 	  </Compile>
 	  <Compile Update="Views\VPlaceholderViewView.xaml.cs">
 	    <DependentUpon>VPlaceholderViewView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\VRadioButtonGroupView.xaml.cs">
+	    <DependentUpon>VRadioButtonGroupView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\VTopAppBarAnimationWithScrollerView.xaml.cs">
 	    <DependentUpon>AnimationWithScrollerView.xaml</DependentUpon>
@@ -225,6 +224,9 @@
 	  <MauiXaml Update="Views\VDatePicker.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\VDatePickerView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\VEditor.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -258,7 +260,7 @@
 	  <MauiXaml Update="Views\VPicker.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\VRadioButton.xaml">
+	  <MauiXaml Update="Views\VRadioButtonGroup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VPlaceholderViewView.xaml">
@@ -270,7 +272,7 @@
 	  <MauiXaml Update="Views\VTopAppBarView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\VRadioButtonView.xaml">
+	  <MauiXaml Update="Views\VRadioButtonGroupView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VRichTextEditor.xaml">
@@ -295,6 +297,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VValidatingEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VValidatingEntryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VValidatingPicker.xaml">

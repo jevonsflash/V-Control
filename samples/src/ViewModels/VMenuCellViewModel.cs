@@ -4,10 +4,7 @@ namespace VControl.Samples.ViewModels;
 
 public partial class VMenuCellViewModel : ViewModelBase
 {
-
-    public VMenuCellViewModel(
-        INavigationService navService)
-
+    public VMenuCellViewModel(INavigationService navService)
         : base(navService)
     {
         this.PageTitle = "VMenuCell Samples";
@@ -15,6 +12,4 @@ public partial class VMenuCellViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool _isLoading;
-
-
 }

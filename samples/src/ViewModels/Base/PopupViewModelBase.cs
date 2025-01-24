@@ -11,9 +11,8 @@ namespace VControl.Samples.ViewModels.Base
 
         private bool _loading;
 
-        public PopupViewModelBase(
- INavigationService navigationService
- ) : base(navigationService)
+        public PopupViewModelBase(INavigationService navigationService)
+            : base(navigationService)
         {
             deviceDisplay = DeviceDisplay.Current;
             deviceDisplay.MainDisplayInfoChanged += DeviceDisplay_MainDisplayInfoChanged;
@@ -28,7 +27,6 @@ namespace VControl.Samples.ViewModels.Base
             {
                 _popupSize = value;
                 OnPropertyChanged();
-
             }
         }
 
@@ -39,7 +37,6 @@ namespace VControl.Samples.ViewModels.Base
             {
                 _loading = value;
                 OnPropertyChanged();
-
             }
         }
 
@@ -52,7 +49,10 @@ namespace VControl.Samples.ViewModels.Base
             PopupSize = new Size(newWidth / d, newHeight / d);
         }
 
-        private void DeviceDisplay_MainDisplayInfoChanged(object sender, DisplayInfoChangedEventArgs e)
+        private void DeviceDisplay_MainDisplayInfoChanged(
+            object sender,
+            DisplayInfoChangedEventArgs e
+        )
         {
             var displayInfo = e.DisplayInfo;
             // 新的宽度和高度

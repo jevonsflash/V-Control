@@ -4,14 +4,9 @@ namespace VControl.Samples.ViewModels;
 
 public partial class VTopAppBarViewModel : ViewModelBase
 {
+    public VTopAppBarViewModel(INavigationService navService)
+        : base(navService) { }
 
-    public VTopAppBarViewModel(
-        INavigationService navService)
-
-        : base(navService)
-    {
-
-    }
     [ObservableProperty]
     private double _progress;
 
@@ -23,7 +18,4 @@ public partial class VTopAppBarViewModel : ViewModelBase
     {
         await this.AlertOkayAsync(obj.ToString());
     }
-
-
-
 }

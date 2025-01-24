@@ -8,15 +8,10 @@
                           xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
     <ScrollView>
         <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
-            <control:VRadioButton ItemsSource="{Binding InspTypeList}"
-                                  SelectedItem="{Binding InspType}"></control:VRadioButton>
+            <control:VRadioButton ></control:VRadioButton>
 
 
-            <control:VRadioButton ItemsSource="{Binding InspTypeList2}"
-                                  SelectedItem="{Binding InspType2}">
 
-                
-            </control:VRadioButton>
 
         </VerticalStackLayout>
     </ScrollView>

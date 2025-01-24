@@ -5,6 +5,33 @@ namespace VControl.Controls;
 
 public partial class VValidatingEntry : ContentView
 {
+
+    public VValidatingEntry()
+    {
+        InitializeComponent();
+        Loaded += VValidatingEntry_Loaded;
+    }
+
+    private void VValidatingEntry_Loaded(object sender, EventArgs e)
+    {
+        if (this.ContentSlot != default)
+        {
+            this.MainContent.Content = (View)this.ContentSlot;
+        }
+        if (this.PrefixSlot != default)
+        {
+            this.PrefixContent.Content = (View)this.PrefixSlot;
+        }
+        if (string.IsNullOrEmpty(EntryIconText))
+        {
+            HasIconText = false;
+        }
+        else
+        {
+            HasIconText = true;
+        }
+    }
+
     public static readonly BindableProperty HasIconTextProperty = BindableProperty.Create(
         nameof(HasIconText),
         typeof(bool),
@@ -81,6 +108,14 @@ public partial class VValidatingEntry : ContentView
         defaultBindingMode: BindingMode.TwoWay
     );
 
+    public static readonly BindableProperty EntryIsReadOnlyProperty = BindableProperty.Create(
+    nameof(EntryIsReadOnly),
+    typeof(bool),
+    typeof(VValidatingEntry),
+    false,
+    defaultBindingMode: BindingMode.TwoWay
+);
+
     public static readonly BindableProperty ValidateCommandProperty = BindableProperty.Create(
         nameof(ValidateCommand),
         typeof(ICommand),
@@ -128,6 +163,10 @@ public partial class VValidatingEntry : ContentView
         }
     );
 
+    public IView ContentSlot { get; set; }
+    public IView PrefixSlot { get; set; }
+
+
     public string EntryIconText
     {
         get => (string)GetValue(EntryIconTextProperty);
@@ -157,6 +196,13 @@ public partial class VValidatingEntry : ContentView
         set => SetValue(EntryMaxLengthProperty, value);
     }
 
+    public bool EntryIsReadOnly
+    {
+        get => (bool)GetValue(EntryIsReadOnlyProperty);
+        set => SetValue(EntryIsReadOnlyProperty, value);
+    }
+
+
     public bool EntryIsPassword
     {
         get => (bool)GetValue(EntryIsPasswordProperty);
@@ -169,10 +215,7 @@ public partial class VValidatingEntry : ContentView
         set { SetValue(HasIconTextProperty, value); }
     }
 
-    public VValidatingEntry()
-    {
-        InitializeComponent();
-    }
+
 
     public ICommand ValidateCommand
     {

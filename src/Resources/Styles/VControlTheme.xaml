@@ -312,7 +312,7 @@
 
 
 
-            <!--VRadioButton-->
+            <!--VRadioButtonGroup-->
 
 
             <Style x:Key="RadioButtonGroupBorder"
@@ -320,13 +320,11 @@
                 <Setter Property="StrokeShape"
                         Value="{StaticResource SmallCornerRadiusValue}" />
                 <Setter Property="Background"
-                        Value="{StaticResource Gray50}" />
+                        Value="{StaticResource Gray150}" />
                 <Setter Property="StrokeThickness"
                         Value="0" />
                 <Setter Property="Padding"
                         Value="5" />
-                <Setter Property="WidthRequest"
-                        Value="270" />
                 <Setter Property="HorizontalOptions"
                         Value="Start" />
                 <Setter Property="Margin"
@@ -366,7 +364,7 @@
                                 <VisualState x:Name="Unchecked">
                                     <VisualState.Setters>
                                         <Setter Property="Background"
-                                                Value="{StaticResource Gray50}" />
+                                                Value="{StaticResource Gray150}" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -389,6 +387,7 @@
                                     <Setter Property="Label.TextColor"
                                             TargetName="CurrentRadioButtonLabel"
                                             Value="{StaticResource Primary}" />
+                                    
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Unchecked">
@@ -399,6 +398,7 @@
                                     <Setter Property="Label.TextColor"
                                             TargetName="CurrentRadioButtonLabel"
                                             Value="{StaticResource DisabledText}" />
+                               
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -479,12 +479,8 @@
                         Value="Center" />
                 <Setter Property="VerticalOptions"
                         Value="Center" />
-                <Setter Property="Stroke"
-                        Value="{StaticResource Gray150}" />
                 <Setter Property="StrokeThickness"
-                        Value="2" />
-                <Setter Property="Margin"
-                        Value="2" />
+                        Value="0" />
                 <Setter Property="Background"
                         Value="{StaticResource Surface}" />
             </Style>
@@ -501,6 +497,13 @@
                         Value="{StaticResource PrimaryContainer}" />
             </Style>
 
+            <Style x:Key="CalendarItemDisabledBorder"
+                   TargetType="Border"
+                   BasedOn="{StaticResource CalendarItemNormalBorder}">
+                <Setter Property="Background"
+                        Value="{StaticResource DisabledBackground}" />
+            </Style>
+
             <Style x:Key="CalendarItemNormalLabel"
                    TargetType="Label">
                 <Setter Property="HorizontalOptions"
@@ -508,7 +511,7 @@
                 <Setter Property="VerticalOptions"
                         Value="Center" />
                 <Setter Property="TextColor"
-                        Value="{StaticResource Gray500}" />
+                        Value="{StaticResource OnSurface}" />
                 <Setter Property="Text"
                         Value="{Binding IconText}" />
             </Style>
@@ -525,8 +528,13 @@
                    BasedOn="{StaticResource CalendarItemNormalLabel}">
                 <Setter Property="TextColor"
                         Value="{StaticResource Gray100}" />
-                <Setter Property="Text"
-                        Value="&#xf068;" />
+            </Style>
+
+            <Style x:Key="CalendarItemDisabledLabel"
+                   TargetType="Label"
+                   BasedOn="{StaticResource CalendarItemNormalLabel}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource DisabledText}" />
             </Style>
 
             <!--VCheckBox -->
@@ -592,7 +600,57 @@
                 <Setter Property="Opacity"
                         Value="1" />
             </Style>
-            
+
+
+
+            <!--VRadioButton -->
+
+            <Style x:Key="RadioButtonSelBorder"
+                   TargetType="Border">
+                <Setter Property="StrokeShape"
+                        Value="Ellipse 24" />
+                <Setter Property="HeightRequest"
+                        Value="24" />
+                <Setter Property="WidthRequest"
+                        Value="24" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="Stroke"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="StrokeThickness"
+                        Value="2" />
+                <Setter Property="Background"
+                        Value="{StaticResource Gray150}" />
+            </Style>
+            <Style x:Key="RadioButtonNormalBorder"
+                   TargetType="Border"
+                   BasedOn="{StaticResource RadioButtonSelBorder}">
+
+                <Setter Property="Background"
+                        Value="{StaticResource Gray150}" />
+            </Style>
+
+            <Style x:Key="RadioButtonSelCore"
+                   TargetType="Ellipse">
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="Fill"
+                        Value="{StaticResource Primary}" />
+                <Setter Property="Opacity"
+                        Value="1" />
+            </Style>
+
+            <Style x:Key="RadioButtonNormalCore"
+                   TargetType="Ellipse"
+                   BasedOn="{StaticResource RadioButtonSelCore}">
+                <Setter Property="Opacity"
+                        Value="0" />
+            </Style>
+
 
 
             <!--VCard -->

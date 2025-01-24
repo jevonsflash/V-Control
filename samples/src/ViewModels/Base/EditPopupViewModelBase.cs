@@ -3,7 +3,8 @@ using VControl.Samples.ViewModels.Base;
 
 namespace VControl.Samples.ViewModels.Popup
 {
-    public abstract partial class EditPopupViewModelBase<T> : PopupViewModelBase where T : ObservableObject, new()
+    public abstract partial class EditPopupViewModelBase<T> : PopupViewModelBase
+        where T : ObservableObject, new()
     {
         public Func<T> GetData = () => default;
 
@@ -12,8 +13,8 @@ namespace VControl.Samples.ViewModels.Popup
         [ObservableProperty]
         private T _currentItem;
 
-        public EditPopupViewModelBase(
- INavigationService navigationService) : base(navigationService)
+        public EditPopupViewModelBase(INavigationService navigationService)
+            : base(navigationService)
         {
             this.PropertyChanged += EditPopupViewModelBase_PropertyChanged;
         }
@@ -25,34 +26,40 @@ namespace VControl.Samples.ViewModels.Popup
             Loading = true;
             await Task.Delay(300);
             await Task.Run(async () =>
-            {
-                T sourceData = default;
-                if (GetData != default)
                 {
-                    sourceData = GetData.Invoke();
-
-                }
-                if (sourceData == default)
-                {
-                    if (GetDataAsync != default)
+                    T sourceData = default;
+                    if (GetData != default)
                     {
-                        sourceData = await GetDataAsync.Invoke();
-
+                        sourceData = GetData.Invoke();
                     }
-                }
-                if (sourceData != default)
-                {
-                    this.CurrentItem = sourceData;
-                }
-                else
-                {
-                    this.CurrentItem = new T();
-                }
-
-            }).ContinueWith((e) => { Loading = false; });
+                    if (sourceData == default)
+                    {
+                        if (GetDataAsync != default)
+                        {
+                            sourceData = await GetDataAsync.Invoke();
+                        }
+                    }
+                    if (sourceData != default)
+                    {
+                        this.CurrentItem = sourceData;
+                    }
+                    else
+                    {
+                        this.CurrentItem = new T();
+                    }
+                })
+                .ContinueWith(
+                    (e) =>
+                    {
+                        Loading = false;
+                    }
+                );
         }
 
-        public virtual void EditPopupViewModelBase_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public virtual void EditPopupViewModelBase_PropertyChanged(
+            object sender,
+            System.ComponentModel.PropertyChangedEventArgs e
+        )
         {
             if (e.PropertyName == nameof(CurrentItem))
             {
@@ -65,9 +72,10 @@ namespace VControl.Samples.ViewModels.Popup
             }
         }
 
-        public virtual void CurrentItem_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-        }
+        public virtual void CurrentItem_PropertyChanged(
+            object sender,
+            System.ComponentModel.PropertyChangedEventArgs e
+        ) { }
 
         [RelayCommand]
         public virtual async Task Submit()
@@ -77,7 +85,6 @@ namespace VControl.Samples.ViewModels.Popup
 
             if (result)
             {
-
                 OnFinishedEdit?.Invoke(this, this.CurrentItem);
             }
         }
@@ -86,5 +93,4 @@ namespace VControl.Samples.ViewModels.Popup
 
         public abstract Task Normalize();
     }
-
 }

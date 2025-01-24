@@ -4,10 +4,17 @@
              x:Class="VControl.Controls.VValidatingEntry"
              x:Name="this">
 
-    <Grid BindingContext="{x:Reference this}">
+    <Grid BindingContext="{x:Reference this}"
+          ColumnDefinitions="auto, 1*, auto">
+        <ContentView x:Name="PrefixContent"
+                     Grid.Column="0">
+
+        </ContentView>
         <Entry Text="{Binding EntryText.Value}"
                Style="{StaticResource VEntryEntry}"
+               Grid.Column="1"
                ClearButtonVisibility="WhileEditing"
+               IsReadOnly="{Binding EntryIsReadOnly}"
                Placeholder="{Binding EntryPlaceholder}"
                Keyboard="{Binding EntryKeyboard}"
                TextChanged="Entry_TextChanged"
@@ -30,6 +37,9 @@
 
         </Entry>
 
+        <ContentView x:Name="MainContent"
+                     Grid.Column="2">
 
+        </ContentView>
     </Grid>
 </ContentView>

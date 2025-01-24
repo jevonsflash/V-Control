@@ -4,10 +4,7 @@ namespace VControl.Samples.ViewModels;
 
 public partial class VButtonViewModel : ViewModelBase
 {
-
-    public VButtonViewModel(
-        INavigationService navService)
-
+    public VButtonViewModel(INavigationService navService)
         : base(navService)
     {
         this.PageTitle = "VButton Samples";
@@ -15,5 +12,4 @@ public partial class VButtonViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool _isLoading;
-
 }

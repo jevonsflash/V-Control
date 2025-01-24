@@ -1,4 +1,4 @@
-﻿namespace VControl.Controls.VExpandable
+﻿namespace VControl.Controls
 {
     public class RadioButtonModel : IRadioButtonModel
     {

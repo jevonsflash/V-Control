@@ -4,10 +4,7 @@ namespace VControl.Samples.ViewModels;
 
 public partial class VEditorViewModel : ViewModelBase
 {
-
-    public VEditorViewModel(
-        INavigationService navService)
-
+    public VEditorViewModel(INavigationService navService)
         : base(navService)
     {
         this.PageTitle = "VEditor Samples";
@@ -15,5 +12,4 @@ public partial class VEditorViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool _isIndeterminate = true;
-
 }

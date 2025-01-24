@@ -52,6 +52,7 @@ public static class MauiProgram
         builder.Services.AddTransientWithRoute<VButtonView, VButtonViewModel>();
         builder.Services.AddTransientWithRoute<VCardView, VCardViewModel>();
         builder.Services.AddTransientWithRoute<VRadioButtonView, VRadioButtonViewModel>();
+        builder.Services.AddTransientWithRoute<VRadioButtonGroupView, VRadioButtonGroupViewModel>();
         builder.Services.AddTransientWithRoute<VTouchContentViewView, VTouchContentViewViewModel>();
         builder.Services.AddTransientWithRoute<AnimationWithScrollerView, AnimationWithScrollerViewModel>();
         builder.Services.AddTransientWithRoute<VTopAppBarView, VTopAppBarViewModel>();
@@ -61,6 +62,8 @@ public static class MauiProgram
         builder.Services.AddTransientWithRoute<VEditorView, VEditorViewModel>();
         builder.Services.AddTransientWithRoute<VEntryView, VEntryViewModel>();
         builder.Services.AddTransientWithRoute<VMenuCellView, VMenuCellViewModel>();
+        builder.Services.AddTransientWithRoute<VValidatingEntryView, VValidatingEntryViewModel>();
+        builder.Services.AddTransientWithRoute<VDatePickerView, VDatePickerViewModel>();
         return builder;
     }
 
