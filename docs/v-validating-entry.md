@@ -1,5 +1,5 @@
 
-# V-ValidatingEntry
+# VValidatingEntry
 
 带有校验功能的文本编辑框组件。
 

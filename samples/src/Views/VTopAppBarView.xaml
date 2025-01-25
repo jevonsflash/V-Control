@@ -34,7 +34,7 @@
             <Label Text="Custom"
                    Style="{StaticResource ItemDetailsLabel}" />
             <Grid BackgroundColor="Black">
-                <Image Source="healthy_food.png" HeightRequest="293"></Image>
+                <Image Source="food.jpg" Aspect="Fill" HeightRequest="280"></Image>
                 <control:VTopAppBar TitleText="Title Large"
                                     TitleTextColor="White"
                                     Progress="{Binding Progress}"
@@ -154,7 +154,7 @@
                 </TableView>
             </Border>
             <Button Text="Animation With Scroller"
-                    Command="{Binding MessageCommand}"
+                    Command="{Binding GoPageCommand}"
                     CommandParameter="AnimationWithScrollerView"></Button>
 
 

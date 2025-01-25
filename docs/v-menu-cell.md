@@ -1,5 +1,5 @@
 
-# V-MenuCell
+# VMenuCell
 
 V-MenuCell是对ViewCell的一层封装，可以用于TableSection的列表项，通常可以作为菜单选项
 

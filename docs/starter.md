@@ -2,7 +2,7 @@
 
 ## 介绍
 
-V-Control是一组适用于.NET MAUI 的组件（Component）库，或在微软体系下称其为[控件(Control)](https://learn.microsoft.com/zh-cn/dotnet/maui/user-interface/controls/?view=net-maui-9.0)库，它提供了一组开箱即用的 UI 控件，它们可以快速地创建出面向业务的应用程序界面。
+V-Control是一组适用于.NET MAUI 的组件库(Component)，或在微软体系下称其为[控件库(Control)](https://learn.microsoft.com/zh-cn/dotnet/maui/user-interface/controls/?view=net-maui-9.0)，它提供了一组开箱即用的 UI 控件，它们可以快速地创建出面向业务的应用程序界面。
 
 
 

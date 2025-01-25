@@ -140,6 +140,27 @@ public partial class HomeViewModel : ViewModelBase
        Info = "",
        Icon = "vcard",
    },
+               new HomeViewItem()
+   {
+       Title = "VExpander",
+       Url = "VExpanderView",
+       Info = "",
+       Icon = "vcard",
+   },
+               new HomeViewItem()
+   {
+       Title = "VNumberEntry",
+       Url = "VNumberEntryView",
+       Info = "",
+       Icon = "vcard",
+   },
+               new HomeViewItem()
+   {
+       Title = "VSearchBar",
+       Url = "VSearchBarView",
+       Info = "",
+       Icon = "vcard",
+   },
         };
     }
 }

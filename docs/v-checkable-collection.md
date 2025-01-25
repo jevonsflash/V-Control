@@ -1,5 +1,5 @@
 
-# V-CheckableCollection
+# VCheckableCollection
 
 一组选项的集合，用于实现多选或单选功能。
 

@@ -1,22 +1,98 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VExpanderView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VExpanderViewModel"
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VExpanderView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VExpanderViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VExpander TitleText="Title">
+                <control:VExpander.ContentSlot>
+                    <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus hendrerit risus ultrices himenaeos pulvinar. Nostra nostra nisl sed suspendisse turpis. Curabitur praesent sed nec phasellus accumsan. Parturient conubia imperdiet lorem orci aliquet."></Label>
+
+                </control:VExpander.ContentSlot>
+            </control:VExpander>
 
 
-    <Grid x:Name="MainLayout"        
-          RowSpacing="0"
-          RowDefinitions="Auto, *">
-        <viewBase:ContentPageBase x:Name="HeaderContent">
-            <viewBase:ContentPageBase.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnHeaderContentTapped"></TapGestureRecognizer>
-            </viewBase:ContentPageBase.GestureRecognizers>
-        </viewBase:ContentPageBase>
-        <viewBase:ContentPageBase x:Name="MainContent"
-                     Grid.Row="1"                     
-                     HorizontalOptions="FillAndExpand"
-                     VerticalOptions="FillAndExpand" />
-    </Grid>
+
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VExpander IsExpanded="{Binding IsExpanded}">
+                <control:VExpander.HeaderSlot>
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle Fill="{StaticResource Primary}"
+                                   WidthRequest="4"
+                                   HeightRequest="16"
+                                   HorizontalOptions="Center" />
+
+                        <Label Text="Expander Title"
+                               Grid.Column="1"
+                               VerticalOptions="Center">
+                        </Label>
+                        <Label Grid.Column="2"
+                               IsVisible="{Binding IsExpanded}"
+                               FontFamily="FontAwesome-Solid"
+                               Text="&#xf0d7;"
+                               WidthRequest="17"
+                               VerticalOptions="Center" />
+
+
+                        <Label Grid.Column="2"
+                               IsVisible="{Binding IsExpanded, Converter={StaticResource InvertedBoolConverter}}"
+                               TextColor="{Binding TitleTextColor}"
+                               FontFamily="FontAwesome-Solid"
+                               Text="&#xf0d8;"
+                               WidthRequest="17"
+                               VerticalOptions="Center" />
+
+                    </Grid>
+
+                </control:VExpander.HeaderSlot>
+                <control:VExpander.ContentSlot>
+                    <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus hendrerit risus ultrices himenaeos pulvinar. Nostra nostra nisl sed suspendisse turpis. Curabitur praesent sed nec phasellus accumsan. Parturient conubia imperdiet lorem orci aliquet."></Label>
+
+
+                </control:VExpander.ContentSlot>
+            </control:VExpander>
+
+
+            <Label Text="Up Direction"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VExpander TitleText="Title" ExpandDirection="Up">
+                <control:VExpander.ContentSlot>
+                    <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus hendrerit risus ultrices himenaeos pulvinar. Nostra nostra nisl sed suspendisse turpis. Curabitur praesent sed nec phasellus accumsan. Parturient conubia imperdiet lorem orci aliquet."></Label>
+
+                </control:VExpander.ContentSlot>
+            </control:VExpander>
+
+
+            <Label Text="Down Direction"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VExpander TitleText="Title"
+                               ExpandDirection="Down">
+                <control:VExpander.ContentSlot>
+                    <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus hendrerit risus ultrices himenaeos pulvinar. Nostra nostra nisl sed suspendisse turpis. Curabitur praesent sed nec phasellus accumsan. Parturient conubia imperdiet lorem orci aliquet."></Label>
+
+                </control:VExpander.ContentSlot>
+            </control:VExpander>
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </viewBase:ContentPageBase>

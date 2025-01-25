@@ -12,7 +12,7 @@
         <Grid ColumnDefinitions="*,60"
               BindingContext="{x:Reference this}">
 
-            <controls:VSearchBar HasAddButton="False"
+            <controls:VSearchBar HasSearchButton="False"
                                  Title="{Binding SearchKeywords}"></controls:VSearchBar>
 
             <Button Text="&#xf12d;"

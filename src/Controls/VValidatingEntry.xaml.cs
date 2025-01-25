@@ -16,11 +16,11 @@ public partial class VValidatingEntry : ContentView
     {
         if (this.ContentSlot != default)
         {
-            this.MainContent.Content = (View)this.ContentSlot;
+            (this.FindByName("MainContent") as ContentView).Content = (View)this.ContentSlot;
         }
         if (this.PrefixSlot != default)
         {
-            this.PrefixContent.Content = (View)this.PrefixSlot;
+            (this.FindByName("PrefixContent") as ContentView).Content = (View)this.PrefixSlot;
         }
         if (string.IsNullOrEmpty(EntryIconText))
         {

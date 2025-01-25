@@ -1,48 +1,68 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VNumberEntryView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VNumberEntryViewModel"
-             
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
-    <Grid BindingContext="{x:Reference this}" ColumnDefinitions="30, 1*, auto, 30">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VNumberEntryView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VNumberEntryViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry></control:VNumberEntry>
+
+            <Label Text="Value"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry Value="50"></control:VNumberEntry>
 
 
-        <Button x:Name="DecreaseButton"
-                HeightRequest="30"
-                Padding="0"
-                Style="{x:StaticResource TextButton}"
-                Text="&#xf068;"
-                FontFamily="FontAwesome-Solid"
-                Grid.Column="0"
-                Clicked="Decrease_ClickedButton" />
+            <Label Text="Digits"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry Digits="2"></control:VNumberEntry>
 
-        <Entry Text="{Binding Value, Mode=TwoWay}"
-               Focused="Entry_Focused"
-               Unfocused="Entry_Unfocused"
-               Grid.Column="1"
-               IsReadOnly="{Binding EntryIsReadOnly}"
-               Placeholder="{Binding EntryPlaceholder}"
-               HorizontalTextAlignment="Center"
-               VerticalOptions="Center"
-               Keyboard="Numeric"
-                             
-               >
-            <Entry.GestureRecognizers>
-                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
-            </Entry.GestureRecognizers>
+            <Label Text="Maximum"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry Maximum="10"></control:VNumberEntry>
 
-        </Entry>
-        <viewBase:ContentPageBase x:Name="MainContent" Grid.Column="2">
-           
-        </viewBase:ContentPageBase>
 
-        <Button x:Name="IncreaseButton"
-                HeightRequest="30"
-                Padding="0"
-                Style="{x:StaticResource TextButton}"
-                Text="&#x2b;"
-                FontFamily="FontAwesome-Solid"
-                Clicked="Increase_ClickedButton"
-                Grid.Column="3" />
-    </Grid>
+            <Label Text="Minimum"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry Minimum="10"></control:VNumberEntry>
+
+
+            <Label Text="Increment"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry Increment="0.1"
+                                  Digits="2"></control:VNumberEntry>
+
+            <Label Text="Disabled"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry IsEnabled="False"></control:VNumberEntry>
+
+            <Label Text="Placeholder"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry EntryPlaceholder="Please enter quantities"></control:VNumberEntry>
+
+
+            <Label Text="ReadOnly"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry EntryIsReadOnly="True"></control:VNumberEntry>
+
+            <Label Text="Customized Content"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VNumberEntry>
+                <control:VNumberEntry.ContentSlot>
+                    <HorizontalStackLayout HeightRequest="20">
+                        <Image Source="aze.png"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"></Image>
+                        <Label Text="Calories"></Label>
+                    </HorizontalStackLayout>
+                </control:VNumberEntry.ContentSlot>
+            </control:VNumberEntry>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
 </viewBase:ContentPageBase>

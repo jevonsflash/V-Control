@@ -15,11 +15,11 @@ public partial class VFormItem : ContentView
     {
         if (this.ContentSlot != default)
         {
-            this.MainContent.Content = (View)this.ContentSlot;
+            (this.FindByName("MainContent") as ContentView).Content = (View)this.ContentSlot;
         }
         if (this.InfoSlot != default)
         {
-            this.InfoContent.Content = (View)this.InfoSlot;
+            (this.FindByName("InfoContent") as ContentView).Content = (View)this.InfoSlot;
         }
 
         HasInfo = !string.IsNullOrEmpty(this.InfoText) || InfoSlot != default;

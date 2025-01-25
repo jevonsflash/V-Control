@@ -1,5 +1,5 @@
 
-# V-Entry
+# VEntry
 
 常用的文本编辑框组件。
 
@@ -91,7 +91,7 @@
 
 ![alt text](assets/image-46.png)
 
-带图标和单位文本的后缀
+带图标和文本的后缀
 
 ```xml
 

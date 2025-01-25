@@ -18,7 +18,7 @@ public partial class VNumberEntry : ContentView
     {
         if (this.ContentSlot != default)
         {
-            this.MainContent.Content = (View)this.ContentSlot;
+            (this.FindByName("MainContent") as ContentView).Content = (View)this.ContentSlot;
         }
         if (string.IsNullOrEmpty(EntryIconText))
         {
@@ -107,12 +107,17 @@ public partial class VNumberEntry : ContentView
 
     private static object OnCoerceValue(BindableObject bindable, object value)
     {
-        var numberEntry = (VNumberEntry)bindable;
+        return ((VNumberEntry)bindable).HandleValue(value);
+    }
+
+    public object HandleValue(object value)
+    {
         var newValue = double.Clamp(
-            Math.Round(((double)value), numberEntry.Digits),
-            numberEntry.Minimum,
-            numberEntry.Maximum
+            Math.Round(((double)value), Digits),
+            Minimum,
+            Maximum
         );
+        OnPropertyChanged(nameof(Value));
         return newValue;
     }
 

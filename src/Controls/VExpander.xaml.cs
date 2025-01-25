@@ -27,6 +27,20 @@ public partial class VExpander : ContentView
         propertyChanged: OnExpandDirectionChanged
     );
 
+    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(
+    nameof(TitleText),
+    typeof(string),
+    typeof(VExpander),
+    "TITLE HERE"
+);
+    public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(
+        nameof(TitleTextColor),
+        typeof(Color),
+        typeof(VExpander),
+        null
+    );
+
+
     static void OnExpandDirectionChanged(BindableObject bindable, object oldValue, object newValue)
     {
         (bindable as VExpander)?.UpdateExpandDirection();
@@ -51,6 +65,18 @@ public partial class VExpander : ContentView
         await (bindable as VExpander)?.UpdateIsExpandedAsync();
     }
 
+    public string TitleText
+    {
+        get { return (string)GetValue(TitleTextProperty); }
+        set { SetValue(TitleTextProperty, value); }
+    }
+
+    public Color TitleTextColor
+    {
+        get { return (Color)GetValue(TitleTextColorProperty); }
+        set { SetValue(TitleTextColorProperty, value); }
+    }
+
     public bool IsExpanded
     {
         get => (bool)GetValue(IsExpandedProperty);
@@ -61,6 +87,7 @@ public partial class VExpander : ContentView
     {
         InitializeComponent();
         Loaded += VExpander_Loaded;
+        UpdateExpandDirection();
     }
 
     private void VExpander_Loaded(object sender, EventArgs e)
@@ -100,11 +127,15 @@ public partial class VExpander : ContentView
 
     private void UpdateExpandDirection()
     {
+
+        var header = (this.FindByName("HeaderContent") as ContentView);
+        var content = (this.FindByName("MainContent") as ContentView);
+
         if (this.MainLayout is null)
             return;
 
-        this.MainLayout.Children.Remove(HeaderSlot);
-        this.MainLayout.Children.Remove(ContentSlot);
+        this.MainLayout.Children.Remove(header);
+        this.MainLayout.Children.Remove(content);
 
         this.MainLayout.ColumnDefinitions.Clear();
         this.MainLayout.RowDefinitions.Clear();
@@ -115,19 +146,19 @@ public partial class VExpander : ContentView
                 this.MainLayout.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
                 this.MainLayout.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
-                this.MainLayout.Children.Add(HeaderSlot);
-                Grid.SetRow(HeaderSlot as BindableObject, 0);
-                this.MainLayout.Children.Add(ContentSlot);
-                Grid.SetRow(ContentSlot as BindableObject, 1);
+                this.MainLayout.Children.Add(header);
+                Grid.SetRow(header as BindableObject, 0);
+                this.MainLayout.Children.Add(content);
+                Grid.SetRow(content as BindableObject, 1);
                 break;
             case ExpandDirection.Up:
                 this.MainLayout.RowDefinitions.Add(new RowDefinition(GridLength.Star));
                 this.MainLayout.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
 
-                this.MainLayout.Children.Add(ContentSlot);
-                Grid.SetRow(ContentSlot as BindableObject, 0);
-                this.MainLayout.Children.Add(HeaderSlot);
-                Grid.SetRow(HeaderSlot as BindableObject, 1);
+                this.MainLayout.Children.Add(content);
+                Grid.SetRow(content as BindableObject, 0);
+                this.MainLayout.Children.Add(header);
+                Grid.SetRow(header as BindableObject, 1);
                 break;
             default:
                 throw new NotSupportedException();

@@ -1,5 +1,5 @@
 
-# V-CheckBox
+# VCheckBox
 
 多项选择器中的选择单元
 

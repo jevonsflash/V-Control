@@ -1,5 +1,5 @@
 
-# V-RadioButtonGroup
+# VRadioButtonGroup
 
 用于展示多个选项并允许用户选择其中单个选项。
 
@@ -81,6 +81,8 @@ InspTypeList = new ObservableCollection<IRadioButtonModel>()
 
 
 ![alt text](assets/image-54.png)
+
+
 ![alt text](assets/image-55.png)
 
 

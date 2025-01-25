@@ -64,6 +64,9 @@ public static class MauiProgram
         builder.Services.AddTransientWithRoute<VMenuCellView, VMenuCellViewModel>();
         builder.Services.AddTransientWithRoute<VValidatingEntryView, VValidatingEntryViewModel>();
         builder.Services.AddTransientWithRoute<VDatePickerView, VDatePickerViewModel>();
+        builder.Services.AddTransientWithRoute<VExpanderView, VExpanderViewModel>();
+        builder.Services.AddTransientWithRoute<VNumberEntryView, VNumberEntryViewModel>();
+        builder.Services.AddTransientWithRoute<VSearchBarView, VSearchBarViewModel>();
         return builder;
     }
 

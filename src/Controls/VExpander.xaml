@@ -2,19 +2,45 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VControl.Controls.VExpander"
-             x:Name="this">
+             x:Name="this"
+             xmlns:converters="clr-namespace:VControl.Converters">
 
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
 
-    <Grid x:Name="MainLayout"        
+    <Grid x:Name="MainLayout"
           RowSpacing="0"
-          RowDefinitions="Auto, *">
+          >
         <ContentView x:Name="HeaderContent">
+            <Grid ColumnDefinitions="*, auto" 
+                  BindingContext="{x:Reference this}">
+                <Label Text="{Binding TitleText}"
+                       VerticalOptions="Center">
+                </Label>
+                <Label Grid.Column="1"
+                       IsVisible="{Binding IsExpanded}"
+                       FontFamily="FontAwesome-Solid"
+                       Text="&#xf106;"
+                       VerticalOptions="Center" />
+
+
+                <Label Grid.Column="1"
+                       IsVisible="{Binding IsExpanded, Converter={StaticResource InvertedBoolConverter}}"
+                       TextColor="{Binding TitleTextColor}"
+                       FontFamily="FontAwesome-Solid"
+                       Text="&#xf107;"
+                       VerticalOptions="Center" />
+
+            </Grid>
             <ContentView.GestureRecognizers>
                 <TapGestureRecognizer Tapped="OnHeaderContentTapped"></TapGestureRecognizer>
             </ContentView.GestureRecognizers>
         </ContentView>
         <ContentView x:Name="MainContent"
-                     Grid.Row="1"                     
+                     
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand" />
     </Grid>

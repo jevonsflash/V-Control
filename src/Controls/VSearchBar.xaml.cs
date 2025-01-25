@@ -7,6 +7,15 @@ public partial class VSearchBar : ContentView
     public VSearchBar()
     {
         InitializeComponent();
+        Loaded += VSearchBar_Loaded;
+    }
+
+    private void VSearchBar_Loaded(object? sender, EventArgs e)
+    {
+        if (this.ContentSlot != default)
+        {
+            (this.FindByName("MainContent") as ContentView).Content = (View)this.ContentSlot;
+        }
     }
 
     public static readonly BindableProperty AddCommandProperty = BindableProperty.Create(
@@ -61,11 +70,11 @@ public partial class VSearchBar : ContentView
         typeof(VSearchBar),
         "Search"
     );
-    public static readonly BindableProperty IconSourceProperty = BindableProperty.Create(
-        nameof(IconSource),
+    public static readonly BindableProperty IconTextProperty = BindableProperty.Create(
+        nameof(IconText),
         typeof(string),
         typeof(VSearchBar),
-        "search.png"
+        "\uF002"
     );
     public static readonly BindableProperty SearchCommandProperty = BindableProperty.Create(
         nameof(SearchCommand),
@@ -79,17 +88,20 @@ public partial class VSearchBar : ContentView
         typeof(VSearchBar),
         null
     );
-    public static readonly BindableProperty HasAddButtonProperty = BindableProperty.Create(
-        nameof(HasAddButton),
+    public static readonly BindableProperty HasSearchButtonProperty = BindableProperty.Create(
+        nameof(HasSearchButton),
         typeof(bool),
         typeof(VCollectionItem),
         true
     );
 
-    public bool HasAddButton
+    public IView ContentSlot { get; set; }
+
+
+    public bool HasSearchButton
     {
-        get { return (bool)GetValue(HasAddButtonProperty); }
-        set { SetValue(HasAddButtonProperty, value); }
+        get { return (bool)GetValue(HasSearchButtonProperty); }
+        set { SetValue(HasSearchButtonProperty, value); }
     }
 
     public ICommand AddCommand
@@ -122,10 +134,10 @@ public partial class VSearchBar : ContentView
         set { SetValue(PlaceHolderProperty, value); }
     }
 
-    public string IconSource
+    public string IconText
     {
-        get { return (string)GetValue(IconSourceProperty); }
-        set { SetValue(IconSourceProperty, value); }
+        get { return (string)GetValue(IconTextProperty); }
+        set { SetValue(IconTextProperty, value); }
     }
 
     public Color TitleColor
