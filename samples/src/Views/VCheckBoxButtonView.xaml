@@ -1,72 +1,71 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VCheckBoxButtonView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VCheckBoxButtonViewModel"
-             
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroupList>
-            <VisualStateGroup x:Name="CommonStates">
-                <VisualState x:Name="Normal">
-                    <VisualState.Setters>
-                        <Setter TargetName="CheckBoxButtonLayout"
-                                Property="Border.Style"
-                                Value="{StaticResource CheckBoxButtonNormalBorder}" />
-                        <Setter TargetName="CheckBoxButtonLabel"
-                                Property="Label.Style"
-                                Value="{StaticResource CheckBoxButtonNormalLabel}" />
-                        <Setter TargetName="CheckBoxButtonRemoveButton"
-                                Property="Button.TextColor"
-                                Value="{StaticResource Primary}" />
-                    </VisualState.Setters>
-                </VisualState>
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VCheckBoxButtonView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                          x:TypeArguments="vm:VCheckBoxButtonViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <viewBase:ContentPageBase.Resources>
+        <mct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+    </viewBase:ContentPageBase.Resources>
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
 
-                <VisualState x:Name="IsChecked">
-                    <VisualState.Setters>
-                        <Setter TargetName="CheckBoxButtonLayout"
-                                Property="Border.Style"
-                                Value="{StaticResource CheckBoxButtonSelBorder}" />
-                        <Setter TargetName="CheckBoxButtonLabel"
-                                Property="Label.Style"
-                                Value="{StaticResource CheckBoxButtonSelLabel}" />
-                        <Setter TargetName="CheckBoxButtonRemoveButton"
-                                Property="Button.TextColor"
-                                Value="{StaticResource Surface}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateGroupList>
-    </VisualStateManager.VisualStateGroups>
-
-    <Border x:Name="CheckBoxButtonLayout"
-            HeightRequest="30"
-            BindingContext="{Reference this}">
-        <Grid ColumnDefinitions="*,auto"
-              Padding="1,0"
-              Margin="1,0">
-            <viewBase:ContentPageBase x:Name="MainContent"
-                         InputTransparent="True">
-                <Label Text="{Binding Title}"
-                       VerticalOptions="Center"
-                       x:Name="CheckBoxButtonLabel" />
-            </viewBase:ContentPageBase>
+            <Label Text="Default(Primary)"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBoxButton Title="CHECKBOX BUTTON"></control:VCheckBoxButton>
+            <control:VCheckBoxButton Title="CHECKBOX BUTTON"
+                                     IsChecked="True"></control:VCheckBoxButton>
 
 
-            <Button Text="&#xf00d;"
-                    x:Name="CheckBoxButtonRemoveButton"
-                    FontFamily="FontAwesome-Solid"
-                    Grid.Column="1"
-                    HorizontalOptions="End"
-                    Padding="0"
-                    WidthRequest="30"
-                    IsVisible="{Binding HasRemove}"
-                    IsEnabled="{Binding IsEnabled}"
-                    Style="{StaticResource TextButton}"
-                    Clicked="Button_Clicked"></Button>
-        </Grid>
-        <Border.GestureRecognizers>
-            <TapGestureRecognizer  Tapped="SelTapped" />
-        </Border.GestureRecognizers>
-    </Border>
+            <Label Text="Disabled"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBoxButton Title="CHECKBOX BUTTON"
+                                     IsChecked="False"
+                                     IsEnabled="False"></control:VCheckBoxButton>
+
+            <control:VCheckBoxButton Title="CHECKBOX BUTTON"
+                                     IsChecked="True"
+                                     IsEnabled="False"></control:VCheckBoxButton>
+
+
+
+
+
+
+            <Label Text="Customized Content"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBoxButton Title="CHECKBOX BUTTON"
+                                     IsChecked="True">
+
+                <control:VCheckBoxButton.ContentSlot>
+                    <VerticalStackLayout>
+                        <Image Source="download.png"
+                               IsVisible="{Binding IsChecked}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"></Image>
+                        <Image Source="sketch.png"
+                               IsVisible="{Binding IsChecked, Converter={StaticResource InvertedBoolConverter}}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"></Image>
+                        <Label Text="{Binding IsChecked}"
+                               HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Check State"></Span>
+                                    <Span Text=" : "></Span>
+                                    <Span Text="{Binding IsChecked}"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </control:VCheckBoxButton.ContentSlot>
+            </control:VCheckBoxButton>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </viewBase:ContentPageBase>

@@ -4,8 +4,8 @@ namespace VControl.Samples.Views;
 
 public partial class AnimationWithScrollerView : ContentPageBase<AnimationWithScrollerViewModel>
 {
-
-    public AnimationWithScrollerView(AnimationWithScrollerViewModel viewModel) : base(viewModel)
+    public AnimationWithScrollerView(AnimationWithScrollerViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
     }

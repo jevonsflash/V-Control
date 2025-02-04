@@ -7,13 +7,6 @@ using Microsoft.Maui.Layouts;
 
 namespace VControl.Controls;
 
-public enum VTimeLineItemType
-{
-    Normal,
-    Active,
-    Success,
-}
-
 public partial class VTimeLineItem : ContentView
 {
     public event EventHandler Clicked;
@@ -28,16 +21,16 @@ public partial class VTimeLineItem : ContentView
 
     public static readonly BindableProperty TypeProperty = BindableProperty.Create(
         nameof(Type),
-        typeof(VTimeLineItemType),
+        typeof(TimeLineItemType),
         typeof(VTimeLineItem),
-        VTimeLineItemType.Normal,
+        TimeLineItemType.Normal,
         propertyChanged: TypeChanged
     );
 
     static void TypeChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var layout = (VTimeLineItem)bindable;
-        layout.GoToState((VTimeLineItemType)newValue);
+        layout.GoToState((TimeLineItemType)newValue);
     }
 
     public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(
@@ -172,9 +165,9 @@ public partial class VTimeLineItem : ContentView
         set => SetValue(IconTextProperty, value);
     }
 
-    public VTimeLineItemType Type
+    public TimeLineItemType Type
     {
-        get { return (VTimeLineItemType)GetValue(TypeProperty); }
+        get { return (TimeLineItemType)GetValue(TypeProperty); }
         set { SetValue(TypeProperty, value); }
     }
 
@@ -202,18 +195,18 @@ public partial class VTimeLineItem : ContentView
         Clicked?.Invoke(this, EventArgs.Empty);
     }
 
-    public void GoToState(VTimeLineItemType timeLineItemType)
+    public void GoToState(TimeLineItemType timeLineItemType)
     {
         switch (timeLineItemType)
         {
-            case VTimeLineItemType.Normal:
+            case TimeLineItemType.Normal:
                 VisualStateManager.GoToState(this, "Normal");
 
                 break;
-            case VTimeLineItemType.Active:
+            case TimeLineItemType.Active:
                 VisualStateManager.GoToState(this, "Active");
                 break;
-            case VTimeLineItemType.Success:
+            case TimeLineItemType.Success:
                 VisualStateManager.GoToState(this, "Success");
                 break;
             default:

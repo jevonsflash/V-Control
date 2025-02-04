@@ -4,8 +4,7 @@ namespace VControl.Samples.Common
 {
     public class LoggedInUserChangedMessage : ValueChangedMessage<string>
     {
-        public LoggedInUserChangedMessage(string user) : base(user)
-        {
-        }
+        public LoggedInUserChangedMessage(string user)
+            : base(user) { }
     }
 }

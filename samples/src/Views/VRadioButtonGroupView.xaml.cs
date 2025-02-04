@@ -4,11 +4,9 @@ namespace VControl.Samples.Views;
 
 public partial class VRadioButtonGroupView : ContentPageBase<VRadioButtonGroupViewModel>
 {
-
-    public VRadioButtonGroupView(VRadioButtonGroupViewModel viewModel) : base(viewModel)
+    public VRadioButtonGroupView(VRadioButtonGroupViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
-
 }

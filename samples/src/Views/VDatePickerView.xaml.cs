@@ -13,11 +13,10 @@ namespace VControl.Samples.Views;
 
 public partial class VDatePickerView : ContentPageBase<VDatePickerViewModel>
 {
-
-    public VDatePickerView(VDatePickerViewModel viewModel) : base(viewModel)
+    public VDatePickerView(VDatePickerViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
 
     private void TextCell_Tapped(object sender, EventArgs e)
@@ -28,13 +27,13 @@ public partial class VDatePickerView : ContentPageBase<VDatePickerViewModel>
     private void TextCell_Tapped_1(object sender, EventArgs e)
     {
         MainDatePicker.SetAll(true);
-
     }
 
     private void TextCell_Tapped_2(object sender, EventArgs e)
     {
         MainDatePicker.TrySetSelectedDate((sender as SwitchCell).On, DateTime.Now);
     }
+
     private void TextCell_Tapped_3(object sender, EventArgs e)
     {
         MainDatePicker.JumpToDate(DateTime.Now);
@@ -43,6 +42,5 @@ public partial class VDatePickerView : ContentPageBase<VDatePickerViewModel>
     private void SwitchCell_OnChanged(object sender, ToggledEventArgs e)
     {
         MainDatePicker.TrySetSelectedDate((sender as SwitchCell).On, DateTime.Now);
-
     }
 }

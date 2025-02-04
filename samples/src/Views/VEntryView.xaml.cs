@@ -7,10 +7,9 @@ namespace VControl.Samples.Views;
 
 public partial class VEntryView : ContentPageBase<VEntryViewModel>
 {
-    public VEntryView(VEntryViewModel viewModel) : base(viewModel)
+    public VEntryView(VEntryViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
-
 }

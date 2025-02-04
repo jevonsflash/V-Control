@@ -16,6 +16,15 @@
 
 ```
 
+使用 `IsChecked` 属性来设置是否选中。此属性为双向数据绑定属性。
+
+![alt text](assets/recording-23.gif)
+
+
+```xml
+<control:VCheckBox Title="CHECKBOX LABEL" IsChecked="True"></control:VCheckBox>
+```
+
 ## 禁用状态
 
 
@@ -31,10 +40,19 @@
                     IsEnabled="False"></control:VCheckBox>
 ```
 
-设置 `IsIndeterminate` 属性用以表示 CheckBox 的不确定状态，注意：`IsIndeterminate` 属性仅改变控件外观，不变更控件的IsChecked状态。
+## 不确定状态
+
+设置 `IsIndeterminate` 属性为 `True` 用以表示 CheckBox 的不确定状态，注意：`IsIndeterminate` 属性仅改变控件外观，不变更控件的IsChecked状态。
 
 
 ![alt text](assets/recording-1.gif)
+
+
+```xml
+
+<control:VCheckBox Title="CHECKBOX LABEL"
+                    IsIndeterminate="True"></control:VCheckBox>
+```
 
 
 ## 变更图标

@@ -1,6 +1,3 @@
-
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Layouts;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -8,95 +5,126 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Layouts;
 using VControl.Controls;
 
 namespace VControl.Samples.Views;
 
-public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewModel>, INotifyPropertyChanged
+public partial class VCheckBoxGroupView
+    : ContentPageBase<VCheckBoxGroupViewModel>,
+        INotifyPropertyChanged
 {
     public event EventHandler<IList> SelectionChanged;
 
     public static readonly BindableProperty SelectionChangedCommandProperty =
-    BindableProperty.Create(nameof(SelectionChangedCommand), typeof(ICommand), typeof(VCheckBoxGroup));
+        BindableProperty.Create(
+            nameof(SelectionChangedCommand),
+            typeof(ICommand),
+            typeof(VCheckBoxGroup)
+        );
 
     public static readonly BindableProperty SelectionChangedCommandParameterProperty =
-    BindableProperty.Create(nameof(SelectionChangedCommandParameter), typeof(object),
-        typeof(VCheckBoxGroup));
-
+        BindableProperty.Create(
+            nameof(SelectionChangedCommandParameter),
+            typeof(object),
+            typeof(VCheckBoxGroup)
+        );
 
     public static readonly BindableProperty HasClearProperty = BindableProperty.Create(
-        nameof(HasClear), typeof(bool), typeof(VCheckBoxGroup), true);
+        nameof(HasClear),
+        typeof(bool),
+        typeof(VCheckBoxGroup),
+        true
+    );
 
-    public static readonly BindableProperty IsCheckBoxGroupEnabledProperty = BindableProperty.Create(
-      nameof(IsCheckBoxGroupEnabled),
-      typeof(bool),
-      typeof(VCheckBoxGroup),
-      true,
-      defaultBindingMode: BindingMode.OneWay, propertyChanged: OnIsCheckBoxGroupEnabledPropertyChanged);
+    public static readonly BindableProperty IsCheckBoxGroupEnabledProperty =
+        BindableProperty.Create(
+            nameof(IsCheckBoxGroupEnabled),
+            typeof(bool),
+            typeof(VCheckBoxGroup),
+            true,
+            defaultBindingMode: BindingMode.OneWay,
+            propertyChanged: OnIsCheckBoxGroupEnabledPropertyChanged
+        );
 
-    private static void OnIsCheckBoxGroupEnabledPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnIsCheckBoxGroupEnabledPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if ((bool)newValue)
         {
             (bindable as VCheckBoxGroup).HasClear = false;
-        };
+        }
+        ;
     }
 
-
     public static readonly BindableProperty IsSingleSelectionProperty = BindableProperty.Create(
-       nameof(IsSingleSelection),
-       typeof(bool),
-       typeof(VCheckBoxGroup),
-       false,
-       defaultBindingMode: BindingMode.OneWay);
+        nameof(IsSingleSelection),
+        typeof(bool),
+        typeof(VCheckBoxGroup),
+        false,
+        defaultBindingMode: BindingMode.OneWay
+    );
 
-    //¸ß¶È±ØÌî
+    //ï¿½ß¶È±ï¿½ï¿½ï¿½
     public static readonly BindableProperty FlHeightProperty = BindableProperty.Create(
         nameof(FlHeight),
         typeof(string),
         typeof(VCheckBoxGroup),
         "100",
-        defaultBindingMode: BindingMode.OneWay);
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty FlDirectionProperty = BindableProperty.Create(
         nameof(FlDirection),
         typeof(FlexDirection),
         typeof(VCheckBoxGroup),
         FlexDirection.Row,
-        defaultBindingMode: BindingMode.OneWay);
+        defaultBindingMode: BindingMode.OneWay
+    );
 
     public static readonly BindableProperty FlWrapProperty = BindableProperty.Create(
         nameof(FlWrap),
         typeof(FlexWrap),
         typeof(VCheckBoxGroup),
         FlexWrap.Wrap,
-        defaultBindingMode: BindingMode.OneWay);
+        defaultBindingMode: BindingMode.OneWay
+    );
 
+    public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
+        nameof(ItemsSource),
+        typeof(IList),
+        typeof(VCheckBoxGroup),
+        null,
+        propertyChanged: OnItemsSourcePropertyChanged
+    );
 
-    public static readonly BindableProperty ItemsSourceProperty =
-         BindableProperty.Create(
-             nameof(ItemsSource),
-             typeof(IList),
-             typeof(VCheckBoxGroup),
-             null,
-             propertyChanged: OnItemsSourcePropertyChanged
-
-         );
-
-    private static void OnItemsSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnItemsSourcePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VCheckBoxGroup).NotifyChanged();
     }
 
     public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(
-       nameof(SelectedItems),
-       typeof(IList),
-       typeof(VCheckBoxGroup),
-       null,
+        nameof(SelectedItems),
+        typeof(IList),
+        typeof(VCheckBoxGroup),
+        null,
+        defaultBindingMode: BindingMode.TwoWay,
+        propertyChanged: OnSelectedItemsPropertyChanged
+    );
 
-       defaultBindingMode: BindingMode.TwoWay, propertyChanged: OnSelectedItemsPropertyChanged);
-
-    private static void OnSelectedItemsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnSelectedItemsPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if (newValue == default)
         {
@@ -104,7 +132,9 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
         }
         if (newValue is INotifyCollectionChanged)
         {
-            (newValue as INotifyCollectionChanged).CollectionChanged += (bindable as VCheckBoxGroup).VCheckBoxGroup_CollectionChanged;
+            (newValue as INotifyCollectionChanged).CollectionChanged += (
+                bindable as VCheckBoxGroup
+            ).VCheckBoxGroup_CollectionChanged;
         }
         else
         {
@@ -112,13 +142,11 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
         }
     }
 
-
     public void UpdateItemSelection(IList selectedItems)
     {
         foreach (var item in InternalItems)
         {
             item.IsSelected = false;
-
         }
 
         foreach (var item in selectedItems)
@@ -129,7 +157,6 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
                 {
                     this.InternalItems[i].IsSelected = true;
                 }
-
             }
         }
     }
@@ -146,10 +173,8 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
                     {
                         this.InternalItems[i].IsSelected = true;
                     }
-
                 }
             }
-
         }
         else if (e.Action == NotifyCollectionChangedAction.Remove)
         {
@@ -161,10 +186,8 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
                     {
                         this.InternalItems[i].IsSelected = false;
                     }
-
                 }
             }
-
         }
         else if (e.Action == NotifyCollectionChangedAction.Reset)
         {
@@ -172,46 +195,44 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
             {
                 this.InternalItems[i].IsSelected = false;
             }
-
         }
-
-
     }
 
     public static readonly BindableProperty SelectedValueProperty = BindableProperty.Create(
-      nameof(SelectedValue),
-      typeof(string),
-      typeof(VCheckBoxGroup),
-      "",
-      defaultBindingMode: BindingMode.TwoWay);
-
+        nameof(SelectedValue),
+        typeof(string),
+        typeof(VCheckBoxGroup),
+        "",
+        defaultBindingMode: BindingMode.TwoWay
+    );
 
     public static readonly BindableProperty DisplayPropertyNameProperty = BindableProperty.Create(
-  nameof(DisplayPropertyName),
-  typeof(string),
-  typeof(VCheckBoxGroup),
-  string.Empty,
-         propertyChanged: onDisplayPropertyNamePropertyChanged
+        nameof(DisplayPropertyName),
+        typeof(string),
+        typeof(VCheckBoxGroup),
+        string.Empty,
+        propertyChanged: onDisplayPropertyNamePropertyChanged
+    );
 
-  );
-
-    private static void onDisplayPropertyNamePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void onDisplayPropertyNamePropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VCheckBoxGroup).NotifyChanged();
     }
 
-    public static readonly BindableProperty SelectedItemProperty =
-     BindableProperty.Create(
-         nameof(SelectedItem),
-         typeof(object),
-         typeof(VCheckBoxGroup),
-         null,
-         BindingMode.TwoWay,
-         propertyChanged: onSelectedItemPropertyChanged
-     );
+    public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
+        nameof(SelectedItem),
+        typeof(object),
+        typeof(VCheckBoxGroup),
+        null,
+        BindingMode.TwoWay,
+        propertyChanged: onSelectedItemPropertyChanged
+    );
 
-    public static readonly BindableProperty SelectedIndexProperty =
-    BindableProperty.Create(
+    public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
         nameof(SelectedIndex),
         typeof(int),
         typeof(VCheckBoxGroup),
@@ -219,14 +240,16 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
         BindingMode.TwoWay
     );
 
-
-    private static void onSelectedItemPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void onSelectedItemPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if ((bindable as VCheckBoxGroup).ItemsSource != null && newValue != null)
         {
             var selectedIndex = (bindable as VCheckBoxGroup).ItemsSource.IndexOf(newValue);
             (bindable as VCheckBoxGroup).SelectedIndex = (int)selectedIndex;
-
 
             if (string.IsNullOrEmpty((bindable as VCheckBoxGroup).DisplayPropertyName))
             {
@@ -240,19 +263,17 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
 
                 if (property == null)
                 {
-                    throw new ArgumentException($"Property '{(bindable as VCheckBoxGroup).DisplayPropertyName}' not found on {type.FullName}");
+                    throw new ArgumentException(
+                        $"Property '{(bindable as VCheckBoxGroup).DisplayPropertyName}' not found on {type.FullName}"
+                    );
                 }
-               (bindable as VCheckBoxGroup).SelectedValue = property.GetValue(newValue)?.ToString();
+                (bindable as VCheckBoxGroup).SelectedValue = property
+                    .GetValue(newValue)
+                    ?.ToString();
             }
-
-
-
         }
 
         (bindable as VCheckBoxGroup).OnSelectedItemProperty(oldValue, newValue);
-
-
-
     }
 
     public bool HasClear
@@ -260,7 +281,6 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
         get { return (bool)GetValue(HasClearProperty); }
         set { SetValue(HasClearProperty, value); }
     }
-
 
     public bool IsSingleSelection
     {
@@ -286,7 +306,6 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
         set => SetValue(FlWrapProperty, value);
     }
 
-
     public ICommand SelectionChangedCommand
     {
         get => (ICommand)GetValue(SelectionChangedCommandProperty);
@@ -301,21 +320,14 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
 
     public IList ItemsSource
     {
-        get
-        {
-            return (IList)GetValue(ItemsSourceProperty);
-        }
-        set
-        {
-            SetValue(ItemsSourceProperty, value);
-        }
+        get { return (IList)GetValue(ItemsSourceProperty); }
+        set { SetValue(ItemsSourceProperty, value); }
     }
     public IList SelectedItems
     {
         get => (IList)GetValue(SelectedItemsProperty);
         set => SetValue(SelectedItemsProperty, value);
     }
-
 
     public string SelectedValue
     {
@@ -336,14 +348,8 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
     }
     public object SelectedItem
     {
-        get
-        {
-            return GetValue(SelectedItemProperty);
-        }
-        set
-        {
-            SetValue(SelectedItemProperty, value);
-        }
+        get { return GetValue(SelectedItemProperty); }
+        set { SetValue(SelectedItemProperty, value); }
     }
 
     private ObservableCollection<VItemWrapper> _internalItems;
@@ -357,8 +363,6 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
             OnPropertyChanged();
         }
     }
-
-
 
     private IList<VItemWrapper> GetItemWrappers()
     {
@@ -376,10 +380,11 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
                     Value = c,
                     DisplayPropertyName = this.DisplayPropertyName,
                     Index = ItemsSource.IndexOf(c),
-                    IsSelected = SelectedItems == null ? SelectedItem == c : SelectedItems.Contains(c),
+                    IsSelected =
+                        SelectedItems == null ? SelectedItem == c : SelectedItems.Contains(c),
                     HasRemove = false,
                     HasEdit = false,
-                    IsEnabled = true
+                    IsEnabled = true,
                 };
                 result.Add(current);
             }
@@ -391,7 +396,6 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
     {
         InternalItems = new ObservableCollection<VItemWrapper>(GetItemWrappers());
     }
-
 
     public void OnSelectedItemProperty(object oldValue, object newValue)
     {
@@ -453,21 +457,15 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
 
     public int SelectedIndex
     {
-        get
-        {
-            return (int)GetValue(SelectedIndexProperty);
-        }
-        set
-        {
-            SetValue(SelectedIndexProperty, value);
-        }
+        get { return (int)GetValue(SelectedIndexProperty); }
+        set { SetValue(SelectedIndexProperty, value); }
     }
-
 
     public VCheckBoxGroup()
     {
         InitializeComponent();
     }
+
     private void VCheckBoxButton_Clicked(object sender, EventArgs e)
     {
         if (ItemsSource != null)
@@ -489,7 +487,6 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
                 {
                     this.SelectedItems?.Remove(value);
                     this.SelectedItem = null;
-
                 }
 
                 this.SelectionChanged?.Invoke(this, this.SelectedItems);
@@ -512,7 +509,6 @@ public partial class VCheckBoxGroupView : ContentPageBase<VCheckBoxGroupViewMode
     {
         this.ClearSelection();
         this.SelectedItems?.Clear();
-
     }
 
     private void Button_Clicked(object sender, EventArgs e)

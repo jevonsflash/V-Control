@@ -17,9 +17,9 @@
         <BoxView Grid.Row="1"
                  Color="LightGray"></BoxView>
 
-        <VerticalStackLayout x:Name="OptionsLayout"
+        <Grid x:Name="OptionsLayout"
                              Grid.Row="2"
-                             Spacing="5">
+                             Margin="0,10,0,5">
             <CollectionView x:Name="TextSizeCollectionView"
                             SelectionChanged="TextSizeCollectionView_SelectionChanged"
                             SelectionMode="Single"
@@ -30,15 +30,14 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-
-                        <Border x:Name="TargetElement"
-                                Style="{x:StaticResource SelectableLayoutStyle}"
-                                Padding="5,0">
-                            <Label Text="{Binding Name}"
-                                   VerticalOptions="Center"
-                                   FontSize="{Binding Value}"></Label>
-                        </Border>
-
+                        <Grid Style="{x:StaticResource SelectableLayoutStyle}">
+                            <Border x:Name="TargetElement"
+                                    Padding="5,0">
+                                <Label Text="{Binding Name}"
+                                       VerticalOptions="Center"
+                                       FontSize="{Binding Value}"></Label>
+                            </Border>
+                        </Grid>
 
 
                     </DataTemplate>
@@ -55,40 +54,55 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+                        <Grid Style="{x:StaticResource SelectableLayoutStyle}">
 
-                        <Border x:Name="TargetElement"
-                                Style="{x:StaticResource SelectableLayoutStyle}"
-                                BackgroundColor="{Binding}"
-                                WidthRequest="40"
-                                HeightRequest="40"
-                                StrokeShape="{StaticResource MediumRoundRectangle}">
+                            <Border x:Name="TargetElement"
+                                 
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    StrokeShape="{StaticResource MediumRoundRectangle}">
+                                <Ellipse x:Name="RadioButtonCore"
+                                         WidthRequest="25"
+                                         HeightRequest="25"
+                                         Fill="{Binding}"
+                                         HorizontalOptions="Center"
+                                         VerticalOptions="Center" />
 
-                        </Border>
-
+                            </Border>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </VerticalStackLayout>
+        </Grid>
 
 
         <HorizontalStackLayout Grid.Row="3"
                                Spacing="5"
-                               Margin="0,10">
-            <Button Text="A"
-                    Clicked="TextSizeButton_Clicked"
+                               Margin="0,5,0,10">
+            <Button  Style="{x:StaticResource TextButton}"
+                     Text="&#xf034;"
+                     FontFamily="FontAwesome-Solid"
+                     Clicked="TextSizeButton_Clicked"
                     x:Name="TextSizeButton"></Button>
-            <Button Text="C"
+            <Button Style="{x:StaticResource TextButton}"
+                    Text="&#xf53f;"
+                    FontFamily="FontAwesome-Solid"
                     Clicked="TextColorButton_Clicked"
                     x:Name="TextColorButton"></Button>
-            <Button Text="B"
-                    FontAttributes="Bold"
+            <Button Style="{x:StaticResource TextButton}"
+                    Text="&#xf032;"
+                    FontFamily="FontAwesome-Solid"
                     x:Name="BoldButton"
                     Clicked="BoldButton_Clicked"></Button>
-            <Button Text="I"
+            <Button Style="{x:StaticResource TextButton}"
+                    Text="&#xf033;"
+                    FontFamily="FontAwesome-Solid"
                     FontAttributes="Italic"
                     x:Name="ItalicButton"
                     Clicked="ItalicButton_Clicked"></Button>
-            <Button Text="U"
+            <Button Style="{x:StaticResource TextButton}"
+                    Text="&#xf0cd;"
+                    FontFamily="FontAwesome-Solid"
                     FontAttributes="None"
                     x:Name="UnderLineButton"
                     Clicked="UnderLineButton_Clicked"></Button>

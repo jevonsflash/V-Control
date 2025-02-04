@@ -1,13 +1,18 @@
 ﻿namespace VControl.Samples.Views.Base;
 
-public abstract class PopupContentPageBase<TViewModel> : PopupContentPageBase where TViewModel : ViewModelBase
+public abstract class PopupContentPageBase<TViewModel> : PopupContentPageBase
+    where TViewModel : ViewModelBase
 {
-    public PopupContentPageBase(TViewModel viewModel) : base(viewModel)
+    public PopupContentPageBase(TViewModel viewModel)
+        : base(viewModel)
     {
         this.Opened += PopupBase_Opened;
     }
 
-    public abstract void PopupBase_Opened(object sender, CommunityToolkit.Maui.Core.PopupOpenedEventArgs e);
+    public abstract void PopupBase_Opened(
+        object sender,
+        CommunityToolkit.Maui.Core.PopupOpenedEventArgs e
+    );
 
     public new TViewModel BindingContext => (TViewModel)base.BindingContext;
 }
@@ -15,6 +20,7 @@ public abstract class PopupContentPageBase<TViewModel> : PopupContentPageBase wh
 public abstract class PopupContentPageBase : CommunityToolkit.Maui.Views.Popup
 {
     private readonly IDeviceDisplay deviceDisplay;
+
     public PopupContentPageBase(object? viewModel = null)
     {
         BindingContext = viewModel;
@@ -22,10 +28,12 @@ public abstract class PopupContentPageBase : CommunityToolkit.Maui.Views.Popup
         this.deviceDisplay = DeviceDisplay.Current;
         this.deviceDisplay.MainDisplayInfoChanged += DeviceDisplay_MainDisplayInfoChanged;
         this.Opened += PopupContentPageBase_Opened;
-
     }
 
-    private void PopupContentPageBase_Opened(object sender, CommunityToolkit.Maui.Core.PopupOpenedEventArgs e)
+    private void PopupContentPageBase_Opened(
+        object sender,
+        CommunityToolkit.Maui.Core.PopupOpenedEventArgs e
+    )
     {
         var displayInfo = this.deviceDisplay.MainDisplayInfo;
         SetSize(displayInfo);
@@ -50,5 +58,4 @@ public abstract class PopupContentPageBase : CommunityToolkit.Maui.Views.Popup
 
     public Size PopupSize { get; set; }
     public double VerticalHRatio { get; set; } = 0.8;
-
 }

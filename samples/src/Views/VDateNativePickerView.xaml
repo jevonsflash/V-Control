@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VDateNativePickerView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VDateNativePickerViewModel"
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl"
-             >
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VDateNativePickerView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VDateNativePickerViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
     <Grid BindingContext="{x:Reference this}"
           HeightRequest="48">
-        <DatePicker 
-                    Date="{Binding SelectedDate}"
+        <DatePicker Date="{Binding SelectedDate}"
                     MinimumDate="{Binding MinDate}"
                     MaximumDate="{Binding MaxDate}"
                     Format="MMM/dd/yyyy" />

@@ -34,6 +34,8 @@ public partial class VRichTextEditor : ContentView
         //this.ColorCollectionView.SelectedItem=DefaultTextColorList[0];
         this.TextSizeCollectionView.ItemsSource = DefaultTextSizeList;
         //this.TextSizeCollectionView.SelectedItem=DefaultTextSizeList[0];
+        TextSizeCollectionView.IsVisible = false;
+        ColorCollectionView.IsVisible = false;
     }
 
     private void RichTextEditor_PropertyChanged(

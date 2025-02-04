@@ -2,7 +2,6 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VControl.Controls.VCheckBoxButton"
-             
              x:Name="this">
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroupList>
@@ -39,7 +38,7 @@
     </VisualStateManager.VisualStateGroups>
 
     <Border x:Name="CheckBoxButtonLayout"
-            HeightRequest="30"
+            MinimumHeightRequest="30"
             BindingContext="{Reference this}">
         <Grid ColumnDefinitions="*,auto"
               Padding="1,0"

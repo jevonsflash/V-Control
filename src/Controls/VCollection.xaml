@@ -7,24 +7,16 @@
 
     <Grid RowDefinitions="auto,1*"
           RowSpacing="10">
-
-
-        <Grid ColumnDefinitions="*,60"
+        <Grid ColumnDefinitions="*"
+              IsVisible="{Binding HasSearchBar}"
               BindingContext="{x:Reference this}">
 
             <controls:VSearchBar HasSearchButton="False"
+                                 IsEnabled="{Binding IsCollectionEnabled}"
                                  Title="{Binding SearchKeywords}"></controls:VSearchBar>
 
-            <Button Text="&#xf12d;"
-                    HorizontalOptions="End"
-                    Margin="0,0,10,0"
-                    FontFamily="FontAwesome-Solid"
-                    Grid.Column="1"
-                    IsVisible="{Binding HasClear}"
-                    Style="{StaticResource TextButton}"
-                    Clicked="ClearButton_Clicked"
-                    x:Name="ClearButton"></Button>
         </Grid>
+
 
 
         <CollectionView Grid.Row="1"
@@ -36,10 +28,12 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <controls:VCollectionItem HasEdit="{Binding HasEdit}"
+                                              IsEnabled="{Binding IsEnabled}"
                                               HasRemove="{Binding HasRemove}"
                                               TitleText="{Binding DisplayValue}"
                                               Clicked="VCheckBoxButton_Clicked"
                                               RemoveButtonClicked="Button_Clicked"
+                                              EditButtonClicked="VCollectionItem_EditButtonClicked"
                                               CommandParameter="{Binding Id}">
                     </controls:VCollectionItem>
                 </DataTemplate>

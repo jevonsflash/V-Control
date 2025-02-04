@@ -5,11 +5,9 @@ namespace VControl.Samples.Views;
 
 public partial class VMenuCellView : ContentPageBase<VMenuCellViewModel>
 {
-
-    public VMenuCellView(VMenuCellViewModel viewModel) : base(viewModel)
+    public VMenuCellView(VMenuCellViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
-
 }

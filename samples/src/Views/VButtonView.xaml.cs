@@ -4,11 +4,9 @@ namespace VControl.Samples.Views;
 
 public partial class VButtonView : ContentPageBase<VButtonViewModel>
 {
-
-    public VButtonView(VButtonViewModel viewModel) : base(viewModel)
+    public VButtonView(VButtonViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
-
 }

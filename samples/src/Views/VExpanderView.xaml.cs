@@ -7,11 +7,9 @@ namespace VControl.Samples.Views;
 
 public partial class VExpanderView : ContentPageBase<VExpanderViewModel>
 {
-
-    public VExpanderView(VExpanderViewModel viewModel) : base(viewModel)
+    public VExpanderView(VExpanderViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
-
 }

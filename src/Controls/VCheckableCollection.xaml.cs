@@ -15,7 +15,7 @@ public partial class VCheckableCollection : ContentView, INotifyPropertyChanged
     public static readonly BindableProperty SearchKeywordsProperty = BindableProperty.Create(
         nameof(SearchKeywords),
         typeof(string),
-        typeof(VSearchBar),
+        typeof(VCheckableCollection),
         default(string),
         BindingMode.TwoWay
     );

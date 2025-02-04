@@ -7,11 +7,9 @@ namespace VControl.Samples.Views;
 
 public partial class VValidatingEntryView : ContentPageBase<VValidatingEntryViewModel>
 {
-
-    public VValidatingEntryView(VValidatingEntryViewModel viewModel) : base(viewModel)
+    public VValidatingEntryView(VValidatingEntryViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
-
 }

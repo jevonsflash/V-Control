@@ -387,7 +387,7 @@
                                     <Setter Property="Label.TextColor"
                                             TargetName="CurrentRadioButtonLabel"
                                             Value="{StaticResource Primary}" />
-                                    
+
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Unchecked">
@@ -398,7 +398,7 @@
                                     <Setter Property="Label.TextColor"
                                             TargetName="CurrentRadioButtonLabel"
                                             Value="{StaticResource DisabledText}" />
-                               
+
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -946,29 +946,41 @@
 
             <!--VRichTextEditor -->
 
-            <Style TargetType="Border"
+            <Style TargetType="Grid"
                    x:Key="SelectableLayoutStyle">
                 <Setter Property="VisualStateManager.VisualStateGroups">
+
                     <VisualStateGroupList>
-                        <VisualStateGroup Name="CommonStates">
-                            <VisualState Name="Selected">
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="Background"
+                                    <Setter Property="BackgroundColor"
                                             Value="{StaticResource Surface}" />
-                                    <Setter Property="Stroke"
+                                    <Setter TargetName="TargetElement"
+                                            Property="Border.StrokeThickness"
+                                            Value="2" />
+                                    <Setter TargetName="TargetElement"
+                                            Property="Border.Stroke"
                                             Value="{StaticResource Outline}" />
                                 </VisualState.Setters>
                             </VisualState>
-                            <VisualState Name="Normal">
+                            <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="Background"
-                                            Value="{StaticResource Surface}" />
-                                    <Setter Property="Stroke"
-                                            Value="{StaticResource Outline}" />
+                                    <Setter Property="BackgroundColor"
+                                            Value="{StaticResource Gray100}" />
+
+                                    <Setter TargetName="TargetElement"
+                                            Property="Border.StrokeThickness"
+                                            Value="3" />
+                                    <Setter TargetName="TargetElement"
+                                            Property="Border.Stroke"
+                                            Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
+
+
                 </Setter>
             </Style>
 

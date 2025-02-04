@@ -6,11 +6,9 @@ namespace VControl.Samples.Views;
 
 public partial class VSearchBarView : ContentPageBase<VSearchBarViewModel>
 {
-
-    public VSearchBarView(VSearchBarViewModel viewModel) : base(viewModel)
+    public VSearchBarView(VSearchBarViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
-
 }

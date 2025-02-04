@@ -63,30 +63,7 @@ public partial class VCheckBoxGroup : ContentView, INotifyPropertyChanged
         defaultBindingMode: BindingMode.OneWay
     );
 
-    //�߶ȱ���
-    public static readonly BindableProperty FlHeightProperty = BindableProperty.Create(
-        nameof(FlHeight),
-        typeof(string),
-        typeof(VCheckBoxGroup),
-        "100",
-        defaultBindingMode: BindingMode.OneWay
-    );
-
-    public static readonly BindableProperty FlDirectionProperty = BindableProperty.Create(
-        nameof(FlDirection),
-        typeof(FlexDirection),
-        typeof(VCheckBoxGroup),
-        FlexDirection.Row,
-        defaultBindingMode: BindingMode.OneWay
-    );
-
-    public static readonly BindableProperty FlWrapProperty = BindableProperty.Create(
-        nameof(FlWrap),
-        typeof(FlexWrap),
-        typeof(VCheckBoxGroup),
-        FlexWrap.Wrap,
-        defaultBindingMode: BindingMode.OneWay
-    );
+   
 
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
         nameof(ItemsSource),
@@ -282,23 +259,7 @@ public partial class VCheckBoxGroup : ContentView, INotifyPropertyChanged
         set => SetValue(IsSingleSelectionProperty, value);
     }
 
-    public string FlHeight
-    {
-        get => (string)GetValue(FlHeightProperty);
-        set => SetValue(FlHeightProperty, value);
-    }
-
-    public FlexDirection FlDirection
-    {
-        get => (FlexDirection)GetValue(FlDirectionProperty);
-        set => SetValue(FlDirectionProperty, value);
-    }
-
-    public FlexWrap FlWrap
-    {
-        get => (FlexWrap)GetValue(FlWrapProperty);
-        set => SetValue(FlWrapProperty, value);
-    }
+ 
 
     public ICommand SelectionChangedCommand
     {

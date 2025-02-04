@@ -9,11 +9,20 @@ public partial class VDatePickerViewModel : ViewModelBase
         : base(navService)
     {
         this.PageTitle = "VDatePicker Samples";
-        DateRangeList = new ObservableCollection<string>() { "Customized", "Today", "The last 3 days", "The next 3 days", "The recent week", "The next week", "The recent month", "The next month" };
+        DateRangeList = new ObservableCollection<string>()
+        {
+            "Customized",
+            "Today",
+            "The last 3 days",
+            "The next 3 days",
+            "The recent week",
+            "The next week",
+            "The recent month",
+            "The next month",
+        };
 
         this.PropertyChanged += VDatePickerViewModel_PropertyChanged;
     }
-
 
     [ObservableProperty]
     private ObservableCollection<DateTime> _dates = new ObservableCollection<DateTime>();
@@ -27,7 +36,6 @@ public partial class VDatePickerViewModel : ViewModelBase
     [ObservableProperty]
     private DateTime? _endDate;
 
-
     [ObservableProperty]
     private bool _isSelect;
 
@@ -40,7 +48,10 @@ public partial class VDatePickerViewModel : ViewModelBase
     [ObservableProperty]
     private string _selectedDate;
 
-    private void VDatePickerViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    private void VDatePickerViewModel_PropertyChanged(
+        object sender,
+        System.ComponentModel.PropertyChangedEventArgs e
+    )
     {
         if (e.PropertyName == nameof(SelectedDate))
         {
@@ -53,16 +64,13 @@ public partial class VDatePickerViewModel : ViewModelBase
                     newDates.Add(date);
                 }
                 this.Dates = new ObservableCollection<DateTime>(newDates);
-
             }
             else
             {
                 this.Dates = new ObservableCollection<DateTime>();
             }
         }
-
     }
-
 
     [RelayCommand]
     public void DateRangeSelectionChanged()
@@ -71,26 +79,20 @@ public partial class VDatePickerViewModel : ViewModelBase
         {
             if (!Dates.Any())
             {
-
                 SelectedDate = null;
                 this.Dates = new ObservableCollection<DateTime>();
-
             }
             else
             {
                 if (Dates.Count > 0)
                 {
-
                     this.StartDate = Dates.FirstOrDefault();
                     this.EndDate = Dates.LastOrDefault();
                 }
                 SelectedDate = DateRangeList?.FirstOrDefault();
-
-
             }
         }
     }
-
 
     private void UpdateDateTime(string tempDateRange)
     {
@@ -135,6 +137,4 @@ public partial class VDatePickerViewModel : ViewModelBase
             }
         }
     }
-
-
 }

@@ -14,7 +14,7 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
     public static readonly BindableProperty SearchKeywordsProperty = BindableProperty.Create(
         nameof(SearchKeywords),
         typeof(string),
-        typeof(VSearchBar),
+        typeof(VCollection),
         default(string),
         BindingMode.TwoWay
     );
@@ -53,12 +53,14 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         false
     );
 
-    public static readonly BindableProperty HasClearProperty = BindableProperty.Create(
-        nameof(HasClear),
-        typeof(bool),
-        typeof(VCollection),
-        true
-    );
+  
+
+    public static readonly BindableProperty HasSearchBarProperty = BindableProperty.Create(
+    nameof(HasSearchBar),
+    typeof(bool),
+    typeof(VCollection),
+    true
+);
 
     public static readonly BindableProperty IsCollectionEnabledProperty = BindableProperty.Create(
         nameof(IsCollectionEnabled),
@@ -66,21 +68,11 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         typeof(VCollection),
         true,
         defaultBindingMode: BindingMode.OneWay,
-        propertyChanged: OnIsCollectionEnabledPropertyChanged
+        propertyChanged: OnNotifyPropertyChanged
+
     );
 
-    private static void OnIsCollectionEnabledPropertyChanged(
-        BindableObject bindable,
-        object oldValue,
-        object newValue
-    )
-    {
-        if ((bool)newValue)
-        {
-            (bindable as VCollection).HasClear = false;
-        }
-        ;
-    }
+   
 
     public static readonly BindableProperty IsSingleSelectionProperty = BindableProperty.Create(
         nameof(IsSingleSelection),
@@ -90,47 +82,15 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         defaultBindingMode: BindingMode.OneWay
     );
 
-    //�߶ȱ���
-    public static readonly BindableProperty FlHeightProperty = BindableProperty.Create(
-        nameof(FlHeight),
-        typeof(string),
-        typeof(VCollection),
-        "100",
-        defaultBindingMode: BindingMode.OneWay
-    );
-
-    public static readonly BindableProperty FlDirectionProperty = BindableProperty.Create(
-        nameof(FlDirection),
-        typeof(FlexDirection),
-        typeof(VCollection),
-        FlexDirection.Row,
-        defaultBindingMode: BindingMode.OneWay
-    );
-
-    public static readonly BindableProperty FlWrapProperty = BindableProperty.Create(
-        nameof(FlWrap),
-        typeof(FlexWrap),
-        typeof(VCollection),
-        FlexWrap.Wrap,
-        defaultBindingMode: BindingMode.OneWay
-    );
-
     public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(
         nameof(ItemsSource),
         typeof(IList),
         typeof(VCollection),
         null,
-        propertyChanged: OnItemsSourcePropertyChanged
+        propertyChanged: OnNotifyPropertyChanged
     );
 
-    private static void OnItemsSourcePropertyChanged(
-        BindableObject bindable,
-        object oldValue,
-        object newValue
-    )
-    {
-        (bindable as VCollection).NotifyChanged();
-    }
+  
 
     public static readonly BindableProperty SelectedItemsProperty = BindableProperty.Create(
         nameof(SelectedItems),
@@ -232,17 +192,10 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         typeof(string),
         typeof(VCollection),
         string.Empty,
-        propertyChanged: OnDisplayPropertyNamePropertyChanged
+        propertyChanged: OnNotifyPropertyChanged
     );
 
-    private static void OnDisplayPropertyNamePropertyChanged(
-        BindableObject bindable,
-        object oldValue,
-        object newValue
-    )
-    {
-        (bindable as VCollection).NotifyChanged();
-    }
+   
 
     public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
         nameof(SelectedItem),
@@ -251,6 +204,17 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         null,
         BindingMode.TwoWay,
         propertyChanged: OnSelectedItemPropertyChanged
+    );
+
+    public static readonly BindableProperty EditCommandProperty = BindableProperty.Create(
+    nameof(EditCommand),
+    typeof(ICommand),
+    typeof(VCollection)
+);
+    public static readonly BindableProperty RemoveCommandProperty = BindableProperty.Create(
+        nameof(RemoveCommand),
+        typeof(ICommand),
+        typeof(VCollection)
     );
 
     public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
@@ -295,15 +259,29 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         (bindable as VCollection).OnSelectedItemProperty(oldValue, newValue);
     }
 
+    private static void OnNotifyPropertyChanged(
+      BindableObject bindable,
+      object oldValue,
+      object newValue
+  )
+    {
+        (bindable as VCollection).NotifyChanged();
+    }
+
+
+
+
     public string SearchKeywords
     {
         get { return (string)GetValue(SearchKeywordsProperty); }
         set { SetValue(SearchKeywordsProperty, value); }
     }
-    public bool HasClear
+
+
+    public bool HasSearchBar
     {
-        get { return (bool)GetValue(HasClearProperty); }
-        set { SetValue(HasClearProperty, value); }
+        get { return (bool)GetValue(HasSearchBarProperty); }
+        set { SetValue(HasSearchBarProperty, value); }
     }
 
     public bool IsSingleSelection
@@ -312,23 +290,7 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         set => SetValue(IsSingleSelectionProperty, value);
     }
 
-    public string FlHeight
-    {
-        get => (string)GetValue(FlHeightProperty);
-        set => SetValue(FlHeightProperty, value);
-    }
-
-    public FlexDirection FlDirection
-    {
-        get => (FlexDirection)GetValue(FlDirectionProperty);
-        set => SetValue(FlDirectionProperty, value);
-    }
-
-    public FlexWrap FlWrap
-    {
-        get => (FlexWrap)GetValue(FlWrapProperty);
-        set => SetValue(FlWrapProperty, value);
-    }
+   
 
     public ICommand SelectionChangedCommand
     {
@@ -340,6 +302,18 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
     {
         get => GetValue(SelectionChangedCommandParameterProperty);
         set => SetValue(SelectionChangedCommandParameterProperty, value);
+    }
+
+    public ICommand EditCommand
+    {
+        get { return (ICommand)GetValue(EditCommandProperty); }
+        set { SetValue(EditCommandProperty, value); }
+    }
+
+    public ICommand RemoveCommand
+    {
+        get { return (ICommand)GetValue(RemoveCommandProperty); }
+        set { SetValue(RemoveCommandProperty, value); }
     }
 
     public IList ItemsSource
@@ -407,7 +381,7 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
                         SelectedItems == null ? SelectedItem == c : SelectedItems.Contains(c),
                     HasRemove = this.HasRemove,
                     HasEdit = this.HasEdit,
-                    IsEnabled = true,
+                    IsEnabled = this.IsCollectionEnabled,
                 };
                 result.Add(current);
             }
@@ -546,12 +520,7 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         }
     }
 
-    private void ClearButton_Clicked(object sender, EventArgs e)
-    {
-        this.ClearSelection();
-        this.SelectedItems?.Clear();
-    }
-
+   
     private void Button_Clicked(object sender, EventArgs e)
     {
         if (!IsEnabled)
@@ -561,5 +530,18 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
         var currentItem = (sender as BindableObject).BindingContext;
 
         InternalItems.Remove(currentItem as VItemWrapper);
+
+        this.RemoveCommand?.Execute((currentItem as VItemWrapper).Value);
+    }
+
+    private void VCollectionItem_EditButtonClicked(object sender, EventArgs e)
+    {
+        if (!IsEnabled)
+        {
+            return;
+        }
+        var currentItem = (sender as BindableObject).BindingContext;
+        this.EditCommand?.Execute((currentItem as VItemWrapper).Value);
+
     }
 }

@@ -112,7 +112,7 @@ public partial class HomeViewModel : ViewModelBase
                 Info = "",
                 Icon = "vcard",
             },
-               new HomeViewItem()
+            new HomeViewItem()
             {
                 Title = "VValidatingEntry",
                 Url = "VValidatingEntryView",
@@ -133,34 +133,75 @@ public partial class HomeViewModel : ViewModelBase
                 Info = "",
                 Icon = "vcard",
             },
-               new HomeViewItem()
-   {
-       Title = "VDatePicker",
-       Url = "VDatePickerView",
-       Info = "",
-       Icon = "vcard",
-   },
-               new HomeViewItem()
-   {
-       Title = "VExpander",
-       Url = "VExpanderView",
-       Info = "",
-       Icon = "vcard",
-   },
-               new HomeViewItem()
-   {
-       Title = "VNumberEntry",
-       Url = "VNumberEntryView",
-       Info = "",
-       Icon = "vcard",
-   },
-               new HomeViewItem()
-   {
-       Title = "VSearchBar",
-       Url = "VSearchBarView",
-       Info = "",
-       Icon = "vcard",
-   },
+            new HomeViewItem()
+            {
+                Title = "VDatePicker",
+                Url = "VDatePickerView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VExpander",
+                Url = "VExpanderView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VNumberEntry",
+                Url = "VNumberEntryView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VSearchBar",
+                Url = "VSearchBarView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VTimeLine",
+                Url = "VTimeLineView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VTagPicker",
+                Url = "VTagPickerView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VRichTextEditor",
+                Url = "VRichTextEditorView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VCheckBoxButton",
+                Url = "VCheckBoxButtonView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VCollectionView",
+                Url = "VCollectionView",
+                Info = "",
+                Icon = "vcard",
+            },new HomeViewItem()
+            {
+                Title = "VDateNativePicker",
+                Url = "VDateNativePickerView",
+                Info = "",
+                Icon = "vcard",
+            },
         };
     }
 }

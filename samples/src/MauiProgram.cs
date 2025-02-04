@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Maui.LifecycleEvents;
+using VControl.Controls;
 using VControl.Samples.Services.Navigation;
 using VControl.Samples.Views;
 using VControl.Samples.Views.Base;
@@ -9,7 +10,6 @@ namespace VControl.Samples;
 
 public static class MauiProgram
 {
-
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
@@ -22,16 +22,10 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             })
-            .ConfigureLifecycleEvents(builder =>
-            {
+            .ConfigureLifecycleEvents(builder => { });
+        builder.RegisterAppServices().RegisterViewsAndViewModels();
 
-            });
-        builder
-            .RegisterAppServices()
-            .RegisterViewsAndViewModels();
-
-        var mauiApp = builder
-            .Build();
+        var mauiApp = builder.Build();
         Ioc.Default.ConfigureServices(mauiApp.Services);
         return mauiApp;
     }
@@ -54,10 +48,16 @@ public static class MauiProgram
         builder.Services.AddTransientWithRoute<VRadioButtonView, VRadioButtonViewModel>();
         builder.Services.AddTransientWithRoute<VRadioButtonGroupView, VRadioButtonGroupViewModel>();
         builder.Services.AddTransientWithRoute<VTouchContentViewView, VTouchContentViewViewModel>();
-        builder.Services.AddTransientWithRoute<AnimationWithScrollerView, AnimationWithScrollerViewModel>();
+        builder.Services.AddTransientWithRoute<
+            AnimationWithScrollerView,
+            AnimationWithScrollerViewModel
+        >();
         builder.Services.AddTransientWithRoute<VTopAppBarView, VTopAppBarViewModel>();
         builder.Services.AddTransientWithRoute<VPlaceholderViewView, VPlaceholderViewViewModel>();
-        builder.Services.AddTransientWithRoute<VCheckableCollectionView, VCheckableCollectionViewModel>();
+        builder.Services.AddTransientWithRoute<
+            VCheckableCollectionView,
+            VCheckableCollectionViewModel
+        >();
         builder.Services.AddTransientWithRoute<VCheckBoxView, VCheckBoxViewModel>();
         builder.Services.AddTransientWithRoute<VEditorView, VEditorViewModel>();
         builder.Services.AddTransientWithRoute<VEntryView, VEntryViewModel>();
@@ -67,10 +67,19 @@ public static class MauiProgram
         builder.Services.AddTransientWithRoute<VExpanderView, VExpanderViewModel>();
         builder.Services.AddTransientWithRoute<VNumberEntryView, VNumberEntryViewModel>();
         builder.Services.AddTransientWithRoute<VSearchBarView, VSearchBarViewModel>();
+        builder.Services.AddTransientWithRoute<VTimeLineView, VTimeLineViewModel>();
+        builder.Services.AddTransientWithRoute<VTagPickerView, VTagPickerViewModel>();
+        builder.Services.AddTransientWithRoute<VRichTextEditorView, VRichTextEditorViewModel>();
+        builder.Services.AddTransientWithRoute<VCheckBoxButtonView, VCheckBoxButtonViewModel>();
+        builder.Services.AddTransientWithRoute<VCollectionView, VCollectionViewModel>();
+        builder.Services.AddTransientWithRoute<VDateNativePickerView, VDateNativePickerViewModel>();
         return builder;
     }
 
-    static IServiceCollection AddTransientWithRoute<TPage, TViewModel>(this IServiceCollection services, string prefix = "")
+    static IServiceCollection AddTransientWithRoute<TPage, TViewModel>(
+        this IServiceCollection services,
+        string prefix = ""
+    )
         where TPage : ContentPageBase<TViewModel>
         where TViewModel : ViewModelBase
     {
@@ -78,15 +87,11 @@ public static class MauiProgram
         {
             //toolkit extensions
             return services.AddTransientWithShellRoute<TPage, TViewModel>(typeof(TPage).Name);
-
         }
         else
         {
             var route = Path.Combine(prefix, typeof(TPage).Name);
             return services.AddTransientWithShellRoute<TPage, TViewModel>(route);
-
         }
-
     }
-
 }

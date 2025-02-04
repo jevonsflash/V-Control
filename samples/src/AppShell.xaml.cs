@@ -4,7 +4,6 @@ namespace VControl.Samples;
 
 public partial class AppShell : Shell
 {
-
     private readonly INavigationService _navigationService;
 
     public AppShell(INavigationService navigationService)

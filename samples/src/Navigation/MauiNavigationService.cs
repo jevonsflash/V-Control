@@ -9,11 +9,9 @@ public class MauiNavigationService : INavigationService
 
     public async Task InitializeAsync()
     {
-
         //jevons: 修改底栏，HOME
         await NavigateToAsync("//HomePage");
         //await NavigateToAsync("//MainPage");
-
     }
 
     public Task<Page> GetCurrentPageAsync()
@@ -46,7 +44,8 @@ public class MauiNavigationService : INavigationService
             : mainShell.GoToAsync(shellNavigation);
     }
 
-    public Task NavigateToAsync<T>(IDictionary<string, object> routeParameters = null) where T : ContentPage
+    public Task NavigateToAsync<T>(IDictionary<string, object> routeParameters = null)
+        where T : ContentPage
     {
         NavigateToAsync(typeof(T).Name, routeParameters);
         return Task.CompletedTask;
@@ -60,6 +59,7 @@ public class MauiNavigationService : INavigationService
         }
         await mainShell.CurrentPage.ShowPopupAsync(popupPage);
     }
+
     public async Task HidePopupAsync(Popup popupPage)
     {
         if (popupPage == null)
@@ -97,5 +97,4 @@ public class MauiNavigationService : INavigationService
     {
         await mainPageNavigation.PopToRootAsync(animated);
     }
-
 }

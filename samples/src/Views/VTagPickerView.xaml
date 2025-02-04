@@ -1,43 +1,91 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VTagPickerView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VTagPickerViewModel"
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
-    <FlexLayout Direction="Row"
-                Margin="8"
-                BindingContext="{Reference this}"
-                Wrap="Wrap"
-                x:Name="TagLayout"
-                AlignItems="Start"
-                AlignContent="Start"
-                BindableLayout.ItemsSource="{Binding InternalItems}">
-        <BindableLayout.ItemTemplate>
-            <DataTemplate>
-                <Border HeightRequest="30"
-                        Style="{StaticResource Surface}">
-                    <Grid ColumnDefinitions="1*, 50">
-                        <Label Text="{Binding DisplayValue}" />
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VTagPickerView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VTagPickerViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
 
-                        <Button Text="&#xf00d;"
-                                Grid.Column="1"
-                                HorizontalOptions="End"
-                                Padding="0"
-                                WidthRequest="30"
-                                IsEnabled="{Binding Source={x:Reference TagLayout}, Path=BindingContext.IsPickerEnabled}"
-                                FontFamily="FontAwesome-Solid"
-                                Style="{StaticResource TextButton}"
-                                Clicked="Button_Clicked"></Button>
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
 
-                    </Grid>
-                </Border>
-            </DataTemplate>
-        </BindableLayout.ItemTemplate>
-        <BindableLayout.EmptyView>
-            <Grid HeightRequest="30">
-                <Label HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       Text="Please select a item"></Label>
-            </Grid>
-        </BindableLayout.EmptyView>
-    </FlexLayout>
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VTagPicker RemoveCommand="{Binding RemoveDesCountryCommand}"
+                                DisplayPropertyName="{Binding DisplayPropertyName}"
+                                ItemsSource="{Binding SelectedCountryList}"></control:VTagPicker>
+
+
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+                <TableView Intent="Settings"
+                           HasUnevenRows="True">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <ViewCell>
+                                <VerticalStackLayout>
+
+                                    <Label Text="ItemsSource:"
+                                           Style="{StaticResource ItemDetailsLabel}" />
+                                    <CollectionView ItemsSource="{Binding DesCountryList}"
+                                                    SelectionMode="Single"
+                                                    SelectedItem="{Binding SelectedCountry}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label>
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Id}"></Span>
+                                                            <Span Text=" - "></Span>
+                                                            <Span Text="{Binding Value}"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                           
+                            <ViewCell>
+                                <VerticalStackLayout>
+                                    <Label Text="DisplayPropertyName"
+                                           Style="{StaticResource ItemDetailsLabel}" />
+
+                                    <Picker Title="Select DisplayPropertyName"
+                                            SelectedItem="{Binding DisplayPropertyName}">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Id</x:String>
+                                                <x:String>Value</x:String>
+
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+            <Label Text="Disabled"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VTagPicker DisplayPropertyName="{Binding DisplayPropertyName}"
+                                HasRemove="True"
+                                IsPickerEnabled="False"
+                                ItemsSource="{Binding DesCountryList2}"></control:VTagPicker>
+
+            <Label Text="No Remove Button"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VTagPicker DisplayPropertyName="{Binding DisplayPropertyName}"
+                                HasRemove="False"
+                                ItemsSource="{Binding DesCountryList2}"></control:VTagPicker>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </viewBase:ContentPageBase>

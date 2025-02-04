@@ -25,37 +25,39 @@ public partial class VFormItemView : ContentPageBase<VFormItemViewModel>
         HasTitle = !string.IsNullOrEmpty(this.TitleText);
     }
 
-    public IView ContentSlot
-    {
-        get;
-        set;
-    }
+    public IView ContentSlot { get; set; }
 
-    public IView InfoSlot
-    {
-        get;
-        set;
-    }
+    public IView InfoSlot { get; set; }
 
-    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(VFormItem), default(ICommand),
-            propertyChanging: (bindable, oldvalue, newvalue) =>
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(
+        nameof(Command),
+        typeof(ICommand),
+        typeof(VFormItem),
+        default(ICommand),
+        propertyChanging: (bindable, oldvalue, newvalue) =>
+        {
+            var vFormItem = (VFormItem)bindable;
+            var oldcommand = (ICommand)oldvalue;
+            if (oldcommand != null)
+                oldcommand.CanExecuteChanged -= vFormItem.OnCommandCanExecuteChanged;
+        },
+        propertyChanged: (bindable, oldvalue, newvalue) =>
+        {
+            var vFormItem = (VFormItem)bindable;
+            var newcommand = (ICommand)newvalue;
+            if (newcommand != null)
             {
-                var vFormItem = (VFormItem)bindable;
-                var oldcommand = (ICommand)oldvalue;
-                if (oldcommand != null)
-                    oldcommand.CanExecuteChanged -= vFormItem.OnCommandCanExecuteChanged;
-            }, propertyChanged: (bindable, oldvalue, newvalue) =>
-            {
-                var vFormItem = (VFormItem)bindable;
-                var newcommand = (ICommand)newvalue;
-                if (newcommand != null)
-                {
-                    vFormItem.IsEnabled = newcommand.CanExecute(vFormItem.CommandParameter);
-                    newcommand.CanExecuteChanged += vFormItem.OnCommandCanExecuteChanged;
-                }
-            });
+                vFormItem.IsEnabled = newcommand.CanExecute(vFormItem.CommandParameter);
+                newcommand.CanExecuteChanged += vFormItem.OnCommandCanExecuteChanged;
+            }
+        }
+    );
 
-    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(VFormItem), default(object),
+    public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+        nameof(CommandParameter),
+        typeof(object),
+        typeof(VFormItem),
+        default(object),
         propertyChanged: (bindable, oldvalue, newvalue) =>
         {
             var vFormItem = (VFormItem)bindable;
@@ -63,20 +65,45 @@ public partial class VFormItemView : ContentPageBase<VFormItemViewModel>
             {
                 vFormItem.IsEnabled = vFormItem.Command.CanExecute(newvalue);
             }
-        });
+        }
+    );
 
-    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(nameof(TitleText), typeof(string), typeof(VFormItem), "", propertyChanged: OnTitleTextPropertyChanged);
+    public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(
+        nameof(TitleText),
+        typeof(string),
+        typeof(VFormItem),
+        "",
+        propertyChanged: OnTitleTextPropertyChanged
+    );
 
-    private static void OnTitleTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnTitleTextPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         (bindable as VFormItem).HasTitle = !string.IsNullOrEmpty(newValue as string);
-
     }
 
-    public static readonly BindableProperty ValidateTextProperty = BindableProperty.Create(nameof(ValidateText), typeof(string), typeof(VFormItem), "Invalid! The value should be something");
-    public static readonly BindableProperty InfoTextProperty = BindableProperty.Create(nameof(InfoText), typeof(string), typeof(VFormItem), "", propertyChanged: OnInfoTextPropertyChanged);
+    public static readonly BindableProperty ValidateTextProperty = BindableProperty.Create(
+        nameof(ValidateText),
+        typeof(string),
+        typeof(VFormItem),
+        "Invalid! The value should be something"
+    );
+    public static readonly BindableProperty InfoTextProperty = BindableProperty.Create(
+        nameof(InfoText),
+        typeof(string),
+        typeof(VFormItem),
+        "",
+        propertyChanged: OnInfoTextPropertyChanged
+    );
 
-    private static void OnInfoTextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+    private static void OnInfoTextPropertyChanged(
+        BindableObject bindable,
+        object oldValue,
+        object newValue
+    )
     {
         if (string.IsNullOrEmpty(newValue as string) && (bindable as VFormItem).InfoSlot == default)
         {
@@ -85,25 +112,51 @@ public partial class VFormItemView : ContentPageBase<VFormItemViewModel>
         else
         {
             (bindable as VFormItem).HasInfo = true;
-
         }
     }
 
-    public static readonly BindableProperty HasTitleProperty = BindableProperty.Create(nameof(HasTitle),
-        typeof(bool), typeof(VFormItem), true,BindingMode.TwoWay);
-    public static readonly BindableProperty HasInfoProperty = BindableProperty.Create(nameof(HasInfo),
-        typeof(bool), typeof(VFormItem), true, BindingMode.TwoWay);
+    public static readonly BindableProperty HasTitleProperty = BindableProperty.Create(
+        nameof(HasTitle),
+        typeof(bool),
+        typeof(VFormItem),
+        true,
+        BindingMode.TwoWay
+    );
+    public static readonly BindableProperty HasInfoProperty = BindableProperty.Create(
+        nameof(HasInfo),
+        typeof(bool),
+        typeof(VFormItem),
+        true,
+        BindingMode.TwoWay
+    );
 
-    public static readonly BindableProperty IsRequiredProperty = BindableProperty.Create(nameof(IsRequired), typeof(bool), typeof(VFormItem), true);
-    public static readonly BindableProperty IsShowInfoProperty = BindableProperty.Create(nameof(IsShowInfo), typeof(bool), typeof(VFormItem), false, BindingMode.TwoWay);
+    public static readonly BindableProperty IsRequiredProperty = BindableProperty.Create(
+        nameof(IsRequired),
+        typeof(bool),
+        typeof(VFormItem),
+        true
+    );
+    public static readonly BindableProperty IsShowInfoProperty = BindableProperty.Create(
+        nameof(IsShowInfo),
+        typeof(bool),
+        typeof(VFormItem),
+        false,
+        BindingMode.TwoWay
+    );
 
+    public static readonly BindableProperty IsValidProperty = BindableProperty.Create(
+        nameof(IsValid),
+        typeof(bool),
+        typeof(VFormItem),
+        false
+    );
 
-
-    public static readonly BindableProperty IsValidProperty = BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(VFormItem), false);
-
-
-    public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(nameof(TitleTextColor), typeof(Color), typeof(VFormItem), null);
-
+    public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(
+        nameof(TitleTextColor),
+        typeof(Color),
+        typeof(VFormItem),
+        null
+    );
 
     public ICommand Command
     {
@@ -164,13 +217,11 @@ public partial class VFormItemView : ContentPageBase<VFormItemViewModel>
         set { SetValue(IsValidProperty, value); }
     }
 
-
     public Color TitleTextColor
     {
         get { return (Color)GetValue(TitleTextColorProperty); }
         set { SetValue(TitleTextColorProperty, value); }
     }
-
 
     void OnCommandCanExecuteChanged(object sender, EventArgs eventArgs)
     {
@@ -190,6 +241,5 @@ public partial class VFormItemView : ContentPageBase<VFormItemViewModel>
         }
 
         Command?.Execute(CommandParameter);
-
     }
 }

@@ -15,7 +15,7 @@
             <DataTemplate>
                 <Border HeightRequest="30"
                         Style="{StaticResource VTagPickerItemBorder}">
-                    <Grid ColumnDefinitions="1*, 50">
+                    <Grid ColumnDefinitions="1*, auto">
                         <Label Text="{Binding DisplayValue}" />
 
                         <Button Text="&#xf00d;"
@@ -23,6 +23,7 @@
                                 HorizontalOptions="End"
                                 Padding="0"
                                 WidthRequest="30"
+                                IsVisible="{Binding HasRemove}"
                                 IsEnabled="{Binding Source={x:Reference TagLayout}, Path=BindingContext.IsPickerEnabled}"
                                 FontFamily="FontAwesome-Solid"
                                 Style="{StaticResource TextButton}"

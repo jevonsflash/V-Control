@@ -10,7 +10,8 @@ namespace VControl.Samples.Services.Navigation
 
         Task NavigateToAsync(string route, IDictionary<string, object> routeParameters = null);
 
-        Task NavigateToAsync<T>(IDictionary<string, object> routeParameters = null) where T : ContentPage;
+        Task NavigateToAsync<T>(IDictionary<string, object> routeParameters = null)
+            where T : ContentPage;
 
         Task ShowPopupAsync(Popup popupPage);
 

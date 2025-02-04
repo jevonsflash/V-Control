@@ -6,11 +6,9 @@ namespace VControl.Samples.Views;
 
 public partial class VEditorView : ContentPageBase<VEditorViewModel>
 {
-
-    public VEditorView(VEditorViewModel viewModel) : base(viewModel)
+    public VEditorView(VEditorViewModel viewModel)
+        : base(viewModel)
     {
         InitializeComponent();
-
     }
-
 }
