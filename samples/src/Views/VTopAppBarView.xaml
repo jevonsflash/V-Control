@@ -56,7 +56,7 @@
 
                             <Label Grid.Row="1"
                                    VerticalOptions="Center"
-                                   Text="Ti"
+                                   Text="Healthy food generally refers to foods that provide the essential nutrients your body needs to function optimally. "
                                    TextColor="White"></Label>
                         </Grid>
 
