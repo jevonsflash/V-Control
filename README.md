@@ -1,6 +1,11 @@
 
 # V-Control
 
+[![许可证](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://github.com/jevonsflash/VControl/blob/master/LICENSE)
+[![nuget](https://img.shields.io/nuget/v/VControl.svg?style=for-the-badge)](https://www.nuget.org/packages/VControl)
+![codeSize](https://img.shields.io/github/languages/code-size/jevonsflash/VControl.svg?style=for-the-badge)
+![编程语言](https://img.shields.io/github/languages/top/jevonsflash/VControl.svg?style=for-the-badge)
+
 V-Control是适用于[.NET MAUI](https://dotnet.microsoft.com/zh-cn/apps/maui) 的组件库(Component)，它提供了一组开箱即用的 UI 控件，可快速搭建面向业务的应用程序界面。
 
 ![alt text](/docs/assets/banner.png)
@@ -89,7 +94,9 @@ public static MauiApp CreateMauiApp()
 
 ```
 
+## 文档
 
+前往[V-Control Docs](https://vcontrol.matoapp.net/documents/starter)
 
 ## 源码和示例
 
