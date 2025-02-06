@@ -5,7 +5,7 @@
              x:Name="this">
     <Grid RowDefinitions="auto,1*">
         <Grid BindingContext="{Reference this}"
-              ColumnDefinitions="*, 25">
+              ColumnDefinitions="*, auto">
             <Label Style="{StaticResource FormItemLabel}"
                    VerticalOptions="Center"
                    MaxLines="2"
@@ -22,19 +22,19 @@
             </Label>
 
 
-            <ContentView  BindingContext="{Reference this}"
-                          HorizontalOptions="End"
-                          VerticalOptions="Center"
-                          Grid.Column="1"
-                          Margin="0,0,5,0"
-                          IsVisible="{Binding HasInfo}">
-                <Image Source="show_info_btn.png"
-                       WidthRequest="20"
-                       VerticalOptions="Center" />
-                <ContentView.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ShowInfoTapped" />
-                </ContentView.GestureRecognizers>
-            </ContentView>
+           
+            <Button Text="&#xf059;"
+                    Grid.Column="1"                    
+                    HeightRequest="30"
+                    Padding="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    BindingContext="{x:Reference this}"
+                    FontFamily="FontAwesome-Solid"
+                    Clicked="Button_Clicked"
+                    IsVisible="{Binding HasInfo}"
+                    Style="{StaticResource TextButton}"
+                    ></Button>
 
         </Grid>
 
@@ -51,7 +51,7 @@
             <Label Grid.Row="1"
                    BindingContext="{Reference this}"
                    Text="{Binding ValidateText}"
-                   IsVisible="{Binding IsValid}"
+                   IsVisible="{Binding IsInvalid}"
                    TextColor="Red" />
 
 

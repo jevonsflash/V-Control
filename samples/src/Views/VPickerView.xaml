@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VPickerView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VPickerViewModel"
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VPickerView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VPickerViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
 
-    <Picker  BindingContext="{x:Reference this}"
-             Title="{Binding PickerTitle}"
-             IsEnabled="{Binding IsPickerEnabled}"
-             Style="{StaticResource VPickerPicker}"
-             ItemsSource="{Binding InternalItems}"
-             SelectedItem="{Binding InternalSelectedItem}"
-             ItemDisplayBinding="{Binding DisplayValue}" />
+    <ScrollView>
+
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VPicker ItemsSource="{Binding SalutationList}"
+                             DisplayPropertyName="Value"
+                             SelectedItem="{Binding SelectedSalutation}"></control:VPicker>
+           
+            <Label Text="PickerTitle"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VPicker ItemsSource="{Binding SalutationList}"
+                             PickerTitle="Please select a salutation"
+                             DisplayPropertyName="Value"
+                             SelectedItem="{Binding SelectedSalutation}"></control:VPicker>
+            <Label Text="Disabled"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VPicker ItemsSource="{Binding SalutationList}"
+                             DisplayPropertyName="Value"
+                             IsPickerEnabled="False"
+                             SelectedItem="{Binding SelectedSalutation}"></control:VPicker>
+
+
+
+            <Label Text="DisplayPropertyName"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VPicker ItemsSource="{Binding SalutationList}"
+                             DisplayPropertyName="{Binding DisplayPropertyName}"
+                             SelectedItem="{Binding SelectedSalutation}"></control:VPicker>
+
+
+
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+                <TableView Intent="Settings"
+                           HasUnevenRows="True">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <ViewCell>
+                                <VerticalStackLayout>
+                                    <Label Text="DisplayPropertyName"
+                                           Style="{StaticResource ItemDetailsLabel}" />
+
+                                    <Picker Title="Select DisplayPropertyName"
+                                            SelectedItem="{Binding DisplayPropertyName}">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Id</x:String>
+                                                <x:String>Value</x:String>
+
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </viewBase:ContentPageBase>

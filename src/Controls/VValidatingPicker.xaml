@@ -5,7 +5,7 @@
              x:Name="this">
 
 
-    <Picker  BindingContext="{x:Reference this}"         
+    <Picker  BindingContext="{x:Reference this}"
              Title="{Binding PickerTitle}"
              IsEnabled="{Binding IsPickerEnabled}"
              Style="{StaticResource VPickerPicker}"
@@ -14,21 +14,21 @@
              SelectedItem="{Binding SelectedItem}"
              ItemDisplayBinding="{Binding Value.Value}">
 
-     
+
         <Picker.Triggers>
             <DataTrigger TargetType="Picker"
                          Binding="{Binding SelectedItem.IsValid}"
                          Value="True">
                 <Setter Property="TextColor"
                         Value="{StaticResource OnSurface}" />
-                
+
             </DataTrigger>
             <DataTrigger TargetType="Picker"
                          Binding="{Binding SelectedItem.IsValid}"
                          Value="False">
                 <Setter Property="TextColor"
                         Value="{StaticResource Error}" />
-                
+
             </DataTrigger>
         </Picker.Triggers>
 

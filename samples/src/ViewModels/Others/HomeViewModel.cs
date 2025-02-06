@@ -40,7 +40,7 @@ public partial class HomeViewModel : ViewModelBase
             },
         };
 
-        ControlViewItemList = new ObservableCollection<HomeViewItem>()
+        var controlViewItemList = new List<HomeViewItem>
         {
             new HomeViewItem()
             {
@@ -195,13 +195,60 @@ public partial class HomeViewModel : ViewModelBase
                 Url = "VCollectionView",
                 Info = "",
                 Icon = "vcard",
-            },new HomeViewItem()
+            },
+            new HomeViewItem()
             {
                 Title = "VDateNativePicker",
                 Url = "VDateNativePickerView",
                 Info = "",
                 Icon = "vcard",
             },
+            new HomeViewItem()
+            {
+                Title = "VCheckBoxGroup",
+                Url = "VCheckBoxGroupView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VFormItem",
+                Url = "VFormItemView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VIndicator",
+                Url = "VIndicatorView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VPicker",
+                Url = "VPickerView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VUploader",
+                Url = "VUploaderView",
+                Info = "",
+                Icon = "vcard",
+            },
+            new HomeViewItem()
+            {
+                Title = "VValidatingPicker",
+                Url = "VValidatingPickerView",
+                Info = "",
+                Icon = "vcard",
+            },
         };
+
+        this.ControlViewItemList = new ObservableCollection<HomeViewItem>(
+            controlViewItemList.OrderBy(x => x.Title)
+        );
     }
 }

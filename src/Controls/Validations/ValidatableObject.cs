@@ -12,7 +12,7 @@ public class ValidatableObject<T> : INotifyPropertyChanged, IValidatableObject
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    public List<IValidationRule<T>> Validations { get; } = new();
+    public List<IValidationRule<T>> Validations { get; set; } = new();
 
     public IEnumerable<string> Errors
     {

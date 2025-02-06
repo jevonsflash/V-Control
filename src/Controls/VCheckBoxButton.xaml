@@ -41,6 +41,7 @@
             MinimumHeightRequest="30"
             BindingContext="{Reference this}">
         <Grid ColumnDefinitions="*,auto"
+              ColumnSpacing="2"
               Padding="1,0"
               Margin="1,0">
             <ContentView x:Name="MainContent"
@@ -57,7 +58,8 @@
                     Grid.Column="1"
                     HorizontalOptions="End"
                     Padding="0"
-                    WidthRequest="30"
+                    HeightRequest="20"
+                    WidthRequest="20"
                     IsVisible="{Binding HasRemove}"
                     IsEnabled="{Binding IsEnabled}"
                     Style="{StaticResource TextButton}"

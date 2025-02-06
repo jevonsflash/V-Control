@@ -152,8 +152,8 @@ public partial class VFormItem : ContentView
         BindingMode.TwoWay
     );
 
-    public static readonly BindableProperty IsValidProperty = BindableProperty.Create(
-        nameof(IsValid),
+    public static readonly BindableProperty IsInvalidProperty = BindableProperty.Create(
+        nameof(IsInvalid),
         typeof(bool),
         typeof(VFormItem),
         false
@@ -232,10 +232,10 @@ public partial class VFormItem : ContentView
         set { SetValue(IsShowInfoProperty, value); }
     }
 
-    public bool IsValid
+    public bool IsInvalid
     {
-        get { return (bool)GetValue(IsValidProperty); }
-        set { SetValue(IsValidProperty, value); }
+        get { return (bool)GetValue(IsInvalidProperty); }
+        set { SetValue(IsInvalidProperty, value); }
     }
 
     public Color TitleTextColor
@@ -249,10 +249,6 @@ public partial class VFormItem : ContentView
         IsEnabled = Command.CanExecute(CommandParameter);
     }
 
-    private void ShowInfoTapped(object sender, TappedEventArgs e)
-    {
-        this.IsShowInfo = !this.IsShowInfo;
-    }
 
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
@@ -262,5 +258,11 @@ public partial class VFormItem : ContentView
         }
 
         Command?.Execute(CommandParameter);
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        this.IsShowInfo = !this.IsShowInfo;
+
     }
 }

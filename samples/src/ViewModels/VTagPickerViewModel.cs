@@ -26,12 +26,11 @@ public partial class VTagPickerViewModel : ViewModelBase
             new PickerM { Id = "AU", Value = "Australia" },
         };
 
-
         DesCountryList2 = new ObservableCollection<PickerM>()
         {
             new PickerM { Id = "US", Value = "United States" },
             new PickerM { Id = "CN", Value = "China" },
-            new PickerM { Id = "JP", Value = "Japan" }, 
+            new PickerM { Id = "JP", Value = "Japan" },
         };
 
         this.PropertyChanged += VTagPickerViewModel_PropertyChanged;
@@ -41,7 +40,6 @@ public partial class VTagPickerViewModel : ViewModelBase
     {
         if (e.PropertyName == nameof(VTagPickerViewModel.SelectedCountry))
         {
-
             this.SelectedCountryList.Add(SelectedCountry);
         }
     }
@@ -61,12 +59,10 @@ public partial class VTagPickerViewModel : ViewModelBase
     [ObservableProperty]
     private PickerM _selectedCountry;
 
-
     [ObservableProperty]
     private string _displayPropertyName = "Value";
 
     [RelayCommand]
-
     private void RemoveDesCountry(object obj)
     {
         if (obj != null && obj is PickerM)
@@ -74,5 +70,4 @@ public partial class VTagPickerViewModel : ViewModelBase
             SelectedCountryList.Remove(obj as PickerM);
         }
     }
-
 }

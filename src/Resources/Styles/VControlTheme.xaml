@@ -1059,8 +1059,6 @@
 
             <Style x:Key="FormItemLabel"
                    TargetType="Label">
-                <Setter Property="Margin"
-                        Value="0,10,0,0" />
                 <Setter Property="TextColor"
                         Value="{StaticResource Gray380}" />
             </Style>

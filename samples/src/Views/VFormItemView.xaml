@@ -1,69 +1,134 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VFormItemView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VFormItemViewModel"
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
-    <StackLayout>
-        <Grid  BindingContext="{Reference this}"
-               ColumnDefinitions="auto, auto, 1*">
-            <Label Style="{StaticResource FormItemLabel}"
-                   MaxLines="2"
-                   TextColor="{Binding TitleTextColor}"
-                   IsVisible="{Binding HasTitle}"
-                   Text="{Binding TitleText}"></Label>
-            <Label Grid.Column="1"
-                   TextColor="Red"
-                   IsVisible="{Binding IsRequired}"
-                   Style="{StaticResource FormItemLabel}"
-                   Text="*"></Label>
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VFormItemView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VFormItemViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
 
-            <viewBase:ContentPageBase  BindingContext="{Reference this}"
-                          HorizontalOptions="End"
-                          VerticalOptions="Center"
-                          Grid.Column="2"
-                          Margin="0,0,5,0"
-                          IsVisible="{Binding HasInfo}">
-                <Image Source="show_info_btn.png"
-                       WidthRequest="20"
-                       VerticalOptions="Center" />
-                <viewBase:ContentPageBase.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="ShowInfoTapped" />
-                </viewBase:ContentPageBase.GestureRecognizers>
-            </viewBase:ContentPageBase>
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
 
-        </Grid>
+            <control:VFormItem TitleText="Company Name:">
+            </control:VFormItem>
 
-        <Grid RowDefinitions="1*, auto, auto"
-              Padding="0,10,0,15">
+            <Label Text="Default With Content"
+                   Style="{StaticResource ItemDetailsLabel}" />
 
-            <viewBase:ContentPageBase x:Name="MainContent">
-                <viewBase:ContentPageBase.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                </viewBase:ContentPageBase.GestureRecognizers>
+            <control:VFormItem TitleText="Company Name:">
+                <control:VFormItem.ContentSlot>
+                    <control:VEntry />
+                </control:VFormItem.ContentSlot>
+            </control:VFormItem>
 
-            </viewBase:ContentPageBase>
-            <Label Grid.Row="1"
-                   BindingContext="{Reference this}"
-                   Text="{Binding ValidateText}"
-                   IsVisible="{Binding IsValid}"
-                   TextColor="Red" />
+            <Label Text="Is Required"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VFormItem TitleText="Company Name:"
+                               IsRequired="False">
+                <control:VFormItem.ContentSlot>
+                    <control:VEntry />
+                </control:VFormItem.ContentSlot>
+            </control:VFormItem>
+
+            <Label Text="Is Required"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VFormItem TitleText="Company Name:"
+                               InfoText="Please fill in the buyer or client's information here">
+                <control:VFormItem.ContentSlot>
+                    <control:VEntry />
+                </control:VFormItem.ContentSlot>
+            </control:VFormItem>
+
+            <Label Text="Required"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VFormItem TitleText="Company Name:"
+                               InfoText="Please fill in the buyer or client's information here">
+                <control:VFormItem.ContentSlot>
+                    <control:VEntry />
+                </control:VFormItem.ContentSlot>
+            </control:VFormItem>
+
+            <Label Text="Invalid"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VFormItem TitleText="Company Name:"
+                               IsInvalid="True"
+                               ValidateText="'Company Name' must not be null"
+                               InfoText="Please fill in the buyer or client's information here">
+                <control:VFormItem.ContentSlot>
+                    <control:VEntry />
+                </control:VFormItem.ContentSlot>
+            </control:VFormItem>
 
 
+            <Label Text="Colored Title"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VFormItem TitleText="Company Name:"
+                               TitleTextColor="Green">
+                <control:VFormItem.ContentSlot>
+                    <control:VEntry />
+                </control:VFormItem.ContentSlot>
+            </control:VFormItem>
 
 
+            <Label Text="Customized Info Content"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VFormItem TitleText="Upload files:">
+                <control:VFormItem.ContentSlot>
+                    <control:VUploader  />
+                </control:VFormItem.ContentSlot>
+                <control:VFormItem.InfoSlot>
+                    <VerticalStackLayout>
+                        <Label Text="Only files in the following formats can be uploaded"
+                                />
+                        <HorizontalStackLayout HeightRequest="35" Spacing="10">
+                            <Image Source="xls.png"></Image>
+                            <Image Source="ppt.png"></Image>
+                            <Image Source="doc.png"></Image>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </control:VFormItem.InfoSlot>
+            </control:VFormItem>
 
-            <viewBase:ContentPageBase  Grid.Row="2"
-                          Grid.ColumnSpan="2"
-                          BindingContext="{Reference this}"
-                          IsVisible="{Binding IsShowInfo}"
-                          x:Name="InfoContent">
-                <Border Style="{StaticResource FormItemInfoBorder}">
-                    <Label Style="{StaticResource FormItemInfoLabel}"
-                           Text="{Binding InfoText}" />
-                </Border>
-            </viewBase:ContentPageBase>
-        </Grid>
+
+            <Label Text="Others"
+                   Style="{StaticResource ItemDetailsLabel}" />
 
 
-    </StackLayout>
+            <control:VFormItem TitleText="Company Name:"
+                               HasInfo="{Binding HasInfo}"
+                               HasTitle="{Binding HasTitle}"
+                               IsInvalid="{Binding IsInvalid}"
+                               InfoText="Please fill in the buyer or client's information here">
+                <control:VFormItem.ContentSlot>
+                    <control:VEntry />
+                </control:VFormItem.ContentSlot>
+            </control:VFormItem>
+
+            <Border Style="{StaticResource ControlSampleOptionLayout}">
+                <TableView Intent="Settings"
+                           HasUnevenRows="True">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <SwitchCell Text="HasInfo"
+                                        On="{Binding HasInfo}"></SwitchCell>
+                            <SwitchCell Text="HasTitle"
+                                        On="{Binding HasTitle}"></SwitchCell>
+                            <SwitchCell Text="IsInvalid"
+                                        On="{Binding IsInvalid}"></SwitchCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+
 </viewBase:ContentPageBase>

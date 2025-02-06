@@ -45,7 +45,10 @@ V-Control默认实现了以下几种校验规则：
 * public class MaxLenRule<T> 		
 * public class MinCountOfDigitRule<T>				
 * public class MinCountOfUpperLetterRule<T>	
-* public class MinLenRule<T> 	
+* public class MinLenRule<T> 
+* pubiic class LessThanRule<T>	
+* pubiic class MoreThanRule<T>	
+
 
 如果您需要自定义校验规则，创建一个继承`IValidationRule<T>`的类，并实现`Validate()`方法。
 
@@ -77,7 +80,7 @@ Password.Validations.Add(new MinCountOfUpperLetterRule<string> { ValidationMessa
 
 ## ValidateCommand
 
-使用ValidateCommand属性，在触发校验时时，执行ValidateCommand指定的命令。
+使用 `ValidateCommand` 属性，在触发校验时时，执行 `ValidateCommand` 指定的命令。
 
 
 ```xml
@@ -87,7 +90,7 @@ Password.Validations.Add(new MinCountOfUpperLetterRule<string> { ValidationMessa
 
 ```
 
-在这个示例中，可以通过在ValidateUserNameCommand中，额外对UserName进行校验，实现“一票否决”或“一票同意”的效果。
+在这个示例中，可以通过在 `ValidateUserNameCommand` 中，额外对UserName进行校验，实现“一票否决”或“一票同意”的效果。
 
 ViewModel：
 

@@ -1,45 +1,90 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VControl.Samples.Views.VCheckBoxGroupView" xmlns:vm="clr-namespace:VControl.Samples.ViewModels" x:TypeArguments="vm:VCheckBoxGroupViewModel"
-             xmlns:controls="clr-namespace:VControl.Controls"
-             
-             xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"  xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
-    <viewBase:ContentPageBase.Resources>
-        <ResourceDictionary>
-        </ResourceDictionary>
-    </viewBase:ContentPageBase.Resources>
-    <Grid ColumnDefinitions="1*, auto">
-        <FlexLayout Direction="{Binding FlDirection}"
-                    BindingContext="{Reference this}"
-                    Wrap="{Binding FlWrap}"
-                    AlignItems="Start"
-                    AlignContent="Start"
-                    BindableLayout.ItemsSource="{Binding InternalItems, Mode=TwoWay}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          x:Class="VControl.Samples.Views.VCheckBoxGroupView"
+                          xmlns:vm="clr-namespace:VControl.Samples.ViewModels"
+                          x:TypeArguments="vm:VCheckBoxGroupViewModel"
+                          xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
+                          xmlns:control="clr-namespace:VControl.Controls;assembly=VControl">
 
-                        <controls:VCheckBoxButton Title="{Binding DisplayValue}"
-                                                  HasRemove="{Binding HasRemove}"
-                                                  IsEnabled="{Binding IsEnabled}"
-                                                  Clicked="VCheckBoxButton_Clicked"
-                                                  RemoveButtonClicked="Button_Clicked"
-                                                  IsChecked="{Binding IsSelected}"></controls:VCheckBoxButton>
+    <ScrollView>
+        <VerticalStackLayout Margin="{StaticResource LayoutMargin}">
+
+            <Label Text="Default"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBoxGroup ItemsSource="{Binding CityList}"/>
 
 
-                    </Grid>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </FlexLayout>
+            <Label Text="Single Selection"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBoxGroup ItemsSource="{Binding CityList}"
+                                    IsSingleSelection="True"
+                                     />
 
-        <Button Text="&#xf12d;"
-                BindingContext="{x:Reference this}"
-                FontFamily="FontAwesome-Solid"
-                Grid.Column="1"
-                IsVisible="{Binding HasClear}"
-                Style="{StaticResource TextButton}"
-                Clicked="ClearButton_Clicked"
-                x:Name="ClearButton"></Button>
-    </Grid>
+            <Label Text="Has Remove Button"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBoxGroup ItemsSource="{Binding CityList}"
+                                    HasRemove="True"
+                                     />
+
+            <Label Text="Disabled"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBoxGroup ItemsSource="{Binding CityList}"
+                                    IsEnabled="False" />
+
+            <Label Text="Direction"
+                   Style="{StaticResource ItemDetailsLabel}" />
+            <control:VCheckBoxGroup ItemsSource="{Binding CityList}"
+                                    Direction="RowReverse"
+                                     />
+
+
+            <Label Text="Others"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+            <control:VCheckBoxGroup HasClear="{Binding HasClear}"
+                                    BindingContext="{Binding CollectionModel1}"
+                                    DisplayPropertyName="{Binding DisplayPropertyName}"
+                                    ItemsSource="{Binding InternalEmailList}"
+                                    SelectedItems="{Binding SelectedEmailList}" />
+            
+            
+            <Border Style="{StaticResource ControlSampleOptionLayout}"
+                    BindingContext="{Binding CollectionModel1}">
+                <TableView Intent="Settings"
+                           HasUnevenRows="True">
+                    <TableRoot>
+                        <TableSection Title="Options">
+                            <SwitchCell Text="HasClear"
+                                        On="{Binding HasClear}"></SwitchCell>
+                     
+
+                            <ViewCell>
+                                <VerticalStackLayout>
+                                    <Label Text="DisplayPropertyName"
+                                           Style="{StaticResource ItemDetailsLabel}" />
+
+                                    <Picker Title="Select DisplayPropertyName"
+                                            SelectedItem="{Binding DisplayPropertyName}">
+                                        <Picker.ItemsSource>
+                                            <x:Array Type="{x:Type x:String}">
+                                                <x:String>Title</x:String>
+                                                <x:String>Value</x:String>
+
+                                            </x:Array>
+                                        </Picker.ItemsSource>
+                                    </Picker>
+                                </VerticalStackLayout>
+                            </ViewCell>
+
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </Border>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </viewBase:ContentPageBase>

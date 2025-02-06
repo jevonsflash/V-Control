@@ -4,7 +4,6 @@ namespace VControl.Samples.ViewModels;
 
 public partial class VCollectionViewModel : ViewModelBase
 {
-   
     [ObservableProperty]
     private bool _isExpanded = true;
 
@@ -26,4 +25,3 @@ public partial class VCollectionViewModel : ViewModelBase
     [ObservableProperty]
     private EmailCheckableCollectionModel _collectionModel3;
 }
-

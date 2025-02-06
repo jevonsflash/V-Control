@@ -67,24 +67,12 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Compile Remove="Views\VCheckBoxGroupView.xaml.cs" />
 	  <Compile Remove="Views\VCollectionItemView.xaml.cs" />
-	  <Compile Remove="Views\VFormItemView.xaml.cs" />
-	  <Compile Remove="Views\VIndicatorView.xaml.cs" />
-	  <Compile Remove="Views\VPickerView.xaml.cs" />
-	  <Compile Remove="Views\VUploaderView.xaml.cs" />
-	  <Compile Remove="Views\VValidatingPickerView.xaml.cs" />
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <MauiXaml Remove="Views\VCheckBoxGroupView.xaml" />
 	  <MauiXaml Remove="Views\VCollectionItemView.xaml" />
-	  <MauiXaml Remove="Views\VFormItemView.xaml" />
-	  <MauiXaml Remove="Views\VIndicatorView.xaml" />
-	  <MauiXaml Remove="Views\VPickerView.xaml" />
 	  <MauiXaml Remove="Views\VPlaceholderView.xaml" />
-	  <MauiXaml Remove="Views\VUploaderView.xaml" />
-	  <MauiXaml Remove="Views\VValidatingPickerView.xaml" />
 	</ItemGroup>
 
 
@@ -195,6 +183,9 @@
 	  <MauiXaml Update="Views\VCheckBoxGroup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\VCheckBoxGroupView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\VCheckBoxView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -243,7 +234,13 @@
 	  <MauiXaml Update="Views\VFormItem.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\VFormItemView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\VIndicator.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VIndicatorView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VMenuCell.xaml">
@@ -259,6 +256,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VPicker.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VPickerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VRadioButtonGroup.xaml">
@@ -309,6 +309,9 @@
 	  <MauiXaml Update="Views\VUploader.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\VUploaderView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\VValidatingEntry.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -316,6 +319,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\VValidatingPicker.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VValidatingPickerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

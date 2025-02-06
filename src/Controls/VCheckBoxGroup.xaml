@@ -10,9 +10,10 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Grid ColumnDefinitions="1*, auto">
-        <FlexLayout Direction="{Binding FlDirection}"
+        <FlexLayout Direction="{Binding Direction}"
                     BindingContext="{Reference this}"
-                    Wrap="{Binding FlWrap}"
+                    Wrap="Wrap"
+                    
                     AlignItems="Start"
                     AlignContent="Start"
                     BindableLayout.ItemsSource="{Binding InternalItems, Mode=TwoWay}">

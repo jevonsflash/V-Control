@@ -73,6 +73,12 @@ public static class MauiProgram
         builder.Services.AddTransientWithRoute<VCheckBoxButtonView, VCheckBoxButtonViewModel>();
         builder.Services.AddTransientWithRoute<VCollectionView, VCollectionViewModel>();
         builder.Services.AddTransientWithRoute<VDateNativePickerView, VDateNativePickerViewModel>();
+        builder.Services.AddTransientWithRoute<VCheckBoxGroupView, VCheckBoxGroupViewModel>();
+        builder.Services.AddTransientWithRoute<VFormItemView, VFormItemViewModel>();
+        builder.Services.AddTransientWithRoute<VIndicatorView, VIndicatorViewModel>();
+        builder.Services.AddTransientWithRoute<VPickerView, VPickerViewModel>();
+        builder.Services.AddTransientWithRoute<VUploaderView, VUploaderViewModel>();
+        builder.Services.AddTransientWithRoute<VValidatingPickerView, VValidatingPickerViewModel>();
         return builder;
     }
 

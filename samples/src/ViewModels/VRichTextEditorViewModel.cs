@@ -11,22 +11,14 @@ public partial class VRichTextEditorViewModel : ViewModelBase
         : base(navService)
     {
         this.PageTitle = "VRichTextEditorView Samples";
-
     }
-
 
     [ObservableProperty]
     private string _content;
 
     [ObservableProperty]
-
-
     private string _placeHolder;
 
     [ObservableProperty]
-
     private string _htmlContent;
-
-
-
 }

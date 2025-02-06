@@ -31,7 +31,7 @@ public partial class VUploader : ContentView
         nameof(Tip),
         typeof(string),
         typeof(VUploader),
-        string.Empty,
+        "Click here to upload the file",
         //propertyChanged: OnTipPropertyChanged,
         defaultBindingMode: BindingMode.TwoWay
     );

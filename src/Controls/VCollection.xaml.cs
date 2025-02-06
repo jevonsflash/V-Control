@@ -472,8 +472,8 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
 
     public bool HasRemove
     {
-        get { return (bool)GetValue(HasEditProperty); }
-        set { SetValue(HasEditProperty, value); }
+        get { return (bool)GetValue(HasRemoveProperty); }
+        set { SetValue(HasRemoveProperty, value); }
     }
 
     public VCollection()

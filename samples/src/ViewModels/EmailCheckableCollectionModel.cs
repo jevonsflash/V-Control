@@ -80,20 +80,19 @@ public partial class EmailCheckableCollectionModel : ObservableObject
     private string _displayPropertyName = "Title";
 
     [RelayCommand]
-
     private async Task RemoveEmail(object obj)
     {
-        var toast = Toast.Make("Remove Button Clicked: "+(obj as PickerM).Value, ToastDuration.Long);
+        var toast = Toast.Make(
+            "Remove Button Clicked: " + (obj as PickerM).Value,
+            ToastDuration.Long
+        );
         await toast.Show();
-
     }
 
     [RelayCommand]
-
     private async Task EditEmail(object obj)
     {
         var toast = Toast.Make("Edit Button Clicked:" + (obj as PickerM).Value, ToastDuration.Long);
         await toast.Show();
     }
-
 }
