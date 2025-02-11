@@ -1,71 +1,70 @@
-
 # V-Control
 
-[![许可证](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://github.com/jevonsflash/VControl/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://github.com/jevonsflash/VControl/blob/master/LICENSE)
 [![nuget](https://img.shields.io/nuget/v/VControl.svg?style=for-the-badge)](https://www.nuget.org/packages/VControl)
 ![codeSize](https://img.shields.io/github/languages/code-size/jevonsflash/VControl.svg?style=for-the-badge)
-![编程语言](https://img.shields.io/github/languages/top/jevonsflash/VControl.svg?style=for-the-badge)
+![Programming Language](https://img.shields.io/github/languages/top/jevonsflash/VControl.svg?style=for-the-badge)
 
-V-Control是适用于[.NET MAUI](https://dotnet.microsoft.com/zh-cn/apps/maui) 的组件库(Component)，它提供了一组开箱即用的 UI 控件，可快速搭建面向业务的应用程序界面。
+English | [中文](README_zh.md)
+
+V-Control is a component library for [ .NET MAUI](https://dotnet.microsoft.com/zh-cn/apps/maui), providing a set of out-of-the-box UI controls to quickly build business-oriented app interfaces.
 
 ![alt text](/docs/assets/banner.png)
 
 
-## 功能
+## Features
 
-* [VButton](https://vcontrol.matoapp.net/documents/v-button) - 按钮组件
-* VCard - 卡片组件
-* [VCheckableCollection](https://vcontrol.matoapp.net/documents/v-checkable-collection) - 可勾选的集合组件
-* [VCheckBox](https://vcontrol.matoapp.net/documents/v-checkbox) - 复选框组件
-* [VCheckBoxButton](https://vcontrol.matoapp.net/documents/v-checkbox-button) - 复选框按钮组件
-* [VCheckBoxGroup](https://vcontrol.matoapp.net/documents/v-checkbox-group) - 复选框集合组件
-* [VCollection](https://vcontrol.matoapp.net/documents/v-collection) - 集合视图组件
-* VDateNativePicker - 原生封装的日期选择器组件
-* [VDatePicker](https://vcontrol.matoapp.net/documents/v-date-picker) - 日期选择器组件
-* [VEditor](https://vcontrol.matoapp.net/documents/v-editor) - 编辑器组件
-* [VExpander](https://vcontrol.matoapp.net/documents/v-expander) - 展开收起组件
-* [VFormItem](https://vcontrol.matoapp.net/documents/v-form-item) - 表单组件
-* VIndicator - 进度指示器组件
-* [VMenuCell](https://vcontrol.matoapp.net/documents/v-menu-cell) - 菜单项组件
-* [VNumberEntry](https://vcontrol.matoapp.net/documents/v-number-entry) - 数字输入框组件
-* [VPicker](https://vcontrol.matoapp.net/documents/v-picker) - 选择器组件
-* VRadioButton - 单选框组件
-* [VRadioButtonGroup](https://vcontrol.matoapp.net/documents/v-radio-button-group) - 单选框集合组件（切换栏组件）
-* [VSearchBar](https://vcontrol.matoapp.net/documents/v-search-bar) - 搜索栏组件
-* [VTagPicker](https://vcontrol.matoapp.net/documents/v-tag-picker) - 标签选择器组件
-* [VTimeLine](https://vcontrol.matoapp.net/documents/v-time-line) - 时间轴组件
-* [VTopAppBar](https://vcontrol.matoapp.net/documents/v-top-app-bar) - 顶栏组件
-* VTouchContentView - 手势监听组件
-* VUploader - 文件上传组件
-* [VValidatingEntry](https://vcontrol.matoapp.net/documents/v-validating-entry) - 带验证的输入框组件
-* [VValidatingPicker](https://vcontrol.matoapp.net/documents/v-validating-picker) - 带验证的选择器组件
-* [VRichTextEditor](https://vcontrol.matoapp.net/documents/v-rich-text-editor) - 富文本编辑器组件
-* [VEntry](https://vcontrol.matoapp.net/documents/v-entry) - 输入框组件
-* [VPlaceholderView](https://vcontrol.matoapp.net/documents/v-placeholder-view) - 占位视图组件
+* [VButton](https://vcontrol.matoapp.net/documents/v-button) - Button Component
+* VCard - Card Component
+* [VCheckableCollection](https://vcontrol.matoapp.net/documents/v-checkable-collection) - Checkable Collection Component
+* [VCheckBox](https://vcontrol.matoapp.net/documents/v-checkbox) - Checkbox Component
+* [VCheckBoxButton](https://vcontrol.matoapp.net/documents/v-checkbox-button) - Checkbox Button Component
+* [VCheckBoxGroup](https://vcontrol.matoapp.net/documents/v-checkbox-group) - Checkbox Group Component
+* [VCollection](https://vcontrol.matoapp.net/documents/v-collection) - Collection View Component
+* VDateNativePicker - Native Date Picker Component
+* [VDatePicker](https://vcontrol.matoapp.net/documents/v-date-picker) - Date Picker Component
+* [VEditor](https://vcontrol.matoapp.net/documents/v-editor) - Editor Component
+* [VExpander](https://vcontrol.matoapp.net/documents/v-expander) - Expander Component
+* [VFormItem](https://vcontrol.matoapp.net/documents/v-form-item) - Form Component
+* VIndicator - Progress Indicator Component
+* [VMenuCell](https://vcontrol.matoapp.net/documents/v-menu-cell) - Menu Item Component
+* [VNumberEntry](https://vcontrol.matoapp.net/documents/v-number-entry) - Number Entry Component
+* [VPicker](https://vcontrol.matoapp.net/documents/v-picker) - Picker Component
+* VRadioButton - Radio Button Component
+* [VRadioButtonGroup](https://vcontrol.matoapp.net/documents/v-radio-button-group) - Radio Button Group Component (Toggle Bar)
+* [VSearchBar](https://vcontrol.matoapp.net/documents/v-search-bar) - Search Bar Component
+* [VTagPicker](https://vcontrol.matoapp.net/documents/v-tag-picker) - Tag Picker Component
+* [VTimeLine](https://vcontrol.matoapp.net/documents/v-time-line) - Timeline Component
+* [VTopAppBar](https://vcontrol.matoapp.net/documents/v-top-app-bar) - Top App Bar Component
+* VTouchContentView - Gesture Listener Component
+* VUploader - File Upload Component
+* [VValidatingEntry](https://vcontrol.matoapp.net/documents/v-validating-entry) - Validating Entry Component
+* [VValidatingPicker](https://vcontrol.matoapp.net/documents/v-validating-picker) - Validating Picker Component
+* [VRichTextEditor](https://vcontrol.matoapp.net/documents/v-rich-text-editor) - Rich Text Editor Component
+* [VEntry](https://vcontrol.matoapp.net/documents/v-entry) - Entry Component
+* [VPlaceholderView](https://vcontrol.matoapp.net/documents/v-placeholder-view) - Placeholder View Component
 
 
 ## Todo
 
-* VAutocomplete - 自动完成组件
-* VComparisonView - 比较视图组件
-* VCalendar - 日历组件
-* 暗黑模式
-* 基于 BlazorApp 的组件
+* VAutocomplete - Autocomplete Component
+* VComparisonView - Comparison View Component
+* VCalendar - Calendar Component
+* Dark Mode
+* BlazorApp-based Components
 
-## 快速开始
+## Quick Start
 
-1. 在你的.NET MAUI 项目中执行以下命令来安装 V-Control：
+1. Run the following command in your .NET MAUI project to install V-Control:
    
 ```bash
 dotnet add package VControl
 ```
 
-或在NUGET中搜索"V-Control"并安装它。
+Or search for "V-Control" in NUGET and install it.
 
 
-2. 在 `MauiProgram` 使用`.UseVControl()`在MauiAppBuilder中添加V-Control的处理程序。
-
-
+2. In `MauiProgram`, use `.UseVControl()` to add the V-Control handler in the MauiAppBuilder.
 
 ```csharp
 public static MauiApp CreateMauiApp()
@@ -73,13 +72,13 @@ public static MauiApp CreateMauiApp()
     var builder = MauiApp.CreateBuilder();
     builder
         .UseMauiApp<App>()
-        .UseVControl()   //👈在这里添加V-Control的处理程序
+        .UseVControl()   //👈 Add V-Control handler here
     var mauiApp = builder.Build();
     return mauiApp;
 }
 ```
 
-3. 打开 `App.xaml` 文件， 在资源中添加`<v:VControlTheme />`。
+3. Open the `App.xaml` file and add `<v:VControlTheme />` to the resources.
 
 ```xml
 
@@ -95,13 +94,13 @@ public static MauiApp CreateMauiApp()
 
 ```
 
-## 文档
+## Documentation
 
-前往[V-Control Docs](https://vcontrol.matoapp.net/documents/starter)
+Visit [V-Control Docs](https://vcontrol.matoapp.net/documents/starter)
 
-## 源码和示例
+## Source Code and Samples
 
-您可以前往[GitHub](https://github.com/jevonsflash/VControl)查看V-Control的源码和示例。
+You can visit the [GitHub](https://github.com/jevonsflash/VControl) to view the source code and examples for V-Control.
 
 ## Stargazers over time
 [![Stargazers over time](https://starchart.cc/jevonsflash/V-Control.svg?variant=adaptive)](https://starchart.cc/jevonsflash/V-Control)
