@@ -78,6 +78,10 @@ public partial class VCheckBoxGroup : ContentView, INotifyPropertyChanged
             (newValue as INotifyCollectionChanged).CollectionChanged += (
                 bindable as VCheckBoxGroup
             ).VCheckBoxGroup_CollectionChanged;
+            if (oldValue == null)
+            {
+                (bindable as VCheckBoxGroup).UpdateItemSelection((IList)newValue);
+            }
         }
         else
         {

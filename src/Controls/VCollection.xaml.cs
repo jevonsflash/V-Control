@@ -116,6 +116,10 @@ public partial class VCollection : ContentView, INotifyPropertyChanged
             (newValue as INotifyCollectionChanged).CollectionChanged += (
                 bindable as VCollection
             ).VCollection_CollectionChanged;
+            if (oldValue == null)
+            {
+                (bindable as VCollection).UpdateItemSelection((IList)newValue);
+            }
         }
         else
         {
