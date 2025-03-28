@@ -141,7 +141,7 @@ public partial class VUploader : ContentView
 
     private void TapGestureRecognizer_Tapped_1(object sender, TappedEventArgs e)
     {
-        var CommandParameter = (sender as VUploader).BindingContext;
+        var CommandParameter = (sender as BindableObject).BindingContext;
         this.Command?.Execute(CommandParameter);
     }
 
@@ -151,7 +151,7 @@ public partial class VUploader : ContentView
         {
             return;
         }
-        var removeCommandParameter = (sender as VUploader).BindingContext;
+        var removeCommandParameter = (sender as BindableObject).BindingContext;
         RemoveCommand?.Execute(removeCommandParameter);
     }
 }
