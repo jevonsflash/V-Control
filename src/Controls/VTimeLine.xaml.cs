@@ -7,7 +7,26 @@ public partial class VTimeLine : ContentView
     public VTimeLine()
     {
         InitializeComponent();
+        Loaded += VTimeLine_Loaded;
     }
+
+    private void VTimeLine_Loaded(object? sender, EventArgs e)
+    {
+        if (this.RemarkSlot != default)
+        {
+            (this.FindByName("RemarkContent") as ContentView).Content = (View)this.RemarkSlot;
+        }
+    }
+
+    public IView RemarkSlot { get; set; }
+
+
+    public static readonly BindableProperty IsShowRemarkProperty = BindableProperty.Create(
+       nameof(IsShowRemark),
+       typeof(bool),
+       typeof(VTimeLine),
+       true
+   );
 
     public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
         nameof(SelectedIndex),
@@ -68,6 +87,12 @@ public partial class VTimeLine : ContentView
             var selectedIndex = (bindable as VTimeLine).ItemsSource.IndexOf(newValue);
             (bindable as VTimeLine).SelectedIndex = (int)selectedIndex;
         }
+    }
+
+    public bool IsShowRemark
+    {
+        get { return (bool)GetValue(IsShowRemarkProperty); }
+        set { SetValue(IsShowRemarkProperty, value); }
     }
 
     public object SelectedItem

@@ -37,7 +37,7 @@ public partial class VTimeLineItem : ContentView
         nameof(TitleColor),
         typeof(Color),
         typeof(VTimeLineItem),
-        null
+        default
     );
 
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(
@@ -176,6 +176,13 @@ public partial class VTimeLineItem : ContentView
         InitializeComponent();
         Loaded += VTimeLineItem_Loaded;
         GoToState(Type);
+
+        if (TitleColor == default)
+        {
+            object textColor = default;
+            Application.Current?.Resources.TryGetValue("OnSurface", out textColor);
+            TitleColor = textColor as Color;
+        }
     }
 
     void OnCommandCanExecuteChanged(object sender, EventArgs eventArgs)
@@ -200,14 +207,14 @@ public partial class VTimeLineItem : ContentView
         switch (timeLineItemType)
         {
             case TimeLineItemType.Normal:
-                VisualStateManager.GoToState(this, "Normal");
+                VisualStateManager.GoToState(this.MainLayout, "Normal");
 
                 break;
             case TimeLineItemType.Active:
-                VisualStateManager.GoToState(this, "Active");
+                VisualStateManager.GoToState(this.MainLayout, "Active");
                 break;
             case TimeLineItemType.Success:
-                VisualStateManager.GoToState(this, "Success");
+                VisualStateManager.GoToState(this.MainLayout, "Success");
                 break;
             default:
                 break;

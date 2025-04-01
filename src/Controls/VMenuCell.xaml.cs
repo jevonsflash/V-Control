@@ -7,6 +7,12 @@ public partial class VMenuCell : ViewCell
     public VMenuCell()
     {
         InitializeComponent();
+        if (MenuTextColor == default)
+        {
+            object textColor = default;
+            Application.Current?.Resources.TryGetValue("OnSurface", out textColor);
+            MenuTextColor = textColor as Color;
+        }
     }
 
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(
@@ -65,7 +71,7 @@ public partial class VMenuCell : ViewCell
         nameof(MenuTextColor),
         typeof(Color),
         typeof(VMenuCell),
-        null
+        default
     );
 
     public ICommand Command

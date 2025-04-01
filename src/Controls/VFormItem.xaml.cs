@@ -9,6 +9,12 @@ public partial class VFormItem : ContentView
         InitializeComponent();
         Loaded += VFormItem_Loaded;
         this.IsRequiredMark = "*";
+        if (TitleTextColor == default)
+        {
+            object textColor = default;
+            Application.Current?.Resources.TryGetValue("OnSurface", out textColor);
+            TitleTextColor = textColor as Color;
+        }
     }
 
     private void VFormItem_Loaded(object sender, EventArgs e)
@@ -163,7 +169,7 @@ public partial class VFormItem : ContentView
         nameof(TitleTextColor),
         typeof(Color),
         typeof(VFormItem),
-        null
+        default
     );
 
     private string _isRequiredMark;

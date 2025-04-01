@@ -37,7 +37,7 @@ public partial class VExpander : ContentView
         nameof(TitleTextColor),
         typeof(Color),
         typeof(VExpander),
-        null
+        default
     );
 
 
@@ -88,6 +88,12 @@ public partial class VExpander : ContentView
         InitializeComponent();
         Loaded += VExpander_Loaded;
         UpdateExpandDirection();
+        if (TitleTextColor == default)
+        {
+            object textColor = default;
+            Application.Current?.Resources.TryGetValue("OnSurface", out textColor);
+            TitleTextColor = textColor as Color;
+        }
     }
 
     private void VExpander_Loaded(object sender, EventArgs e)

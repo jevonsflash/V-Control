@@ -21,6 +21,62 @@
             <control:VTimeLine ItemsSource="{Binding ProBarList}"></control:VTimeLine>
 
 
+            <Label Text="Hide Remark"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VTimeLine ItemsSource="{Binding ProBarList1}"
+                               IsShowRemark="False"></control:VTimeLine>
+
+
+            <Label Text="Customized Remark"
+                   Style="{StaticResource ItemDetailsLabel}" />
+
+
+            <control:VTimeLine ItemsSource="{Binding ProBarList1}">
+
+                <control:VTimeLine.RemarkSlot>
+                    <VerticalStackLayout>
+                        <Label Text="Remark:"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,10" />
+                        <Grid RowDefinitions="*,*,*"
+                              ColumnSpacing="5"
+                              ColumnDefinitions="auto,*">
+
+
+                            <Rectangle WidthRequest="7"
+                                       HeightRequest="7"
+                                       Grid.Row="0"
+                                       Fill="{StaticResource NormalFill}" />
+                            <Label Text="Procedure to be done."
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   TextColor="{StaticResource Gray360}" />
+                            <Rectangle WidthRequest="7"
+                                       HeightRequest="7"
+                                       Grid.Row="1"
+                                       Fill="{StaticResource SuccessFill}" />
+                            <Label Text="Procedure completed."
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   TextColor="{StaticResource Gray360}" />
+
+                            <Rectangle WidthRequest="7"
+                                       HeightRequest="7"
+                                       Grid.Row="2"
+                                       Fill="{StaticResource ActiveFill}" />
+                            <Label Text="Present procedure."
+                                   Grid.Row="2"
+                                   Grid.Column="1"
+                                   TextColor="{StaticResource Gray360}" />
+
+                        </Grid>
+                    </VerticalStackLayout>
+
+                </control:VTimeLine.RemarkSlot>
+            </control:VTimeLine>
+
         </VerticalStackLayout>
     </ScrollView>
 

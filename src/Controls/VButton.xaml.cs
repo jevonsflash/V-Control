@@ -25,7 +25,7 @@ public partial class VButton : VTouchContentView
     public static readonly BindableProperty TitleTextProperty = BindableProperty.Create(
         nameof(TitleText),
         typeof(string),
-        typeof(VCollectionItem),
+        typeof(VButton),
         "TITLE HERE"
     );
 
@@ -51,7 +51,8 @@ public partial class VButton : VTouchContentView
     public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
         nameof(TextColor),
         typeof(Color),
-        typeof(VButton)
+        typeof(VButton),
+        default
     );
 
     public static BindableProperty FontSizeProperty = BindableProperty.Create(
@@ -105,7 +106,13 @@ public partial class VButton : VTouchContentView
             default:
                 break;
         }
-        this.Style = Application.Current.Resources[styleResources] as Style;
+        this.Style = Application.Current?.Resources[styleResources] as Style;
+        if (TextColor == default)
+        {
+            object textColor = default;
+            Application.Current?.Resources.TryGetValue("OnSurface", out textColor);
+            TextColor = textColor as Color;
+        }
     }
 
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(

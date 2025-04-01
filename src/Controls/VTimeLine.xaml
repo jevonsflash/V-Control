@@ -26,37 +26,39 @@
             </BindableLayout.ItemTemplate>
         </StackLayout>
 
+        <ContentView  Grid.Row="2"
+                      Grid.ColumnSpan="2"
+                      BindingContext="{Reference this}"
+                      IsVisible="{Binding IsShowRemark}"
+                      x:Name="RemarkContent">
+            <VerticalStackLayout>
+                <Label Text="Remark:"
+                       FontAttributes="Bold"
+                       Margin="0,10,0,10" />
+                <FlexLayout Wrap="Wrap"
+                            AlignItems="Center">
+                    <Ellipse WidthRequest="7"
+                             HeightRequest="7"
+                             Fill="{StaticResource NormalFill}"
+                             Margin="0,0,5,0" />
+                    <Label Text="Procedure to be done."
+                           TextColor="{StaticResource Gray360}" />
+                    <Ellipse WidthRequest="7"
+                             HeightRequest="7"
+                             Fill="{StaticResource SuccessFill}"
+                             Margin="20,0,5,0" />
+                    <Label Text="Procedure completed."
+                           TextColor="{StaticResource Gray360}" />
 
-        <Label Text="Remark:"
-               FontAttributes="Bold"
-               Margin="0,0,0,10" />
-        <HorizontalStackLayout>
-            <Rectangle WidthRequest="7"
-                       HeightRequest="7"
-                       Fill="#B3B3B3"
-                       RadiusX="7"
-                       RadiusY="7"
-                       Margin="0,0,5,0" />
-            <Label Text="Procedure to be done."
-                   TextColor="{StaticResource Gray360}" />
-            <Rectangle WidthRequest="7"
-                       HeightRequest="7"
-                       Fill="#01ae54"
-                       RadiusX="7"
-                       RadiusY="7"
-                       Margin="20,0,5,0" />
-            <Label Text="Procedure completed."
-                   TextColor="{StaticResource Gray360}" />
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Margin="0,10,0,0">
-            <Rectangle WidthRequest="7"
-                       HeightRequest="7"
-                       Fill="{StaticResource Primary}"
-                       RadiusX="7"
-                       RadiusY="7"
-                       Margin="0,0,5,0" />
-            <Label Text="Present procedure."
-                   TextColor="{StaticResource Gray360}" />
-        </HorizontalStackLayout>
+                    <Ellipse WidthRequest="7"
+                             HeightRequest="7"
+                             Fill="{StaticResource ActiveFill}"
+                             Margin="0,0,5,0" />
+                    <Label Text="Present procedure."
+                           TextColor="{StaticResource Gray360}" />
+                </FlexLayout>
+            </VerticalStackLayout>
+        </ContentView>
+
     </VerticalStackLayout>
 </ContentView>

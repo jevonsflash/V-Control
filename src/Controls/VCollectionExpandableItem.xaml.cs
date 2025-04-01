@@ -12,6 +12,13 @@ public partial class VCollectionExpandableItem : ContentView
         InitializeComponent();
         Loaded += VCollectionExpandableItem_Loaded;
         GoToState(IsExpanded);
+        if (TitleTextColor == default)
+        {
+            object textColor = default;
+            Application.Current?.Resources.TryGetValue("OnSurface", out textColor);
+            TitleTextColor = textColor as Color;
+        }
+
     }
 
     private void VCollectionExpandableItem_Loaded(object sender, EventArgs e)
@@ -113,7 +120,8 @@ public partial class VCollectionExpandableItem : ContentView
         nameof(TitleTextColor),
         typeof(Color),
         typeof(VCollectionExpandableItem),
-        null
+        default
+
     );
 
     public bool IsExpanded

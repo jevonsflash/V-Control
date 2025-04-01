@@ -1083,6 +1083,199 @@
                         Value="{StaticResource BodyFontSize}" />
             </Style>
 
+
+
+            <!--VTimeLine -->
+
+            <Color x:Key="SuccessBorder">#B3E8CC</Color>
+            <Color x:Key="SuccessFill">#01AE54</Color>
+            <Color x:Key="SuccessLine">#A3D8BC</Color>
+
+
+            <Color x:Key="ActiveBorder">#FFD6BA</Color>
+            <Color x:Key="ActiveFill">#FF7415</Color>
+            <Color x:Key="ActiveLine">#FFD6BA</Color>
+
+
+            <Color x:Key="NormalBorder">#E8E8E8</Color>
+            <Color x:Key="NormalFill">#B3B3B3</Color>
+            <Color x:Key="NormalLine">#E8E8E8</Color>
+
+            <Style TargetType="Grid"
+                   x:Key="TimeLineItemStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Success">
+                                <VisualState.Setters>
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.Stroke"
+                                            Value="{StaticResource SuccessBorder}" />
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.WidthRequest"
+                                            Value="34" />
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.HeightRequest"
+                                            Value="34" />
+
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.StrokeThickness"
+                                            Value="4" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.Stroke"
+                                            Value="{StaticResource Surface}" />
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.Background"
+                                            Value="{StaticResource SuccessFill}" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.WidthRequest"
+                                            Value="30" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.HeightRequest"
+                                            Value="30" />
+
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.StrokeThickness"
+                                            Value="3" />
+
+                                    <Setter TargetName="MarkLabel"
+                                            Property="Label.Opacity"
+                                            Value="1" />
+
+
+
+                                    <Setter TargetName="MarkLine"
+                                            Property="Line.Stroke"
+                                            Value="{StaticResource SuccessLine}" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Active">
+                                <VisualState.Setters>
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.Stroke"
+                                            Value="{StaticResource ActiveBorder}" />
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.WidthRequest"
+                                            Value="30" />
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.HeightRequest"
+                                            Value="30" />
+
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.StrokeThickness"
+                                            Value="2" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.Stroke"
+                                            Value="{StaticResource Surface}" />
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.Background"
+                                            Value="{StaticResource ActiveFill}" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.WidthRequest"
+                                            Value="23" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.HeightRequest"
+                                            Value="23" />
+
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.StrokeThickness"
+                                            Value="3" />
+
+                                    <Setter TargetName="MarkLabel"
+                                            Property="Label.Opacity"
+                                            Value="0" />
+
+
+
+                                    <Setter TargetName="MarkLine"
+                                            Property="Line.Stroke"
+                                            Value="{StaticResource ActiveLine}" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.Stroke"
+                                            Value="{StaticResource NormalBorder}" />
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.WidthRequest"
+                                            Value="30" />
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.HeightRequest"
+                                            Value="30" />
+
+
+                                    <Setter TargetName="MarkBorder"
+                                            Property="Border.StrokeThickness"
+                                            Value="2" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.Stroke"
+                                            Value="{StaticResource Surface}" />
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.Background"
+                                            Value="{StaticResource NormalFill}" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.WidthRequest"
+                                            Value="23" />
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.HeightRequest"
+                                            Value="23" />
+
+
+                                    <Setter TargetName="MarkCenter"
+                                            Property="Border.StrokeThickness"
+                                            Value="3" />
+
+                                    <Setter TargetName="MarkLabel"
+                                            Property="Label.Opacity"
+                                            Value="0" />
+
+
+
+                                    <Setter TargetName="MarkLine"
+                                            Property="Line.Stroke"
+                                            Value="{StaticResource NormalLine}" />
+
+
+                                    <Setter TargetName="MarkLine"
+                                            Property="Line.StrokeDashOffset"
+                                            Value="9" />
+
+
+                                    <Setter TargetName="MarkLine"
+                                            Property="Line.StrokeDashArray"
+                                            Value="0,2.5" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+
+
+                </Setter>
+            </Style>
+
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 

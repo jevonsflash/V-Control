@@ -12,6 +12,12 @@ public partial class VTopAppBar : ContentView
         InitializeComponent();
         Loaded += VTopAppBar_Loaded;
         this.UpdateTitleStyle();
+        if (TitleTextColor == default)
+        {
+            object textColor = default;
+            Application.Current?.Resources.TryGetValue("OnSurface", out textColor);
+            TitleTextColor = textColor as Color;
+        }
     }
 
     private void VTopAppBar_Loaded(object sender, EventArgs e)
@@ -139,7 +145,7 @@ public partial class VTopAppBar : ContentView
         nameof(TitleTextColor),
         typeof(Color),
         typeof(VTopAppBar),
-        Colors.Black
+        default
     );
 
     public static readonly BindableProperty IsBusyProperty = BindableProperty.Create(

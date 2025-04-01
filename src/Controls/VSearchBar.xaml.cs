@@ -8,6 +8,12 @@ public partial class VSearchBar : ContentView
     {
         InitializeComponent();
         Loaded += VSearchBar_Loaded;
+        if (TitleColor == default)
+        {
+            object textColor = default;
+            Application.Current?.Resources.TryGetValue("OnSurface", out textColor);
+            TitleColor = textColor as Color;
+        }
     }
 
     private void VSearchBar_Loaded(object? sender, EventArgs e)
@@ -86,12 +92,12 @@ public partial class VSearchBar : ContentView
         nameof(TitleColor),
         typeof(Color),
         typeof(VSearchBar),
-        null
+        default
     );
     public static readonly BindableProperty HasSearchButtonProperty = BindableProperty.Create(
         nameof(HasSearchButton),
         typeof(bool),
-        typeof(VCollectionItem),
+        typeof(VSearchBar),
         true
     );
 

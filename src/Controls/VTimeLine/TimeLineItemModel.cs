@@ -17,6 +17,6 @@ namespace VControl.Controls
         public TimeLineItemType Type { get; set; }
 
 
-        public Color TitleColor { get; set; }
+        public Color TitleColor { get; set; } = Application.Current?.Resources["OnSurface"] as Color;
     }
 }
