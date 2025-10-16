@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-ios;net8.0-android;</TargetFrameworks>
+		<TargetFrameworks>net9.0-ios;net9.0-android;</TargetFrameworks>
 		<AndroidPackageFormat>apk</AndroidPackageFormat>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
@@ -31,20 +31,20 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+	<PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
 	  <ProvisioningType>manual</ProvisioningType>
 	  <CodesignKey>iPhone Distribution</CodesignKey>
 	  <CodesignProvision></CodesignProvision>
 	</PropertyGroup>
 
 	
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
 	  <AndroidLinkTool>r8</AndroidLinkTool>
 	  <DebugSymbols>True</DebugSymbols>
 	</PropertyGroup>
 
 	
-	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net8.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(TargetFramework)|$(Platform)'=='net9.0-ios|AnyCPU'">
 	  <MtouchLink>SdkOnly</MtouchLink>
 	</PropertyGroup>
 	
@@ -53,7 +53,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\logo.svg" Color="#fff"  />
+		<MauiSplashScreen Include="Resources\Splash\logo.svg" Color="#fff" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\**\*" />
@@ -77,26 +77,26 @@
 
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.100" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="11.2.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.111" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.111" />
 	</ItemGroup>
 
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
 		<PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Ktx">
-		  <Version>2.8.7.1</Version>
+		  <Version>2.9.3</Version>
 		</PackageReference>
-		<PackageReference Include="Xamarin.Google.Android.Play.App.Update" Version="2.1.0.12"></PackageReference>
-		<PackageReference Include="Xamarin.AndroidX.Activity.Ktx" Version="1.9.3.1" />
-		<PackageReference Include="Xamarin.AndroidX.Collection.Jvm" Version="1.4.5.1" />
-		<PackageReference Include="Xamarin.AndroidX.Collection.Ktx" Version="1.4.5.1" />
+		<PackageReference Include="Xamarin.Google.Android.Play.App.Update" Version="2.1.0.16"></PackageReference>
+		<PackageReference Include="Xamarin.AndroidX.Activity.Ktx" Version="1.11.0" />
+		<PackageReference Include="Xamarin.AndroidX.Collection.Jvm" Version="1.5.0.3" />
+		<PackageReference Include="Xamarin.AndroidX.Collection.Ktx" Version="1.5.0.3" />
 
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-ios'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0-ios'">
 		<BundleResource Include="Platforms\iOS\PrivacyInfo.xcprivacy" LogicalName="PrivacyInfo.xcprivacy" />
 	</ItemGroup>
 
