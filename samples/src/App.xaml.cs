@@ -1,29 +1,17 @@
-﻿using VControl.Samples.Services.Navigation;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace VControl.Samples;
-
-public partial class App : Application
+namespace VControl.Samples
 {
-    public App(INavigationService navigationService)
+    public partial class App : Application
     {
-        InitializeComponent();
-        InitApp();
-        MainPage = new AppShell(navigationService);
-    }
-
-    private void InitApp()
-    {
-        if (VersionTracking.IsFirstLaunchEver)
+        public App()
         {
-            //首次打开
+            InitializeComponent();
         }
-    }
 
-    protected override async void OnStart()
-    {
-        base.OnStart();
-
-        //code snippet
-        OnResume();
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            return new Window(new AppShell());
+        }
     }
 }

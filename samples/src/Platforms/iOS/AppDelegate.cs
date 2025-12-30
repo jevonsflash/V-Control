@@ -1,22 +1,10 @@
-﻿using System.Diagnostics;
-using Foundation;
-using UIKit;
+﻿using Foundation;
 
-namespace VControl.Samples;
-
-[Register("AppDelegate")]
-public class AppDelegate : MauiUIApplicationDelegate
+namespace VControl.Samples
 {
-    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
-
-    public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+    [Register("AppDelegate")]
+    public class AppDelegate : MauiUIApplicationDelegate
     {
-        AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-        return base.FinishedLaunching(app, options);
-    }
-
-    private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-    {
-        Debug.WriteLine(e.ExceptionObject);
+        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
     }
 }

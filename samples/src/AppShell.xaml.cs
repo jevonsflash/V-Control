@@ -1,24 +1,10 @@
-﻿using VControl.Samples.Services.Navigation;
-
-namespace VControl.Samples;
-
-public partial class AppShell : Shell
+﻿namespace VControl.Samples
 {
-    private readonly INavigationService _navigationService;
-
-    public AppShell(INavigationService navigationService)
+    public partial class AppShell : Shell
     {
-        _navigationService = navigationService;
-        InitializeComponent();
-    }
-
-    protected override async void OnHandlerChanged()
-    {
-        base.OnHandlerChanged();
-
-        if (Handler is not null)
+        public AppShell()
         {
-            await _navigationService.InitializeAsync();
+            InitializeComponent();
         }
     }
 }
