@@ -7,7 +7,7 @@
                           xmlns:viewBase="clr-namespace:VControl.Samples.Views.Base"
                           xmlns:control="clr-namespace:VControl.Controls;assembly=VControl"
                           x:TypeArguments="vm:HomeViewModel"
-                          Shell.NavBarIsVisible="False"
+                          
                           Title="HomePage">
 
     <viewBase:ContentPageBase.Resources>

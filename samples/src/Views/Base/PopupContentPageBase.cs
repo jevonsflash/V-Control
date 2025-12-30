@@ -11,7 +11,7 @@ public abstract class PopupContentPageBase<TViewModel> : PopupContentPageBase
 
     public abstract void PopupBase_Opened(
         object sender,
-        CommunityToolkit.Maui.Core.PopupOpenedEventArgs e
+        EventArgs e
     );
 
     public new TViewModel BindingContext => (TViewModel)base.BindingContext;
@@ -32,7 +32,7 @@ public abstract class PopupContentPageBase : CommunityToolkit.Maui.Views.Popup
 
     private void PopupContentPageBase_Opened(
         object sender,
-        CommunityToolkit.Maui.Core.PopupOpenedEventArgs e
+        EventArgs e
     )
     {
         var displayInfo = this.deviceDisplay.MainDisplayInfo;
@@ -53,7 +53,12 @@ public abstract class PopupContentPageBase : CommunityToolkit.Maui.Views.Popup
 
         var d = displayInfo.Density;
         PopupSize = new Size(newWidth / d, newHeight / d);
-        this.Size = PopupSize;
+
+        if (this.Content is Microsoft.Maui.Controls.View contentView)
+        {
+            contentView.WidthRequest = PopupSize.Width;
+            contentView.HeightRequest = PopupSize.Height;
+        }
     }
 
     public Size PopupSize { get; set; }
